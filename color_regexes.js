@@ -6,3 +6,9 @@ const rgb = str => str.match(/rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}(?:\s
 
 // HSL
 const hsl = str => str.match(/hsla?\(\s*\d{1,3}\s*,\s*\d{1,3}%\s*,\s*\d{1,3}%(?:\s*,\s*\d(?:\.\d*)?)?\s*\)/ig);
+
+module.exports = {
+    hex,
+    rgb,
+    hsl
+};
