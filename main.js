@@ -1,11 +1,10 @@
 const readline = require("readline");
 const fs = require("fs");
+const path = require("path");
 
 const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
-
-let entryPath = process.argv[2];
 
 let colorMap = {};
 
@@ -51,16 +50,28 @@ const parseFile = (filePath) => {
     });
 };
 
-fs.lstat(entryPath, (err, stats) => {
+const determineFilePathAction = (filePath) => {
+    fs.lstat(filePath, (err, stats) => {
+        if (err) {
+            console.error(err);
+        }
+
+        if (stats.isFile()) {
+            parseFile(filePath);
+        }
+
+        if (stats.isDirectory()) {
+            console.log('This is a directory...');
+        }
+    });
+};
+
+fs.readdir(__dirname, (err, files) => {
     if (err) {
         console.error(err);
     }
 
-    if (stats.isFile()) {
-        parseFile(entryPath);
-    }
-
-    if (stats.isDirectory()) {
-        console.log('This is a directory...');
-    }
+    files.forEach(file => {
+        determineFilePathAction(path.resolve(__dirname, file));
+    });
 });
