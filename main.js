@@ -6,6 +6,7 @@ const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
 
+const ignore = ['.git', 'node_modules'];
 let colorMap = {};
 
 const addColor = (colorList, lineNumber, filePath) => {
@@ -61,17 +62,23 @@ const determineFilePathAction = (filePath) => {
         }
 
         if (stats.isDirectory()) {
-            console.log('This is a directory...');
+            parseDirectory(filePath);
         }
     });
 };
 
-fs.readdir(__dirname, (err, files) => {
-    if (err) {
-        console.error(err);
-    }
+const parseDirectory = (directoryPath) => {
+    fs.readdir(directoryPath, (err, files) => {
+        if (err) {
+            console.error(err);
+        }
 
-    files.forEach(file => {
-        determineFilePathAction(path.resolve(__dirname, file));
+        files.forEach(file => {
+            if (!ignore.includes(file)) {
+                determineFilePathAction(path.resolve(directoryPath, file));
+            }
+        });
     });
-});
+};
+
+parseDirectory(__dirname);
