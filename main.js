@@ -6,7 +6,8 @@ const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
 
-const ignore = ['.git', 'node_modules'];
+const IGNORE = ['.git', 'node_modules'];
+
 let colorMap = {};
 
 const addColor = (colorList, lineNumber, filePath) => {
@@ -34,7 +35,7 @@ const parseDirectory = (dir) => {
 
             let parsedFiles = files
                 .filter(file => {
-                    return !ignore.includes(file);
+                    return !IGNORE.includes(file);
                 })
                 .map(file => {
                     return determinePathAction(path.resolve(dir, file));
@@ -91,13 +92,6 @@ const determinePathAction = (fsPath) => {
     });
 };
 
-
-parseDirectory(__dirname).then(() => {
-    formatTerminalOutput();
-}).catch(err => {
-    console.log(err);
-});
-
 const formatTerminalOutput = () => {
     let output = Object.keys(colorMap).map((color) => {
         let lines = colorMap[color].map(colorObj => {
@@ -109,3 +103,11 @@ const formatTerminalOutput = () => {
 
     console.log(output);
 };
+
+
+parseDirectory(__dirname).then(() => {
+    formatTerminalOutput();
+}).catch(err => {
+    console.log(err);
+});
+
