@@ -25,60 +25,87 @@ const addColor = (colorList, lineNumber, filePath) => {
     });
 };
 
-const parseFile = (filePath) => {
-    const rl = readline.createInterface({
-        input: fs.createReadStream(filePath)
-    });
+const parseDirectory = (dir) => {
+    return new Promise((resolve, reject) => {
+        fs.readdir(dir, (err, files) => {
+            if (err) {
+                reject(err);
+            }
 
-    let lineCount = 1;
+            let parsedFiles = files
+                .filter(file => {
+                    return !ignore.includes(file);
+                })
+                .map(file => {
+                    return determinePathAction(path.resolve(dir, file));
+                });
 
-    rl.on('line', (line) => {
-        if (hex(line)) {
-            addColor(hex(line), lineCount, filePath);
-        }
-
-        if (rgb(line)) {
-            addColor(rgb(line), lineCount, filePath);
-        }
-
-        if (hsl(line)) {
-            addColor(hsl(line), lineCount, filePath);
-        }
-
-        lineCount++;
-    }).on('close', () => {
-        console.log(JSON.stringify(colorMap));
+            Promise.all(parsedFiles).then(resolve);
+        });
     });
 };
 
-const determineFilePathAction = (filePath) => {
-    fs.lstat(filePath, (err, stats) => {
-        if (err) {
-            console.error(err);
-        }
+const parseFile = file => {
+    return new Promise((resolve) => {
+        const rl = readline.createInterface({
+            input: fs.createReadStream(file)
+        });
 
-        if (stats.isFile()) {
-            parseFile(filePath);
-        }
+        let lineCount = 1;
 
-        if (stats.isDirectory()) {
-            parseDirectory(filePath);
-        }
+        rl.on('line', (line) => {
+            if (hex(line)) {
+                addColor(hex(line), lineCount, file);
+            }
+
+            if (rgb(line)) {
+                addColor(rgb(line), lineCount, file);
+            }
+
+            if (hsl(line)) {
+                addColor(hsl(line), lineCount, file);
+            }
+
+            lineCount++;
+        }).on('close', () => {
+            resolve();
+        });
     });
 };
 
-const parseDirectory = (directoryPath) => {
-    fs.readdir(directoryPath, (err, files) => {
-        if (err) {
-            console.error(err);
-        }
+const determinePathAction = (fsPath) => {
+    return new Promise((resolve, reject) => {
+        fs.lstat(fsPath, (err, stats) => {
+            if (err) {
+                reject(err);
+            }
 
-        files.forEach(file => {
-            if (!ignore.includes(file)) {
-                determineFilePathAction(path.resolve(directoryPath, file));
+            if (stats.isFile()) {
+                resolve(parseFile(fsPath));
+            }
+
+            if (stats.isDirectory()) {
+                resolve(parseDirectory(fsPath));
             }
         });
     });
 };
 
-parseDirectory(__dirname);
+
+parseDirectory(__dirname).then(() => {
+    formatTerminalOutput();
+}).catch(err => {
+    console.log(err);
+});
+
+const formatTerminalOutput = () => {
+    let output = Object.keys(colorMap).map((color) => {
+        let lines = colorMap[color].map(colorObj => {
+            return `${colorObj.filePath}:${colorObj.lineNumber}`;
+        }).join(",\n\t");
+
+        return `${color}:\n\t${lines}`;
+    }).join("\n\n");
+
+    console.log(output);
+};
