@@ -93,7 +93,19 @@ const determinePathAction = (fsPath) => {
 
 
 parseDirectory(__dirname).then(() => {
-    console.log(JSON.stringify(colorMap));
+    formatTerminalOutput();
 }).catch(err => {
     console.log(err);
 });
+
+const formatTerminalOutput = () => {
+    let output = Object.keys(colorMap).map((color) => {
+        let lines = colorMap[color].map(colorObj => {
+            return `${colorObj.filePath}:${colorObj.lineNumber}`;
+        }).join(",\n\t");
+
+        return `${color}:\n\t${lines}`;
+    }).join("\n\n");
+
+    console.log(output);
+};
