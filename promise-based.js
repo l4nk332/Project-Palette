@@ -1,5 +1,6 @@
 const readline = require("readline");
 const fs = require("fs");
+const path = require("path");
 
 const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
@@ -24,7 +25,7 @@ const addColor = (colorList, lineNumber, filePath) => {
     });
 };
 
-const readDirAsync = (dir) => {
+const parseDirectory = (dir) => {
     return new Promise((resolve, reject) => {
         fs.readdir(dir, (err, files) => {
             if (err) {
@@ -36,7 +37,7 @@ const readDirAsync = (dir) => {
                     return !ignore.includes(file);
                 })
                 .map(file => {
-                    return parseFile(file);
+                    return determinePathAction(path.resolve(dir, file));
                 });
 
             Promise.all(parsedFiles).then(resolve);
@@ -72,7 +73,26 @@ const parseFile = file => {
     });
 };
 
-readDirAsync(__dirname).then(() => {
+const determinePathAction = (fsPath) => {
+    return new Promise((resolve, reject) => {
+        fs.lstat(fsPath, (err, stats) => {
+            if (err) {
+                reject(err);
+            }
+
+            if (stats.isFile()) {
+                resolve(parseFile(fsPath));
+            }
+
+            if (stats.isDirectory()) {
+                resolve(parseDirectory(fsPath));
+            }
+        });
+    });
+};
+
+
+parseDirectory(__dirname).then(() => {
     console.log(JSON.stringify(colorMap));
 }).catch(err => {
     console.log(err);

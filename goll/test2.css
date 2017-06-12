@@ -1,0 +1,16 @@
+h1 {
+    border: 1px solid #eee;
+    background: #FFFFFF;
+    color: rgb(233, 120, 100);
+}
+
+p {
+    border: 1px dashed #e33e33ff;
+    background: #FFF0;
+    color: rgba(233, 120, 100, 0.7);
+}
+
+span {
+    background: hsla(195, 100%, 50%, 1);
+    color: hsl(195, 100%, 10%);
+}
