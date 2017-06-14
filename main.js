@@ -2,6 +2,8 @@ const readline = require("readline");
 const fs = require("fs");
 const path = require("path");
 
+const generateHtml = require('./markup-generator.js');
+
 const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
@@ -107,6 +109,13 @@ const formatTerminalOutput = () => {
 
 parseDirectory(__dirname).then(() => {
     formatTerminalOutput();
+    fs.writeFile("project-pallete.html", generateHtml(colorMap), (err) => {
+        if (err) {
+            console.error(err);
+        }
+
+        console.log('\n\n\nFile has been created!');
+    });
 }).catch(err => {
     console.log(err);
 });
