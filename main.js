@@ -8,7 +8,7 @@ const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
 
-const IGNORE = ['.git', 'node_modules'];
+const IGNORE = ['.git', 'node_modules', 'project-pallete.html'];
 
 let colorMap = {};
 

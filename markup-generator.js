@@ -36,7 +36,7 @@ const generateColorLocationInfo = (colorLocations) => {
     return colorLocations.map(location => {
         return `
             <li>
-                <code>${location.filePath}: ${location.lineNumber}</code>
+                <a href="file://${location.filePath}" target="_blank"><code>${location.filePath}: ${location.lineNumber}</code></a>
             </li>
         `;
     }).join("");
@@ -64,9 +64,18 @@ const generateHtml = (colorMap) => {
                 <style>
                     ${styles}
                 </style>
+                <div style='text-align: center'>
+                    <input type='color' />
+                <div>
                 <div class='pallete'>
                     ${generateColorSwatches(colorMap)}
                 </div>
+                <script>
+                    var colorPicker = document.querySelector("[type='color']");
+                    colorPicker.addEventListener('change', function(e) {
+                        document.body.style = e.target.value;
+                    });
+                </script>
             </body>
         </html>`.trim();
 };
