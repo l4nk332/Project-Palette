@@ -2,8 +2,6 @@ const readline = require("readline");
 const fs = require("fs");
 const path = require("path");
 
-const generateHtml = require('./markup-generator.js');
-
 const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
@@ -107,9 +105,9 @@ const formatTerminalOutput = () => {
 };
 
 
-parseDirectory(__dirname).then(() => {
+parseDirectory(process.argv[2]).then(() => {
     formatTerminalOutput();
-    fs.writeFile("project-pallete.html", generateHtml(colorMap), (err) => {
+    fs.writeFile("./src/color-palette.json", JSON.stringify(colorMap), (err) => {
         if (err) {
             console.error(err);
         }
