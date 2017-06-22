@@ -35,6 +35,22 @@ const ColorSwatch = ({color, locations}) => {
 }
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            backgroundColor: "#ffffff"
+        };
+
+        this.changeBackground = this.changeBackground.bind(this);
+    }
+
+    changeBackground(event) {
+        let newColor = event.target.value;
+        this.setState({
+            backgroundColor: newColor
+        });
+    }
+
 	render() {
 	    let colorSwatches = Object.keys(colorPalette).map(color => {
 		    return (
@@ -47,9 +63,9 @@ class App extends React.Component {
 		});
 
 		return (
-			<div>
+			<div style={{ backgroundColor: this.state.backgroundColor }}>
 				<div style={{ textAlign: 'center' }}>
-					<input type='color' />
+					<input type='color' onChange={this.changeBackground} />
 				</div>
 				<div className="palette">{colorSwatches}</div>
 			</div>
