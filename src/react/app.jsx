@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import colorPalette from "../color-palette.json";
 
+
 export default class App extends React.Component {
     render() {
         let colorSwatches = Object.keys(colorPalette).map(color => {
@@ -16,9 +17,7 @@ export default class App extends React.Component {
                 <div style={{ textAlign: 'center' }}>
                     <input type='color' />
                 <div>
-                <div className='palette'>
-                    {colorSwatches}
-                </div>
+                <div className='palette'></div>
             </div>
         );
     }
@@ -38,7 +37,7 @@ const ColorSwatch = ({color, locations}) => {
         <div className="swatch-container">
             <h5>{color}</h5>
             <div className="swatch" style={{ background: color }}></div>
-            <ul>{colorLocationInfo}</ul>
+            <ul></ul>
         </div>
     );
 };

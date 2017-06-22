@@ -1,3 +1,3 @@
 import "./styles/styles.sass";
 
-import "./react/app.js";
+import "./react/app.jsx";
