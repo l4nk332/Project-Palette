@@ -1,6 +1,7 @@
 const readline = require("readline");
 const fs = require("fs");
 const path = require("path");
+const shortid = require("shortid");
 
 const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
@@ -13,15 +14,20 @@ let colorMap = {};
 const addColor = (colorList, lineNumber, filePath) => {
     colorList.forEach(color => {
         if (Object.keys(colorMap).includes(color)) {
-            colorMap[color].push({
+            colorMap[color].locations.push({
                 lineNumber: lineNumber,
-                filePath: filePath
+                filePath: filePath,
+                uniqueId: shortid.generate()
             });
         } else {
-            colorMap[color] = [{
-                lineNumber: lineNumber,
-                filePath: filePath
-            }];
+            colorMap[color] = {
+                uniqueId: shortid.generate(),
+                locations: [{
+                    lineNumber: lineNumber,
+                    filePath: filePath,
+                    uniqueId: shortid.generate()
+                }]
+            };
         }
     });
 };
@@ -94,8 +100,8 @@ const determinePathAction = (fsPath) => {
 
 const formatTerminalOutput = () => {
     let output = Object.keys(colorMap).map((color) => {
-        let lines = colorMap[color].map(colorObj => {
-            return `${colorObj.filePath}:${colorObj.lineNumber}`;
+        let lines = colorMap[color].locations.map(location => {
+            return `${location.filePath}:${location.lineNumber}`;
         }).join(",\n\t");
 
         return `${color}:\n\t${lines}`;

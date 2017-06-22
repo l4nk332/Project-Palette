@@ -23,7 +23,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Project Palette"
+            template: "./src/index.html"
         })
     ]
 };

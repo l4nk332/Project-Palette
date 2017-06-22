@@ -20,6 +20,7 @@ const ColorSwatch = ({color, locations}) => {
 			<ColorLocation
 				filePath={location.filePath}
 				lineNumber={location.lineNumber}
+                key={location.uniqueId}
 			/>
 		);
 	});
@@ -35,9 +36,13 @@ const ColorSwatch = ({color, locations}) => {
 
 class App extends React.Component {
 	render() {
-		let colorSwatches = Object.keys(colorPalette).map(color => {
-			return (
-				<ColorSwatch color={color} locations={colorPalette[color]} />
+	    let colorSwatches = Object.keys(colorPalette).map(color => {
+		    return (
+				<ColorSwatch
+                    color={color}
+                    locations={colorPalette[color].locations}
+                    key={colorPalette[color].uniqueId}
+                />
 			);
 		});
 
@@ -52,4 +57,4 @@ class App extends React.Component {
 	}
 }
 
-ReactDOM.render(<App />, document.body);
+ReactDOM.render(<App />, document.getElementById("app"));
