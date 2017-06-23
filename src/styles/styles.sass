@@ -5,6 +5,8 @@ html, body
 
 h5
   text-align: center
+  font-family: Helvetica
+  font-size: 15px
 
 
 .swatch-container
@@ -15,6 +17,10 @@ h5
   width: 200px
   height: 200px
   margin: 20px auto
+  transition: transform 150ms ease-in-out
+  &:hover
+    transform: scale(1.15)
+    cursor: move
 
 
 .palette
@@ -28,3 +34,12 @@ ul
   padding: 0
   margin: 0
   list-style: none
+
+li
+  width: 288px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  text-align: left
+  direction: rtl
+
