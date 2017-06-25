@@ -3,41 +3,10 @@ import ReactDOM from "react-dom";
 
 import colorPalette from "../color-palette.json";
 
+import ColorSwatch from "./components/ColorSwatch.jsx";
 
-const ColorLocation = ({filePath, lineNumber}) => {
-	return (
-		<li>
-			<a
-                href={"file://" + filePath}
-                title={"file://" + filePath}
-                target="_blank">
-                <code>{filePath}: {lineNumber}</code>
-			</a>
-		</li>
-	);
-}
 
-const ColorSwatch = ({color, locations}) => {
-	let colorLocationInfo = locations.map(location => {
-		return (
-			<ColorLocation
-				filePath={location.filePath}
-				lineNumber={location.lineNumber}
-                key={location.uniqueId}
-			/>
-		);
-	});
-
-	return (
-		<div className="swatch-container">
-			<h5>{color}</h5>
-			<div className="swatch" style={{ background: color }}></div>
-			<ul>{colorLocationInfo}</ul>
-		</div>
-	);
-}
-
-class App extends React.Component {
+export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -75,5 +44,6 @@ class App extends React.Component {
 		);
 	}
 }
+
 
 ReactDOM.render(<App />, document.getElementById("app"));
