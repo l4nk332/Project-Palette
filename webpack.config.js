@@ -22,7 +22,14 @@ module.exports = {
                 test: /\.sass|\.scss$/,
                 exclude: /node_modules/,
                 loaders: ["style-loader", "css-loader", "sass-loader"]
-            }
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[name].[ext]',
+                },
+            },
         ]
     },
     plugins: [

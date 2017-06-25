@@ -6,7 +6,7 @@ function RevertColorControl() {
     return (
         <MaterialIcon
             iconName="replay"
-            titleText="Revert to Original Color"
+            titleText="Revert to original color"
         />
     );
 }

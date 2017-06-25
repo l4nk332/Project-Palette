@@ -6,7 +6,7 @@ function RemoveColorControl() {
     return (
         <MaterialIcon
             iconName="delete"
-            titleText="Remove Color"
+            titleText="Remove color"
         />
     );
 }

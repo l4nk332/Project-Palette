@@ -2,13 +2,13 @@ import React from "react";
 
 import MaterialIcon from "./MaterialIcon.jsx";
 
-function FullscreenToggle({isActive}) {
+function FullscreenToggleControl({isActive}) {
     return (
         <MaterialIcon
             iconName={isActive ? "fullscreen_exit" : "fullscreen"}
-            titleText={isActive ? "Exit Fullscreen" : "Enter Fullscreen"}
+            titleText={isActive ? "Exit fullscreen" : "Enter fullscreen"}
         />
     );
 }
 
-export default FullscreenToggle;
+export default FullscreenToggleControl;

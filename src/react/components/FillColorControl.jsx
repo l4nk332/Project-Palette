@@ -6,7 +6,7 @@ function FillColorControl() {
     return (
         <MaterialIcon
             iconName="format_color_fill"
-            titleText="Edit Color"
+            titleText="Set color as background"
         />
     );
 }

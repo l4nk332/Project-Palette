@@ -1,15 +1,17 @@
 import React from "react";
 
-import FullscreenToggle from "./FullscreenToggle.jsx";
+import FullscreenToggleControl from "./FullscreenToggleControl.jsx";
 import FillColorControl from "./FillColorControl.jsx";
+import ColorizeControl from "./ColorizeControl.jsx";
 import RevertColorControl from "./RevertColorControl.jsx";
 import RemoveColorControl from "./RemoveColorControl.jsx";
 
 function ColorSwatchControls() {
     return (
         <div>
-            <FullscreenToggle isActive={false} />
+            <FullscreenToggleControl isActive={false} />
             <FillColorControl />
+            <ColorizeControl />
             <RevertColorControl />
             <RemoveColorControl />
         </div>
