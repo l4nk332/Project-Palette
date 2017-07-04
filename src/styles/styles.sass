@@ -2,12 +2,17 @@ html, body
   margin: 0
   padding: 0
 
-
 h5
   text-align: center
   font-family: Helvetica
   font-size: 15px
 
+.palette
+  display: flex
+  flex-flow: row wrap
+  align-items: center
+  justify-content: center
+  min-height: 100vh
 
 .swatch-container
   margin: 20px
@@ -21,14 +26,6 @@ h5
   &:hover
     transform: scale(1.15)
     cursor: move
-
-
-.palette
-  display: flex
-  flex-flow: row wrap
-  align-items: flex-start
-  justify-content: space-evenly
-
 
 ul
   padding: 0
