@@ -1,12 +1,10 @@
-const util = require("util");
-const childProcess = require("child_process");
-const exec = util.promisify(childProcess.exec)
-
 require("dotenv").config();
 
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+
+const { gitClone } = require("./utils");
 
 app.use(express.static("./dist"));
 app.use(bodyParser.json());
@@ -20,12 +18,14 @@ app.get("/", (req, res) => {
 
 app.post("/colors", (req, res) => {
     const repoUrl = req.body.repoUrl;
-    exec("mkdir ./temp/" + repoUrl)
-        .then((output) => {
-            res.send("Folder successfully created...");
+    gitClone(repoUrl)
+        .then(() => {
+            console.log("Clone Successful!");
+            res.send("Clone Successful!");
         })
-        .catch((error) => {
-            res.send(error);
+        .catch((err) => {
+            console.error(err);
+            res.send("There was an issue cloning the repo...");
         });
 });
 
