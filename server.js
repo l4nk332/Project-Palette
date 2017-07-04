@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const express = require("express");
 const app = express();
 
+app.use(express.static('./dist'));
+
 app.get("/", (req, res) => {
-    res.send('Root route...');
+    res.render('index.html');
 });
 
 const SERVER_PORT = process.env.SERVER_PORT;
