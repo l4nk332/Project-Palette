@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+const { generateColorMap, normalizeGitHubUrl } = require("./main");
 const { gitClone } = require("./utils");
 
 app.use(express.static("./dist"));
@@ -17,15 +18,19 @@ app.get("/", (req, res) => {
 });
 
 app.post("/colors", (req, res) => {
-    const repoUrl = req.body.repoUrl;
-    gitClone(repoUrl)
+    const normalizedRepoInfo = normalizeGitHubUrl(req.body.repoUrl);
+    const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
+    gitClone(normalizedRepoInfo.httpsCloneUrl, cloneDestination)
         .then(() => {
-            console.log("Clone Successful!");
-            res.send("Clone Successful!");
+            console.log("Clone Successful!", "Now Parsing...");
+            return generateColorMap(cloneDestination);
+        })
+        .then((colorMap) => {
+            res.send(JSON.stringify(colorMap));
         })
         .catch((err) => {
             console.error(err);
-            res.send("There was an issue cloning the repo...");
+            res.status(500).send("There was an issue cloning the repo...");
         });
 });
 

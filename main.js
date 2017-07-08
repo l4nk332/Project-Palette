@@ -7,7 +7,7 @@ const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
 
-const IGNORE = ['.git', 'node_modules', 'project-pallete.html'];
+const IGNORE = ['.git', 'node_modules'];
 
 let colorMap = {};
 
@@ -98,29 +98,14 @@ const determinePathAction = (fsPath) => {
     });
 };
 
-const formatTerminalOutput = () => {
-    let output = Object.keys(colorMap).map((color) => {
-        let lines = colorMap[color].locations.map(location => {
-            return `${location.filePath}:${location.lineNumber}`;
-        }).join(",\n\t");
-
-        return `${color}:\n\t${lines}`;
-    }).join("\n\n");
-
-    console.log(output);
+const generateColorMap = (entryPath) => {
+    return parseDirectory(entryPath).then(() => {
+        return colorMap;
+    }).catch(err => {
+        return err;
+    });
 };
 
-
-parseDirectory(process.argv[2]).then(() => {
-    formatTerminalOutput();
-    fs.writeFile("./src/color-palette.json", JSON.stringify(colorMap), (err) => {
-        if (err) {
-            console.error(err);
-        }
-
-        console.log('\n\n\nFile has been created!');
-    });
-}).catch(err => {
-    console.log(err);
-});
-
+module.exports = {
+    generateColorMap
+};
