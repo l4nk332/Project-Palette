@@ -1,11 +1,13 @@
+const fs = require("fs-extra");
+
 require("dotenv").config();
 
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-const { generateColorMap, normalizeGitHubUrl } = require("./main");
-const { gitClone } = require("./utils");
+const { generateColorMap } = require("./main");
+const { gitClone, normalizeGitHubUrl } = require("./utils");
 
 app.use(express.static("./dist"));
 app.use(bodyParser.json());
@@ -20,13 +22,22 @@ app.get("/", (req, res) => {
 app.post("/colors", (req, res) => {
     const normalizedRepoInfo = normalizeGitHubUrl(req.body.repoUrl);
     const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
+
+    console.log(`Cloning ${normalizedRepoInfo.repoUri} into ${cloneDestination}\n`);
     gitClone(normalizedRepoInfo.httpsCloneUrl, cloneDestination)
         .then(() => {
-            console.log("Clone Successful!", "Now Parsing...");
+            console.log("Clone Successful!", "Now Parsing for ColorMap...");
             return generateColorMap(cloneDestination);
         })
         .then((colorMap) => {
-            res.send(JSON.stringify(colorMap));
+            console.log(`Removing ${cloneDestination}\n`);
+            fs.remove(cloneDestination).then(() => {
+                console.log(`Sending ColorMap...\n`);
+                res.send(JSON.stringify(colorMap));
+            }).catch((err) => {
+                console.error(err);
+                res.status(500).send(`There was an error removing the temp dir.`);
+            });
         })
         .catch((err) => {
             console.error(err);
