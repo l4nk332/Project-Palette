@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import colorPalette from "../color-palette.json";
+import $ from "jquery";
 
 import ColorSwatch from "./components/ColorSwatch.jsx";
 
@@ -10,10 +9,30 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            backgroundColor: "#ffffff"
+            backgroundColor: "#ffffff",
+            colorPalette: {}
         };
 
         this.changeBackground = this.changeBackground.bind(this);
+    }
+
+    componentDidMount() {
+        let self = this;
+
+        $.ajax({
+            url: "/colors",
+            method: "GET",
+            data: {
+                repoUrl: "https://github.com/l4nk332/computer-tennis"
+            }
+        }).done((jsonColorMap) => {
+            let colorPalette = JSON.parse(jsonColorMap);
+            self.setState((prevState) => {
+                return Object.assign({}, prevState, {colorPalette});
+            })
+        }).catch((err) => {
+            console.error(err);
+        });
     }
 
     changeBackground(event) {
@@ -24,12 +43,12 @@ export default class App extends React.Component {
     }
 
 	render() {
-	    let colorSwatches = Object.keys(colorPalette).map(color => {
+	    let colorSwatches = Object.keys(this.state.colorPalette).map(color => {
 		    return (
 				<ColorSwatch
                     color={color}
-                    locations={colorPalette[color].locations}
-                    key={colorPalette[color].uniqueId}
+                    locations={this.state.colorPalette[color].locations}
+                    key={this.state.colorPalette[color].uniqueId}
                 />
 			);
 		});

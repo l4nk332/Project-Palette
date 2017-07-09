@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
     res.render("index.html");
 });
 
-app.post("/colors", (req, res) => {
-    const normalizedRepoInfo = normalizeGitHubUrl(req.body.repoUrl);
+app.get("/colors", (req, res) => {
+    const normalizedRepoInfo = normalizeGitHubUrl(req.query.repoUrl);
     const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
 
     console.log(`Cloning ${normalizedRepoInfo.repoUri} into ${cloneDestination}\n`);
