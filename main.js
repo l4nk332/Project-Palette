@@ -7,7 +7,8 @@ const hex = require("./color_regexes").hex;
 const rgb = require("./color_regexes").rgb;
 const hsl = require("./color_regexes").hsl;
 
-const IGNORE = ['.git', 'node_modules'];
+const EXCLUDE_DIR = /\.git|node_modules/gi;
+const INCLUDE_FILE = /.*\.(js[x]?|css|sass|scss|less|html|styl|pug|jade|slim|ejs|vue|elm)/gi;
 
 let colorMap = {};
 
@@ -41,11 +42,11 @@ const parseDirectory = (dir) => {
 
             let parsedFiles = files
                 .filter(file => {
-                    return !IGNORE.includes(file);
+                    return !EXCLUDE_DIR.test(file);
                 })
                 .map(file => {
-                    return determinePathAction(path.resolve(dir, file));
-                });
+                return determinePathAction(path.resolve(dir, file));
+            });
 
             Promise.all(parsedFiles).then(resolve);
         });
@@ -54,29 +55,33 @@ const parseDirectory = (dir) => {
 
 const parseFile = file => {
     return new Promise((resolve) => {
-        const rl = readline.createInterface({
-            input: fs.createReadStream(file)
-        });
+        if (INCLUDE_FILE.test(file)) {
+            const rl = readline.createInterface({
+                input: fs.createReadStream(file)
+            });
 
-        let lineCount = 1;
+            let lineCount = 1;
 
-        rl.on('line', (line) => {
-            if (hex(line)) {
-                addColor(hex(line), lineCount, file);
-            }
+            rl.on('line', (line) => {
+                if (hex(line)) {
+                    addColor(hex(line), lineCount, file);
+                }
 
-            if (rgb(line)) {
-                addColor(rgb(line), lineCount, file);
-            }
+                if (rgb(line)) {
+                    addColor(rgb(line), lineCount, file);
+                }
 
-            if (hsl(line)) {
-                addColor(hsl(line), lineCount, file);
-            }
+                if (hsl(line)) {
+                    addColor(hsl(line), lineCount, file);
+                }
 
-            lineCount++;
-        }).on('close', () => {
+                lineCount++;
+            }).on('close', () => {
+                resolve();
+            });
+        } else {
             resolve();
-        });
+        }
     });
 };
 
