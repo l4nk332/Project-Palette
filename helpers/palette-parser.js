@@ -4,9 +4,7 @@ const path = require("path");
 const shortid = require("shortid");
 
 const { hex, rgb, hsl } = require("./regular-expressions");
-
-const EXCLUDE_DIR = require("./regular-expressions").EXCLUDE_DIR;
-const INCLUDE_FILE = require("./regular-expressions").INCLUDE_FILE;
+const { EXCLUDE_DIR, INCLUDE_FILE } = require("./regular-expressions");
 
 let colorMap = {};
 
