@@ -6,8 +6,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-const { generateColorMap } = require("./main");
-const { gitClone, normalizeGitHubUrl } = require("./utils");
+const { generateColorMap } = require("./helpers/palette-parser");
+const { gitClone, normalizeGitHubUrl } = require("./helpers/git-utils");
 
 app.use(express.static("./dist"));
 app.use(bodyParser.json());

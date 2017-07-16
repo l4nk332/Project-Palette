@@ -3,12 +3,10 @@ const fs = require("fs");
 const path = require("path");
 const shortid = require("shortid");
 
-const hex = require("./color_regexes").hex;
-const rgb = require("./color_regexes").rgb;
-const hsl = require("./color_regexes").hsl;
+const { hex, rgb, hsl } = require("./regular-expressions");
 
-const EXCLUDE_DIR = /\.git|node_modules/gi;
-const INCLUDE_FILE = /.*\.(js[x]?|css|sass|scss|less|html|styl|pug|jade|slim|ejs|vue|elm)/gi;
+const EXCLUDE_DIR = require("./regular-expressions").EXCLUDE_DIR;
+const INCLUDE_FILE = require("./regular-expressions").INCLUDE_FILE;
 
 let colorMap = {};
 
