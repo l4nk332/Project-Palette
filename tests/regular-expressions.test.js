@@ -61,3 +61,24 @@ test("Should match multiple hex values", () => {
         "#fa0"
     ]);
 });
+
+
+/* Test RGB/RGBA Regular Expression */
+/* ================================ */
+
+test("Should match valid rgb(a) colors", () => {
+    expect(rgb("rgb(255, 255, 255)")).toEqual(["rgb(255, 255, 255)"]);
+    expect(rgb("rgb(0, 5, 78)")).toEqual(["rgb(0, 5, 78)"]);
+    expect(rgb("rgb(0, 0, 0)")).toEqual(["rgb(0, 0, 0)"]);
+    expect(rgb("rgb(123, 96, 01)")).toEqual(["rgb(123, 96, 01)"]);
+    expect(rgb("rgb(150, 150, 150)")).toEqual(["rgb(150, 150, 150)"]);
+    expect(rgb("rgba(0, 0, 0, 0)")).toEqual(["rgba(0, 0, 0, 0)"]);
+    expect(rgb("rgba(123, 19, 10, 0.5)")).toEqual(["rgba(123, 19, 10, 0.5)"]);
+    expect(rgb("rgba(255, 255, 255, 0.1)")).toEqual(["rgba(255, 255, 255, 0.1)"]);
+    expect(rgb("rgba(1, 2, 3, 0.)")).toEqual(["rgba(1, 2, 3, 0.)"]);
+    expect(rgb("rgba(03, 002, 3, 0.001)")).toEqual(["rgba(03, 002, 3, 0.001)"]);
+    expect(rgb("rgba(3   ,2 ,3 ,0.3  )")).toEqual(["rgba(3   ,2 ,3 ,0.3  )"]);
+    expect(rgb("rgba(  3  ,  2  ,  3  ,  0.3  )")).toEqual([
+        "rgba(  3  ,  2  ,  3  ,  0.3  )"
+    ]);
+});
