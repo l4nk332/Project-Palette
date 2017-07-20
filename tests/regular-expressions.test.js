@@ -76,9 +76,24 @@ test("Should match valid rgb(a) colors", () => {
     expect(rgb("rgba(123, 19, 10, 0.5)")).toEqual(["rgba(123, 19, 10, 0.5)"]);
     expect(rgb("rgba(255, 255, 255, 0.1)")).toEqual(["rgba(255, 255, 255, 0.1)"]);
     expect(rgb("rgba(1, 2, 3, 0.)")).toEqual(["rgba(1, 2, 3, 0.)"]);
+    expect(rgb("rgba(1,2,3,1)")).toEqual(["rgba(1,2,3,1)"]);
     expect(rgb("rgba(03, 002, 3, 0.001)")).toEqual(["rgba(03, 002, 3, 0.001)"]);
     expect(rgb("rgba(3   ,2 ,3 ,0.3  )")).toEqual(["rgba(3   ,2 ,3 ,0.3  )"]);
     expect(rgb("rgba(  3  ,  2  ,  3  ,  0.3  )")).toEqual([
         "rgba(  3  ,  2  ,  3  ,  0.3  )"
     ]);
+    expect(rgb("RGB(255, 45, 10)")).toEqual(["RGB(255, 45, 10)"]);
+    expect(rgb("RgB(255, 45, 10)")).toEqual(["RgB(255, 45, 10)"]);
+});
+
+test("Should not match invalid rgb(a) colors", () => {
+    expect(rgb("(233, 23, 10)")).toBeNull();
+    expect(rgb("233,23,10")).toBeNull();
+    expect(rgb("rbg(15, 123, 10)")).toBeNull();
+    expect(rgb("rgb (170, 123, 100)")).toBeNull();
+    expect(rgb("r gb(170, 123, 100)")).toBeNull();
+    expect(rgb("rgb 170, 123, 100")).toBeNull();
+    expect(rgb("rgb('170', '123', '100')")).toBeNull();
+    expect(rgb("rgba(170, 123, 100)")).toBeNull();
+    expect(rgb("rgb(170, 123, 100, 0)")).toBeNull();
 });
