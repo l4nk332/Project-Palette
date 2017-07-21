@@ -11,12 +11,12 @@ const hsl = str => str.match(/hsl\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-
 const shouldExcludePath = str => /(?:^|\/)(?:\.git|node_modules)(?:\/|$)/gi.test(str);
 
 // Files to include
-const shouldIncludePath = str => /.*\.(js[x]?|css|sass|scss|less|html|styl|pug|jade|slim|ejs|vue|elm)/gi.test(str);
+const shouldIncludeExtension = str => /(?:\/|\\|\.)(js[x]?|css|sass|scss|less|htm[l]?|styl|pug|jade|slim|ejs|vue|elm)$/gi.test(str);
 
 module.exports = {
     hex,
     rgb,
     hsl,
     shouldExcludePath,
-    shouldIncludePath
+    shouldIncludeExtension
 };

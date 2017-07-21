@@ -1,5 +1,5 @@
 const { hex, rgb, hsl } = require("../helpers/regular-expressions");
-const { shouldExcludePath, shouldIncludePath } = require("../helpers/regular-expressions");
+const { shouldExcludePath, shouldIncludeExtension } = require("../helpers/regular-expressions");
 
 
 /* Test Hex Regular Expression */
@@ -159,9 +159,39 @@ test("Should not match invalid directories paths in the shouldExcludePath regex"
 });
 
 
-/* Test shouldIncludePath Regular Expression */
+/* Test shouldIncludeExtension Regular Expression */
 /* ========================================= */
 
-test("Should match valid directories in the shouldIncludePath regex", () => {
-    expect(shouldIncludePath("main.js")).toBeTruthy();
+test("Should match valid directories in the shouldIncludeExtension regex", () => {
+    expect(shouldIncludeExtension("main.js")).toBeTruthy();
+    expect(shouldIncludeExtension("/src/react/main.js")).toBeTruthy();
+    expect(shouldIncludeExtension("/src/components/App.jsx")).toBeTruthy();
+    expect(shouldIncludeExtension("style/find.css")).toBeTruthy();
+    expect(shouldIncludeExtension("scss/style.scss")).toBeTruthy();
+    expect(shouldIncludeExtension("/styles/partials/_buttons.sass")).toBeTruthy();
+    expect(shouldIncludeExtension("/palette/colors.less")).toBeTruthy();
+    expect(shouldIncludeExtension("/main/index.html")).toBeTruthy();
+    expect(shouldIncludeExtension("stlus.styl")).toBeTruthy();
+    expect(shouldIncludeExtension("login.pug")).toBeTruthy();
+    expect(shouldIncludeExtension("login.jade")).toBeTruthy();
+    expect(shouldIncludeExtension("config.slim")).toBeTruthy();
+    expect(shouldIncludeExtension("cutter.ejs")).toBeTruthy();
+    expect(shouldIncludeExtension("index.vue")).toBeTruthy();
+    expect(shouldIncludeExtension("/src/dist/View.elm")).toBeTruthy();
+    expect(shouldIncludeExtension("style.min.css")).toBeTruthy();
+    expect(shouldIncludeExtension("Force/yt/style.min.css")).toBeTruthy();
+    expect(shouldIncludeExtension("ALLCAPS/MAIN.HTML")).toBeTruthy();
+    expect(shouldIncludeExtension("extra/ext.js.html")).toBeTruthy();
+    expect(shouldIncludeExtension("trump/trump.name.html")).toBeTruthy();
+    expect(shouldIncludeExtension("\ space \ .js")).toBeTruthy();
+    expect(shouldIncludeExtension("120398```~';'\\-=++ç.js")).toBeTruthy();
+    expect(shouldIncludeExtension("html5.htm")).toBeTruthy();
+});
+
+test("Should match valid directories in the shouldIncludeExtension regex", () => {
+    expect(shouldIncludeExtension("file.jsname.ytr")).toBeFalsy();
+    expect(shouldIncludeExtension("logic.js/wrong/thing")).toBeFalsy();
+    expect(shouldIncludeExtension("wrong.html.js.ip")).toBeFalsy();
+    expect(shouldIncludeExtension("file.bash")).toBeFalsy();
+    expect(shouldIncludeExtension("file.sh")).toBeFalsy();
 });

@@ -4,7 +4,7 @@ const path = require("path");
 const shortid = require("shortid");
 
 const { hex, rgb, hsl } = require("./regular-expressions");
-const { shouldExcludePath, INCLUDE_FILE } = require("./regular-expressions");
+const { shouldExcludePath, shouldIncludeExtension } = require("./regular-expressions");
 
 let colorMap = {};
 
@@ -51,7 +51,7 @@ const parseDirectory = (dir) => {
 
 const parseFile = file => {
     return new Promise((resolve) => {
-        if (INCLUDE_FILE.test(file)) {
+        if (shouldIncludeExtension(file)) {
             const rl = readline.createInterface({
                 input: fs.createReadStream(file)
             });
