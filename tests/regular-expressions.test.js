@@ -1,5 +1,5 @@
 const { hex, rgb, hsl } = require("../helpers/regular-expressions");
-const { shouldExcludePath, INCLUDE_FILE } = require("../helpers/regular-expressions");
+const { shouldExcludePath, shouldIncludePath } = require("../helpers/regular-expressions");
 
 
 /* Test Hex Regular Expression */
@@ -156,4 +156,12 @@ test("Should not match invalid directories paths in the shouldExcludePath regex"
     expect(shouldExcludePath("/.gitignore/node_modules /")).toBeFalsy();
     expect(shouldExcludePath(" .git ")).toBeFalsy();
     expect(shouldExcludePath(" node_modules ")).toBeFalsy();
+});
+
+
+/* Test shouldIncludePath Regular Expression */
+/* ========================================= */
+
+test("Should match valid directories in the shouldIncludePath regex", () => {
+    expect(shouldIncludePath("main.js")).toBeTruthy();
 });
