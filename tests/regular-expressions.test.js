@@ -106,13 +106,33 @@ test("Should not match invalid rgb(a) colors", () => {
 test("Should match valid hsl(a) colors", () => {
     expect(hsl("hsl(12, 25%, 23%)")).toEqual(["hsl(12, 25%, 23%)"]);
     expect(hsl("hsl(0, 100%, 0%)")).toEqual(["hsl(0, 100%, 0%)"]);
+    expect(hsl("HSL(12, 25%, 23%)")).toEqual(["HSL(12, 25%, 23%)"]);
     expect(hsl("hsl(360, 0%, 100%)")).toEqual(["hsl(360, 0%, 100%)"]);
     expect(hsl("hsl( 30  ,0%  , 10%  )")).toEqual(["hsl( 30  ,0%  , 10%  )"]);
     expect(hsl("hsla( 30  ,0%  , 10% ,0 )")).toEqual([
         "hsla( 30  ,0%  , 10% ,0 )"
     ]);
+    expect(hsl("HSLA(125, 100%, 10%, 0.4)")).toEqual([
+        "HSLA(125, 100%, 10%, 0.4)"
+    ]);
     expect(hsl("hsl(30,0%,10%), hsla(356, 23%, 100%, 0.12)")).toEqual([
         "hsl(30,0%,10%)",
         "hsla(356, 23%, 100%, 0.12)"
     ]);
+    expect(hsl("hsla(272, 40%, 90%, 1.0)")).toEqual([
+        "hsla(272, 40%, 90%, 1.0)"
+    ]);
+});
+
+test("Should not match invalid hsl(a) colors", () => {
+    expect(hsl("hsl(400, 23%, 10%)")).toBeNull();
+    expect(hsl("hsla(200, 23%, 10%, 1.1)")).toBeNull();
+    expect(hsl("hsl(200, 101%, 10%, 0.1)")).toBeNull();
+    expect(hsl("hsla(200, 10%, 101%, 0.1)")).toBeNull();
+    expect(hsl("hsl (200, 10%, 101%, 0.1)")).toBeNull();
+    expect(hsl("hsla (200, 10%, 101%, 0.1)")).toBeNull();
+    expect(hsl("hsl(200 10% 10%)")).toBeNull();
+    expect(hsl("hsla(272, 40%, 90%, 1.01)")).toBeNull();
+    expect(hsl("hsla(0, 0%, 0%)")).toBeNull();
+    expect(hsl("hsl(0, 0%, 0%, 0)")).toBeNull();
 });
