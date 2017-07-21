@@ -1,6 +1,5 @@
 const { hex, rgb, hsl } = require("../helpers/regular-expressions");
-const { EXCLUDE_DIR, INCLUDE_FILE } = require("../helpers/regular-expressions");
-
+const { shouldExcludePath, INCLUDE_FILE } = require("../helpers/regular-expressions");
 
 
 /* Test Hex Regular Expression */
@@ -135,4 +134,26 @@ test("Should not match invalid hsl(a) colors", () => {
     expect(hsl("hsla(272, 40%, 90%, 1.01)")).toBeNull();
     expect(hsl("hsla(0, 0%, 0%)")).toBeNull();
     expect(hsl("hsl(0, 0%, 0%, 0)")).toBeNull();
+});
+
+
+/* Test shouldExcludePath Regular Expression */
+/* =================================== */
+
+test("Should match valid directories paths in the shouldExcludePath regex", () => {
+    expect(shouldExcludePath("node_modules")).toBeTruthy();
+    expect(shouldExcludePath("/l4nk332/Code/js/node_modules/")).toBeTruthy();
+    expect(shouldExcludePath(".git")).toBeTruthy();
+    expect(shouldExcludePath("/name/.git")).toBeTruthy();
+    expect(shouldExcludePath(".git/node_modules/")).toBeTruthy();
+    expect(shouldExcludePath(".Git/node_modules/")).toBeTruthy();
+    expect(shouldExcludePath(".path/to/success/Node_Modules/")).toBeTruthy();
+});
+
+test("Should not match invalid directories paths in the shouldExcludePath regex", () => {
+    expect(shouldExcludePath("/my_node_modules_look_alike/")).toBeFalsy();
+    expect(shouldExcludePath("/path/to/.gitignore")).toBeFalsy();
+    expect(shouldExcludePath("/.gitignore/node_modules /")).toBeFalsy();
+    expect(shouldExcludePath(" .git ")).toBeFalsy();
+    expect(shouldExcludePath(" node_modules ")).toBeFalsy();
 });
