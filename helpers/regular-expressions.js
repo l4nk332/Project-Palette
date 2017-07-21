@@ -8,7 +8,7 @@ const rgb = str => str.match(/(rgb\(\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s
 const hsl = str => str.match(/hsl\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*\)|hsla\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*(?:\s*,\s*(?:1\.?0?|0\.?\d*))\s*\)/ig);
 
 // Directories to exclude
-const EXCLUDE_DIR = /\.git|node_modules/gi;
+const shouldExcludePath = str => /(?:^|\/)(?:\.git|node_modules)(?:\/|$)/gi.test(str);
 
 // Files to include
 const INCLUDE_FILE = /.*\.(js[x]?|css|sass|scss|less|html|styl|pug|jade|slim|ejs|vue|elm)/gi;
@@ -17,6 +17,6 @@ module.exports = {
     hex,
     rgb,
     hsl,
-    EXCLUDE_DIR,
+    shouldExcludePath,
     INCLUDE_FILE
 };

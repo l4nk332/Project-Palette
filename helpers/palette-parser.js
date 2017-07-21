@@ -4,7 +4,7 @@ const path = require("path");
 const shortid = require("shortid");
 
 const { hex, rgb, hsl } = require("./regular-expressions");
-const { EXCLUDE_DIR, INCLUDE_FILE } = require("./regular-expressions");
+const { shouldExcludePath, INCLUDE_FILE } = require("./regular-expressions");
 
 let colorMap = {};
 
@@ -38,7 +38,7 @@ const parseDirectory = (dir) => {
 
             let parsedFiles = files
                 .filter(file => {
-                    return !EXCLUDE_DIR.test(file);
+                    return !shouldExcludePath.test(file);
                 })
                 .map(file => {
                 return determinePathAction(path.resolve(dir, file));
