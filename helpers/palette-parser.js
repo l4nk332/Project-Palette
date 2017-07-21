@@ -38,7 +38,7 @@ const parseDirectory = (dir) => {
 
             let parsedFiles = files
                 .filter(file => {
-                    return !shouldExcludePath.test(file);
+                    return !shouldExcludePath(file);
                 })
                 .map(file => {
                 return determinePathAction(path.resolve(dir, file));
