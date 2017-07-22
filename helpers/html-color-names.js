@@ -1,4 +1,4 @@
-const HTML_COLOR_NAMES = [
+const isHTMLColorName = str => ([
     "aliceblue",
     "antiquewhite",
     "aqua",
@@ -147,8 +147,8 @@ const HTML_COLOR_NAMES = [
     "whitesmoke",
     "yellow",
     "yellowgreen"
-];
+].includes(str));
 
 module.exports = {
-    HTML_COLOR_NAMES
+    isHTMLColorName
 };
