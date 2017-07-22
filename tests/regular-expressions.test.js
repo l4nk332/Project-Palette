@@ -141,6 +141,11 @@ test("Should not match invalid hsl(a) colors", () => {
 /* =================================== */
 test("Should match valid hsl(a) colors", () => {
     expect(htmlColorName("darkred")).toEqual(["darkred"]);
+    expect(htmlColorName("aliceblue, darkred")).toEqual([
+        "aliceblue",
+        "darkred"
+    ]);
+    expect(htmlColorName("orangered")).toEqual(["orangered"]);
 });
 
 
