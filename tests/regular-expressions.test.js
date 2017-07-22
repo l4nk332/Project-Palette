@@ -146,6 +146,43 @@ test("Should match valid hsl(a) colors", () => {
         "darkred"
     ]);
     expect(htmlColorName("orangered")).toEqual(["orangered"]);
+    expect(htmlColorName("red orangered, darkred")).toEqual([
+        "red",
+        "orangered",
+        "darkred",
+    ]);
+    expect(htmlColorName("BLUE, slateblue, Darkblue")).toEqual([
+        "BLUE",
+        "slateblue",
+        "Darkblue"
+    ]);
+    expect(htmlColorName("black cyan darkgoldenrod")).toEqual([
+        "black",
+        "cyan",
+        "darkgoldenrod"
+    ]);
+    expect(htmlColorName("LightslategrayMediumorchidDeepskyblue")).toEqual([
+        "Lightslategray",
+        "Mediumorchid",
+        "Deepskyblue"
+    ]);
+    expect(htmlColorName("honeydew aliceblue aquamarine")).toEqual([
+        "honeydew",
+        "aliceblue",
+        "aquamarine"
+    ]);
+    expect(htmlColorName(`ghostwhite|greenyellow|honeydew|hotpink|indianred
+                         |indigo|ivory|khaki|lavenderblush`)).toEqual([
+        "ghostwhite",
+        "greenyellow",
+        "honeydew",
+        "hotpink",
+        "indianred",
+        "indigo",
+        "ivory",
+        "khaki",
+        "lavenderblush"
+    ])
 });
 
 
