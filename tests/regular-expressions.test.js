@@ -151,6 +151,11 @@ test("Should match valid hsl(a) colors", () => {
         "orangered",
         "darkred",
     ]);
+    expect(htmlColorName("red red red")).toEqual([
+        "red",
+        "red",
+        "red"
+    ]);
     expect(htmlColorName("BLUE, slateblue, Darkblue")).toEqual([
         "BLUE",
         "slateblue",
@@ -183,6 +188,13 @@ test("Should match valid hsl(a) colors", () => {
         "khaki",
         "lavenderblush"
     ])
+});
+
+test("Should not match invalid hsl(a) colors", () => {
+    expect(htmlColorName("hamberburger")).toBeNull();
+    expect(htmlColorName("griese")).toBeNull();
+    expect(htmlColorName("cheese")).toBeNull();
+    expect(htmlColorName("redisValue")).toBeNull();
 });
 
 
