@@ -1,4 +1,4 @@
-const { hex, rgb, hsl } = require("../helpers/regular-expressions");
+const { hex, rgb, hsl, htmlColorName } = require("../helpers/regular-expressions");
 const { shouldExcludePath, shouldIncludeExtension } = require("../helpers/regular-expressions");
 
 
@@ -134,6 +134,13 @@ test("Should not match invalid hsl(a) colors", () => {
     expect(hsl("hsla(272, 40%, 90%, 1.01)")).toBeNull();
     expect(hsl("hsla(0, 0%, 0%)")).toBeNull();
     expect(hsl("hsl(0, 0%, 0%, 0)")).toBeNull();
+});
+
+
+/* Test Html Colors Regular Expression */
+/* =================================== */
+test("Should match valid hsl(a) colors", () => {
+    expect(htmlColorName("darkred")).toEqual(["darkred"]);
 });
 
 

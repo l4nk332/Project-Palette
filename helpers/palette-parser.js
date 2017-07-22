@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const shortid = require("shortid");
 
-const { hex, rgb, hsl } = require("./regular-expressions");
+const { hex, rgb, hsl, htmlColorName } = require("./regular-expressions");
 const { shouldExcludePath, shouldIncludeExtension } = require("./regular-expressions");
 
 let colorMap = {};
@@ -59,16 +59,25 @@ const parseFile = file => {
             let lineCount = 1;
 
             rl.on('line', (line) => {
-                if (hex(line)) {
-                    addColor(hex(line), lineCount, file);
+                let hexValueList = hex(line);
+                let rgbValueList = rgb(line);
+                let hslValueList = hsl(line);
+                let htmlColorValueList = htmlColorName(line);
+
+                if (hexValueList) {
+                    addColor(hexValueList, lineCount, file);
                 }
 
-                if (rgb(line)) {
-                    addColor(rgb(line), lineCount, file);
+                if (rgbValueList) {
+                    addColor(rgbValueList, lineCount, file);
                 }
 
-                if (hsl(line)) {
-                    addColor(hsl(line), lineCount, file);
+                if (hslValueList) {
+                    addColor(hslValueList, lineCount, file);
+                }
+
+                if (htmlColorValueList) {
+                    addColor(htmlColorValueList, lineCount, file);
                 }
 
                 lineCount++;
