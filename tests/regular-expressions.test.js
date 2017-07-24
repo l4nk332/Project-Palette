@@ -139,7 +139,7 @@ test("Should not match invalid hsl(a) colors", () => {
 
 /* Test Html Colors Regular Expression */
 /* =================================== */
-test("Should match valid hsl(a) colors", () => {
+test("Should match valid Html color names", () => {
     expect(htmlColorName("darkred")).toEqual(["darkred"]);
     expect(htmlColorName("aliceblue, darkred")).toEqual([
         "aliceblue",
@@ -156,20 +156,15 @@ test("Should match valid hsl(a) colors", () => {
         "red",
         "red"
     ]);
-    expect(htmlColorName("BLUE, slateblue, Darkblue")).toEqual([
-        "BLUE",
+    expect(htmlColorName("blue, slateblue, darkblue")).toEqual([
+        "blue",
         "slateblue",
-        "Darkblue"
+        "darkblue"
     ]);
     expect(htmlColorName("black cyan darkgoldenrod")).toEqual([
         "black",
         "cyan",
         "darkgoldenrod"
-    ]);
-    expect(htmlColorName("LightslategrayMediumorchidDeepskyblue")).toEqual([
-        "Lightslategray",
-        "Mediumorchid",
-        "Deepskyblue"
     ]);
     expect(htmlColorName("honeydew aliceblue aquamarine")).toEqual([
         "honeydew",
@@ -190,11 +185,12 @@ test("Should match valid hsl(a) colors", () => {
     ])
 });
 
-test("Should not match invalid hsl(a) colors", () => {
+test("Should not match invalid Html color names", () => {
     expect(htmlColorName("hamberburger")).toBeNull();
     expect(htmlColorName("griese")).toBeNull();
     expect(htmlColorName("cheese")).toBeNull();
     expect(htmlColorName("redisValue")).toBeNull();
+    expect(htmlColorName("lightslategraymediumorchiddeepskyblue")).toBeNull();
 });
 
 
