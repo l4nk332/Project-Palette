@@ -191,6 +191,8 @@ test("Should not match invalid Html color names", () => {
     expect(htmlColorName("cheese")).toBeNull();
     expect(htmlColorName("redisValue")).toBeNull();
     expect(htmlColorName("lightslategraymediumorchiddeepskyblue")).toBeNull();
+    expect(htmlColorName("bluebyou")).toBeNull();
+    expect(htmlColorName("steelblues")).toBeNull();
 });
 
 
