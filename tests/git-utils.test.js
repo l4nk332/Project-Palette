@@ -1,4 +1,8 @@
+const fs = require("fs");
 const { gitClone, normalizeGitHubUrl } = require("../helpers/git-utils");
+
+/* Test Normalization of URL */
+/* ========================= */
 
 test("Should properly normalize a GitHub url", () => {
     let url = "https://github.com/l4nk332/ianjabour.io";
@@ -18,4 +22,23 @@ test("Should produce unique hashes for each function call", () => {
         expect(uniqueHashes.includes(hash)).toBeFalsy();
         uniqueHashes.push(hash);
     }
+});
+
+
+/* Test cloning of GitHub Repo */
+/* =========================== */
+
+test("Should be able to clone valid GitHub Repo Url", async () => {
+    try {
+        fs.accessSync("../temp/ianjabour.io")
+    } catch (err) {
+        expect(() => {
+            throw err;
+        }).toThrowError(/no such file or directory/);
+    }
+
+    await expect(gitClone(
+                    "https://github.com/l4nk332/ianjabour.io",
+                    "../temp/ianjabour.io"
+                 )).resolves.toBe("../temp/ianjabour.io");
 });
