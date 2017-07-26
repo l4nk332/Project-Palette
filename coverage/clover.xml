@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1501048767346" clover="3.2.0">
+  <project timestamp="1501048767347" name="All files">
+    <metrics statements="29" coveredstatements="24" conditionals="5" coveredconditionals="2" methods="11" coveredmethods="8" elements="45" coveredelements="34" complexity="0" loc="29" ncloc="29" packages="1" files="2" classes="2">
+      <file name="git-utils.js" path="/Users/l4nk332/Code/Javascript/Project-Palette/helpers/git-utils.js">
+        <metrics statements="17" coveredstatements="12" conditionals="3" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1001" type="stmt"/>
+        <line num="21" count="1001" type="stmt"/>
+        <line num="22" count="1001" type="stmt"/>
+        <line num="23" count="1001" type="stmt"/>
+        <line num="25" count="1001" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+      <file name="regular-expressions.js" path="/Users/l4nk332/Code/Javascript/Project-Palette/helpers/regular-expressions.js">
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
+        <line num="2" count="30" type="stmt"/>
+        <line num="5" count="25" type="stmt"/>
+        <line num="8" count="19" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="16" type="stmt"/>
+        <line num="18" count="16" type="stmt"/>
+        <line num="19" count="65" type="stmt"/>
+        <line num="22" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="26" count="12" type="stmt"/>
+        <line num="29" count="28" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>
