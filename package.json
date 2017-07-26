@@ -9,7 +9,7 @@
   "scripts": {
       "bundle": "webpack",
       "watch": "webpack --progress --colors --watch",
-      "test": "jest"
+      "test": "jest --coverage"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
