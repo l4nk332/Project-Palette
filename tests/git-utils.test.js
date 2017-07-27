@@ -29,7 +29,7 @@ test("Should produce unique hashes for each function call", () => {
 /* Test cloning of GitHub Repo */
 /* =========================== */
 
-test("Should be able to clone valid GitHub Repo Url", async () => {
+test("Should resolve and clone a valid GitHub Repo Url", async () => {
     try {
         fs.accessSync("../temp/ianjabour.io")
     } catch (err) {
@@ -46,5 +46,12 @@ test("Should be able to clone valid GitHub Repo Url", async () => {
                     rimraf.sync(url);
                     return url;
                  })).resolves.toBe("./temp/ianjabour.io");
+});
+
+test("Should reject an invalid GitHub Repo Url", async () => {
+    await expect(gitClone(
+                    "garbage/l4nk332/DoesNoteXisT",
+                    "./temp/garbage"
+                )).rejects.toHaveProperty("code", 128);
 });
 
