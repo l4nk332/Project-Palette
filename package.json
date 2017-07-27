@@ -7,9 +7,9 @@
   "author": "Ian Jabour",
   "license": "MIT",
   "scripts": {
-      "bundle": "webpack",
-      "watch": "webpack --progress --colors --watch",
-      "test": "jest --coverage"
+    "bundle": "webpack",
+    "watch": "webpack --progress --colors --watch",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -22,6 +22,7 @@
     "path": "^0.12.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "rimraf": "^2.6.1",
     "shortid": "^2.2.8"
   },
   "devDependencies": {
