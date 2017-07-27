@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1501079008163" clover="3.2.0">
-  <project timestamp="1501079008163" name="All files">
+<coverage generated="1501134055448" clover="3.2.0">
+  <project timestamp="1501134055448" name="All files">
     <metrics statements="29" coveredstatements="28" conditionals="5" coveredconditionals="3" methods="11" coveredmethods="11" elements="45" coveredelements="42" complexity="0" loc="29" ncloc="29" packages="1" files="2" classes="2">
       <file name="git-utils.js" path="/Users/l4nk332/Code/Javascript/Project-Palette/helpers/git-utils.js">
         <metrics statements="17" coveredstatements="16" conditionals="3" coveredconditionals="1" methods="4" coveredmethods="4"/>
@@ -12,8 +12,8 @@
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1001" type="stmt"/>
         <line num="21" count="1001" type="stmt"/>

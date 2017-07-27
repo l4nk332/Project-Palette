@@ -1,4 +1,5 @@
 const fs = require("fs");
+const rimraf = require("rimraf");
 const { gitClone, normalizeGitHubUrl } = require("../helpers/git-utils");
 
 /* Test Normalization of URL */
@@ -39,6 +40,11 @@ test("Should be able to clone valid GitHub Repo Url", async () => {
 
     await expect(gitClone(
                     "https://github.com/l4nk332/ianjabour.io",
-                    "../temp/ianjabour.io"
-                 )).resolves.toBe("../temp/ianjabour.io");
+                    "./temp/ianjabour.io"
+                 ).then((url) => {
+                    fs.accessSync(url);
+                    rimraf.sync(url);
+                    return url;
+                 })).resolves.toBe("./temp/ianjabour.io");
 });
+
