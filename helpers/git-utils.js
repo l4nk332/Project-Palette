@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const shortid = require('shortid');
 
 
-const gitClone = (url, clonePath=__dirname) => {
+const gitClone = (url, clonePath) => {
     return new Promise((resolve, reject) => {
         childProcess.exec(`git clone ${url} ${clonePath}`, (err) => {
             if (err) {
