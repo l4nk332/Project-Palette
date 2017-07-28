@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for palette-parser.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">All files</a> palette-parser.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.09% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">29.41% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.09% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/57</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const readline = require("readline");
+const fs = require("fs");
+const path = require("path");
+const shortid = require("shortid");
+&nbsp;
+const { hex, rgb, hsl, htmlColorName } = require("./regular-expressions");
+const { shouldExcludePath, shouldIncludeExtension } = require("./regular-expressions");
+&nbsp;
+let colorMap = {};
+&nbsp;
+const addColor = <span class="fstat-no" title="function not covered" >(c</span>olorList, lineNumber, filePath) =&gt; {
+<span class="cstat-no" title="statement not covered" >    colorList.forEach(<span class="fstat-no" title="function not covered" >co</span>lor =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (Object.keys(colorMap).includes(color)) {</span>
+<span class="cstat-no" title="statement not covered" >            colorMap[color].locations.push({</span>
+                lineNumber: lineNumber,
+                filePath: filePath,
+                uniqueId: shortid.generate()
+            });
+        } else {
+<span class="cstat-no" title="statement not covered" >            colorMap[color] = {</span>
+                uniqueId: shortid.generate(),
+                locations: [{
+                    lineNumber: lineNumber,
+                    filePath: filePath,
+                    uniqueId: shortid.generate()
+                }]
+            };
+        }
+    });
+};
+&nbsp;
+const parseDirectory = (dir) =&gt; {
+    return new Promise((resolve, reject) =&gt; {
+        fs.readdir(dir, (err, files) =&gt; {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (err) {
+                reject(err);
+            }
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (files) {
+                let parsedFiles = <span class="cstat-no" title="statement not covered" >files</span>
+                    .filter(<span class="fstat-no" title="function not covered" >fi</span>le =&gt; {
+<span class="cstat-no" title="statement not covered" >                        return !shouldExcludePath(file);</span>
+                    })
+                    .map(<span class="fstat-no" title="function not covered" >fi</span>le =&gt; {
+<span class="cstat-no" title="statement not covered" >                        return determinePathAction(path.resolve(dir, file));</span>
+                    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                Promise.all(parsedFiles).then(resolve);</span>
+            }
+        });
+    });
+};
+&nbsp;
+const parseFile = <span class="fstat-no" title="function not covered" >fi</span>le =&gt; {
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (shouldIncludeExtension(file)) {</span>
+            const rl = <span class="cstat-no" title="statement not covered" >readline.createInterface({</span>
+                input: fs.createReadStream(file)
+            });
+&nbsp;
+            let lineCount = <span class="cstat-no" title="statement not covered" >1;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            rl.on('line', <span class="fstat-no" title="function not covered" >(l</span>ine) =&gt; {</span>
+                let hexValueList = <span class="cstat-no" title="statement not covered" >hex(line);</span>
+                let rgbValueList = <span class="cstat-no" title="statement not covered" >rgb(line);</span>
+                let hslValueList = <span class="cstat-no" title="statement not covered" >hsl(line);</span>
+                let htmlColorValueList = <span class="cstat-no" title="statement not covered" >htmlColorName(line);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (hexValueList) {</span>
+<span class="cstat-no" title="statement not covered" >                    addColor(hexValueList, lineCount, file);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (rgbValueList) {</span>
+<span class="cstat-no" title="statement not covered" >                    addColor(rgbValueList, lineCount, file);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (hslValueList) {</span>
+<span class="cstat-no" title="statement not covered" >                    addColor(hslValueList, lineCount, file);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (htmlColorValueList) {</span>
+<span class="cstat-no" title="statement not covered" >                    addColor(htmlColorValueList, lineCount, file);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                lineCount++;</span>
+            }).on('close', <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >                resolve();</span>
+            });
+        } else {
+<span class="cstat-no" title="statement not covered" >            resolve();</span>
+        }
+    });
+};
+&nbsp;
+const determinePathAction = <span class="fstat-no" title="function not covered" >(f</span>sPath) =&gt; {
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        fs.lstat(fsPath, <span class="fstat-no" title="function not covered" >(e</span>rr, stats) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            if (err) {</span>
+<span class="cstat-no" title="statement not covered" >                reject(err);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (stats.isFile()) {</span>
+<span class="cstat-no" title="statement not covered" >                resolve(parseFile(fsPath));</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (stats.isDirectory()) {</span>
+<span class="cstat-no" title="statement not covered" >                resolve(parseDirectory(fsPath));</span>
+            }
+        });
+    });
+};
+&nbsp;
+const generateColorMap = (entryPath) =&gt; {
+    return parseDirectory(entryPath).then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >        return colorMap;</span>
+    }).catch(err =&gt; {
+        return err;
+    });
+};
+&nbsp;
+module.exports = {
+    generateColorMap
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jul 27 2017 23:43:56 GMT-0700 (PDT)
+</div>
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

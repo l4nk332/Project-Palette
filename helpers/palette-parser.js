@@ -36,15 +36,17 @@ const parseDirectory = (dir) => {
                 reject(err);
             }
 
-            let parsedFiles = files
-                .filter(file => {
-                    return !shouldExcludePath(file);
-                })
-                .map(file => {
-                return determinePathAction(path.resolve(dir, file));
-            });
+            if (files) {
+                let parsedFiles = files
+                    .filter(file => {
+                        return !shouldExcludePath(file);
+                    })
+                    .map(file => {
+                        return determinePathAction(path.resolve(dir, file));
+                    });
 
-            Promise.all(parsedFiles).then(resolve);
+                Promise.all(parsedFiles).then(resolve);
+            }
         });
     });
 };
