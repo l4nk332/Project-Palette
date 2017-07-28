@@ -2,6 +2,9 @@ const fs = require("fs");
 const rimraf = require("rimraf");
 const { gitClone, normalizeGitHubUrl } = require("../helpers/git-utils");
 
+// Increase timeout time
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+
 /* Test Normalization of URL */
 /* ========================= */
 
