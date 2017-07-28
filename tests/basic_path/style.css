@@ -1,0 +1,15 @@
+.warning {
+    color: red;
+    border: 1px dotted red;
+    background: #ffffff00;
+}
+
+.warning-btn {
+    background: red;
+    border: 1px solid #ffffff00;
+    color: #0912;
+}
+
+.blah {
+    background: rgb(123, 123, 231);
+}
