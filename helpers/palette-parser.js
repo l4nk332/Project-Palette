@@ -114,10 +114,11 @@ const generateColorMap = (entryPath) => {
     return parseDirectory(entryPath).then(() => {
         return colorMap;
     }).catch(err => {
-        return err;
+        throw err;
     });
 };
 
 module.exports = {
+    determinePathAction,
     generateColorMap
 };
