@@ -1,6 +1,9 @@
 const path = require("path");
 const PaletteParser = require("../helpers/palette-parser");
 
+// Increase timeout time
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+
 /* Test Generation of Color Map */
 /* ============================ */
 
