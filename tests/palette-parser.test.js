@@ -53,6 +53,8 @@ test("Should reject with an error for invalid path in generation of color map", 
     }
 });
 
-// test("Should reject with an error for invalid path in determining the path action", async () => {
-//     await expect(determinePathAction("does/not/exist")).rejects.toHaveProperty("code", 128);
-// });
+test("Should reject with an error for invalid path in generating color map", async () => {
+    const dirPath = path.join(__dirname, "does/not/exist");
+    const parser = new PaletteParser(dirPath);
+    await expect(parser.generateColorMap()).rejects.toHaveProperty("code", "ENOENT");
+});
