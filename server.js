@@ -6,7 +6,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-const { generateColorMap } = require("./helpers/palette-parser");
+const PaletteParser = require("./helpers/palette-parser");
 const { gitClone, normalizeGitHubUrl } = require("./helpers/git-utils");
 
 app.use(express.static("./dist"));
@@ -27,7 +27,8 @@ app.get("/colors", (req, res) => {
     gitClone(normalizedRepoInfo.httpsCloneUrl, cloneDestination)
         .then(() => {
             console.log("Clone Successful!", "Now Parsing for ColorMap...");
-            return generateColorMap(cloneDestination);
+            const parser = new PaletteParser(cloneDestination);
+            return parser.generateColorMap();
         })
         .then((colorMap) => {
             console.log(`Removing ${cloneDestination}\n`);

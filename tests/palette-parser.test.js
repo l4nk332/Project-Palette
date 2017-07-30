@@ -1,5 +1,5 @@
 const path = require("path");
-const { generateColorMap, determinePathAction } = require("../helpers/palette-parser");
+const PaletteParser = require("../helpers/palette-parser");
 
 /* Test Generation of Color Map */
 /* ============================ */
@@ -7,7 +7,8 @@ const { generateColorMap, determinePathAction } = require("../helpers/palette-pa
 test("Should generate color map for valid path", () => {
     expect.assertions(9);
     const dirPath = path.join(__dirname, "pathA");
-    return generateColorMap(dirPath).then((colorMap) => {
+    const parser = new PaletteParser(dirPath);
+    return parser.generateColorMap().then((colorMap) => {
         expect(colorMap['red'].locations).toHaveLength(3);
         expect(colorMap['#000'].locations).toHaveLength(1);
         expect(colorMap['#ffffff'].locations).toHaveLength(1);
@@ -23,7 +24,8 @@ test("Should generate color map for valid path", () => {
 test("Should generate a new color map when run on a different path", () => {
     expect.assertions(10);
     const dirPath = path.join(__dirname, "pathB");
-    return generateColorMap(dirPath).then((colorMap) => {
+    const parser = new PaletteParser(dirPath);
+    return parser.generateColorMap().then((colorMap) => {
         expect(colorMap['red']).toBeUndefined();
         expect(colorMap['blue'].locations).toHaveLength(4);
         expect(colorMap['#000'].locations).toHaveLength(1);
@@ -39,7 +41,8 @@ test("Should generate a new color map when run on a different path", () => {
 
 test("Should reject with an error for invalid path in generation of color map", async () => {
     try {
-        await generateColorMap("does/not/exist")
+        const parser = PaletteParser("does/not/exist");
+        await parser.generateColorMap();
     } catch (err) {
         expect(() => {
             throw err;

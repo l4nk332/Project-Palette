@@ -6,119 +6,122 @@ const shortid = require("shortid");
 const { hex, rgb, hsl, htmlColorName } = require("./regular-expressions");
 const { shouldExcludePath, shouldIncludeExtension } = require("./regular-expressions");
 
-let colorMap = {};
 
-const addColor = (colorList, lineNumber, filePath) => {
-    colorList.forEach(color => {
-        if (Object.keys(colorMap).includes(color)) {
-            colorMap[color].locations.push({
-                lineNumber: lineNumber,
-                filePath: filePath,
-                uniqueId: shortid.generate()
-            });
-        } else {
-            colorMap[color] = {
-                uniqueId: shortid.generate(),
-                locations: [{
+class PaletteParser {
+    constructor(entryPath) {
+        this.colorMap = {};
+        this.entryPath = entryPath
+    }
+
+    _addColor(colorList, lineNumber, filePath) {
+        colorList.forEach(color => {
+            if (Object.keys(this.colorMap).includes(color)) {
+                this.colorMap[color].locations.push({
                     lineNumber: lineNumber,
                     filePath: filePath,
                     uniqueId: shortid.generate()
-                }]
-            };
-        }
-    });
-};
-
-const parseDirectory = (dir) => {
-    return new Promise((resolve, reject) => {
-        fs.readdir(dir, (err, files) => {
-            if (err) {
-                reject(err);
-            }
-
-            if (files) {
-                let parsedFiles = files
-                    .filter(file => {
-                        return !shouldExcludePath(file);
-                    })
-                    .map(file => {
-                        return determinePathAction(path.resolve(dir, file));
-                    });
-
-                Promise.all(parsedFiles).then(resolve);
+                });
+            } else {
+                this.colorMap[color] = {
+                    uniqueId: shortid.generate(),
+                    locations: [{
+                        lineNumber: lineNumber,
+                        filePath: filePath,
+                        uniqueId: shortid.generate()
+                    }]
+                };
             }
         });
-    });
-};
+    }
 
-const parseFile = file => {
-    return new Promise((resolve) => {
-        if (shouldIncludeExtension(file)) {
-            const rl = readline.createInterface({
-                input: fs.createReadStream(file)
+    _parseDirectory(dir) {
+        return new Promise((resolve, reject) => {
+            fs.readdir(dir, (err, files) => {
+                if (err) {
+                    reject(err);
+                }
+
+                if (files) {
+                    let parsedFiles = files
+                        .filter(file => {
+                            return !shouldExcludePath(file);
+                        })
+                        .map(file => {
+                            return this._determinePathAction(path.resolve(dir, file));
+                        });
+
+                    Promise.all(parsedFiles).then(resolve);
+                }
             });
+        });
+    }
 
-            let lineCount = 1;
+    _parseFile(file) {
+        return new Promise((resolve) => {
+            if (shouldIncludeExtension(file)) {
+                const rl = readline.createInterface({
+                    input: fs.createReadStream(file)
+                });
 
-            rl.on('line', (line) => {
-                let hexValueList = hex(line);
-                let rgbValueList = rgb(line);
-                let hslValueList = hsl(line);
-                let htmlColorValueList = htmlColorName(line);
+                let lineCount = 1;
 
-                if (hexValueList) {
-                    addColor(hexValueList, lineCount, file);
-                }
+                rl.on('line', (line) => {
+                    let hexValueList = hex(line);
+                    let rgbValueList = rgb(line);
+                    let hslValueList = hsl(line);
+                    let htmlColorValueList = htmlColorName(line);
 
-                if (rgbValueList) {
-                    addColor(rgbValueList, lineCount, file);
-                }
+                    if (hexValueList) {
+                        this._addColor(hexValueList, lineCount, file);
+                    }
 
-                if (hslValueList) {
-                    addColor(hslValueList, lineCount, file);
-                }
+                    if (rgbValueList) {
+                        this._addColor(rgbValueList, lineCount, file);
+                    }
 
-                if (htmlColorValueList) {
-                    addColor(htmlColorValueList, lineCount, file);
-                }
+                    if (hslValueList) {
+                        this._addColor(hslValueList, lineCount, file);
+                    }
 
-                lineCount++;
-            }).on('close', () => {
+                    if (htmlColorValueList) {
+                        this._addColor(htmlColorValueList, lineCount, file);
+                    }
+
+                    lineCount++;
+                }).on('close', () => {
+                    resolve();
+                });
+            } else {
                 resolve();
-            });
-        } else {
-            resolve();
-        }
-    });
-};
-
-const determinePathAction = (fsPath) => {
-    return new Promise((resolve, reject) => {
-        fs.lstat(fsPath, (err, stats) => {
-            if (err) {
-                reject(err);
-            }
-
-            if (stats.isFile()) {
-                resolve(parseFile(fsPath));
-            }
-
-            if (stats.isDirectory()) {
-                resolve(parseDirectory(fsPath));
             }
         });
-    });
-};
+    }
 
-const generateColorMap = (entryPath) => {
-    return parseDirectory(entryPath).then(() => {
-        return colorMap;
-    }).catch(err => {
-        throw err;
-    });
-};
+    _determinePathAction(fsPath) {
+        return new Promise((resolve, reject) => {
+            fs.lstat(fsPath, (err, stats) => {
+                if (err) {
+                    reject(err);
+                }
 
-module.exports = {
-    determinePathAction,
-    generateColorMap
-};
+                if (stats.isFile()) {
+                    resolve(this._parseFile(fsPath));
+                }
+
+                if (stats.isDirectory()) {
+                    resolve(this._parseDirectory(fsPath));
+                }
+            });
+        });
+    }
+
+    generateColorMap() {
+        return this._parseDirectory(this.entryPath).then(() => {
+            return this.colorMap;
+        }).catch(err => {
+            throw err;
+        });
+    }
+}
+
+module.exports = PaletteParser;
