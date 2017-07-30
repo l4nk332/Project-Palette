@@ -38,10 +38,10 @@ class PaletteParser {
         return new Promise((resolve, reject) => {
             fs.readdir(dir, (err, files) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
 
-                if (files) {
+                else if (files.length) {
                     let parsedFiles = files
                         .filter(file => {
                             return !shouldExcludePath(file);
@@ -50,7 +50,11 @@ class PaletteParser {
                             return this._determinePathAction(path.resolve(dir, file));
                         });
 
-                    Promise.all(parsedFiles).then(resolve);
+                    return Promise.all(parsedFiles).then(resolve);
+                }
+
+                else {
+                    return resolve();
                 }
             });
         });
@@ -89,10 +93,10 @@ class PaletteParser {
 
                     lineCount++;
                 }).on('close', () => {
-                    resolve();
+                    return resolve();
                 });
             } else {
-                resolve();
+                return resolve();
             }
         });
     }
@@ -101,15 +105,19 @@ class PaletteParser {
         return new Promise((resolve, reject) => {
             fs.lstat(fsPath, (err, stats) => {
                 if (err) {
-                    reject(err);
+                    return reject(err);
                 }
 
-                if (stats.isFile()) {
-                    resolve(this._parseFile(fsPath));
+                else if (stats.isFile()) {
+                    return resolve(this._parseFile(fsPath));
                 }
 
-                if (stats.isDirectory()) {
-                    resolve(this._parseDirectory(fsPath));
+                else if (stats.isDirectory()) {
+                    return resolve(this._parseDirectory(fsPath));
+                }
+
+                else {
+                    return resolve();
                 }
             });
         });
