@@ -58,3 +58,21 @@ test("Should reject with an error for invalid path in generating color map", asy
     const parser = new PaletteParser(dirPath);
     await expect(parser.generateColorMap()).rejects.toHaveProperty("code", "ENOENT");
 });
+
+test("Should reject with an error for invalid path in determining path action", async () => {
+    const dirPath = path.join(__dirname, "does/not/exist");
+    const parser = new PaletteParser(dirPath);
+    await expect(parser._determinePathAction(dirPath)).rejects.toHaveProperty("code", "ENOENT");
+});
+
+test("Should resolve with empty when determining a path action for something that is not a file or directory", async () => {
+    const dirPath = path.join(__dirname, "pathD", "empty-symlink.test");
+    const parser = new PaletteParser(dirPath);
+    await expect(parser._determinePathAction(dirPath)).resolves.toBeUndefined();
+});
+
+test("Should resolve with undefined when parsing an empty directory", async () => {
+    const dirPath = path.join(__dirname, "pathC");
+    const parser = new PaletteParser(dirPath);
+    await expect(parser._determinePathAction(dirPath)).resolves.toBeUndefined();
+});
