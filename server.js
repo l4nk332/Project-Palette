@@ -33,11 +33,11 @@ app.get("/colors", (req, res) => {
         .then((colorMap) => {
             console.log(`Removing ${cloneDestination}\n`);
             fs.remove(cloneDestination).then(() => {
-                console.log(`Sending ColorMap...\n`);
+                console.log("Sending ColorMap...\n");
                 res.send(JSON.stringify(colorMap));
             }).catch((err) => {
                 console.error(err);
-                res.status(500).send(`There was an error removing the temp dir.`);
+                res.status(500).send("There was an error removing the temp dir.");
             });
         })
         .catch((err) => {
