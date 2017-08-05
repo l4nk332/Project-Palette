@@ -4,13 +4,17 @@ const shortid = require("shortid");
 
 const gitClone = (url, clonePath) => {
   return new Promise((resolve, reject) => {
-    childProcess.exec(`git clone ${url} ${clonePath}`, err => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(clonePath);
+    childProcess.execFile(
+      "/usr/local/bin/git",
+      ["clone", url, clonePath],
+      err => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(clonePath);
+        }
       }
-    });
+    );
   });
 };
 
