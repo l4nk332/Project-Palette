@@ -62,4 +62,27 @@ describe("Test Cloning of a GitHub Repo", () => {
       gitClone("garbage/l4nk332/DoesNoteXisT", "./temp/garbage")
     ).rejects.toHaveProperty("code", 128);
   });
+
+  test("Should reject/fail to run injected unix command", async () => {
+    await expect(
+      gitClone(
+        "https://github.com/l4nk332/ianjabour.io;echo 'This will fail'",
+        "./temp/garbage"
+      )
+    ).rejects.toHaveProperty("code", 128);
+
+    await expect(
+      gitClone(
+        "https://github.com/l4nk332/ianjabour.io;ls -lah",
+        "./temp/garbage"
+      )
+    ).rejects.toHaveProperty("code", 128);
+
+    await expect(
+      gitClone(
+        "https://github.com/l4nk332/ianjabour.io;rm -rf ./temp",
+        "./temp/garbage"
+      )
+    ).rejects.toHaveProperty("code", 128);
+  });
 });
