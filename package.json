@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "bundle": "webpack",
-    "watch": "webpack --progress --colors --watch",
+    "start": "webpack --progress --colors --watch",
+    "dev": "node server.js",
     "test": "jest --coverage"
   },
   "dependencies": {
