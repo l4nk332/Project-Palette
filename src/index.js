@@ -1,4 +1,3 @@
-import "normalize.css";
-import "./styles/styles.sass";
+import 'normalize.css'
 
-import "./react/app.jsx";
+import './containers/App.js'
