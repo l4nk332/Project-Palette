@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/colors', (req, res) => {
-  const normalizedRepoInfo = normalizeGitHubUrl(req.query.repoUrl)
+  const {httpsCloneURL, repoURI} = req.query
+  const normalizedRepoInfo = normalizeGitHubUrl(httpsCloneURL, repoURI)
   const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`
 
   console.log(
@@ -36,8 +37,7 @@ app.get('/colors', (req, res) => {
     })
     .then(colorMap => {
       console.log(`Removing ${cloneDestination}\n`)
-      fs
-        .remove(cloneDestination)
+      fs.remove(cloneDestination)
         .then(() => {
           console.log('Sending ColorMap...\n')
           res.send(JSON.stringify(colorMap))

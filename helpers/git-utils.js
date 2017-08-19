@@ -18,9 +18,7 @@ const gitClone = (url, clonePath) => {
   })
 }
 
-const normalizeGitHubUrl = url => {
-  let httpsCloneUrl = `${url}.git`
-  let repoUri = url.replace(/https:\/\/github\.com\//, '')
+const normalizeGitHubUrl = (httpsCloneUrl, repoUri) => {
   let hashedUri = crypto.createHmac('sha256', repoUri).digest('hex')
   let uniqueHash = `${hashedUri}${shortid.generate()}`
 

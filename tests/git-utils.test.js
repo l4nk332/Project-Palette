@@ -12,8 +12,9 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
 
 describe('Test Normalization of URL', () => {
   test('Should properly normalize a GitHub url', () => {
-    let url = 'https://github.com/l4nk332/ianjabour.io'
-    let normalized = normalizeGitHubUrl(url)
+    let uri = 'l4nk332/ianjabour.io'
+    let url = 'https://github.com/l4nk332/ianjabour.io.git'
+    let normalized = normalizeGitHubUrl(url, uri)
     expect(normalized.httpsCloneUrl).toBe(
       'https://github.com/l4nk332/ianjabour.io.git'
     )
@@ -23,11 +24,12 @@ describe('Test Normalization of URL', () => {
   })
 
   test('Should produce unique hashes for each function call', () => {
-    let url = 'https://github.com/l4nk332/ianjabour.io'
+    let uri = 'l4nk332/ianjabour.io'
+    let url = 'https://github.com/l4nk332/ianjabour.io.git'
     let uniqueHashes = [10]
 
     for (let i = 0; i < 1000; i++) {
-      let hash = normalizeGitHubUrl(url)
+      let hash = normalizeGitHubUrl(url, uri)
       expect(uniqueHashes.includes(hash)).toBeFalsy()
       uniqueHashes.push(hash)
     }
