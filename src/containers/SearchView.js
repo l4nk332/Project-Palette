@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { searchGitHubProject } from '../utils/requests'
+import { searchGitHubProject, getProjectPalette } from '../utils/requests'
 
 import Container from '../components/Container.jsx'
 
 
-export default class App extends React.Component {
+export default class SearchView extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -35,10 +35,14 @@ export default class App extends React.Component {
 
     if (search.length) {
       searchGitHubProject(search)
-        .then((response) => {
-          console.log(search, response)
-        }).catch((error) => {
-          console.error(error)
+        .then(response => ({
+          httpsCloneURL: response.data.clone_url,
+          repoURI: response.data.full_name
+        }))
+        .then(params => getProjectPalette(params))
+        .then(palette => console.log(palette))
+        .catch((error) => {
+          alert(error)
         })
     }
   }
