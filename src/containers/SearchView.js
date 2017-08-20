@@ -2,7 +2,9 @@ import React from 'react'
 
 import { searchGitHubProject, getProjectPalette } from '../utils/requests'
 
-import Container from '../components/Container.jsx'
+import Container from '../components/Container/Container.jsx'
+import SearchBox from '../components/SearchBox/SearchBox.jsx'
+import Button from '../components/Button/Button.jsx'
 
 
 export default class SearchView extends React.Component {
@@ -50,17 +52,16 @@ export default class SearchView extends React.Component {
   render() {
     return (
       <Container isLoading={false}>
-        <input
-          type='text'
-          placeholder='l4nk332/Project-Palette'
-          onKeyDown={this.handleEnterKeySubmission}
-          onKeyUp={this.updateSearch}
+        <SearchBox
+          placeholderText='l4nk332/Project-Palette'
+          keyDownHandler={this.handleEnterKeySubmission}
+          keyUpHandler={this.updateSearch}
         />
-        <button
-          onClick={this.submitSearchQuery}
-          disabled={!this.state.search.length}>
+        <Button
+          clickHandler={this.submitSearchQuery}
+          isDisabled={!this.state.search.length}>
           Analyze
-        </button>
+        </Button>
       </Container>
     )
   }
