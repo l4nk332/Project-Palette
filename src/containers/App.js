@@ -1,16 +1,58 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { SEARCH_VIEW, PALETTE_VIEW } from '../utils/constants'
+
 import SearchView from './SearchView'
+import PaletteView from './PaletteView'
+
+import Container from '../components/Container/Container.jsx'
 
 export default class App extends React.Component {
   constructor() {
     super()
+    this.state = {
+      isLoading: true,
+      currentView: SEARCH_VIEW,
+      palette: {}
+    }
+
+    this.setIsLoading = this.setIsLoading.bind(this)
+    this.setPalette = this.setPalette.bind(this)
+    this.renderCurrentView = this.renderCurrentView.bind(this)
+  }
+
+  componentDidMount() {
+    this.setIsLoading(false)
+  }
+
+  setIsLoading(isLoading) {
+    this.setState({isLoading})
+  }
+
+  setPalette(palette) {
+    this.setState({palette}, () => {
+      this.setState({currentView: PALETTE_VIEW})
+      this.setIsLoading(false)
+    })
+  }
+
+  renderCurrentView() {
+    switch (this.state.currentView) {
+      case SEARCH_VIEW:
+        return <SearchView setPalette={this.setPalette} />
+      case PALETTE_VIEW:
+        return <PaletteView palette={this.state.palette} />
+      default:
+        console.error('Unhandled view has been set.')
+      }
   }
 
   render() {
     return (
-      <SearchView />
+      <Container isLoading={this.state.isLoading}>
+        {this.renderCurrentView()}
+      </Container>
     )
   }
 }

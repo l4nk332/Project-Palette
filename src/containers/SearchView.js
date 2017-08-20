@@ -2,17 +2,18 @@ import React from 'react'
 
 import { searchGitHubProject, getProjectPalette } from '../utils/requests'
 
-import Container from '../components/Container/Container.jsx'
 import SearchBox from '../components/SearchBox/SearchBox.jsx'
 import Button from '../components/Button/Button.jsx'
 
 
 export default class SearchView extends React.Component {
-  constructor() {
+  constructor({setPalette}) {
     super()
     this.state = {
       search: ''
     }
+
+    this.setPalette = setPalette
 
     this.updateSearch = this.updateSearch.bind(this)
     this.handleEnterKeySubmission = this.handleEnterKeySubmission.bind(this)
@@ -41,8 +42,8 @@ export default class SearchView extends React.Component {
           httpsCloneURL: response.data.clone_url,
           repoURI: response.data.full_name
         }))
-        .then(params => getProjectPalette(params))
-        .then(palette => console.log(palette))
+        .then(getProjectPalette)
+        .then(this.setPalette)
         .catch((error) => {
           alert(error)
         })
@@ -51,7 +52,7 @@ export default class SearchView extends React.Component {
 
   render() {
     return (
-      <Container isLoading={false}>
+      <div>
         <SearchBox
           placeholderText='l4nk332/Project-Palette'
           keyDownHandler={this.handleEnterKeySubmission}
@@ -62,7 +63,7 @@ export default class SearchView extends React.Component {
           isDisabled={!this.state.search.length}>
           Analyze
         </Button>
-      </Container>
+      </div>
     )
   }
 }
