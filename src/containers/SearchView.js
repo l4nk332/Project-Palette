@@ -43,7 +43,7 @@ export default class SearchView extends React.Component {
           repoURI: response.data.full_name
         }))
         .then(getProjectPalette)
-        .then(this.setPalette)
+        .then(response => (this.setPalette(response.data)))
         .catch((error) => {
           alert(error)
         })

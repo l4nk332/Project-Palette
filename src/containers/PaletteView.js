@@ -13,7 +13,15 @@ export default class PaletteView extends React.Component {
   }
 
   renderSwatches() {
-    Object.keys(this.palette).map(color => <ColorSwatch color={color} />)
+    return (
+      Object.keys(this.palette)
+            .map((color, idx) => (
+              <ColorSwatch
+                key={idx}
+                color={color}
+              />
+            ))
+    )
   }
 
   render() {

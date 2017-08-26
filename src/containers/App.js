@@ -33,7 +33,6 @@ export default class App extends React.Component {
   setPalette(palette) {
     this.setState({palette}, () => {
       this.setState({currentView: PALETTE_VIEW})
-      this.setIsLoading(false)
     })
   }
 
