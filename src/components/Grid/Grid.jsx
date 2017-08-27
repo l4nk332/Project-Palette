@@ -1,4 +1,5 @@
 import React from 'react'
+import './Grid.sass'
 
 function Grid({children}) {
   return (

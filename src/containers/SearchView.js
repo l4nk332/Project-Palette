@@ -5,6 +5,8 @@ import { searchGitHubProject, getProjectPalette } from '../utils/requests'
 import SearchBox from '../components/SearchBox/SearchBox.jsx'
 import Button from '../components/Button/Button.jsx'
 
+import { mockPaletteResponse } from '../utils/requests'
+
 
 export default class SearchView extends React.Component {
   constructor({setPalette}) {
@@ -35,6 +37,11 @@ export default class SearchView extends React.Component {
 
   submitSearchQuery() {
     const search = this.state.search
+
+    if (true) {
+      this.setPalette(mockPaletteResponse())
+      return
+    }
 
     if (search.length) {
       searchGitHubProject(search)
