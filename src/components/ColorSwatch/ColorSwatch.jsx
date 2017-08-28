@@ -2,17 +2,19 @@ import React from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import TiClipboard from 'react-icons/lib/ti/clipboard'
 import TiTick from 'react-icons/lib/ti/tick'
+import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise'
 import './ColorSwatch.sass'
 import { getTextColor } from '../../utils/color-manipulation'
 
 export default class ColorSwatch extends React.Component {
-  constructor({color}) {
+  constructor({color, expandColor}) {
     super()
     this.state = {
       hasCopied: false
     }
 
     this.color = color
+    this.expandColor = expandColor
     this.normalizedColor = color.toLowerCase()
     this.textColor = getTextColor(this.normalizedColor)
 
@@ -46,6 +48,13 @@ export default class ColorSwatch extends React.Component {
               }
             </a>
           </CopyToClipboard>
+          <a title='Expand Color Details'>
+            <TiArrowMaximise
+              style={{color: this.textColor}}
+              className='icon'
+              onClick={() => { this.expandColor(this.color)}}
+            />
+          </a>
         </div>
         <span style={{color: this.textColor}}>
           { this.state.hasCopied

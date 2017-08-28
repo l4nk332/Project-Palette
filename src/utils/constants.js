@@ -5,3 +5,4 @@ export const COLORS_URL = '/colors'
 // View Names
 export const SEARCH_VIEW = 'search'
 export const PALETTE_VIEW = 'palette'
+export const DETAIL_VIEW = 'detail'

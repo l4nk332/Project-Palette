@@ -1,14 +1,14 @@
 import React from 'react'
 
-import Container from '../components/Container/Container.jsx'
 import Grid from '../components/Grid/Grid.jsx'
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch.jsx'
 
 
 export default class PaletteView extends React.Component {
-  constructor({palette}) {
+  constructor({palette, expandColor}) {
     super()
     this.palette = palette
+    this.expandColor = expandColor
     this.renderSwatches = this.renderSwatches.bind(this)
   }
 
@@ -19,6 +19,7 @@ export default class PaletteView extends React.Component {
               <ColorSwatch
                 key={idx}
                 color={color}
+                expandColor={this.expandColor}
               />
             ))
     )
