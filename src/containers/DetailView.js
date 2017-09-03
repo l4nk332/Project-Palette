@@ -1,25 +1,24 @@
 import React from 'react'
-import TiTimes from 'react-icons/lib/ti/times'
-import { getTextColor } from '../utils/color-manipulation'
+import Backdrop from '../components/Backdrop/Backdrop.jsx'
+import LocationList from '../components/LocationList/LocationList.jsx'
+import Heading from '../components/Heading/Heading.jsx'
+import CloseIcon from '../components/CloseIcon/CloseIcon.jsx'
 
 export default class DetailView extends React.Component {
   constructor({color, locations, clearExpanded}) {
     super()
     this.color = color
-    this.locations = locations
+    this.locations = locations.locations
     this.clearExpanded = clearExpanded
   }
 
   render() {
     return (
-      <div
-        style={{width: '100%', height: '100vh', backgroundColor: this.color}}
-      >
-        <TiTimes
-          onClick={() => {this.clearExpanded()}}
-          style={{color: getTextColor(this.color)}}
-        />
-      </div>
+      <Backdrop color={this.color}>
+        <CloseIcon handleClick={this.clearExpanded} />
+        <Heading>{this.color}</Heading>
+        <LocationList color={this.color} locations={this.locations} />
+      </Backdrop>
     )
   }
 }
