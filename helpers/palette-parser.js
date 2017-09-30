@@ -3,6 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const shortid = require('shortid')
 
+const { stripFileSystemPath } = require('./path-utils')
 const { hex, rgb, hsl, htmlColorName } = require('./regular-expressions')
 const {
   shouldExcludePath,
@@ -75,21 +76,22 @@ class PaletteParser {
             let rgbValueList = rgb(line)
             let hslValueList = hsl(line)
             let htmlColorValueList = htmlColorName(line)
+            let strippedPath = stripFileSystemPath(file)
 
             if (hexValueList) {
-              this._addColor(hexValueList, lineCount, file)
+              this._addColor(hexValueList, lineCount, strippedPath)
             }
 
             if (rgbValueList) {
-              this._addColor(rgbValueList, lineCount, file)
+              this._addColor(rgbValueList, lineCount, strippedPath)
             }
 
             if (hslValueList) {
-              this._addColor(hslValueList, lineCount, file)
+              this._addColor(hslValueList, lineCount, strippedPath)
             }
 
             if (htmlColorValueList) {
-              this._addColor(htmlColorValueList, lineCount, file)
+              this._addColor(htmlColorValueList, lineCount, strippedPath)
             }
 
             lineCount++
