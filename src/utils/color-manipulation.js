@@ -14,3 +14,7 @@ export function getAlphaBackgroundColor(color, alpha='0.05') {
 
   return tinycolor(backgroundColor).setAlpha(alpha)
 }
+
+export function makeOpaque(color) {
+  return tinycolor(color).setAlpha(1)
+}
