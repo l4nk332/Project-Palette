@@ -7,6 +7,8 @@ import DetailView from './DetailView'
 import Grid from '../components/Grid/Grid.jsx'
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch.jsx'
 
+import { toggleStaticBody } from '../utils/misc'
+
 
 export default class PaletteView extends React.Component {
   constructor({palette}) {
@@ -23,10 +25,12 @@ export default class PaletteView extends React.Component {
   }
 
   clearExpanded() {
+    toggleStaticBody(false)
     this.setState({expandedColor: null})
   }
 
   expandColor(color) {
+    toggleStaticBody()
     this.setState({expandedColor: color})
   }
 
