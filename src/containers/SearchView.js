@@ -38,10 +38,10 @@ export default class SearchView extends React.Component {
   submitSearchQuery() {
     const search = this.state.search
 
-    if (true) {
-      this.setPalette(mockPaletteResponse())
-      return
-    }
+    // if (true) {
+    //   this.setPalette(mockPaletteResponse())
+    //   return
+    // }
 
     if (search.length) {
       searchGitHubProject(search)
