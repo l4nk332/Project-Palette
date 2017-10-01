@@ -4,7 +4,7 @@ import { getAlphaBackgroundColor } from '../../utils/color-manipulation'
 
 import './LocationList.sass'
 
-function LocationList({color, locations}) {
+function LocationList({color, locations, projectURL}) {
     return (
       <div
         className='LocationList'
@@ -14,6 +14,7 @@ function LocationList({color, locations}) {
             key={index}
             filePath={filePath}
             lineNumber={lineNumber}
+            projectURL={projectURL}
           />
         ))}
       </div>

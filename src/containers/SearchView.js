@@ -9,13 +9,14 @@ import { mockPaletteResponse } from '../utils/requests'
 
 
 export default class SearchView extends React.Component {
-  constructor({setPalette}) {
+  constructor({setPalette, setProjectURL}) {
     super()
     this.state = {
       search: ''
     }
 
     this.setPalette = setPalette
+    this.setProjectURL = setProjectURL
 
     this.updateSearch = this.updateSearch.bind(this)
     this.handleEnterKeySubmission = this.handleEnterKeySubmission.bind(this)
@@ -45,10 +46,13 @@ export default class SearchView extends React.Component {
 
     if (search.length) {
       searchGitHubProject(search)
-        .then(response => ({
-          httpsCloneURL: response.data.clone_url,
-          repoURI: response.data.full_name
-        }))
+        .then((response) => {
+          this.setProjectURL(response.data.html_url)
+          return {
+            httpsCloneURL: response.data.clone_url,
+            repoURI: response.data.full_name
+          }
+        })
         .then(getProjectPalette)
         .then(response => (this.setPalette(response.data)))
         .catch((error) => {

@@ -15,10 +15,12 @@ export default class App extends React.Component {
       isLoading: true,
       currentView: SEARCH_VIEW,
       palette: {},
+      projectURL: ''
     }
 
     this.setIsLoading = this.setIsLoading.bind(this)
     this.setPalette = this.setPalette.bind(this)
+    this.setProjectURL = this.setProjectURL.bind(this)
     this.renderCurrentView = this.renderCurrentView.bind(this)
   }
 
@@ -36,14 +38,24 @@ export default class App extends React.Component {
     })
   }
 
+  setProjectURL(url) {
+    this.setState({projectURL: url})
+  }
+
   renderCurrentView() {
     switch (this.state.currentView) {
       case SEARCH_VIEW:
-        return <SearchView setPalette={this.setPalette} />
+        return (
+          <SearchView
+            setPalette={this.setPalette}
+            setProjectURL={this.setProjectURL}
+          />
+        )
       case PALETTE_VIEW:
         return (
           <PaletteView
             palette={this.state.palette}
+            projectURL={this.state.projectURL}
             expandColor={this.expandColor}
           />
         )

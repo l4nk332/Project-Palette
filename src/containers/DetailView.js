@@ -6,11 +6,12 @@ import Heading from '../components/Heading/Heading.jsx'
 import CloseIcon from '../components/CloseIcon/CloseIcon.jsx'
 
 export default class DetailView extends React.Component {
-  constructor({color, locations, clearExpanded}) {
+  constructor({color, locations, clearExpanded, projectURL}) {
     super()
     this.color = color
     this.locations = locations.locations
     this.clearExpanded = clearExpanded
+    this.projectURL = projectURL
   }
 
   render() {
@@ -18,7 +19,11 @@ export default class DetailView extends React.Component {
       <Backdrop color={this.color}>
         <CloseIcon handleClick={this.clearExpanded} />
         <Heading>{this.color}</Heading>
-        <LocationList color={this.color} locations={this.locations} />
+        <LocationList
+          color={this.color}
+          locations={this.locations}
+          projectURL={this.projectURL}
+        />
       </Backdrop>
     )
   }

@@ -11,13 +11,14 @@ import { toggleStaticBody } from '../utils/misc'
 
 
 export default class PaletteView extends React.Component {
-  constructor({palette}) {
+  constructor({palette, projectURL}) {
     super()
     this.state = {
       expandedColor: null
     }
 
     this.palette = palette
+    this.projectURL = projectURL
     this.expandColor = this.expandColor.bind(this)
     this.clearExpanded = this.clearExpanded.bind(this)
     this.renderSwatches = this.renderSwatches.bind(this)
@@ -52,6 +53,7 @@ export default class PaletteView extends React.Component {
       <DetailView
         color={this.state.expandedColor}
         locations={this.palette[this.state.expandedColor]}
+        projectURL={this.projectURL}
         clearExpanded={this.clearExpanded}
       />
     )
