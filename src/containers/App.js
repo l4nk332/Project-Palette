@@ -17,11 +17,9 @@ export default class App extends React.Component {
     this.state = {
       currentView: SEARCH_VIEW,
       palette: {},
-      projectURL: ''
     }
 
     this.setPalette = this.setPalette.bind(this)
-    this.setProjectURL = this.setProjectURL.bind(this)
     this.renderCurrentView = this.renderCurrentView.bind(this)
   }
 
@@ -31,18 +29,11 @@ export default class App extends React.Component {
     })
   }
 
-  setProjectURL(url) {
-    this.setState({projectURL: url})
-  }
-
   renderCurrentView() {
     switch (this.state.currentView) {
       case SEARCH_VIEW:
         return (
-          <SearchView
-            setPalette={this.setPalette}
-            setProjectURL={this.setProjectURL}
-          />
+          <SearchView setPalette={this.setPalette} />
         )
       case PALETTE_VIEW:
         return (

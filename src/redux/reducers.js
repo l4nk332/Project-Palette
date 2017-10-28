@@ -1,9 +1,15 @@
-import initialState from './initialState'
+import { combineReducers } from 'redux'
 
-import { IS_LOADING, IS_NOT_LOADING } from './actionTypes'
+import { initialStateIsLoading, initialStateProjectUrl } from './initialStates'
+
+import {
+  IS_LOADING,
+  IS_NOT_LOADING,
+  UPDATE_PROJECT_URL,
+} from './actionTypes'
 
 
-const reducer = (state = initialState, action) => {
+const isLoadingReducer = (state = initialStateIsLoading, action) => {
   switch (action.type) {
     case IS_LOADING:
       return {
@@ -20,4 +26,19 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer
+const projectUrlReducer = (state = initialStateProjectUrl, {type, text}) => {
+  switch (type) {
+    case UPDATE_PROJECT_URL:
+      return {
+        ...state,
+        projectUrl: text,
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({
+  _isLoading: isLoadingReducer,
+  _projectUrl: projectUrlReducer
+})

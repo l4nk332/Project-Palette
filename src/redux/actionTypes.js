@@ -1,3 +1,4 @@
 export const IS_LOADING = 'IS_LOADING'
-
 export const IS_NOT_LOADING = 'IS_NOT_LOADING'
+
+export const UPDATE_PROJECT_URL = 'UPDATE_PROJECT_URL'
