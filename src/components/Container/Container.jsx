@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Loader from '../Loader/Loader.jsx'
 
@@ -13,4 +14,8 @@ function Container({ isLoading, children }) {
   )
 }
 
-export default Container
+const mapStateToProps = state => ({
+  isLoading: state.isLoading,
+})
+
+export default connect(mapStateToProps)(Container)

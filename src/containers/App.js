@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
 import { SEARCH_VIEW, PALETTE_VIEW } from '../utils/constants'
+
+import store from '../redux/store'
 
 import SearchView from './SearchView'
 import PaletteView from './PaletteView'
@@ -12,24 +15,14 @@ export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      isLoading: true,
       currentView: SEARCH_VIEW,
       palette: {},
       projectURL: ''
     }
 
-    this.setIsLoading = this.setIsLoading.bind(this)
     this.setPalette = this.setPalette.bind(this)
     this.setProjectURL = this.setProjectURL.bind(this)
     this.renderCurrentView = this.renderCurrentView.bind(this)
-  }
-
-  componentDidMount() {
-    this.setIsLoading(false)
-  }
-
-  setIsLoading(isLoading) {
-    this.setState({isLoading})
   }
 
   setPalette(palette) {
@@ -66,9 +59,11 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Container isLoading={this.state.isLoading}>
-        {this.renderCurrentView()}
-      </Container>
+      <Provider store={store}>
+        <Container isLoading={this.state.isLoading}>
+          {this.renderCurrentView()}
+        </Container>
+      </Provider>
     )
   }
 }

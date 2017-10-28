@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { searchGitHubProject, getProjectPalette } from '../utils/requests'
+import { setIsLoading, setIsNotLoading } from '../redux/actionCreators'
 
 import SearchBox from '../components/SearchBox/SearchBox.jsx'
 import Button from '../components/Button/Button.jsx'
@@ -8,15 +10,12 @@ import Button from '../components/Button/Button.jsx'
 import { mockPaletteResponse } from '../utils/requests'
 
 
-export default class SearchView extends React.Component {
-  constructor({setPalette, setProjectURL}) {
-    super()
+class SearchView extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
       search: ''
     }
-
-    this.setPalette = setPalette
-    this.setProjectURL = setProjectURL
 
     this.updateSearch = this.updateSearch.bind(this)
     this.handleEnterKeySubmission = this.handleEnterKeySubmission.bind(this)
@@ -39,26 +38,31 @@ export default class SearchView extends React.Component {
   submitSearchQuery() {
     const search = this.state.search
 
+    this.props.setIsLoading()
+
     if (true) {
-      this.setPalette(mockPaletteResponse())
-      return
+      setTimeout(() => {
+        this.props.setPalette(mockPaletteResponse())
+        this.props.setIsNotLoading()
+      }, 2000)
     }
 
-    if (search.length) {
-      searchGitHubProject(search)
-        .then((response) => {
-          this.setProjectURL(response.data.html_url)
-          return {
-            httpsCloneURL: response.data.clone_url,
-            repoURI: response.data.full_name
-          }
-        })
-        .then(getProjectPalette)
-        .then(response => (this.setPalette(response.data)))
-        .catch((error) => {
-          alert(error)
-        })
-    }
+    // if (search.length) {
+    //   searchGitHubProject(search)
+    //     .then((response) => {
+    //       this.props.setProjectURL(response.data.html_url)
+    //       return {
+    //         httpsCloneURL: response.data.clone_url,
+    //         repoURI: response.data.full_name
+    //       }
+    //     })
+    //     .then(getProjectPalette)
+    //     .then(response => (this.props.setPalette(response.data)))
+    //     .catch((error) => {
+    //       alert(error)
+    //     })
+    //     .then(this.props.setIsNotLoading)
+    // }
   }
 
   render() {
@@ -78,3 +82,11 @@ export default class SearchView extends React.Component {
     )
   }
 }
+
+
+const mapDispatchToProps = {
+  setIsLoading,
+  setIsNotLoading,
+}
+
+export default connect(null, mapDispatchToProps)(SearchView)
