@@ -57,7 +57,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentView: state._view.currentView
+  currentView: state.view.currentView
 })
 
 const mapDispatchToProps = {

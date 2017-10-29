@@ -4,6 +4,8 @@ import {
   UPDATE_PROJECT_URL,
   SEARCH_VIEW,
   PALETTE_VIEW,
+  COLOR_DETAIL,
+  CLEAR_COLOR,
 } from './actionTypes'
 
 
@@ -28,4 +30,14 @@ export const setSearchView = () => ({
 
 export const setPaletteView = () => ({
   type: PALETTE_VIEW,
+})
+
+
+export const openColorDetail = color => ({
+  type: COLOR_DETAIL,
+  color,
+})
+
+export const closeColorDetail = () => ({
+  type: CLEAR_COLOR,
 })

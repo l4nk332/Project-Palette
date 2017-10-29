@@ -15,7 +15,7 @@ function Container({ isLoading, children }) {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state._isLoading.isLoading,
+  isLoading: state.isLoading,
 })
 
 export default connect(mapStateToProps)(Container)

@@ -4,6 +4,7 @@ import {
   initialStateIsLoading,
   initialStateProjectUrl,
   initialStateView,
+  initialStateColorDetail,
 } from './initialStates'
 
 import {
@@ -12,21 +13,17 @@ import {
   UPDATE_PROJECT_URL,
   SEARCH_VIEW,
   PALETTE_VIEW,
+  COLOR_DETAIL,
+  CLEAR_COLOR,
 } from './actionTypes'
 
 
 const isLoadingReducer = (state = initialStateIsLoading, action) => {
   switch (action.type) {
     case IS_LOADING:
-      return {
-        ...state,
-        isLoading: true,
-      }
+      return true
     case IS_NOT_LOADING:
-      return {
-        ...state,
-        isLoading: false,
-      }
+      return false
     default:
       return state
   }
@@ -35,10 +32,7 @@ const isLoadingReducer = (state = initialStateIsLoading, action) => {
 const projectUrlReducer = (state = initialStateProjectUrl, { type, text }) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
-      return {
-        ...state,
-        projectUrl: text,
-      }
+      return text
     default:
       return state
   }
@@ -61,8 +55,20 @@ const viewReducer = (state = initialStateView, { type }) => {
   }
 }
 
+const colorDetailReducer = (state = initialStateColorDetail, { type, color }) => {
+  switch (type) {
+    case COLOR_DETAIL:
+      return color
+    case CLEAR_COLOR:
+      return null
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
-  _isLoading: isLoadingReducer,
-  _projectUrl: projectUrlReducer,
-  _view: viewReducer,
+  isLoading: isLoadingReducer,
+  projectUrl: projectUrlReducer,
+  view: viewReducer,
+  colorDetail: colorDetailReducer,
 })

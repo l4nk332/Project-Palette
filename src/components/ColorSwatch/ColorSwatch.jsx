@@ -1,30 +1,43 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import CopyToClipboard from 'react-copy-to-clipboard'
+
+import { openColorDetail } from '../../redux/actionCreators'
+
 import TiClipboard from 'react-icons/lib/ti/clipboard'
 import TiTick from 'react-icons/lib/ti/tick'
 import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise'
-import './ColorSwatch.sass'
-import { getTextColor } from '../../utils/color-manipulation'
 
-export default class ColorSwatch extends React.Component {
-  constructor({color, expandColor}) {
-    super()
+import './ColorSwatch.sass'
+
+import { getTextColor } from '../../utils/color-manipulation'
+import { toggleStaticBody } from '../../utils/misc'
+
+
+class ColorSwatch extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
-      hasCopied: false
+      hasCopied: false,
     }
 
-    this.color = color
-    this.expandColor = expandColor
-    this.normalizedColor = color.toLowerCase()
+    this.color = this.props.color
+    this.openColorDetail = this.openColorDetail.bind(this)
+    this.normalizedColor = this.props.color.toLowerCase()
     this.textColor = getTextColor(this.normalizedColor)
 
     this.copiedToClipboard = this.copiedToClipboard.bind(this)
   }
 
+  openColorDetail(color) {
+    toggleStaticBody()
+    this.props.openColorDetail(color)
+  }
+
   copiedToClipboard() {
-    this.setState({hasCopied: true}, () => {
+    this.setState({ hasCopied: true }, () => {
       setTimeout(() => {
-        this.setState({hasCopied: false})
+        this.setState({ hasCopied: false })
       }, 1000)
     })
   }
@@ -32,33 +45,34 @@ export default class ColorSwatch extends React.Component {
   render() {
     return (
       <div
-        style={{backgroundColor: this.normalizedColor}}
+        style={{ backgroundColor: this.normalizedColor }}
         className='color-swatch'
       >
         <div className='icon-bar'>
           <CopyToClipboard text={this.normalizedColor}>
             <a title='Copy to Clipboard'>
               { this.state.hasCopied
-                ? <TiTick style={{color: this.textColor}} />
-                : <TiClipboard
-                    className='icon'
-                    onClick={this.copiedToClipboard}
-                    style={{color: this.textColor}}
-                  />
+                ? <TiTick style={{ color: this.textColor }} />
+                :
+                <TiClipboard
+                  className='icon'
+                  onClick={this.copiedToClipboard}
+                  style={{ color: this.textColor }}
+                />
               }
             </a>
           </CopyToClipboard>
           <a title='Expand Color Details'>
             <TiArrowMaximise
-              style={{color: this.textColor}}
+              style={{ color: this.textColor }}
               className='icon'
-              onClick={() => { this.expandColor(this.color)}}
+              onClick={() => { this.openColorDetail(this.color) }}
             />
           </a>
         </div>
-        <span style={{color: this.textColor}}>
+        <span style={{ color: this.textColor }}>
           { this.state.hasCopied
-            ? "Copied to Clipboard"
+            ? 'Copied to Clipboard'
             : this.normalizedColor
           }
         </span>
@@ -66,3 +80,12 @@ export default class ColorSwatch extends React.Component {
     )
   }
 }
+
+const mapDispatchToProps = {
+  openColorDetail,
+}
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ColorSwatch)

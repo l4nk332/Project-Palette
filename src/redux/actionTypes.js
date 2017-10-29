@@ -5,3 +5,6 @@ export const UPDATE_PROJECT_URL = 'UPDATE_PROJECT_URL'
 
 export const SEARCH_VIEW = 'SEARCH_VIEW'
 export const PALETTE_VIEW = 'PALETTE_VIEW'
+
+export const COLOR_DETAIL = 'COLOR_DETAIL'
+export const CLEAR_COLOR = 'CLEAR_COLOR'
