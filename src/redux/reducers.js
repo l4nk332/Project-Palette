@@ -1,11 +1,17 @@
 import { combineReducers } from 'redux'
 
-import { initialStateIsLoading, initialStateProjectUrl } from './initialStates'
+import {
+  initialStateIsLoading,
+  initialStateProjectUrl,
+  initialStateView,
+} from './initialStates'
 
 import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
+  SEARCH_VIEW,
+  PALETTE_VIEW,
 } from './actionTypes'
 
 
@@ -26,7 +32,7 @@ const isLoadingReducer = (state = initialStateIsLoading, action) => {
   }
 }
 
-const projectUrlReducer = (state = initialStateProjectUrl, {type, text}) => {
+const projectUrlReducer = (state = initialStateProjectUrl, { type, text }) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
       return {
@@ -38,7 +44,25 @@ const projectUrlReducer = (state = initialStateProjectUrl, {type, text}) => {
   }
 }
 
+const viewReducer = (state = initialStateView, { type }) => {
+  switch (type) {
+    case SEARCH_VIEW:
+      return {
+        ...state,
+        currentView: SEARCH_VIEW,
+      }
+    case PALETTE_VIEW:
+      return {
+        ...state,
+        currentView: PALETTE_VIEW,
+      }
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   _isLoading: isLoadingReducer,
-  _projectUrl: projectUrlReducer
+  _projectUrl: projectUrlReducer,
+  _view: viewReducer,
 })

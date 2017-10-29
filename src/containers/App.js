@@ -1,21 +1,21 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 
-import { SEARCH_VIEW, PALETTE_VIEW } from '../utils/constants'
-
-import store from '../redux/store'
+import { setPaletteView } from '../redux/actionCreators'
+import {
+  SEARCH_VIEW,
+  PALETTE_VIEW
+} from '../redux/actionTypes'
 
 import SearchView from './SearchView'
 import PaletteView from './PaletteView'
 
 import Container from '../components/Container/Container.jsx'
 
-export default class App extends React.Component {
-  constructor() {
-    super()
+class App extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
-      currentView: SEARCH_VIEW,
       palette: {},
     }
 
@@ -25,12 +25,12 @@ export default class App extends React.Component {
 
   setPalette(palette) {
     this.setState({palette}, () => {
-      this.setState({currentView: PALETTE_VIEW})
+      this.props.setPaletteView()
     })
   }
 
   renderCurrentView() {
-    switch (this.state.currentView) {
+    switch (this.props.currentView) {
       case SEARCH_VIEW:
         return (
           <SearchView setPalette={this.setPalette} />
@@ -40,7 +40,6 @@ export default class App extends React.Component {
           <PaletteView
             palette={this.state.palette}
             projectURL={this.state.projectURL}
-            expandColor={this.expandColor}
           />
         )
       default:
@@ -50,13 +49,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Container isLoading={this.state.isLoading}>
-          {this.renderCurrentView()}
-        </Container>
-      </Provider>
+      <Container isLoading={this.state.isLoading}>
+        {this.renderCurrentView()}
+      </Container>
     )
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+const mapStateToProps = state => ({
+  currentView: state._view.currentView
+})
+
+const mapDispatchToProps = {
+  setPaletteView
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
