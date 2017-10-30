@@ -9,7 +9,7 @@ export function getTextColor(color) {
   return textShouldBeDark ? '#0f0f0f' : '#f4f2f3'
 }
 
-export function getAlphaBackgroundColor(color, alpha='0.05') {
+export function getAlphaBackgroundColor(color, alpha = '0.05') {
   const backgroundColor = getTextColor(color)
 
   return tinycolor(backgroundColor).setAlpha(alpha)

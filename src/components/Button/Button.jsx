@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Button({clickHandler, isDisabled, children}) {
+function Button({ clickHandler, isDisabled, children }) {
   return (
     <button
       onClick={clickHandler}

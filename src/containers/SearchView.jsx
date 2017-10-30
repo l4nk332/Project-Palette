@@ -8,15 +8,15 @@ import {
   asyncFetchColorPalette,
 } from '../redux/actionCreators'
 
-import SearchBox from '../components/SearchBox/SearchBox.jsx'
-import Button from '../components/Button/Button.jsx'
+import SearchBox from '../components/SearchBox/SearchBox'
+import Button from '../components/Button/Button'
 
 
 class SearchView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      search: ''
+      search: '',
     }
 
     this.updateSearch = this.updateSearch.bind(this)
@@ -26,7 +26,7 @@ class SearchView extends React.Component {
 
   updateSearch(event) {
     const newSearch = event.target.value
-    this.setState({search: newSearch})
+    this.setState({ search: newSearch })
   }
 
   handleEnterKeySubmission(event) {
@@ -46,7 +46,7 @@ class SearchView extends React.Component {
     return (
       <div>
         <SearchBox
-          placeholderText='l4nk332/Project-Palette'
+          placeholderText="l4nk332/Project-Palette"
           keyDownHandler={this.handleEnterKeySubmission}
           keyUpHandler={this.updateSearch}
         />

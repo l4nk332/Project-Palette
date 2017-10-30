@@ -3,11 +3,11 @@ import TiTimes from 'react-icons/lib/ti/times'
 
 import './CloseIcon.sass'
 
-function CloseIcon({handleClick}) {
+function CloseIcon({ handleClick }) {
   return (
     <TiTimes
-      className='CloseIcon'
-      onClick={() => {handleClick()}}
+      className="CloseIcon"
+      onClick={() => { handleClick() }}
     />
   )
 }

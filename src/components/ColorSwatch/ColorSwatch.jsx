@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CopyToClipboard from 'react-copy-to-clipboard'
 
-import { openColorDetail } from '../../redux/actionCreators'
-
 import TiClipboard from 'react-icons/lib/ti/clipboard'
 import TiTick from 'react-icons/lib/ti/tick'
 import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise'
+
+import { openColorDetail } from '../../redux/actionCreators'
 
 import './ColorSwatch.sass'
 
@@ -46,26 +46,26 @@ class ColorSwatch extends React.Component {
     return (
       <div
         style={{ backgroundColor: this.normalizedColor }}
-        className='color-swatch'
+        className="color-swatch"
       >
-        <div className='icon-bar'>
+        <div className="icon-bar">
           <CopyToClipboard text={this.normalizedColor}>
-            <a title='Copy to Clipboard'>
+            <a title="Copy to Clipboard">
               { this.state.hasCopied
                 ? <TiTick style={{ color: this.textColor }} />
                 :
                 <TiClipboard
-                  className='icon'
+                  className="icon"
                   onClick={this.copiedToClipboard}
                   style={{ color: this.textColor }}
                 />
               }
             </a>
           </CopyToClipboard>
-          <a title='Expand Color Details'>
+          <a title="Expand Color Details">
             <TiArrowMaximise
               style={{ color: this.textColor }}
-              className='icon'
+              className="icon"
               onClick={() => { this.openColorDetail(this.color) }}
             />
           </a>

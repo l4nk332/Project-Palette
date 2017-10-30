@@ -17,13 +17,10 @@ import {
   PALETTE_VIEW,
   COLOR_DETAIL,
   CLEAR_COLOR,
-  FETCH_PALETTE,
   SET_PALETTE,
   ERROR,
   CLEAR_ERROR,
 } from './actionTypes'
-
-import { asyncFetchColorPalette } from './actionCreators'
 
 
 const isLoadingReducer = (state = initialLoadingState, action) => {

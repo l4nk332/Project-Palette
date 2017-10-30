@@ -3,11 +3,12 @@ import { getTextColor } from '../../utils/color-manipulation'
 
 import './Backdrop.sass'
 
-function Backdrop({color, children}) {
+function Backdrop({ color, children }) {
   return (
     <div
-      className='Backdrop'
-      style={{color: getTextColor(color), backgroundColor: color}}>
+      className="Backdrop"
+      style={{ color: getTextColor(color), backgroundColor: color }}
+    >
       {children}
     </div>
   )

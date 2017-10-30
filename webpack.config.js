@@ -37,7 +37,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.jsx', '.js']
   },
   plugins: [
     new HtmlWebpackPlugin({

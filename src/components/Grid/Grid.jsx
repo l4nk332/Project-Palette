@@ -1,9 +1,9 @@
 import React from 'react'
 import './Grid.sass'
 
-function Grid({children}) {
+function Grid({ children }) {
   return (
-    <div className='grid'>
+    <div className="grid">
       {children}
     </div>
   )

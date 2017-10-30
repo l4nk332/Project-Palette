@@ -9,12 +9,12 @@ export function searchGitHubProject(projectURI) {
   return axios.get(url)
 }
 
-export function getProjectPalette({httpsCloneURL, repoURI}) {
+export function getProjectPalette({ httpsCloneURL, repoURI }) {
   return axios.get(COLORS_URL, {
     params: {
       httpsCloneURL,
-      repoURI
-    }
+      repoURI,
+    },
   })
 }
 

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import DetailView from './DetailView'
 
-import Grid from '../components/Grid/Grid.jsx'
-import ColorSwatch from '../components/ColorSwatch/ColorSwatch.jsx'
+import Grid from '../components/Grid/Grid'
+import ColorSwatch from '../components/ColorSwatch/ColorSwatch'
 
 
 class PaletteView extends React.Component {
@@ -17,18 +17,17 @@ class PaletteView extends React.Component {
   renderSwatches() {
     return (
       Object.keys(this.props.palette)
-            .map((color, idx) => (
-              <ColorSwatch
-                key={idx}
-                color={color}
-              />
-            ))
+        .map(color => (
+          <ColorSwatch
+            key={color}
+            color={color}
+          />
+        ))
     )
   }
 
   renderDetailView() {
-    let locations = this.props.palette[this.props.colorDetail]
-
+    const locations = this.props.palette[this.props.colorDetail]
     return (
       <DetailView locations={locations} />
     )
@@ -54,6 +53,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(
-  mapStateToProps,
-)(PaletteView)
+export default connect(mapStateToProps)(PaletteView)

@@ -5,10 +5,10 @@ import { closeColorDetail } from '../redux/actionCreators'
 
 import { toggleStaticBody } from '../utils/misc'
 
-import Backdrop from '../components/Backdrop/Backdrop.jsx'
-import LocationList from '../components/LocationList/LocationList.jsx'
-import Heading from '../components/Heading/Heading.jsx'
-import CloseIcon from '../components/CloseIcon/CloseIcon.jsx'
+import Backdrop from '../components/Backdrop/Backdrop'
+import LocationList from '../components/LocationList/LocationList'
+import Heading from '../components/Heading/Heading'
+import CloseIcon from '../components/CloseIcon/CloseIcon'
 
 class DetailView extends React.Component {
   constructor(props) {

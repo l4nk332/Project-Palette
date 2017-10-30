@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { setPaletteView } from '../redux/actionCreators'
 import {
   SEARCH_VIEW,
   PALETTE_VIEW,
@@ -10,12 +9,11 @@ import {
 import SearchView from './SearchView'
 import PaletteView from './PaletteView'
 
-import Container from '../components/Container/Container.jsx'
+import Container from '../components/Container/Container'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-
     this.renderCurrentView = this.renderCurrentView.bind(this)
   }
 
@@ -31,7 +29,10 @@ class App extends React.Component {
         )
       default:
         console.error('Unhandled view has been set.')
-      }
+        return (
+          <SearchView />
+        )
+    }
   }
 
   render() {
