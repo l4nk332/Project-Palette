@@ -10,14 +10,13 @@ import ColorSwatch from '../components/ColorSwatch/ColorSwatch.jsx'
 class PaletteView extends React.Component {
   constructor(props) {
     super(props)
-    this.palette = this.props.palette
     this.renderSwatches = this.renderSwatches.bind(this)
     this.renderDetailView = this.renderDetailView.bind(this)
   }
 
   renderSwatches() {
     return (
-      Object.keys(this.palette)
+      Object.keys(this.props.palette)
             .map((color, idx) => (
               <ColorSwatch
                 key={idx}
@@ -28,8 +27,10 @@ class PaletteView extends React.Component {
   }
 
   renderDetailView() {
+    let locations = this.props.palette[this.props.colorDetail]
+
     return (
-      <DetailView locations={this.palette[this.props.colorDetail]} />
+      <DetailView locations={locations} />
     )
   }
 
@@ -49,6 +50,7 @@ class PaletteView extends React.Component {
 
 const mapStateToProps = state => ({
   colorDetail: state.colorDetail,
+  palette: state.palette,
 })
 
 

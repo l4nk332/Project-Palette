@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 
 import {
-  initialStateIsLoading,
-  initialStateProjectUrl,
-  initialStateView,
-  initialStateColorDetail,
+  initialLoadingState,
+  initialProjectUrlState,
+  initialViewState,
+  initialColorDetailState,
+  initialPaletteState,
+  initialErrorState,
 } from './initialStates'
 
 import {
@@ -15,10 +17,16 @@ import {
   PALETTE_VIEW,
   COLOR_DETAIL,
   CLEAR_COLOR,
+  FETCH_PALETTE,
+  SET_PALETTE,
+  ERROR,
+  CLEAR_ERROR,
 } from './actionTypes'
 
+import { asyncFetchColorPalette } from './actionCreators'
 
-const isLoadingReducer = (state = initialStateIsLoading, action) => {
+
+const isLoadingReducer = (state = initialLoadingState, action) => {
   switch (action.type) {
     case IS_LOADING:
       return true
@@ -29,7 +37,7 @@ const isLoadingReducer = (state = initialStateIsLoading, action) => {
   }
 }
 
-const projectUrlReducer = (state = initialStateProjectUrl, { type, text }) => {
+const projectUrlReducer = (state = initialProjectUrlState, { type, text }) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
       return text
@@ -38,7 +46,7 @@ const projectUrlReducer = (state = initialStateProjectUrl, { type, text }) => {
   }
 }
 
-const viewReducer = (state = initialStateView, { type }) => {
+const viewReducer = (state = initialViewState, { type }) => {
   switch (type) {
     case SEARCH_VIEW:
       return {
@@ -55,11 +63,34 @@ const viewReducer = (state = initialStateView, { type }) => {
   }
 }
 
-const colorDetailReducer = (state = initialStateColorDetail, { type, color }) => {
+const colorDetailReducer = (state = initialColorDetailState, { type, color }) => {
   switch (type) {
     case COLOR_DETAIL:
       return color
     case CLEAR_COLOR:
+      return null
+    default:
+      return state
+  }
+}
+
+const paletteReducer = (
+  state = initialPaletteState,
+  { type, palette },
+) => {
+  switch (type) {
+    case SET_PALETTE:
+      return palette
+    default:
+      return state
+  }
+}
+
+const errorReducer = (state = initialErrorState, { type, message }) => {
+  switch (type) {
+    case ERROR:
+      return message
+    case CLEAR_ERROR:
       return null
     default:
       return state
@@ -71,4 +102,6 @@ export default combineReducers({
   projectUrl: projectUrlReducer,
   view: viewReducer,
   colorDetail: colorDetailReducer,
+  palette: paletteReducer,
+  error: errorReducer,
 })

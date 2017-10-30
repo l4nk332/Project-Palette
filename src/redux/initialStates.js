@@ -1,9 +1,13 @@
 import { SEARCH_VIEW } from './actionTypes'
 
-export const initialStateIsLoading = false
+export const initialLoadingState = false
 
-export const initialStateProjectUrl = null
+export const initialProjectUrlState = null
 
-export const initialStateView = { currentView: SEARCH_VIEW }
+export const initialViewState = { currentView: SEARCH_VIEW }
 
-export const initialStateColorDetail = null
+export const initialColorDetailState = null
+
+export const initialPaletteState = {}
+
+export const initialErrorState = null

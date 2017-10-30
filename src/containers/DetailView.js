@@ -29,7 +29,7 @@ class DetailView extends React.Component {
         <LocationList
           color={this.props.colorDetail}
           locations={this.props.locations.locations}
-          projectURL={this.props.projectUrl}
+          projectUrl={this.props.projectUrl}
         />
       </Backdrop>
     )

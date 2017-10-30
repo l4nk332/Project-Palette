@@ -3,10 +3,10 @@ import { getTextColor } from '../../../utils/color-manipulation'
 
 import './LocationListItem.sass'
 
-function LocationListItem({filePath, lineNumber, projectURL}) {
+function LocationListItem({filePath, lineNumber, projectUrl}) {
   return (
     <a
-      href={`${projectURL}/blob/master/${filePath}#L${lineNumber}`}
+      href={`${projectUrl}/blob/master/${filePath}#L${lineNumber}`}
       className='LocationListItem'
       target='_blank'
     >

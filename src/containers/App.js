@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setPaletteView } from '../redux/actionCreators'
 import {
   SEARCH_VIEW,
-  PALETTE_VIEW
+  PALETTE_VIEW,
 } from '../redux/actionTypes'
 
 import SearchView from './SearchView'
@@ -15,32 +15,19 @@ import Container from '../components/Container/Container.jsx'
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      palette: {},
-    }
 
-    this.setPalette = this.setPalette.bind(this)
     this.renderCurrentView = this.renderCurrentView.bind(this)
-  }
-
-  setPalette(palette) {
-    this.setState({palette}, () => {
-      this.props.setPaletteView()
-    })
   }
 
   renderCurrentView() {
     switch (this.props.currentView) {
       case SEARCH_VIEW:
         return (
-          <SearchView setPalette={this.setPalette} />
+          <SearchView />
         )
       case PALETTE_VIEW:
         return (
-          <PaletteView
-            palette={this.state.palette}
-            projectURL={this.state.projectURL}
-          />
+          <PaletteView />
         )
       default:
         console.error('Unhandled view has been set.')
@@ -49,7 +36,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container isLoading={this.state.isLoading}>
+      <Container isLoading={this.props.isLoading}>
         {this.renderCurrentView()}
       </Container>
     )
@@ -57,11 +44,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  currentView: state.view.currentView
+  currentView: state.view.currentView,
+  isLoading: state.isLoading,
 })
 
-const mapDispatchToProps = {
-  setPaletteView
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

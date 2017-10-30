@@ -1,17 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { searchGitHubProject, getProjectPalette } from '../utils/requests'
 import {
   setIsLoading,
   setIsNotLoading,
   setProjectUrl,
+  asyncFetchColorPalette,
 } from '../redux/actionCreators'
 
 import SearchBox from '../components/SearchBox/SearchBox.jsx'
 import Button from '../components/Button/Button.jsx'
-
-import { mockPaletteResponse } from '../utils/requests'
 
 
 class SearchView extends React.Component {
@@ -40,33 +38,8 @@ class SearchView extends React.Component {
   }
 
   submitSearchQuery() {
-    const search = this.state.search
-
-    this.props.setIsLoading()
-
-    // if (true) {
-    //   setTimeout(() => {
-    //     this.props.setPalette(mockPaletteResponse())
-    //     this.props.setIsNotLoading()
-    //   }, 2000)
-    // }
-
-    if (search.length) {
-      searchGitHubProject(search)
-        .then((response) => {
-          this.props.setProjectUrl(response.data.html_url)
-          return {
-            httpsCloneURL: response.data.clone_url,
-            repoURI: response.data.full_name
-          }
-        })
-        .then(getProjectPalette)
-        .then(response => (this.props.setPalette(response.data)))
-        .catch((error) => {
-          alert(error)
-        })
-        .then(this.props.setIsNotLoading)
-    }
+    const { search } = this.state
+    this.props.asyncFetchColorPalette(search)
   }
 
   render() {
@@ -79,7 +52,8 @@ class SearchView extends React.Component {
         />
         <Button
           clickHandler={this.submitSearchQuery}
-          isDisabled={!this.state.search.length}>
+          isDisabled={!this.state.search.length}
+        >
           Analyze
         </Button>
       </div>
@@ -92,6 +66,7 @@ const mapDispatchToProps = {
   setIsLoading,
   setIsNotLoading,
   setProjectUrl,
+  asyncFetchColorPalette,
 }
 
 export default connect(null, mapDispatchToProps)(SearchView)
