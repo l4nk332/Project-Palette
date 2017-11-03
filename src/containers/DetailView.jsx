@@ -13,10 +13,9 @@ import CloseIcon from '../components/CloseIcon/CloseIcon'
 class DetailView extends React.Component {
   constructor(props) {
     super(props)
-    this.closeColorDetail = this.closeColorDetail.bind(this)
   }
 
-  closeColorDetail() {
+  closeColorDetail = () => {
     toggleStaticBody(false)
     this.props.closeColorDetail()
   }

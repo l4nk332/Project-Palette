@@ -3,7 +3,6 @@ import { combineReducers } from 'redux'
 import {
   initialLoadingState,
   initialProjectUrlState,
-  initialViewState,
   initialColorDetailState,
   initialPaletteState,
   initialErrorState,
@@ -13,8 +12,6 @@ import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
-  SEARCH_VIEW,
-  PALETTE_VIEW,
   COLOR_DETAIL,
   CLEAR_COLOR,
   SET_PALETTE,
@@ -38,23 +35,6 @@ const projectUrlReducer = (state = initialProjectUrlState, { type, text }) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
       return text
-    default:
-      return state
-  }
-}
-
-const viewReducer = (state = initialViewState, { type }) => {
-  switch (type) {
-    case SEARCH_VIEW:
-      return {
-        ...state,
-        currentView: SEARCH_VIEW,
-      }
-    case PALETTE_VIEW:
-      return {
-        ...state,
-        currentView: PALETTE_VIEW,
-      }
     default:
       return state
   }
@@ -97,7 +77,6 @@ const errorReducer = (state = initialErrorState, { type, message }) => {
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
-  view: viewReducer,
   colorDetail: colorDetailReducer,
   palette: paletteReducer,
   error: errorReducer,

@@ -1,12 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
-import {
-  setIsLoading,
-  setIsNotLoading,
-  setProjectUrl,
-  asyncFetchColorPalette,
-} from '../redux/actionCreators'
+import { Link } from 'react-router-dom'
 
 import SearchBox from '../components/SearchBox/SearchBox'
 import Button from '../components/Button/Button'
@@ -18,28 +11,25 @@ class SearchView extends React.Component {
     this.state = {
       search: '',
     }
-
-    this.updateSearch = this.updateSearch.bind(this)
-    this.handleEnterKeySubmission = this.handleEnterKeySubmission.bind(this)
-    this.submitSearchQuery = this.submitSearchQuery.bind(this)
   }
 
-  updateSearch(event) {
+  updateSearch = (event) => {
     const newSearch = event.target.value
     this.setState({ search: newSearch })
   }
 
-  handleEnterKeySubmission(event) {
+  handleEnterKeySubmission = (event) => {
     const isEnterKey = event.keyCode === 13
+    const trimmedSearch = this.state.search.trim()
 
-    if (isEnterKey) {
+    if (trimmedSearch && isEnterKey) {
       this.submitSearchQuery()
     }
   }
 
-  submitSearchQuery() {
+  submitSearchQuery = () => {
     const { search } = this.state
-    this.props.asyncFetchColorPalette(search)
+    this.props.history.push(search)
   }
 
   render() {
@@ -50,23 +40,16 @@ class SearchView extends React.Component {
           keyDownHandler={this.handleEnterKeySubmission}
           keyUpHandler={this.updateSearch}
         />
-        <Button
-          clickHandler={this.submitSearchQuery}
-          isDisabled={!this.state.search.length}
-        >
-          Analyze
-        </Button>
+        {this.state.search.trim() ?
+          (<Link to={`/${this.state.search}`}>
+              <Button isDisabled={false}>Analyze</Button>
+          </Link>) :
+          <Button isDisabled={true}>Analyze</Button>
+        }
       </div>
     )
   }
 }
 
 
-const mapDispatchToProps = {
-  setIsLoading,
-  setIsNotLoading,
-  setProjectUrl,
-  asyncFetchColorPalette,
-}
-
-export default connect(null, mapDispatchToProps)(SearchView)
+export default SearchView

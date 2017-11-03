@@ -10,7 +10,7 @@ export function searchGitHubProject(projectURI) {
 }
 
 export function getProjectPalette({ httpsCloneURL, repoURI }) {
-  return axios.get(COLORS_URL, {
+  return axios.post(COLORS_URL, {
     params: {
       httpsCloneURL,
       repoURI,
