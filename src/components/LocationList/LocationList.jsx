@@ -1,25 +1,28 @@
-import React from 'react'
-import LocationListItem from './LocationListItem/LocationListItem'
-import { getAlphaBackgroundColor } from '../../utils/color-manipulation'
+import React from 'react';
+import shortid from 'shortid';
+import LocationListItem from './LocationListItem/LocationListItem';
+import {getAlphaBackgroundColor} from '../../utils/color-manipulation';
 
-import './LocationList.sass'
+import './LocationList.sass';
 
-function LocationList({ color, locations, projectUrl }) {
-  return (
-    <div
-      className="LocationList"
-      style={{ backgroundColor: getAlphaBackgroundColor(color) }}
-    >
-      {locations.map(({ filePath, lineNumber }, index) => (
-        <LocationListItem
-          key={index}
-          filePath={filePath}
-          lineNumber={lineNumber}
-          projectUrl={projectUrl}
-        />
-      ))}
-    </div>
-  )
-}
+const alphaBackgroundColor = color => ({
+  backgroundColor: getAlphaBackgroundColor(color),
+});
 
-export default LocationList
+const LocationList = ({color, locations, projectUrl}) => (
+  <div
+    className="LocationList"
+    style={alphaBackgroundColor(color)}
+  >
+    {locations.map(({filePath, lineNumber}) => (
+      <LocationListItem
+        key={shortid.generate()}
+        filePath={filePath}
+        lineNumber={lineNumber}
+        projectUrl={projectUrl}
+      />
+    ))}
+  </div>
+);
+
+export default LocationList;

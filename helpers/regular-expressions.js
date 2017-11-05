@@ -1,18 +1,18 @@
 // HEX
 const hex = str =>
-  str.match(/#[0-9a-f]{8}|#[0-9a-f]{6}|#[0-9a-f]{4}|#[0-9a-f]{3}/gi)
+  str.match(/#[0-9a-f]{8}|#[0-9a-f]{6}|#[0-9a-f]{4}|#[0-9a-f]{3}/gi);
 
 // RGB
 const rgb = str =>
   str.match(
-    /(rgb\(\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2}))\s*\)|(rgba\(\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2}))(?:\s*,\s*(?:1|0(?:\.\d*)?))\s*\)/gi
-  )
+    /(rgb\(\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2}))\s*\)|(rgba\(\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2})\s*,\s*([0-2]?[0-5]{1,2}|[0-1]?[0-9]{1,2}))(?:\s*,\s*(?:1|0(?:\.\d*)?))\s*\)/gi,
+  );
 
 // HSL
 const hsl = str =>
   str.match(
-    /hsl\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*\)|hsla\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*(?:\s*,\s*(?:1\.?0?|0\.?\d*))\s*\)/gi
-  )
+    /hsl\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*\)|hsla\(\s*([1-3][0-6][0-9]|[1-2][0-9][0-9]|[0-9]?[0-9])\s*,\s*((?:100)|[0-9]?[0-9])%\s*,\s*((?:100)|[0-9]?[0-9])%\s*(?:\s*,\s*(?:1\.?0?|0\.?\d*))\s*\)/gi,
+  );
 
 const HTML_COLOR_NAMES = [
   'aliceblue',
@@ -162,32 +162,32 @@ const HTML_COLOR_NAMES = [
   'olive',
   'orange',
   'purple',
-  'red'
-]
+  'red',
+];
 
 // Html Color Names
 const htmlColorName = str => {
-  let normalizedStringArray = str
+  const normalizedStringArray = str
     .replace(/[^a-z]/gi, ' ')
     .toLowerCase()
-    .split(/\s/gi)
+    .split(/\s/gi);
 
-  let filteredColorNames = normalizedStringArray.filter(normalizedString => {
-    return HTML_COLOR_NAMES.includes(normalizedString)
-  })
+  const filteredColorNames = normalizedStringArray.filter(normalizedString => (
+    HTML_COLOR_NAMES.includes(normalizedString)
+  ));
 
-  return filteredColorNames.length > 0 ? filteredColorNames : null
-}
+  return filteredColorNames.length > 0 ? filteredColorNames : null;
+};
 
 // Directories to exclude
 const shouldExcludePath = str =>
-  /(?:^|\/)(?:\.git|node_modules)(?:\/|$)/gi.test(str)
+  /(?:^|\/)(?:\.git|node_modules)(?:\/|$)/gi.test(str);
 
 // Files to include
 const shouldIncludeExtension = str =>
   /(?:\/|\\|\.)(js[x]?|css|sass|scss|less|htm[l]?|styl|pug|jade|slim|ejs|vue|elm)$/gi.test(
-    str
-  )
+    str,
+  );
 
 module.exports = {
   hex,
@@ -195,5 +195,5 @@ module.exports = {
   hsl,
   htmlColorName,
   shouldExcludePath,
-  shouldIncludeExtension
-}
+  shouldIncludeExtension,
+};

@@ -1,50 +1,41 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 
-import { closeColorDetail } from '../redux/actionCreators'
+import {closeColorDetail} from '../redux/actionCreators';
 
-import { toggleStaticBody } from '../utils/misc'
+import toggleStaticBody from '../utils/misc';
 
-import Backdrop from '../components/Backdrop/Backdrop'
-import LocationList from '../components/LocationList/LocationList'
-import Heading from '../components/Heading/Heading'
-import CloseIcon from '../components/CloseIcon/CloseIcon'
+import Backdrop from '../components/Backdrop/Backdrop';
+import LocationList from '../components/LocationList/LocationList';
+import Heading from '../components/Heading/Heading';
+import CloseIcon from '../components/CloseIcon/CloseIcon';
 
 class DetailView extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   closeColorDetail = () => {
-    toggleStaticBody(false)
-    this.props.closeColorDetail()
-  }
+    toggleStaticBody(false);
+    this.props.closeColorDetail();
+  };
 
-  render() {
-    return (
-      <Backdrop color={this.props.colorDetail}>
-        <CloseIcon handleClick={this.closeColorDetail} />
-        <Heading>{this.props.colorDetail}</Heading>
-        <LocationList
-          color={this.props.colorDetail}
-          locations={this.props.locations.locations}
-          projectUrl={this.props.projectUrl}
-        />
-      </Backdrop>
-    )
-  }
+  render = () => (
+    <Backdrop color={this.props.colorDetail}>
+      <CloseIcon handleClick={this.closeColorDetail} />
+      <Heading>{this.props.colorDetail}</Heading>
+      <LocationList
+        color={this.props.colorDetail}
+        locations={this.props.locations.locations}
+        projectUrl={this.props.projectUrl}
+      />
+    </Backdrop>
+  )
 }
 
 const mapStateToProps = state => ({
   colorDetail: state.colorDetail,
   projectUrl: state.projectUrl,
-})
+});
 
 const mapDispatchToProps = {
   closeColorDetail,
-}
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DetailView)
+export default connect(mapStateToProps, mapDispatchToProps)(DetailView);

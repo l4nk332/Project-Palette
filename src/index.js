@@ -1,20 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
-import 'normalize.css'
+import 'normalize.css';
 
-import store from './redux/store'
+import store from './redux/store';
 
-import './base.sass'
+import './base.sass';
 
-import App from './containers/App'
+import App from './containers/App';
 
-ReactDOM.render((
+const Main = () => (
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
-), document.getElementById('app'))
+);
+
+ReactDOM.render(<Main />, document.getElementById('app'));

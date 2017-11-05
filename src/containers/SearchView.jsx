@@ -1,36 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-import SearchBox from '../components/SearchBox/SearchBox'
-import Button from '../components/Button/Button'
-
+import SearchBox from '../components/SearchBox/SearchBox';
+import Button from '../components/Button/Button';
 
 class SearchView extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       search: '',
-    }
+    };
   }
 
-  updateSearch = (event) => {
-    const newSearch = event.target.value
-    this.setState({ search: newSearch })
-  }
+  updateSearch = event => {
+    const newSearch = event.target.value;
+    this.setState({search: newSearch});
+  };
 
-  handleEnterKeySubmission = (event) => {
-    const isEnterKey = event.keyCode === 13
-    const trimmedSearch = this.state.search.trim()
+  handleEnterKeySubmission = event => {
+    const isEnterKey = event.keyCode === 13;
+    const trimmedSearch = this.state.search.trim();
 
     if (trimmedSearch && isEnterKey) {
-      this.submitSearchQuery()
+      this.submitSearchQuery();
     }
-  }
+  };
 
   submitSearchQuery = () => {
-    const { search } = this.state
-    this.props.history.push(search)
-  }
+    const {search} = this.state;
+    this.props.history.push(search);
+  };
 
   render() {
     return (
@@ -40,16 +39,16 @@ class SearchView extends React.Component {
           keyDownHandler={this.handleEnterKeySubmission}
           keyUpHandler={this.updateSearch}
         />
-        {this.state.search.trim() ?
-          (<Link to={`/${this.state.search}`}>
-              <Button isDisabled={false}>Analyze</Button>
-          </Link>) :
-          <Button isDisabled={true}>Analyze</Button>
-        }
+        {this.state.search.trim() ? (
+          <Link to={`/${this.state.search}`}>
+            <Button isDisabled={false}>Analyze</Button>
+          </Link>
+        ) : (
+          <Button isDisabled>Analyze</Button>
+        )}
       </div>
-    )
+    );
   }
 }
 
-
-export default SearchView
+export default SearchView;

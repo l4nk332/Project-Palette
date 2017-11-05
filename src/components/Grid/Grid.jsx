@@ -1,12 +1,6 @@
-import React from 'react'
-import './Grid.sass'
+import React from 'react';
+import './Grid.sass';
 
-function Grid({ children }) {
-  return (
-    <div className="grid">
-      {children}
-    </div>
-  )
-}
+const Grid = ({children}) => <div className="grid">{children}</div>;
 
-export default Grid
+export default Grid;

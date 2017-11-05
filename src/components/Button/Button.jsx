@@ -1,14 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-function Button({ clickHandler, isDisabled, children }) {
-  return (
-    <button
-      onClick={clickHandler}
-      disabled={isDisabled}
-    >
-      {children}
-    </button>
-  )
-}
+const Button = ({clickHandler, isDisabled, children}) => (
+  <button onClick={clickHandler} disabled={isDisabled}>
+    {children}
+  </button>
+);
 
-export default Button
+export default Button;
