@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './LocationListItem.sass';
 
@@ -12,5 +13,14 @@ const LocationListItem = ({filePath, lineNumber, projectUrl}) => (
     :{lineNumber}
   </a>
 );
+
+LocationListItem.propTypes = {
+  filePath: PropTypes.string.isRequired,
+  lineNumber: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  projectUrl: PropTypes.string.isRequired,
+};
 
 export default LocationListItem;

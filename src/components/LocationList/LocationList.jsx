@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import LocationListItem from './LocationListItem/LocationListItem';
 import {getAlphaBackgroundColor} from '../../utils/color-manipulation';
@@ -24,5 +25,11 @@ const LocationList = ({color, locations, projectUrl}) => (
     ))}
   </div>
 );
+
+LocationList.propTypes = {
+  color: PropTypes.string.isRequired,
+  locations: PropTypes.arrayOf(PropTypes.object).isRequired,
+  projectUrl: PropTypes.string.isRequired,
+};
 
 export default LocationList;

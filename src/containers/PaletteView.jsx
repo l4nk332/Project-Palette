@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
@@ -17,6 +18,10 @@ class PaletteView extends React.Component {
     }
   };
 
+  setVisibility = () => ({
+    visibility: this.props.colorDetail ? 'hidden' : 'visible',
+  });
+
   renderSwatches = () =>
     Object.keys(this.props.palette).map(color => (
       <ColorSwatch key={color} color={color} />
@@ -27,20 +32,14 @@ class PaletteView extends React.Component {
     return <DetailView locations={locations} />;
   };
 
-  setVisibility = () => ({
-    visibility: this.props.colorDetail ? 'hidden' : 'visible',
-  })
-
   render = () => (
     <div>
-      <div
-        style={this.setVisibility()}
-      >
+      <div style={this.setVisibility()}>
         <Grid>{this.renderSwatches()}</Grid>
       </div>
       {this.props.colorDetail && this.renderDetailView()}
     </div>
-  )
+  );
 }
 
 const mapStateToProps = state => ({
@@ -50,6 +49,22 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   asyncFetchColorPalette,
+};
+
+PaletteView.defaultProps = {
+  colorDetail: null,
+};
+
+PaletteView.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      name: PropTypes.string,
+      project: PropTypes.string,
+    }),
+  }).isRequired,
+  asyncFetchColorPalette: PropTypes.func.isRequired,
+  palette: PropTypes.object.isRequired,
+  colorDetail: PropTypes.string,
 };
 
 export default withRouter(

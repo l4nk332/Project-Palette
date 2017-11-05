@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
@@ -76,6 +77,11 @@ class ColorSwatch extends React.Component {
 
 const mapDispatchToProps = {
   openColorDetail,
+};
+
+ColorSwatch.propTypes = {
+  color: PropTypes.string.isRequired,
+  openColorDetail: PropTypes.func.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(ColorSwatch);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import SearchBox from '../components/SearchBox/SearchBox';
@@ -50,5 +51,11 @@ class SearchView extends React.Component {
     );
   }
 }
+
+SearchView.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default SearchView;

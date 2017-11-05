@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Switch, Route, withRouter} from 'react-router-dom';
 
@@ -20,5 +21,9 @@ const App = ({isLoading}) => (
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
 });
+
+App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default withRouter(connect(mapStateToProps)(App));

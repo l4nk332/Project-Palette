@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {closeColorDetail} from '../redux/actionCreators';
@@ -36,6 +37,15 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   closeColorDetail,
+};
+
+DetailView.propTypes = {
+  closeColorDetail: PropTypes.func.isRequired,
+  colorDetail: PropTypes.string.isRequired,
+  locations: PropTypes.shape({
+    locations: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
+  projectUrl: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailView);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {getTextColor} from '../../utils/color-manipulation';
 
 import './Backdrop.sass';
@@ -13,5 +14,10 @@ const Backdrop = ({color, children}) => (
     {children}
   </div>
 );
+
+Backdrop.propTypes = {
+  color: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default Backdrop;
