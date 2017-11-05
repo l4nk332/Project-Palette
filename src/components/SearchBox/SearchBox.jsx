@@ -1,14 +1,25 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function SearchBox({ placeholderText, keyDownHandler, keyUpHandler }) {
-  return (
-    <input
-      type="text"
-      placeholder={placeholderText}
-      onKeyDown={keyDownHandler}
-      onKeyUp={keyUpHandler}
-    />
-  )
-}
+const SearchBox = ({placeholderText, keyDownHandler, keyUpHandler}) => (
+  <input
+    type="text"
+    placeholder={placeholderText}
+    onKeyDown={keyDownHandler}
+    onKeyUp={keyUpHandler}
+  />
+);
 
-export default SearchBox
+SearchBox.defaultProps = {
+  placeholderText: '',
+  keyDownHandler: e => { e.preventDefault(); },
+  keyUpHandler: e => { e.preventDefault(); },
+};
+
+SearchBox.propTypes = {
+  placeholderText: PropTypes.string,
+  keyDownHandler: PropTypes.func,
+  keyUpHandler: PropTypes.func,
+};
+
+export default SearchBox;

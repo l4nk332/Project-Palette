@@ -1,12 +1,11 @@
-import React from 'react'
-import './Grid.sass'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './Grid.sass';
 
-function Grid({ children }) {
-  return (
-    <div className="grid">
-      {children}
-    </div>
-  )
-}
+const Grid = ({children}) => <div className="grid">{children}</div>;
 
-export default Grid
+Grid.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default Grid;

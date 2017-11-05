@@ -1,17 +1,23 @@
-import React from 'react'
-import { getTextColor } from '../../utils/color-manipulation'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {getTextColor} from '../../utils/color-manipulation';
 
-import './Backdrop.sass'
+import './Backdrop.sass';
 
-function Backdrop({ color, children }) {
-  return (
-    <div
-      className="Backdrop"
-      style={{ color: getTextColor(color), backgroundColor: color }}
-    >
-      {children}
-    </div>
-  )
-}
+const readableColors = color => ({
+  color: getTextColor(color),
+  backgroundColor: color,
+});
 
-export default Backdrop
+const Backdrop = ({color, children}) => (
+  <div className="Backdrop" style={readableColors(color)}>
+    {children}
+  </div>
+);
+
+Backdrop.propTypes = {
+  color: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+export default Backdrop;

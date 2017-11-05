@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
 import {
   initialLoadingState,
@@ -6,7 +6,7 @@ import {
   initialColorDetailState,
   initialPaletteState,
   initialErrorState,
-} from './initialStates'
+} from './initialStates';
 
 import {
   IS_LOADING,
@@ -17,62 +17,58 @@ import {
   SET_PALETTE,
   ERROR,
   CLEAR_ERROR,
-} from './actionTypes'
-
+} from './actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
   switch (action.type) {
     case IS_LOADING:
-      return true
+      return true;
     case IS_NOT_LOADING:
-      return false
+      return false;
     default:
-      return state
+      return state;
   }
-}
+};
 
-const projectUrlReducer = (state = initialProjectUrlState, { type, text }) => {
+const projectUrlReducer = (state = initialProjectUrlState, {type, text}) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
-      return text
+      return text;
     default:
-      return state
+      return state;
   }
-}
+};
 
-const colorDetailReducer = (state = initialColorDetailState, { type, color }) => {
+const colorDetailReducer = (state = initialColorDetailState, {type, color}) => {
   switch (type) {
     case COLOR_DETAIL:
-      return color
+      return color;
     case CLEAR_COLOR:
-      return null
+      return null;
     default:
-      return state
+      return state;
   }
-}
+};
 
-const paletteReducer = (
-  state = initialPaletteState,
-  { type, palette },
-) => {
+const paletteReducer = (state = initialPaletteState, {type, palette}) => {
   switch (type) {
     case SET_PALETTE:
-      return palette
+      return palette;
     default:
-      return state
+      return state;
   }
-}
+};
 
-const errorReducer = (state = initialErrorState, { type, message }) => {
+const errorReducer = (state = initialErrorState, {type, message}) => {
   switch (type) {
     case ERROR:
-      return message
+      return message;
     case CLEAR_ERROR:
-      return null
+      return null;
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default combineReducers({
   isLoading: isLoadingReducer,
@@ -80,4 +76,4 @@ export default combineReducers({
   colorDetail: colorDetailReducer,
   palette: paletteReducer,
   error: errorReducer,
-})
+});

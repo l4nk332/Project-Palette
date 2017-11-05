@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import './Heading.sass'
+import './Heading.sass';
 
-function Heading({ children }) {
-  return <h3 className="Heading">{children}</h3>
-}
+const Heading = ({children}) => <h3 className="Heading">{children}</h3>;
 
-export default Heading
+Heading.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default Heading;

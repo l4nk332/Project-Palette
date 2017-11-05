@@ -1,19 +1,23 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
 
-function Container({ isLoading, children }) {
-  return (
-    <section>
-      {isLoading && <Loader />}
-      {children}
-    </section>
-  )
-}
+const Container = ({isLoading, children}) => (
+  <section>
+    {isLoading && <Loader />}
+    {children}
+  </section>
+);
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
-})
+});
 
-export default connect(mapStateToProps)(Container)
+Container.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+export default connect(mapStateToProps)(Container);

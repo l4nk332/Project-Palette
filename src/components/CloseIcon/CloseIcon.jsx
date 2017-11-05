@@ -1,15 +1,24 @@
-import React from 'react'
-import TiTimes from 'react-icons/lib/ti/times'
+import React from 'react';
+import PropTypes from 'prop-types';
+import TiTimes from 'react-icons/lib/ti/times';
 
-import './CloseIcon.sass'
+import './CloseIcon.sass';
 
-function CloseIcon({ handleClick }) {
-  return (
-    <TiTimes
-      className="CloseIcon"
-      onClick={() => { handleClick() }}
-    />
-  )
-}
+const CloseIcon = ({handleClick}) => (
+  <TiTimes
+    className="CloseIcon"
+    onClick={() => {
+      handleClick();
+    }}
+  />
+);
 
-export default CloseIcon
+CloseIcon.defaultProps = {
+  handleClick: e => { e.preventDefault(); },
+};
+
+CloseIcon.propTypes = {
+  handleClick: PropTypes.func,
+};
+
+export default CloseIcon;

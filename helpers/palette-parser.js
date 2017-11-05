@@ -1,135 +1,127 @@
-const readline = require('readline')
-const fs = require('fs')
-const path = require('path')
-const shortid = require('shortid')
+const readline = require('readline');
+const fs = require('fs');
+const path = require('path');
+const shortid = require('shortid');
 
-const { stripFileSystemPath } = require('./path-utils')
-const { hex, rgb, hsl, htmlColorName } = require('./regular-expressions')
+const {stripFileSystemPath} = require('./path-utils');
+const {
+  hex,
+  rgb,
+  hsl,
+  htmlColorName,
+} = require('./regular-expressions');
 const {
   shouldExcludePath,
-  shouldIncludeExtension
-} = require('./regular-expressions')
+  shouldIncludeExtension,
+} = require('./regular-expressions');
 
 class PaletteParser {
   constructor(entryPath) {
-    this.colorMap = {}
-    this.entryPath = entryPath
+    this.colorMap = {};
+    this.entryPath = entryPath;
   }
 
-  _addColor(colorList, lineNumber, filePath) {
+  addColor(colorList, lineNumber, filePath) {
     colorList.forEach(color => {
       if (Object.keys(this.colorMap).includes(color)) {
         this.colorMap[color].locations.push({
-          lineNumber: lineNumber,
-          filePath: filePath,
-          uniqueId: shortid.generate()
-        })
+          lineNumber,
+          filePath,
+          uniqueId: shortid.generate(),
+        });
       } else {
         this.colorMap[color] = {
           uniqueId: shortid.generate(),
           locations: [
             {
-              lineNumber: lineNumber,
-              filePath: filePath,
-              uniqueId: shortid.generate()
-            }
-          ]
-        }
+              lineNumber,
+              filePath,
+              uniqueId: shortid.generate(),
+            },
+          ],
+        };
       }
-    })
+    });
   }
 
-  _parseDirectory(dir) {
+  parseDirectory(dir) {
     return new Promise((resolve, reject) => {
       fs.readdir(dir, (err, files) => {
         if (err) {
-          return reject(err)
+          return reject(err);
         } else if (files.length) {
-          let parsedFiles = files
-            .filter(file => {
-              return !shouldExcludePath(file)
-            })
-            .map(file => {
-              return this._determinePathAction(path.resolve(dir, file))
-            })
+          const parsedFiles = files
+            .filter(file => !shouldExcludePath(file))
+            .map(file => this.determinePathAction(path.resolve(dir, file)));
 
-          return Promise.all(parsedFiles).then(resolve)
-        } else {
-          return resolve()
+          return Promise.all(parsedFiles).then(resolve);
         }
-      })
-    })
+        return resolve();
+      });
+    });
   }
 
-  _parseFile(file) {
+  parseFile(file) {
     return new Promise(resolve => {
       if (shouldIncludeExtension(file)) {
         const rl = readline.createInterface({
-          input: fs.createReadStream(file)
-        })
+          input: fs.createReadStream(file),
+        });
 
-        let lineCount = 1
+        let lineCount = 1;
 
-        rl
-          .on('line', line => {
-            let hexValueList = hex(line)
-            let rgbValueList = rgb(line)
-            let hslValueList = hsl(line)
-            let htmlColorValueList = htmlColorName(line)
-            let strippedPath = stripFileSystemPath(file)
+        return rl.on('line', line => {
+          const hexValueList = hex(line);
+          const rgbValueList = rgb(line);
+          const hslValueList = hsl(line);
+          const htmlColorValueList = htmlColorName(line);
+          const strippedPath = stripFileSystemPath(file);
 
-            if (hexValueList) {
-              this._addColor(hexValueList, lineCount, strippedPath)
-            }
+          if (hexValueList) {
+            this.addColor(hexValueList, lineCount, strippedPath);
+          }
 
-            if (rgbValueList) {
-              this._addColor(rgbValueList, lineCount, strippedPath)
-            }
+          if (rgbValueList) {
+            this.addColor(rgbValueList, lineCount, strippedPath);
+          }
 
-            if (hslValueList) {
-              this._addColor(hslValueList, lineCount, strippedPath)
-            }
+          if (hslValueList) {
+            this.addColor(hslValueList, lineCount, strippedPath);
+          }
 
-            if (htmlColorValueList) {
-              this._addColor(htmlColorValueList, lineCount, strippedPath)
-            }
+          if (htmlColorValueList) {
+            this.addColor(htmlColorValueList, lineCount, strippedPath);
+          }
 
-            lineCount++
-          })
-          .on('close', () => {
-            return resolve()
-          })
-      } else {
-        return resolve()
+          lineCount += 1;
+        }).on('close', () => resolve());
       }
-    })
+      return resolve();
+    });
   }
 
-  _determinePathAction(fsPath) {
+  determinePathAction(fsPath) {
     return new Promise((resolve, reject) => {
       fs.lstat(fsPath, (err, stats) => {
         if (err) {
-          return reject(err)
+          return reject(err);
         } else if (stats.isFile()) {
-          return resolve(this._parseFile(fsPath))
+          return resolve(this.parseFile(fsPath));
         } else if (stats.isDirectory()) {
-          return resolve(this._parseDirectory(fsPath))
-        } else {
-          return resolve()
+          return resolve(this.parseDirectory(fsPath));
         }
-      })
-    })
+        return resolve();
+      });
+    });
   }
 
   generateColorMap() {
-    return this._parseDirectory(this.entryPath)
-      .then(() => {
-        return this.colorMap
-      })
+    return this.parseDirectory(this.entryPath)
+      .then(() => this.colorMap)
       .catch(err => {
-        throw err
-      })
+        throw err;
+      });
   }
 }
 
-module.exports = PaletteParser
+module.exports = PaletteParser;
