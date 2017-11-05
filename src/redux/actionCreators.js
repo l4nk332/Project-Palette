@@ -7,8 +7,6 @@ import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
-  SEARCH_VIEW,
-  PALETTE_VIEW,
   COLOR_DETAIL,
   CLEAR_COLOR,
   SET_PALETTE,
@@ -25,21 +23,10 @@ export const setIsNotLoading = () => ({
   type: IS_NOT_LOADING,
 })
 
-
 export const setProjectUrl = text => ({
   type: UPDATE_PROJECT_URL,
   text,
 })
-
-
-export const setSearchView = () => ({
-  type: SEARCH_VIEW,
-})
-
-export const setPaletteView = () => ({
-  type: PALETTE_VIEW,
-})
-
 
 export const openColorDetail = color => ({
   type: COLOR_DETAIL,
@@ -76,12 +63,13 @@ export const asyncFetchColorPalette = search => dispatch => {
       }
     })
     .then(getProjectPalette)
-    .then(
-      response => (dispatch(setColorPalette(response.data))),
-      error => (dispatch(setError(error))),
-    )
+    .then(response => {
+      dispatch(setColorPalette(response.data))
+    })
+    .catch(error => {
+      dispatch(setError(error))
+    })
     .then(() => {
       dispatch(setIsNotLoading())
-      dispatch(setPaletteView())
     })
 }

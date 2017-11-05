@@ -6,10 +6,8 @@ import Loader from '../Loader/Loader'
 function Container({ isLoading, children }) {
   return (
     <section>
-      { isLoading
-        ? (<Loader />)
-        : children
-      }
+      {isLoading && <Loader />}
+      {children}
     </section>
   )
 }

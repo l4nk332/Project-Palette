@@ -1,5 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
+import { asyncFetchColorPalette } from '../redux/actionCreators'
 
 import DetailView from './DetailView'
 
@@ -10,11 +13,16 @@ import ColorSwatch from '../components/ColorSwatch/ColorSwatch'
 class PaletteView extends React.Component {
   constructor(props) {
     super(props)
-    this.renderSwatches = this.renderSwatches.bind(this)
-    this.renderDetailView = this.renderDetailView.bind(this)
   }
 
-  renderSwatches() {
+  componentDidMount() {
+    const {name, project} = this.props.match.params
+    if (name && project) {
+      this.props.asyncFetchColorPalette(`${name}/${project}`)
+    }
+  }
+
+  renderSwatches = () => {
     return (
       Object.keys(this.props.palette)
         .map(color => (
@@ -26,7 +34,7 @@ class PaletteView extends React.Component {
     )
   }
 
-  renderDetailView() {
+  renderDetailView = () => {
     const locations = this.props.palette[this.props.colorDetail]
     return (
       <DetailView locations={locations} />
@@ -52,5 +60,8 @@ const mapStateToProps = state => ({
   palette: state.palette,
 })
 
+const mapDispatchToProps = {
+  asyncFetchColorPalette,
+}
 
-export default connect(mapStateToProps)(PaletteView)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PaletteView))

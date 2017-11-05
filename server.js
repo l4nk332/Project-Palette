@@ -1,28 +1,31 @@
 const fs = require('fs-extra')
+const path = require('path')
 
 require('dotenv').config()
 
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 const PaletteParser = require('./helpers/palette-parser')
 const { gitClone, normalizeGitHubUrl } = require('./helpers/git-utils')
 
-app.use(express.static('./dist'))
+app.use(express.static(__dirname + '/dist'))
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
     extended: true
   })
 )
+app.use(morgan('combined'))
 
-app.get('/', (req, res) => {
-  res.render('index.html')
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
 })
 
-app.get('/colors', (req, res) => {
-  const {httpsCloneURL, repoURI} = req.query
+app.post('/colors', (req, res) => {
+  const {httpsCloneURL, repoURI} = req.body.params
   const normalizedRepoInfo = normalizeGitHubUrl(httpsCloneURL, repoURI)
   const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`
 
