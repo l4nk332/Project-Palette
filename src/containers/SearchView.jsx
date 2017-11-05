@@ -41,9 +41,12 @@ class SearchView extends React.Component {
           keyUpHandler={this.updateSearch}
         />
         {this.state.search.trim() ? (
-          <Link to={`/${this.state.search}`}>
-            <Button isDisabled={false}>Analyze</Button>
-          </Link>
+          <Button
+            isDisabled={false}
+            clickHandler={this.submitSearchQuery}
+          >
+            Analyze
+          </Button>
         ) : (
           <Button isDisabled>Analyze</Button>
         )}
