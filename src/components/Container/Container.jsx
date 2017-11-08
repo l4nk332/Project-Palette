@@ -4,10 +4,12 @@ import {connect} from 'react-redux';
 
 import Loader from '../Loader/Loader';
 
+import './Container.sass';
+
 const Container = ({isLoading, children}) => (
   <section>
-    {isLoading && <Loader />}
-    {children}
+    <div>{isLoading && <Loader />}</div>
+    <div className={isLoading ? "" : "fadeIn"}>{children}</div>
   </section>
 );
 
