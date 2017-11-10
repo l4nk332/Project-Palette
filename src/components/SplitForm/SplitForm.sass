@@ -1,0 +1,151 @@
+$yellow: #faa916
+$orange: #f17105
+$blue: #007fff
+$turquoise: #17a398
+$white: #e6e6e6
+$black: #39393a
+$green: #679436
+$red: #f24236
+$pink: #c33c54
+$purple: #8f65af
+
+::selection
+  background-color: $pink
+  color: $turquoise
+
+.front-page
+  min-height: 100vh
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: center
+  color: $black
+  background: $white
+  font-family: Helvetica
+
+.split-form
+  max-width: 1000px
+  display: flex
+  flex-flow: row wrap
+  margin: 10px
+  border: 1px solid $black
+
+.main-title
+  font-size: 80px
+  margin-bottom: 0
+
+.second-title
+  font-size: 20px
+  font-weight: 200
+  margin-top: 7px
+
+.half-split
+  width: 50%
+  height: 100%
+  min-width: 250px
+  margin: auto
+  padding: 30px 15px
+  box-sizing: border-box
+
+.color-segments
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: center
+
+.segment
+  width: 100%
+  height: 20px
+  &.pink
+    background-color: $pink
+  &.turquoise
+    background-color: $turquoise
+  &.blue
+    background-color: $blue
+  &.purple
+    background-color: $purple
+
+.split-rule
+  width: 100%
+  border: none
+  border-top: 1px solid $purple
+
+@media screen and (max-width: 700px)
+  .main-title
+    font-size: 60px
+    margin-bottom: 0
+  .split-form
+    max-width: 400px
+    flex-flow: column nowrap
+    margin: 0
+  .half-split
+    width: 100%
+    height: auto
+
+.dark
+  background: $black
+  color: $white
+
+.light
+  background: $white
+  color: $black
+
+p
+  font-size: 15px
+  padding: 5px 10px
+  line-height: 25px
+
+.title-section
+  margin-bottom: 50px
+
+form
+  div
+    margin: 25px 0
+    label, input
+      display: block
+    label
+      margin-bottom: 10px
+    input
+      box-sizing: border-box
+      width: 100%
+      padding: 5px
+      &:focus
+        border: 2px solid $purple
+  button
+    display: block
+    width: 100%
+    padding: 15px
+    outline: 0
+    border: 0
+    border-radius: 3px
+    color: $white
+    background: $turquoise
+    transition: background 150ms ease-in-out
+    &:not(.disabled):hover, &:not(.disabled):focus
+      cursor: pointer
+      background: $purple
+    &.disabled
+      opacity: 0.4
+      cursor: not-allowed
+
+.split-button
+  text-align: center
+  margin: 30px 0
+  transition: background 150ms ease-in-out
+  span
+    border: 1px solid $black
+    padding: 10px 15px
+    margin: 0
+    color: $white
+    background: $black
+    cursor: pointer
+  & span:first-child
+    border-radius: 3px 0 0 3px
+  & span:last-child
+    border-radius: 0 3px 3px 0
+  & span.active
+    background: $turquoise
+    color: $white
+  & span:not(.active):hover
+    transition: inherit
+    background: $purple
