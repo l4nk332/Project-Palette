@@ -3,7 +3,7 @@ import React from 'react';
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
 import Rule from '../Rule/Rule';
-import Title from '../Title/Title';
+import Jumbotron from '../Jumbotron/Jumbotron';
 import Lead from '../Lead/Lead';
 
 import './SplitForm.sass';
@@ -13,12 +13,9 @@ const SplitForm = () => (
     <div className="split-form">
       <div className="half-split dark">
         <SegmentRule colors={[PINK, TURQUOISE, BLUE, PURPLE]} />
-        <div className="title-section">
-          <Title>Project Palette.</Title>
-          <Lead>
-            A <span style={{color: PINK}}>color</span> reference tool
-          </Lead>
-        </div>
+        <Jumbotron title="Project Palette.">
+          A <span style={{color: PINK}}>color</span> reference tool
+        </Jumbotron>
         <Rule color={PURPLE} />
         <p>
           Project Palette is an open-source tool that allows you to analyze the
