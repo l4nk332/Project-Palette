@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import './Segment.sass';
 
 const Segment = ({color}) => (
-  <span
-    className="segment"
-    style={{backgroundColor: color}}
-  />
+  <span className="segment" style={{backgroundColor: color}} />
 );
 
 Segment.defaultProps = {

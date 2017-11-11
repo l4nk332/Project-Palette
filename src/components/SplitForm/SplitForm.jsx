@@ -3,6 +3,7 @@ import React from 'react';
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
 import Rule from '../Rule/Rule';
+import Lead from '../Lead/Lead';
 
 import './SplitForm.sass';
 
@@ -13,7 +14,9 @@ const SplitForm = () => (
         <SegmentRule colors={[PINK, TURQUOISE, BLUE, PURPLE]} />
         <div className="title-section">
           <h1 className="main-title">Project Palette.</h1>
-          <p className="second-title">A color reference tool.</p>
+          <Lead>
+            A <span style={{color: PINK}}>color</span> reference tool
+          </Lead>
         </div>
         <Rule color={PURPLE} />
         <p>
@@ -23,7 +26,7 @@ const SplitForm = () => (
         <Rule color={PURPLE} />
       </div>
       <div className="half-split light">
-        <h3 className="second-title">Get Started</h3>
+        <Lead>Get Started</Lead>
         <p>
           To get started simply fill out the form below and click{' '}
           <strong>analyze</strong>.
