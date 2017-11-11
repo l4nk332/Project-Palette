@@ -1,17 +1,15 @@
 import React from 'react';
 
+import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
+import SegmentRule from '../SegmentRule/SegmentRule';
+
 import './SplitForm.sass';
 
 const SplitForm = () => (
   <div className="front-page">
     <div className="split-form">
       <div className="half-split dark">
-        <div className="color-segments">
-          <div className="segment pink" />
-          <div className="segment turquoise" />
-          <div className="segment blue" />
-          <div className="segment purple" />
-        </div>
+        <SegmentRule colors={[PINK, TURQUOISE, BLUE, PURPLE]} />
         <div className="title-section">
           <h1 className="main-title">Project Palette.</h1>
           <p className="second-title">A color reference tool.</p>
