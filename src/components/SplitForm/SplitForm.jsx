@@ -2,6 +2,7 @@ import React from 'react';
 
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
+import Rule from '../Rule/Rule';
 
 import './SplitForm.sass';
 
@@ -14,12 +15,12 @@ const SplitForm = () => (
           <h1 className="main-title">Project Palette.</h1>
           <p className="second-title">A color reference tool.</p>
         </div>
-        <hr className="split-rule thin" />
+        <Rule color={PURPLE} />
         <p>
           Project Palette is an open-source tool that allows you to analyze the
           color palette used for any public facing GitHub project.
         </p>
-        <hr className="split-rule thin" />
+        <Rule color={PURPLE} />
       </div>
       <div className="half-split light">
         <h3 className="second-title">Get Started</h3>
