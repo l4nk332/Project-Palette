@@ -3,6 +3,7 @@ import React from 'react';
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
 import Rule from '../Rule/Rule';
+import Title from '../Title/Title';
 import Lead from '../Lead/Lead';
 
 import './SplitForm.sass';
@@ -13,7 +14,7 @@ const SplitForm = () => (
       <div className="half-split dark">
         <SegmentRule colors={[PINK, TURQUOISE, BLUE, PURPLE]} />
         <div className="title-section">
-          <h1 className="main-title">Project Palette.</h1>
+          <Title>Project Palette.</Title>
           <Lead>
             A <span style={{color: PINK}}>color</span> reference tool
           </Lead>
