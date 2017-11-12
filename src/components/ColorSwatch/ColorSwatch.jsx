@@ -12,7 +12,7 @@ import {openColorDetail} from '../../redux/actionCreators';
 import './ColorSwatch.sass';
 
 import {getTextColor} from '../../utils/color-manipulation';
-import toggleStaticBody from '../../utils/misc';
+import {toggleStaticBody} from '../../utils/misc';
 
 class ColorSwatch extends React.Component {
   constructor(props) {

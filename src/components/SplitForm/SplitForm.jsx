@@ -1,10 +1,12 @@
 import React from 'react';
+import shortid from 'shortid';
 
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
 import Rule from '../Rule/Rule';
 import Jumbotron from '../Jumbotron/Jumbotron';
 import Lead from '../Lead/Lead';
+import SplitButton from '../SplitButton/SplitButton';
 
 import './SplitForm.sass';
 
@@ -27,12 +29,26 @@ const SplitForm = () => (
         <Lead>Get Started</Lead>
         <p>
           To get started simply fill out the form below and click{' '}
-          <strong>analyze</strong>.
+          <strong style={{color: BLUE}}>analyze</strong>.
         </p>
-        <div className="split-button">
-          <span className="active">Info</span>
-          <span>Url</span>
-        </div>
+        <SplitButton
+          splits={[
+            {
+              text: 'Info',
+              isActive: true,
+              handler: () => {
+                console.log('clicked');
+              },
+            },
+            {
+              text: 'Url',
+              isActive: false,
+              handler: () => {
+                console.log('clicked');
+              },
+            },
+          ]}
+        />
         <form>
           <div>
             <label>Username/Organization</label>

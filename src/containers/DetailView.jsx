@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {closeColorDetail} from '../redux/actionCreators';
 
-import toggleStaticBody from '../utils/misc';
+import {toggleStaticBody} from '../utils/misc';
 
 import Backdrop from '../components/Backdrop/Backdrop';
 import LocationList from '../components/LocationList/LocationList';
