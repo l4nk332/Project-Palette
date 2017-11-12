@@ -7,6 +7,7 @@ import Rule from '../Rule/Rule';
 import Jumbotron from '../Jumbotron/Jumbotron';
 import Lead from '../Lead/Lead';
 import SplitButton from '../SplitButton/SplitButton';
+import TextField from '../TextField/TextField';
 
 import './SplitForm.sass';
 
@@ -52,11 +53,11 @@ const SplitForm = () => (
         <form>
           <div>
             <label>Username/Organization</label>
-            <input type="text" placeholder="l4nk332" />
+            <TextField placeholderText="l4nk332" />
           </div>
           <div>
             <label>Project Name</label>
-            <input type="text" placeholder="Project-Palette" />
+            <TextField placeholderText="Project Palette" />
           </div>
           <button>Analyze</button>
         </form>
