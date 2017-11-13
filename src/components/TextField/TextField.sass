@@ -12,6 +12,9 @@ input
   padding: 7px 7px 4px 7px
   font-weight: lighter
   transition: background 150ms ease-in-out, border 150ms ease-in-out
-  &:focus
+  &:focus, &:hover
     background: lighten($black, 10%)
+  &:hover
+    border-bottom-color: lighten($black, 10%)
+  &:focus
     border-bottom-color: $turquoise

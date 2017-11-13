@@ -2,6 +2,7 @@ import React from 'react';
 
 import SplitButton from '../components/SplitButton/SplitButton';
 import TextField from '../components/TextField/TextField';
+import Button from '../components/Button/Button';
 
 const splitButtonProps = [
   {
@@ -29,7 +30,7 @@ const formProps = [
     content: <TextField placeholderText="Project Palette" />,
   },
   {
-    content: <button>Analyze</button>,
+    content: <Button>Analyze</Button>,
   },
 ];
 
