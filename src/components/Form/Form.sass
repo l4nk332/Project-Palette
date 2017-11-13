@@ -1,0 +1,31 @@
+$turquoise: #17a398
+$white: #e6e6e6
+$purple: #8f65af
+
+.form
+  .form-field
+    margin: 25px 0
+    label, input
+      display: block
+    label
+      margin-bottom: 10px
+    input
+      width: 100%
+    &:last-child
+      margin: 50px 0 25px 0
+button
+  display: block
+  width: 100%
+  padding: 15px
+  outline: 0
+  border: 0
+  border-radius: 2px
+  color: $white
+  background: $turquoise
+  transition: background 150ms ease-in-out
+  &:not(.disabled):hover, &:not(.disabled):focus
+    cursor: pointer
+    background: $purple
+  &.disabled
+    opacity: 0.4
+    cursor: not-allowed

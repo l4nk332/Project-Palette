@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import SearchBox from '../components/SearchBox/SearchBox';
 import Button from '../components/Button/Button';
 import SplitForm from '../components/SplitForm/SplitForm';
 
@@ -55,9 +54,7 @@ class SearchView extends React.Component {
   //   );
   // }
 
-  render() {
-    return <SplitForm />;
-  }
+  render = () => <SplitForm />
 }
 
 SearchView.propTypes = {

@@ -1,13 +1,13 @@
 import React from 'react';
-import shortid from 'shortid';
 
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
 import SegmentRule from '../SegmentRule/SegmentRule';
 import Rule from '../Rule/Rule';
 import Jumbotron from '../Jumbotron/Jumbotron';
 import Lead from '../Lead/Lead';
-import SplitButton from '../SplitButton/SplitButton';
-import TextField from '../TextField/TextField';
+import Form from '../Form/Form';
+
+import formProps from '../../data/searchPageData';
 
 import './SplitForm.sass';
 
@@ -32,35 +32,7 @@ const SplitForm = () => (
           To get started simply fill out the form below and click{' '}
           <strong style={{color: BLUE}}>analyze</strong>.
         </p>
-        <SplitButton
-          splits={[
-            {
-              text: 'Info',
-              isActive: true,
-              handler: () => {
-                console.log('clicked');
-              },
-            },
-            {
-              text: 'Url',
-              isActive: false,
-              handler: () => {
-                console.log('clicked');
-              },
-            },
-          ]}
-        />
-        <form>
-          <div>
-            <label>Username/Organization</label>
-            <TextField placeholderText="l4nk332" />
-          </div>
-          <div>
-            <label>Project Name</label>
-            <TextField placeholderText="Project Palette" />
-          </div>
-          <button>Analyze</button>
-        </form>
+        <Form fields={formProps} />
       </div>
     </div>
   </div>
