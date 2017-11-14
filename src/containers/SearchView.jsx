@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import Button from '../components/Button/Button';
 import SplitForm from '../components/SplitForm/SplitForm';
+import FlexContainer from '../components/FlexContainer/FlexContainer';
 
 class SearchView extends React.Component {
   constructor(props) {
@@ -32,29 +32,7 @@ class SearchView extends React.Component {
     this.props.history.push(search);
   };
 
-  // render() {
-  //   return (
-  //     <div>
-  //       <SearchBox
-  //         placeholderText="l4nk332/Project-Palette"
-  //         keyDownHandler={this.handleEnterKeySubmission}
-  //         keyUpHandler={this.updateSearch}
-  //       />
-  //       {this.state.search.trim() ? (
-  //         <Button
-  //           isDisabled={false}
-  //           clickHandler={this.submitSearchQuery}
-  //         >
-  //           Analyze
-  //         </Button>
-  //       ) : (
-  //         <Button isDisabled>Analyze</Button>
-  //       )}
-  //     </div>
-  //   );
-  // }
-
-  render = () => <SplitForm />
+  render = () => <FlexContainer><SplitForm /></FlexContainer>
 }
 
 SearchView.propTypes = {
