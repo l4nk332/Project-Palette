@@ -11,19 +11,21 @@ const alphaBackgroundColor = color => ({
 });
 
 const LocationList = ({color, locations, projectUrl}) => (
-  <div
-    className="LocationList"
-    style={alphaBackgroundColor(color)}
-  >
-    {locations.map(({filePath, lineNumber}) => (
-      <LocationListItem
-        key={shortid.generate()}
-        filePath={filePath}
-        lineNumber={lineNumber}
-        projectUrl={projectUrl}
-      />
-    ))}
-  </div>
+  <section className="location-list-wrapper">
+    <div
+      className="location-list"
+      style={alphaBackgroundColor(color)}
+    >
+      {locations.map(({filePath, lineNumber}) => (
+        <LocationListItem
+          key={shortid.generate()}
+          filePath={filePath}
+          lineNumber={lineNumber}
+          projectUrl={projectUrl}
+        />
+      ))}
+    </div>
+  </section>
 );
 
 LocationList.propTypes = {
