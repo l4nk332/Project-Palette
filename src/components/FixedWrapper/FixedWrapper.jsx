@@ -2,22 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getTextColor} from '../../utils/color-manipulation';
 
-import './Backdrop.sass';
+import './FixedWrapper.sass';
 
 const readableColors = color => ({
   color: getTextColor(color),
   backgroundColor: color,
 });
 
-const Backdrop = ({color, children}) => (
-  <div className="Backdrop" style={readableColors(color)}>
+const FixedWrapper = ({color, children}) => (
+  <div className="fixed-wrapper" style={readableColors(color)}>
     {children}
   </div>
 );
 
-Backdrop.propTypes = {
+FixedWrapper.propTypes = {
   color: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default Backdrop;
+export default FixedWrapper;

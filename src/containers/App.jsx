@@ -6,16 +6,16 @@ import {Switch, Route, withRouter} from 'react-router-dom';
 import SearchView from './SearchView';
 import PaletteView from './PaletteView';
 
-import Container from '../components/Container/Container';
+import LoadingWrapper from '../components/LoadingWrapper/LoadingWrapper';
 
 const App = ({isLoading}) => (
-  <Container isLoading={isLoading}>
+  <LoadingWrapper isLoading={isLoading}>
     <Switch>
       <Route exact path="/" component={SearchView} />
       <Route exact path="/:name/:project" component={PaletteView} />
       <Route render={() => <h1>Not Found</h1>} />
     </Switch>
-  </Container>
+  </LoadingWrapper>
 );
 
 const mapStateToProps = state => ({

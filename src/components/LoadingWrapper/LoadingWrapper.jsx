@@ -4,12 +4,12 @@ import {connect} from 'react-redux';
 
 import Loader from '../Loader/Loader';
 
-import './Container.sass';
+import './LoadingWrapper.sass';
 
-const Container = ({isLoading, children}) => (
+const LoadingWrapper = ({isLoading, children}) => (
   <section>
     <div>{isLoading && <Loader />}</div>
-    <div className={isLoading ? "" : "fadeIn"}>{children}</div>
+    <div className={isLoading ? '' : 'fadeIn'}>{children}</div>
   </section>
 );
 
@@ -17,9 +17,9 @@ const mapStateToProps = state => ({
   isLoading: state.isLoading,
 });
 
-Container.propTypes = {
+LoadingWrapper.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default connect(mapStateToProps)(Container);
+export default connect(mapStateToProps)(LoadingWrapper);

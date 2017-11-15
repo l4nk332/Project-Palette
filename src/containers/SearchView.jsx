@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 import SplitForm from '../components/SplitForm/SplitForm';
-import FlexContainer from '../components/FlexContainer/FlexContainer';
+import FlexWrapper from '../components/FlexWrapper/FlexWrapper';
 
 class SearchView extends React.Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class SearchView extends React.Component {
     this.props.history.push(search);
   };
 
-  render = () => <FlexContainer><SplitForm /></FlexContainer>
+  render = () => <FlexWrapper><SplitForm /></FlexWrapper>
 }
 
 SearchView.propTypes = {
