@@ -11,7 +11,7 @@ import LocationList from '../components/LocationList/LocationList';
 import Heading from '../components/Heading/Heading';
 import CloseIcon from '../components/CloseIcon/CloseIcon';
 
-class DetailView extends React.Component {
+class DetailContainer extends React.Component {
   closeColorDetail = () => {
     toggleStaticBody(false);
     this.props.closeColorDetail();
@@ -39,7 +39,7 @@ const mapDispatchToProps = {
   closeColorDetail,
 };
 
-DetailView.propTypes = {
+DetailContainer.propTypes = {
   closeColorDetail: PropTypes.func.isRequired,
   colorDetail: PropTypes.string.isRequired,
   locations: PropTypes.shape({
@@ -48,4 +48,4 @@ DetailView.propTypes = {
   projectUrl: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailView);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailContainer);

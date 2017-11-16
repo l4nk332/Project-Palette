@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Switch, Route, withRouter} from 'react-router-dom';
 
-import SearchView from './SearchView';
-import PaletteView from './PaletteView';
+import SearchContainer from './SearchContainer';
+import PaletteContainer from './PaletteContainer';
 
 import LoadingWrapper from '../components/LoadingWrapper/LoadingWrapper';
 
-const App = ({isLoading}) => (
+const AppContainer = ({isLoading}) => (
   <LoadingWrapper isLoading={isLoading}>
     <Switch>
-      <Route exact path="/" component={SearchView} />
-      <Route exact path="/:name/:project" component={PaletteView} />
+      <Route exact path="/" component={SearchContainer} />
+      <Route exact path="/:name/:project" component={PaletteContainer} />
       <Route render={() => <h1>Not Found</h1>} />
     </Switch>
   </LoadingWrapper>
@@ -22,8 +22,8 @@ const mapStateToProps = state => ({
   isLoading: state.isLoading,
 });
 
-App.propTypes = {
+AppContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps)(AppContainer));
