@@ -8,6 +8,7 @@
     "arrow-parens": ["error", "as-needed"],
     "jsx-a11y/anchor-is-valid": "off",
     "react/forbid-prop-types": "off",
+    "react/no-array-index-key": "off",
     "jsx-a11y/label-has-for": "off"
   },
   "env": {

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 
 import {BLUE, TURQUOISE, PINK, PURPLE} from '../../utils/constants';
-import formProps from '../../data/searchPageData';
 
 import SplitView from '../../components/SplitView/SplitView';
 import FlexWrapper from '../../components/FlexWrapper/FlexWrapper';
@@ -11,45 +9,56 @@ import SegmentRule from '../../components/SegmentRule/SegmentRule';
 import Rule from '../../components/Rule/Rule';
 import Jumbotron from '../../components/Jumbotron/Jumbotron';
 import Lead from '../../components/Lead/Lead';
-import Form from '../../components/Form/Form';
 import Paragraph from '../../components/Paragraph/Paragraph';
+import Form from '../../components/Form/Form';
 
 import './Search.sass';
 
 
-const Search = () => (
+const Search = ({formFields}) => (
   <main className="search-page">
     <FlexWrapper>
       <SplitView
         left={[
           <SegmentRule
             colors={[PINK, TURQUOISE, BLUE, PURPLE]}
-            key={shortid.generate()}
+            key={0}
           />,
           <Jumbotron
             title="Project Palette."
-            key={shortid.generate()}
+            key={1}
           >
             A <span style={{color: PINK}}>color</span> reference tool
           </Jumbotron>,
-          <Rule color={PURPLE} key={shortid.generate()} />,
-          <Paragraph key={shortid.generate()}>
+          <Rule color={PURPLE} key={2} />,
+          <Paragraph key={3}>
             Project Palette is an open-source tool that allows you to analyze
             the color palette used for any public facing GitHub project.
           </Paragraph>,
-          <Rule color={PURPLE} key={shortid.generate()} />,
+          <Rule color={PURPLE} key={4} />,
         ]}
         right={[
-          <Lead key={shortid.generate()}>Get Started</Lead>,
-          <Paragraph key={shortid.generate()}>
+          <Lead key={5}>Get Started</Lead>,
+          <Paragraph key={6}>
             To get started simply fill out the form below and click{' '}
             <strong style={{color: BLUE}}>analyze</strong>.
           </Paragraph>,
-          <Form fields={formProps} key={shortid.generate()} />,
+          <Form fields={formFields} key={7} />,
         ]}
       />
     </FlexWrapper>
   </main>
 );
+
+Search.defaultProps = {
+  formFields: [],
+};
+
+Search.propTypes = {
+  formFields: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    content: PropTypes.node,
+  })),
+};
 
 export default Search;

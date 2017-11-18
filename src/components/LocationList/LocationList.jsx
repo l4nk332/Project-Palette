@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 import LocationListItem from './LocationListItem/LocationListItem';
 import {getAlphaBackgroundColor} from '../../utils/color-manipulation';
 
@@ -16,9 +15,9 @@ const LocationList = ({color, locations, projectUrl}) => (
       className="location-list"
       style={alphaBackgroundColor(color)}
     >
-      {locations.map(({filePath, lineNumber}) => (
+      {locations.map(({filePath, lineNumber}, idx) => (
         <LocationListItem
-          key={shortid.generate()}
+          key={idx}
           filePath={filePath}
           lineNumber={lineNumber}
           projectUrl={projectUrl}

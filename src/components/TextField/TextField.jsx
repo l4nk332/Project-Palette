@@ -5,27 +5,27 @@ import {triggerIfEnterKey} from '../../utils/misc';
 
 import './TextField.sass';
 
-const TextField = ({placeholderText, enterKeyHandler, keyUpHandler}) => (
+const TextField = ({placeholderText, enterKeyHandler, changeHandler}) => (
   <input
     type="text"
     placeholder={placeholderText}
     onKeyDown={event => {
       triggerIfEnterKey(event, enterKeyHandler);
     }}
-    onKeyUp={keyUpHandler}
+    onChange={changeHandler}
   />
 );
 
 TextField.defaultProps = {
   placeholderText: '',
   enterKeyHandler: () => {},
-  keyUpHandler: () => {},
+  changeHandler: () => {},
 };
 
 TextField.propTypes = {
   placeholderText: PropTypes.string,
   enterKeyHandler: PropTypes.func,
-  keyUpHandler: PropTypes.func,
+  changeHandler: PropTypes.func,
 };
 
 export default TextField;

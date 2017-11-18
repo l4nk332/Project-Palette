@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 
 import './Form.sass';
 
 const Form = ({fields}) => (
   <form className="form">
-    {fields.map(field => (
-      <section className="form-field" key={shortid.generate()}>
+    {fields.map((field, idx) => (
+      <section className="form-field" key={idx}>
         {field.label && <label>{field.label}</label>}
         {field.content}
       </section>

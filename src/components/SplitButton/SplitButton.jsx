@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 
 import {triggerIfEnterKey} from '../../utils/misc';
 
@@ -8,9 +7,9 @@ import './SplitButton.sass';
 
 const SplitButton = ({splits}) => (
   <div className="split-button">
-    {splits.map(({text, isActive, handler}) => (
+    {splits.map(({text, isActive, handler}, idx) => (
       <span
-        key={shortid.generate()}
+        key={idx}
         role="button"
         className={isActive ? 'active' : ''}
         tabIndex="0"

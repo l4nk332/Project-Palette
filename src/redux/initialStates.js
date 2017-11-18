@@ -7,3 +7,5 @@ export const initialColorDetailState = null;
 export const initialPaletteState = {};
 
 export const initialErrorState = null;
+
+export const initialFormState = {};

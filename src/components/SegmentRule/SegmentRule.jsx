@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
 
 import Segment from './Segment/Segment';
 
@@ -8,7 +7,7 @@ import './SegmentRule.sass';
 
 const SegmentRule = ({colors}) => (
   <section className="color-segments">
-    {colors.map(color => <Segment color={color} key={shortid.generate()} />)}
+    {colors.map((color, idx) => <Segment color={color} key={idx} />)}
   </section>
 );
 
