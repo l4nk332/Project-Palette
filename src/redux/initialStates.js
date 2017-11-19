@@ -8,4 +8,10 @@ export const initialPaletteState = {};
 
 export const initialErrorState = null;
 
-export const initialFormState = {};
+export const initialFormState = {
+  username: '',
+  project: '',
+  url: '',
+  infoActive: false,
+  urlActive: true,
+};

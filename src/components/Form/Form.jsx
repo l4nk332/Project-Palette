@@ -6,7 +6,11 @@ import './Form.sass';
 const Form = ({fields}) => (
   <form className="form">
     {fields.map((field, idx) => (
-      <section className="form-field" key={idx}>
+      <section
+        className="form-field"
+        style={field.isHidden ? {display: 'none'} : {}}
+        key={idx}
+      >
         {field.label && <label>{field.label}</label>}
         {field.content}
       </section>

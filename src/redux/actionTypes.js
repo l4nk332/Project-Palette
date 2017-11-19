@@ -2,7 +2,10 @@ export const IS_LOADING = 'IS_LOADING';
 export const IS_NOT_LOADING = 'IS_NOT_LOADING';
 
 export const UPDATE_PROJECT_URL = 'UPDATE_PROJECT_URL';
-export const UPDATE_FORM = 'UPDATE_FORM';
+
+export const UPDATE_FORM_FIELD = 'UPDATE_FORM_FIELD';
+export const SHOW_INFO_FIELDS = 'SHOW_INFO_FIELDS';
+export const SHOW_URL_FIELDS = 'SHOW_URL_FIELDS';
 
 export const COLOR_DETAIL = 'COLOR_DETAIL';
 export const CLEAR_COLOR = 'CLEAR_COLOR';
