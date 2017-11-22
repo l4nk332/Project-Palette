@@ -7,6 +7,7 @@ import SearchContainer from './SearchContainer';
 import PaletteContainer from './PaletteContainer';
 
 import LoadingWrapper from '../components/LoadingWrapper/LoadingWrapper';
+import Anchor from '../components/Anchor/Anchor';
 import Error from '../components/Error/Error';
 
 const AppContainer = ({isLoading}) => (
@@ -19,7 +20,7 @@ const AppContainer = ({isLoading}) => (
           <Error
             heading="404"
             message="Looking for something?"
-            link={<Link to="/">Back to Search</Link>}
+            link={<Link to="/"><Anchor url="/">Back to Search</Anchor></Link>}
           />
         )}
       />
