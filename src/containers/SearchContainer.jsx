@@ -10,6 +10,7 @@ import TextField from '../components/TextField/TextField';
 import Button from '../components/Button/Button';
 
 import {
+  setProjectUrl,
   updateFormField,
   showInfoFields,
   showUrlFields,
@@ -101,6 +102,9 @@ class SearchContainer extends React.Component {
 
   submitSearchForm = event => {
     event.preventDefault();
+    // We need to reset the project url in the store.
+    this.props.setProjectUrl(null);
+
     const {
       username,
       project,
@@ -140,6 +144,7 @@ SearchContainer.propTypes = {
     push: PropTypes.func,
   }).isRequired,
   form: PropTypes.object.isRequired,
+  setProjectUrl: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
   showInfoFields: PropTypes.func.isRequired,
   showUrlFields: PropTypes.func.isRequired,
@@ -150,6 +155,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  setProjectUrl,
   updateFormField,
   showInfoFields,
   showUrlFields,
