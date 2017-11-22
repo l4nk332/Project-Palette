@@ -6,6 +6,7 @@ import {
   TURQUOISE,
   PINK,
   PURPLE,
+  BLACK,
   PROJECT_PALETTE_GITHUB_URL,
 } from '../../utils/constants';
 
@@ -43,6 +44,7 @@ const Search = ({formFields}) => (
         ]}
         right={[
           <Lead key={5}>Get Started</Lead>,
+          <Rule color={BLACK} key={2} />,
           <Paragraph key={6}>
             To get started simply fill out the form below and click{' '}
             <strong style={{color: TURQUOISE}}>analyze</strong>.
