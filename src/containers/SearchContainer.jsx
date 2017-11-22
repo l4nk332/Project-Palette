@@ -11,6 +11,7 @@ import Button from '../components/Button/Button';
 
 import {
   setProjectUrl,
+  setColorPalette,
   updateFormField,
   showInfoFields,
   showUrlFields,
@@ -102,8 +103,9 @@ class SearchContainer extends React.Component {
 
   submitSearchForm = event => {
     event.preventDefault();
-    // We need to reset the project url in the store.
+    // We need to reset the project url and palette in the store.
     this.props.setProjectUrl(null);
+    this.props.setColorPalette({});
 
     const {
       username,
@@ -145,6 +147,7 @@ SearchContainer.propTypes = {
   }).isRequired,
   form: PropTypes.object.isRequired,
   setProjectUrl: PropTypes.func.isRequired,
+  setColorPalette: PropTypes.func.isRequired,
   updateFormField: PropTypes.func.isRequired,
   showInfoFields: PropTypes.func.isRequired,
   showUrlFields: PropTypes.func.isRequired,
@@ -156,6 +159,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setProjectUrl,
+  setColorPalette,
   updateFormField,
   showInfoFields,
   showUrlFields,
