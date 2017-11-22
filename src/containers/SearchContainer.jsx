@@ -18,10 +18,6 @@ import {
 import Search from '../pages/Search/Search';
 
 class SearchContainer extends React.Component {
-  submitSearchQuery = () => {
-    this.props.history.push('blah');
-  };
-
   splitButtonField = () => ({
     content: (
       <SplitButton
