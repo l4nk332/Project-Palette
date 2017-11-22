@@ -5,6 +5,6 @@ export const toggleStaticBody = (lock = true) => {
 export const triggerIfEnterKey = (event, callback) => {
   if (event.key === 'Enter') {
     event.preventDefault();
-    callback();
+    callback(event);
   }
 };

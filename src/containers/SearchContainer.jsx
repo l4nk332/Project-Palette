@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {PROJECT_PALETTE_GITHUB_URL} from '../utils/constants';
+import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from '../utils/constants';
 
 import SplitButton from '../components/SplitButton/SplitButton';
 import TextField from '../components/TextField/TextField';
@@ -49,6 +49,7 @@ class SearchContainer extends React.Component {
         <TextField
           placeholderText={PROJECT_PALETTE_GITHUB_URL}
           value={this.props.form.url}
+          enterKeyHandler={this.submitSearchForm}
           changeHandler={event => {
             const {value} = event.target;
             this.props.updateFormField('url', value);
@@ -67,6 +68,7 @@ class SearchContainer extends React.Component {
           placeholderText="l4nk332"
           isHidden={!this.props.form.infoActive}
           value={this.props.form.username}
+          enterKeyHandler={this.submitSearchForm}
           changeHandler={event => {
             const {value} = event.target;
             this.props.updateFormField('username', value);
@@ -81,6 +83,7 @@ class SearchContainer extends React.Component {
         <TextField
           placeholderText="Project-Palette"
           value={this.props.form.project}
+          enterKeyHandler={this.submitSearchForm}
           changeHandler={event => {
             const {value} = event.target;
             this.props.updateFormField('project', value);
@@ -91,8 +94,35 @@ class SearchContainer extends React.Component {
   ];
 
   submitButtonField = () => ({
-    content: <Button>Analyze</Button>,
+    content: (
+      <Button
+        clickHandler={this.submitSearchForm}
+      >
+        Analyze
+      </Button>
+    ),
   })
+
+  submitSearchForm = event => {
+    event.preventDefault();
+    const {
+      username,
+      project,
+      url,
+      urlActive,
+      infoActive,
+    } = this.props.form;
+
+    if (infoActive && username.trim() && project.trim()) {
+      const search = `${username}/${project}`;
+      this.props.history.push(search);
+    }
+
+    if (urlActive && url.trim()) {
+      const search = url.replace(GITHUB_URL, '');
+      this.props.history.push(search);
+    }
+  }
 
   formFields = () => {
     let fields = [];

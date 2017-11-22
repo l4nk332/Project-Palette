@@ -1,4 +1,5 @@
 // Urls
+export const GITHUB_URL = 'https://github.com/';
 export const GITHUB_API = 'https://api.github.com';
 export const COLORS_URL = '/colors';
 export const PROJECT_PALETTE_GITHUB_URL =
