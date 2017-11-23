@@ -5,12 +5,12 @@ import {withRouter} from 'react-router-dom';
 
 import {asyncFetchColorPalette} from '../redux/actionCreators';
 
-import DetailView from './DetailView';
+import DetailContainer from './DetailContainer';
 
 import Grid from '../components/Grid/Grid';
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
 
-class PaletteView extends React.Component {
+class PaletteContainer extends React.Component {
   componentDidMount = () => {
     const {name, project} = this.props.match.params;
     if (name && project) {
@@ -27,9 +27,9 @@ class PaletteView extends React.Component {
       <ColorSwatch key={color} color={color} />
     ));
 
-  renderDetailView = () => {
+  renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
-    return <DetailView locations={locations} />;
+    return <DetailContainer locations={locations} />;
   };
 
   render = () => (
@@ -37,7 +37,7 @@ class PaletteView extends React.Component {
       <div style={this.setVisibility()}>
         <Grid>{this.renderSwatches()}</Grid>
       </div>
-      {this.props.colorDetail && this.renderDetailView()}
+      {this.props.colorDetail && this.renderDetailContainer()}
     </div>
   );
 }
@@ -51,11 +51,11 @@ const mapDispatchToProps = {
   asyncFetchColorPalette,
 };
 
-PaletteView.defaultProps = {
+PaletteContainer.defaultProps = {
   colorDetail: null,
 };
 
-PaletteView.propTypes = {
+PaletteContainer.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       name: PropTypes.string,
@@ -68,5 +68,5 @@ PaletteView.propTypes = {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PaletteView),
+  connect(mapStateToProps, mapDispatchToProps)(PaletteContainer),
 );

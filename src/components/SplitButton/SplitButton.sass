@@ -1,0 +1,29 @@
+$turquoise: #17a398
+$white: #e6e6e6
+$black: #39393a
+
+.split-button
+  text-align: center
+  margin: 30px 0
+  transition: background 150ms ease-in-out
+  span
+    display: inline-block
+    border: 1px solid $black
+    outline: 0
+    padding: 10px 15px
+    margin: 0
+    color: $white
+    background: $black
+    cursor: pointer
+  & span:first-child
+    border-radius: 2px 0 0 2px
+  & span:last-child
+    border-radius: 0 2px 2px 0
+  & span.active
+    background: $turquoise
+    color: $white
+  & span:hover, & span:focus
+    transition: inherit
+    background: lighten($turquoise, 10%)
+  & span:not(.active):hover, & span:not(.active):focus
+    background: lighten($black, 10%)

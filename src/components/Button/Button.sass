@@ -1,0 +1,21 @@
+$turquoise: #17a398
+$white: #e6e6e6
+$black: #39393a
+$purple: #8f65af
+
+.button
+  border: 3px solid $turquoise
+  border-radius: 2px
+  color: $turquoise
+  background: $black
+  transition: background 150ms ease-in-out, color 150ms ease-in-out
+  &:hover, &:focus
+    outline: 0
+    cursor: pointer
+  &:not([disabled]):hover, &:not([disabled]):focus
+    color: $black
+    background: $turquoise
+  &:disabled
+    opacity: 0.7
+    border-color: $black
+    cursor: not-allowed

@@ -9,6 +9,9 @@ import {
   SET_PALETTE,
   ERROR,
   CLEAR_ERROR,
+  UPDATE_FORM_FIELD,
+  SHOW_INFO_FIELDS,
+  SHOW_URL_FIELDS,
 } from './actionTypes';
 
 export const setIsLoading = () => ({
@@ -69,3 +72,13 @@ export const asyncFetchColorPalette = search => dispatch => {
       dispatch(setIsNotLoading());
     });
 };
+
+export const updateFormField = (field, value) => ({
+  type: UPDATE_FORM_FIELD,
+  field,
+  value,
+});
+
+export const showInfoFields = () => ({type: SHOW_INFO_FIELDS});
+
+export const showUrlFields = () => ({type: SHOW_URL_FIELDS});

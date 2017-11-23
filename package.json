@@ -10,7 +10,8 @@
     "bundle": "webpack",
     "start": "webpack --progress --colors --watch",
     "dev": "node server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "./node_modules/.bin/eslint/"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -44,7 +45,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
-    "eslint": "^4.10.0",
+    "eslint": "^4.11.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",

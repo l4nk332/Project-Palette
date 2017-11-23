@@ -1,0 +1,20 @@
+$black: #39393a
+$white: #e6e6e6
+$turquoise: #17a398
+
+input
+  border: 0
+  border-bottom: 3px solid $black
+  border-radius: 2px
+  background: $black
+  color: $white
+  box-sizing: border-box
+  padding: 7px 7px 4px 7px
+  font-weight: lighter
+  transition: background 150ms ease-in-out, border 150ms ease-in-out
+  &:focus, &:hover
+    background: lighten($black, 10%)
+  &:hover
+    border-bottom-color: lighten($black, 10%)
+  &:focus
+    border-bottom-color: $turquoise

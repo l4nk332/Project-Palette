@@ -4,21 +4,21 @@ import {connect} from 'react-redux';
 
 import {closeColorDetail} from '../redux/actionCreators';
 
-import toggleStaticBody from '../utils/misc';
+import {toggleStaticBody} from '../utils/misc';
 
-import Backdrop from '../components/Backdrop/Backdrop';
+import FixedWrapper from '../components/FixedWrapper/FixedWrapper';
 import LocationList from '../components/LocationList/LocationList';
 import Heading from '../components/Heading/Heading';
 import CloseIcon from '../components/CloseIcon/CloseIcon';
 
-class DetailView extends React.Component {
+class DetailContainer extends React.Component {
   closeColorDetail = () => {
     toggleStaticBody(false);
     this.props.closeColorDetail();
   };
 
   render = () => (
-    <Backdrop color={this.props.colorDetail}>
+    <FixedWrapper color={this.props.colorDetail}>
       <CloseIcon handleClick={this.closeColorDetail} />
       <Heading>{this.props.colorDetail}</Heading>
       <LocationList
@@ -26,7 +26,7 @@ class DetailView extends React.Component {
         locations={this.props.locations.locations}
         projectUrl={this.props.projectUrl}
       />
-    </Backdrop>
+    </FixedWrapper>
   )
 }
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = {
   closeColorDetail,
 };
 
-DetailView.propTypes = {
+DetailContainer.propTypes = {
   closeColorDetail: PropTypes.func.isRequired,
   colorDetail: PropTypes.string.isRequired,
   locations: PropTypes.shape({
@@ -48,4 +48,4 @@ DetailView.propTypes = {
   projectUrl: PropTypes.string.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailView);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailContainer);

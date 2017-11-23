@@ -9,12 +9,12 @@ import store from './redux/store';
 
 import './base.sass';
 
-import App from './containers/App';
+import AppContainer from './containers/AppContainer';
 
 const Main = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <AppContainer />
     </BrowserRouter>
   </Provider>
 );

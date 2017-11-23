@@ -6,6 +6,7 @@ import {
   initialColorDetailState,
   initialPaletteState,
   initialErrorState,
+  initialFormState,
 } from './initialStates';
 
 import {
@@ -17,6 +18,9 @@ import {
   SET_PALETTE,
   ERROR,
   CLEAR_ERROR,
+  UPDATE_FORM_FIELD,
+  SHOW_INFO_FIELDS,
+  SHOW_URL_FIELDS,
 } from './actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
@@ -70,10 +74,24 @@ const errorReducer = (state = initialErrorState, {type, message}) => {
   }
 };
 
+const formReducer = (state = initialFormState, {type, field, value}) => {
+  switch (type) {
+    case UPDATE_FORM_FIELD:
+      return Object.assign({}, state, {[field]: value});
+    case SHOW_INFO_FIELDS:
+      return Object.assign({}, state, {infoActive: true, urlActive: false});
+    case SHOW_URL_FIELDS:
+      return Object.assign({}, state, {infoActive: false, urlActive: true});
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
   colorDetail: colorDetailReducer,
   palette: paletteReducer,
   error: errorReducer,
+  form: formReducer,
 });
