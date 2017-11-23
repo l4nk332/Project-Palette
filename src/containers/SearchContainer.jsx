@@ -95,11 +95,32 @@ class SearchContainer extends React.Component {
     content: (
       <Button
         clickHandler={this.submitSearchForm}
+        isDisabled={!this.formIsValid()}
       >
         Analyze
       </Button>
     ),
   })
+
+  formIsValid = () => {
+    const {
+      username,
+      project,
+      url,
+      urlActive,
+      infoActive,
+    } = this.props.form;
+
+    if (infoActive) {
+      return Boolean(username.trim() && project.trim());
+    }
+
+    if (urlActive) {
+      return Boolean(url.trim());
+    }
+
+    return false;
+  }
 
   submitSearchForm = event => {
     event.preventDefault();
