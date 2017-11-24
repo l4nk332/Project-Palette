@@ -1,4 +1,4 @@
-![Project-Palette Logo](/screenshots/Project-Palette-Logo-2.png?raw=true "Project-Palette")
+![Project-Palette Logo](/screenshots/Project-Palette-Logo.png?raw=true "Project-Palette")
 
 ---
 
