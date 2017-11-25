@@ -8,6 +8,8 @@ import {asyncFetchColorPalette} from '../redux/actionCreators';
 import DetailContainer from './DetailContainer';
 
 import Grid from '../components/Grid/Grid';
+import Navbar from '../components/Navbar/Navbar';
+import TextField from '../components/TextField/TextField';
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
 
 class PaletteContainer extends React.Component {
@@ -35,6 +37,11 @@ class PaletteContainer extends React.Component {
   render = () => (
     <div>
       <div style={this.setVisibility()}>
+        <Navbar>
+          <TextField
+            placeholderText="search..."
+          />
+        </Navbar>
         <Grid>{this.renderSwatches()}</Grid>
       </div>
       {this.props.colorDetail && this.renderDetailContainer()}
