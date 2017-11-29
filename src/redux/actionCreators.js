@@ -12,6 +12,7 @@ import {
   UPDATE_FORM_FIELD,
   SHOW_INFO_FIELDS,
   SHOW_URL_FIELDS,
+  UPDATE_FILTER_TEXT,
 } from './actionTypes';
 
 export const setIsLoading = () => ({
@@ -82,3 +83,8 @@ export const updateFormField = (field, value) => ({
 export const showInfoFields = () => ({type: SHOW_INFO_FIELDS});
 
 export const showUrlFields = () => ({type: SHOW_URL_FIELDS});
+
+export const updateFilterText = value => ({
+  type: UPDATE_FILTER_TEXT,
+  value,
+});

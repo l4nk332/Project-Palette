@@ -15,3 +15,5 @@ export const initialFormState = {
   infoActive: false,
   urlActive: true,
 };
+
+export const initialFiltersState = {};

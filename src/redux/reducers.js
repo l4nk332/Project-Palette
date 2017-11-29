@@ -7,6 +7,7 @@ import {
   initialPaletteState,
   initialErrorState,
   initialFormState,
+  initialFiltersState,
 } from './initialStates';
 
 import {
@@ -21,6 +22,7 @@ import {
   UPDATE_FORM_FIELD,
   SHOW_INFO_FIELDS,
   SHOW_URL_FIELDS,
+  UPDATE_FILTER_TEXT,
 } from './actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
@@ -87,6 +89,15 @@ const formReducer = (state = initialFormState, {type, field, value}) => {
   }
 };
 
+const filterReducer = (state = initialFiltersState, {type, value}) => {
+  switch (type) {
+    case UPDATE_FILTER_TEXT:
+      return Object.assign({}, state, {filterText: value});
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
@@ -94,4 +105,5 @@ export default combineReducers({
   palette: paletteReducer,
   error: errorReducer,
   form: formReducer,
+  filters: filterReducer,
 });

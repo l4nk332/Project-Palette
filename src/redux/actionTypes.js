@@ -15,3 +15,5 @@ export const SET_PALETTE = 'SET_PALETTE';
 
 export const ERROR = 'ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+
+export const UPDATE_FILTER_TEXT = 'UPDATE_FILTER_TEXT';

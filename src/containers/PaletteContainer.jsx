@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {asyncFetchColorPalette} from '../redux/actionCreators';
+import {
+  asyncFetchColorPalette,
+  updateFilterText,
+} from '../redux/actionCreators';
 
 import DetailContainer from './DetailContainer';
 
@@ -24,10 +27,11 @@ class PaletteContainer extends React.Component {
     visibility: this.props.colorDetail ? 'hidden' : 'visible',
   });
 
-  renderSwatches = () =>
-    Object.keys(this.props.palette).map(color => (
-      <ColorSwatch key={color} color={color} />
-    ));
+  renderSwatches = () => (
+    Object.keys(this.props.palette)
+      .filter(color => color.includes(this.props.filterText))
+      .map(color => <ColorSwatch key={color} color={color} />)
+  );
 
   renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
@@ -40,6 +44,11 @@ class PaletteContainer extends React.Component {
         <Navbar>
           <TextField
             placeholderText="search..."
+            value={this.props.filterText}
+            changeHandler={event => {
+              const {value} = event.target;
+              this.props.updateFilterText(value);
+            }}
           />
         </Navbar>
         <Grid>{this.renderSwatches()}</Grid>
@@ -50,16 +59,19 @@ class PaletteContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  filterText: state.filters.filterText,
   colorDetail: state.colorDetail,
   palette: state.palette,
 });
 
 const mapDispatchToProps = {
   asyncFetchColorPalette,
+  updateFilterText,
 };
 
 PaletteContainer.defaultProps = {
   colorDetail: null,
+  filterText: '',
 };
 
 PaletteContainer.propTypes = {
@@ -70,8 +82,10 @@ PaletteContainer.propTypes = {
     }),
   }).isRequired,
   asyncFetchColorPalette: PropTypes.func.isRequired,
+  updateFilterText: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,
+  filterText: PropTypes.string,
 };
 
 export default withRouter(

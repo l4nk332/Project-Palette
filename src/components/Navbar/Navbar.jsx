@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Navbar.sass';
 
-export const Navbar = ({children}) => <nav className="navbar">{children}</nav>;
+const Navbar = ({children}) => <nav className="navbar">{children}</nav>;
 
 Navbar.defaultProps = {
   children: null,
