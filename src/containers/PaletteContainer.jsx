@@ -49,6 +49,9 @@ class PaletteContainer extends React.Component {
               const {value} = event.target;
               this.props.updateFilterText(value);
             }}
+            focusHandler={() => {
+              this.props.updateFilterText('');
+            }}
           />
         </Navbar>
         <Grid>{this.renderSwatches()}</Grid>
