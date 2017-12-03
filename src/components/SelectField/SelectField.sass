@@ -1,0 +1,46 @@
+$white: #e6e6e6
+$black: #39393a
+$turquoise: #17a398
+
+.select_container
+  width: 85px
+  color: $white
+  position: relative
+  font-family: Helvetica
+  font-size: 14px
+  font-weight: lighter
+  transition: background 150ms ease-in-out, border 150ms ease-in-out
+  cursor: pointer
+
+%select_item
+  padding: 8px 10px
+
+.select_header
+  @extend %select_item
+  background-color: $black
+  border-radius: 2px 2px 0px 0px
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+  padding-bottom: 7px
+  border-bottom: 3px solid $turquoise
+  &:focus, &:hover
+    background: lighten($black, 10%)
+
+.select_muted
+  color: #949495
+
+.select_list
+  width: 100%
+  position: absolute
+  list-style: none
+  padding: 0
+  margin: 0
+  li
+    @extend %select_item
+    background: $black
+    &:focus, &:hover
+      background: lighten($black, 15%)
+    &:last-child
+      border-radius: 0px 0px 2px 2px

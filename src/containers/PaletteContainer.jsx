@@ -14,6 +14,7 @@ import Grid from '../components/Grid/Grid';
 import Navbar from '../components/Navbar/Navbar';
 import TextField from '../components/TextField/TextField';
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
+import SelectField from '../components/SelectField/SelectField';
 
 class PaletteContainer extends React.Component {
   componentDidMount = () => {
@@ -42,6 +43,7 @@ class PaletteContainer extends React.Component {
     <div>
       <div style={this.setVisibility()}>
         <Navbar>
+          <SelectField />
           <TextField
             placeholderText="search..."
             value={this.props.filterText}
