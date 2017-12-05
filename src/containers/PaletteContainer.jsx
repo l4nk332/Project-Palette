@@ -48,11 +48,32 @@ class PaletteContainer extends React.Component {
       <div style={this.setVisibility()}>
         <Navbar>
           <IconAssistedField
-            Field={<SelectField />}
+            Field={
+              <SelectField
+                placeholder="Sort By"
+                values={[
+                  {label: 'Usage', value: 'usage'},
+                  {label: 'Brightness', value: 'brightness'},
+                  {label: 'Luminescence', value: 'luminescence'},
+                  {label: 'Alpha', value: 'alpha'},
+                ]}
+                clickHandler={console.log}
+                width="113px"
+              />
+            }
             Icon={<SortDescIcon />}
           />
           <IconAssistedField
-            Field={<SelectField />}
+            Field={
+              <SelectField
+                placeholder="Filter By"
+                values={[
+                  {label: 'Lightness', value: 'lightness'},
+                  {label: 'Darkness', value: 'darkness'},
+                ]}
+                clickHandler={console.log}
+              />
+            }
             Icon={<FilterIcon />}
           />
           <TextField

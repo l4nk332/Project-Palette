@@ -9,7 +9,8 @@
     "jsx-a11y/anchor-is-valid": "off",
     "react/forbid-prop-types": "off",
     "react/no-array-index-key": "off",
-    "jsx-a11y/label-has-for": "off"
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
   },
   "env": {
     "node": true,
