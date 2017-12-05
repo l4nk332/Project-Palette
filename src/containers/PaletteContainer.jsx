@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
+import FilterIcon from 'react-icons/lib/fa/filter';
+
 import {
   asyncFetchColorPalette,
   updateFilterText,
@@ -15,6 +18,7 @@ import Navbar from '../components/Navbar/Navbar';
 import TextField from '../components/TextField/TextField';
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
 import SelectField from '../components/SelectField/SelectField';
+import IconAssistedField from '../components/IconAssistedField/IconAssistedField';
 
 class PaletteContainer extends React.Component {
   componentDidMount = () => {
@@ -43,7 +47,14 @@ class PaletteContainer extends React.Component {
     <div>
       <div style={this.setVisibility()}>
         <Navbar>
-          <SelectField />
+          <IconAssistedField
+            Field={<SelectField />}
+            Icon={<SortDescIcon />}
+          />
+          <IconAssistedField
+            Field={<SelectField />}
+            Icon={<FilterIcon />}
+          />
           <TextField
             placeholderText="search..."
             value={this.props.filterText}
