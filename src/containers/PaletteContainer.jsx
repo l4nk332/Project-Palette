@@ -58,7 +58,7 @@ class PaletteContainer extends React.Component {
                   {label: 'Alpha', value: 'alpha'},
                 ]}
                 clickHandler={console.log}
-                width="113px"
+                width="132px"
               />
             }
             Icon={<SortDescIcon />}
@@ -72,6 +72,7 @@ class PaletteContainer extends React.Component {
                   {label: 'Darkness', value: 'darkness'},
                 ]}
                 clickHandler={console.log}
+                width="132px"
               />
             }
             Icon={<FilterIcon />}

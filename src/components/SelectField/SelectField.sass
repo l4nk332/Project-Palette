@@ -18,15 +18,20 @@ $turquoise: #17a398
 .select_header
   @extend %select_item
   background-color: $black
-  border-radius: 2px 2px 0px 0px
+  border-radius: 2px
   display: flex
   flex-flow: row nowrap
   align-items: center
   justify-content: space-between
   padding-bottom: 7px
-  border-bottom: 3px solid $turquoise
+  border-bottom: 3px solid $black
+  &.select_is_open
+    border-radius: 2px 2px 0px 0px
+    border-color: $turquoise
   &:focus, &:hover
     background: lighten($black, 10%)
+    &:not(.select_is_open)
+      border-color: lighten($black, 10%)
 
 .select_muted
   color: #949495
@@ -37,6 +42,9 @@ $turquoise: #17a398
   list-style: none
   padding: 0
   margin: 0
+  display: none
+  &.select_is_open
+    display: block
   li
     @extend %select_item
     background: $black
