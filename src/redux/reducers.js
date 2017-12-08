@@ -23,6 +23,7 @@ import {
   SHOW_INFO_FIELDS,
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
+  UPDATE_FILTER_SELECT,
 } from './actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
@@ -93,6 +94,8 @@ const filterReducer = (state = initialFiltersState, {type, value}) => {
   switch (type) {
     case UPDATE_FILTER_TEXT:
       return Object.assign({}, state, {filterText: value});
+    case UPDATE_FILTER_SELECT:
+      return Object.assign({}, state, {filterBy: value});
     default:
       return state;
   }

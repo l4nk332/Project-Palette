@@ -13,6 +13,7 @@ import {
   SHOW_INFO_FIELDS,
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
+  UPDATE_FILTER_SELECT,
 } from './actionTypes';
 
 export const setIsLoading = () => ({
@@ -86,5 +87,10 @@ export const showUrlFields = () => ({type: SHOW_URL_FIELDS});
 
 export const updateFilterText = value => ({
   type: UPDATE_FILTER_TEXT,
+  value,
+});
+
+export const updateFilterSelect = value => ({
+  type: UPDATE_FILTER_SELECT,
   value,
 });

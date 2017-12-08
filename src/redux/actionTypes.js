@@ -17,3 +17,5 @@ export const ERROR = 'ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const UPDATE_FILTER_TEXT = 'UPDATE_FILTER_TEXT';
+
+export const UPDATE_FILTER_SELECT = 'UPDATE_FILTER_SELECT';

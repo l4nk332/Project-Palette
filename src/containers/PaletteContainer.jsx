@@ -3,13 +3,25 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import tinycolor from 'tinycolor2';
+
 import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
 import FilterIcon from 'react-icons/lib/fa/filter';
 
 import {
   asyncFetchColorPalette,
   updateFilterText,
+  updateFilterSelect,
 } from '../redux/actionCreators';
+
+import {
+  USAGE,
+  BRIGHTNESS,
+  LUMINESCENCE,
+  ALPHA,
+  LIGHTNESS,
+  DARKNESS,
+} from '../utils/constants';
 
 import DetailContainer from './DetailContainer';
 
@@ -35,6 +47,13 @@ class PaletteContainer extends React.Component {
   renderSwatches = () => (
     Object.keys(this.props.palette)
       .filter(color => color.includes(this.props.filterText))
+      .filter(color => (
+        this.props.filterBy === LIGHTNESS
+          ? tinycolor(color).isLight()
+          : this.props.filterBy === DARKNESS
+            ? tinycolor(color).isDark()
+            : true
+      ))
       .map(color => <ColorSwatch key={color} color={color} />)
   );
 
@@ -52,12 +71,12 @@ class PaletteContainer extends React.Component {
               <SelectField
                 placeholder="Sort By"
                 values={[
-                  {label: 'Usage', value: 'usage'},
-                  {label: 'Brightness', value: 'brightness'},
-                  {label: 'Luminescence', value: 'luminescence'},
-                  {label: 'Alpha', value: 'alpha'},
+                  {label: 'Usage', value: USAGE},
+                  {label: 'Brightness', value: BRIGHTNESS},
+                  {label: 'Luminescence', value: LUMINESCENCE},
+                  {label: 'Alpha', value: ALPHA},
                 ]}
-                clickHandler={console.log}
+                clickHandler={console.log()}
                 width="132px"
               />
             }
@@ -68,10 +87,10 @@ class PaletteContainer extends React.Component {
               <SelectField
                 placeholder="Filter By"
                 values={[
-                  {label: 'Lightness', value: 'lightness'},
-                  {label: 'Darkness', value: 'darkness'},
+                  {label: 'Lightness', value: LIGHTNESS},
+                  {label: 'Darkness', value: DARKNESS},
                 ]}
-                clickHandler={console.log}
+                clickHandler={this.props.updateFilterSelect}
                 width="132px"
               />
             }
@@ -98,6 +117,7 @@ class PaletteContainer extends React.Component {
 
 const mapStateToProps = state => ({
   filterText: state.filters.filterText,
+  filterBy: state.filters.filterBy,
   colorDetail: state.colorDetail,
   palette: state.palette,
 });
@@ -105,11 +125,13 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   asyncFetchColorPalette,
   updateFilterText,
+  updateFilterSelect,
 };
 
 PaletteContainer.defaultProps = {
   colorDetail: null,
   filterText: '',
+  filterBy: null,
 };
 
 PaletteContainer.propTypes = {
@@ -121,9 +143,11 @@ PaletteContainer.propTypes = {
   }).isRequired,
   asyncFetchColorPalette: PropTypes.func.isRequired,
   updateFilterText: PropTypes.func.isRequired,
+  updateFilterSelect: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,
   filterText: PropTypes.string,
+  filterBy: PropTypes.string,
 };
 
 export default withRouter(
