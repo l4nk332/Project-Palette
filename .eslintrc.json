@@ -4,6 +4,7 @@
     "react/jsx-filename-extension": [0],
     "function-paren-newline": ["error", "consistent"],
     "object-curly-spacing": ["error", "never"],
+    "no-nested-ternary": [0],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "as-needed"],
     "jsx-a11y/anchor-is-valid": "off",
