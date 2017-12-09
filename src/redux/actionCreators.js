@@ -14,6 +14,7 @@ import {
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
+  TOGGLE_FILTER_SELECT,
 } from './actionTypes';
 
 export const setIsLoading = () => ({
@@ -93,4 +94,8 @@ export const updateFilterText = value => ({
 export const updateFilterSelect = value => ({
   type: UPDATE_FILTER_SELECT,
   value,
+});
+
+export const toggleFilterSelect = () => ({
+  type: TOGGLE_FILTER_SELECT,
 });

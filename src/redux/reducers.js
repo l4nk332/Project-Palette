@@ -24,6 +24,7 @@ import {
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
+  TOGGLE_FILTER_SELECT,
 } from './actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
@@ -96,6 +97,12 @@ const filterReducer = (state = initialFiltersState, {type, value}) => {
       return Object.assign({}, state, {filterText: value});
     case UPDATE_FILTER_SELECT:
       return Object.assign({}, state, {filterBy: value});
+    case TOGGLE_FILTER_SELECT:
+      return Object.assign(
+        {},
+        state,
+        {filterByEnabled: !state.filterByEnabled},
+      );
     default:
       return state;
   }

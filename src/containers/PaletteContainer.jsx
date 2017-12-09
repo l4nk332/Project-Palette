@@ -12,6 +12,7 @@ import {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
+  toggleFilterSelect,
 } from '../redux/actionCreators';
 
 import {
@@ -31,6 +32,7 @@ import TextField from '../components/TextField/TextField';
 import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
 import SelectField from '../components/SelectField/SelectField';
 import IconAssistedField from '../components/IconAssistedField/IconAssistedField';
+import Toggleable from '../components/Toggleable/Toggleable';
 
 class PaletteContainer extends React.Component {
   componentDidMount = () => {
@@ -44,18 +46,23 @@ class PaletteContainer extends React.Component {
     visibility: this.props.colorDetail ? 'hidden' : 'visible',
   });
 
-  renderSwatches = () => (
+  search = color => color.includes(this.props.filterText)
+
+  filterBy = color => (
+    this.props.filterBy === LIGHTNESS
+      ? tinycolor(color).isLight()
+      : this.props.filterBy === DARKNESS
+        ? tinycolor(color).isDark()
+        : true
+  )
+
+  renderSwatches = () =>
     Object.keys(this.props.palette)
-      .filter(color => color.includes(this.props.filterText))
+      .filter(this.search)
       .filter(color => (
-        this.props.filterBy === LIGHTNESS
-          ? tinycolor(color).isLight()
-          : this.props.filterBy === DARKNESS
-            ? tinycolor(color).isDark()
-            : true
+        this.props.filterByEnabled ? this.filterBy(color) : true
       ))
-      .map(color => <ColorSwatch key={color} color={color} />)
-  );
+      .map(color => <ColorSwatch key={color} color={color} />);
 
   renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
@@ -94,7 +101,11 @@ class PaletteContainer extends React.Component {
                 width="132px"
               />
             }
-            Icon={<FilterIcon />}
+            Icon={
+              <Toggleable toggled={this.props.filterByEnabled}>
+                <FilterIcon onClick={this.props.toggleFilterSelect} />
+              </Toggleable>
+            }
           />
           <TextField
             placeholderText="search..."
@@ -118,6 +129,7 @@ class PaletteContainer extends React.Component {
 const mapStateToProps = state => ({
   filterText: state.filters.filterText,
   filterBy: state.filters.filterBy,
+  filterByEnabled: state.filters.filterByEnabled,
   colorDetail: state.colorDetail,
   palette: state.palette,
 });
@@ -126,6 +138,7 @@ const mapDispatchToProps = {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
+  toggleFilterSelect,
 };
 
 PaletteContainer.defaultProps = {
@@ -144,12 +157,14 @@ PaletteContainer.propTypes = {
   asyncFetchColorPalette: PropTypes.func.isRequired,
   updateFilterText: PropTypes.func.isRequired,
   updateFilterSelect: PropTypes.func.isRequired,
+  toggleFilterSelect: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,
   filterText: PropTypes.string,
   filterBy: PropTypes.string,
+  filterByEnabled: PropTypes.bool.isRequired,
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PaletteContainer),
+  connect(mapStateToProps, mapDispatchToProps)(PaletteContainer)
 );

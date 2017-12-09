@@ -16,4 +16,6 @@ export const initialFormState = {
   urlActive: true,
 };
 
-export const initialFiltersState = {};
+export const initialFiltersState = {
+  filterByEnabled: true,
+};
