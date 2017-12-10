@@ -8,6 +8,7 @@ import {
   initialErrorState,
   initialFormState,
   initialFiltersState,
+  initialSortState,
 } from './initialStates';
 
 import {
@@ -25,7 +26,11 @@ import {
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
   TOGGLE_FILTER_SELECT,
+  UPDATE_SORT_SELECT,
+  TOGGLE_SORT_ORDER,
 } from './actionTypes';
+
+import {ASCENDING, DESCENDING} from '../utils/constants';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
   switch (action.type) {
@@ -108,6 +113,21 @@ const filterReducer = (state = initialFiltersState, {type, value}) => {
   }
 };
 
+const sortReducer = (state = initialSortState, {type, value}) => {
+  switch (type) {
+    case UPDATE_SORT_SELECT:
+      return Object.assign({}, state, {sortBy: value});
+    case TOGGLE_SORT_ORDER:
+      return Object.assign(
+        {},
+        state,
+        {sortOrder: (state.sortOrder === ASCENDING ? DESCENDING : ASCENDING)},
+      );
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
@@ -116,4 +136,5 @@ export default combineReducers({
   error: errorReducer,
   form: formReducer,
   filters: filterReducer,
+  sort: sortReducer,
 });

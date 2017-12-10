@@ -18,6 +18,10 @@ export const BRIGHTNESS = 'BRIGHTNESS';
 export const LUMINESCENCE = 'LUMINESCENCE';
 export const ALPHA = 'ALPHA';
 
+// Sort Order Values
+export const ASCENDING = 'ASCENDING';
+export const DESCENDING = 'DESCENDING';
+
 // Filter By Values
 export const LIGHTNESS = 'LIGHTNESS';
 export const DARKNESS = 'DARKNESS';

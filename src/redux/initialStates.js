@@ -1,3 +1,5 @@
+import {DESCENDING, USAGE} from '../utils/constants';
+
 export const initialLoadingState = false;
 
 export const initialProjectUrlState = null;
@@ -18,4 +20,9 @@ export const initialFormState = {
 
 export const initialFiltersState = {
   filterByEnabled: true,
+};
+
+export const initialSortState = {
+  sortBy: USAGE,
+  sortOrder: DESCENDING,
 };

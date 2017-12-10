@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 import tinycolor from 'tinycolor2';
+import lodashSortBy from 'lodash/sortBy';
 
 import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
+import SortAscIcon from 'react-icons/lib/fa/sort-amount-asc';
 import FilterIcon from 'react-icons/lib/fa/filter';
 
 import {
@@ -13,6 +15,8 @@ import {
   updateFilterText,
   updateFilterSelect,
   toggleFilterSelect,
+  updateSortSelect,
+  toggleSortOrder,
 } from '../redux/actionCreators';
 
 import {
@@ -22,6 +26,8 @@ import {
   ALPHA,
   LIGHTNESS,
   DARKNESS,
+  ASCENDING,
+  DESCENDING,
 } from '../utils/constants';
 
 import DetailContainer from './DetailContainer';
@@ -56,13 +62,36 @@ class PaletteContainer extends React.Component {
         : true
   )
 
-  renderSwatches = () =>
-    Object.keys(this.props.palette)
+  sortColor = color => (
+    this.props.sortBy === USAGE
+      ? this.props.palette[color].locations.length
+      : this.props.sortBy === BRIGHTNESS
+        ? tinycolor(color).getBrightness()
+        : this.props.sortBy === LUMINESCENCE
+          ? tinycolor(color).getLuminance()
+          : this.props.sortBy === ALPHA
+            ? tinycolor(color).getAlpha()
+            : this.props.palette[color].locations.length
+  )
+
+  renderSwatches = () => {
+    const filteredPalette = Object.keys(this.props.palette)
       .filter(this.search)
       .filter(color => (
         this.props.filterByEnabled ? this.filterBy(color) : true
-      ))
-      .map(color => <ColorSwatch key={color} color={color} />);
+      ));
+
+    let sortedPalette = lodashSortBy(filteredPalette, this.sortColor);
+    sortedPalette = (
+      this.props.sortOrder === ASCENDING
+        ? sortedPalette
+        : sortedPalette.reverse()
+    );
+
+    return sortedPalette.map(color => (
+      <ColorSwatch key={color} color={color} />
+    ));
+  }
 
   renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
@@ -83,11 +112,19 @@ class PaletteContainer extends React.Component {
                   {label: 'Luminescence', value: LUMINESCENCE},
                   {label: 'Alpha', value: ALPHA},
                 ]}
-                clickHandler={console.log()}
+                clickHandler={this.props.updateSortSelect}
                 width="132px"
               />
             }
-            Icon={<SortDescIcon />}
+            Icon={
+              <Toggleable toggled>
+                {
+                  this.props.sortOrder === ASCENDING
+                    ? <SortAscIcon onClick={this.props.toggleSortOrder} />
+                    : <SortDescIcon onClick={this.props.toggleSortOrder} />
+                }
+              </Toggleable>
+            }
           />
           <IconAssistedField
             Field={
@@ -132,6 +169,8 @@ const mapStateToProps = state => ({
   filterByEnabled: state.filters.filterByEnabled,
   colorDetail: state.colorDetail,
   palette: state.palette,
+  sortBy: state.sort.sortBy,
+  sortOrder: state.sort.sortOrder,
 });
 
 const mapDispatchToProps = {
@@ -139,6 +178,8 @@ const mapDispatchToProps = {
   updateFilterText,
   updateFilterSelect,
   toggleFilterSelect,
+  updateSortSelect,
+  toggleSortOrder,
 };
 
 PaletteContainer.defaultProps = {
@@ -158,11 +199,15 @@ PaletteContainer.propTypes = {
   updateFilterText: PropTypes.func.isRequired,
   updateFilterSelect: PropTypes.func.isRequired,
   toggleFilterSelect: PropTypes.func.isRequired,
+  updateSortSelect: PropTypes.func.isRequired,
+  toggleSortOrder: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,
   filterText: PropTypes.string,
   filterBy: PropTypes.string,
   filterByEnabled: PropTypes.bool.isRequired,
+  sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,
+  sortBy: PropTypes.oneOf([USAGE, BRIGHTNESS, LUMINESCENCE, ALPHA]).isRequired,
 };
 
 export default withRouter(

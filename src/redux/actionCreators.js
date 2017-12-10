@@ -15,6 +15,8 @@ import {
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
   TOGGLE_FILTER_SELECT,
+  UPDATE_SORT_SELECT,
+  TOGGLE_SORT_ORDER,
 } from './actionTypes';
 
 export const setIsLoading = () => ({
@@ -98,4 +100,13 @@ export const updateFilterSelect = value => ({
 
 export const toggleFilterSelect = () => ({
   type: TOGGLE_FILTER_SELECT,
+});
+
+export const updateSortSelect = value => ({
+  type: UPDATE_SORT_SELECT,
+  value,
+});
+
+export const toggleSortOrder = () => ({
+  type: TOGGLE_SORT_ORDER,
 });
