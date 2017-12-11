@@ -10,6 +10,7 @@ const TextField = ({
   value,
   enterKeyHandler,
   changeHandler,
+  focusHandler,
 }) => (
   <input
     type="text"
@@ -19,6 +20,7 @@ const TextField = ({
       triggerIfEnterKey(event, enterKeyHandler);
     }}
     onChange={changeHandler}
+    onFocus={focusHandler}
   />
 );
 
@@ -27,6 +29,7 @@ TextField.defaultProps = {
   value: '',
   enterKeyHandler: () => {},
   changeHandler: () => {},
+  focusHandler: () => {},
 };
 
 TextField.propTypes = {
@@ -34,6 +37,7 @@ TextField.propTypes = {
   value: PropTypes.string,
   enterKeyHandler: PropTypes.func,
   changeHandler: PropTypes.func,
+  focusHandler: PropTypes.func,
 };
 
 export default TextField;
