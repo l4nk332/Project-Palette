@@ -13,6 +13,7 @@ $turquoise: #17a398
   cursor: pointer
 
 %select_item
+  outline: 0
   padding: 8px 10px
 
 .select_header
@@ -25,6 +26,7 @@ $turquoise: #17a398
   justify-content: space-between
   padding-bottom: 7px
   border-bottom: 3px solid $black
+  outline: 0
   &.select_is_open
     border-radius: 2px 2px 0px 0px
     border-color: $turquoise
@@ -52,3 +54,7 @@ $turquoise: #17a398
       background: lighten($black, 15%)
     &:last-child
       border-radius: 0px 0px 2px 2px
+  li.selected
+    background: lighten($black, 10%)
+    &:focus, &:hover
+      background: lighten($black, 15%)

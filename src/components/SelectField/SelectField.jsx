@@ -70,7 +70,7 @@ class SelectField extends React.Component {
             select_header: true,
             select_is_open: this.state.isOpen,
           })}
-          onClick={() => {
+          onMouseDown={() => {
             this.toggleDropdown();
           }}
           onKeyDown={event => {
@@ -99,7 +99,10 @@ class SelectField extends React.Component {
               role="button"
               tabIndex="0"
               key={idx}
-              onClick={() => {
+              className={classNames({
+                selected: value.label === this.state.selectedLabel,
+              })}
+              onMouseDown={() => {
                 this.props.clickHandler(value.value);
                 this.setSelectedLabel(value.label);
                 this.closeDropdown();
