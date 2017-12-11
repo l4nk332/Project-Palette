@@ -16,7 +16,8 @@ export const BLACK = '#39393a';
 export const USAGE = 'USAGE';
 export const BRIGHTNESS = 'BRIGHTNESS';
 export const LUMINESCENCE = 'LUMINESCENCE';
-export const ALPHA = 'ALPHA';
+export const ALPHABETICAL = 'ALPHABETICAL';
+export const TRANSPARENCY = 'TRANSPARENCY';
 
 // Sort Order Values
 export const ASCENDING = 'ASCENDING';

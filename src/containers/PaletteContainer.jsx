@@ -23,7 +23,8 @@ import {
   USAGE,
   BRIGHTNESS,
   LUMINESCENCE,
-  ALPHA,
+  ALPHABETICAL,
+  TRANSPARENCY,
   LIGHTNESS,
   DARKNESS,
   ASCENDING,
@@ -69,9 +70,11 @@ class PaletteContainer extends React.Component {
         ? tinycolor(color).getBrightness()
         : this.props.sortBy === LUMINESCENCE
           ? tinycolor(color).getLuminance()
-          : this.props.sortBy === ALPHA
+          : this.props.sortBy === TRANSPARENCY
             ? tinycolor(color).getAlpha()
-            : this.props.palette[color].locations.length
+            : this.props.sortBy === ALPHABETICAL
+              ? color
+              : color
   )
 
   renderSwatches = () => {
@@ -82,11 +85,23 @@ class PaletteContainer extends React.Component {
       ));
 
     let sortedPalette = lodashSortBy(filteredPalette, this.sortColor);
-    sortedPalette = (
-      this.props.sortOrder === ASCENDING
-        ? sortedPalette
-        : sortedPalette.reverse()
-    );
+
+    // Sorting logic should flip for Transparency so ascending shows
+    // least to most transparent and vice-versa.
+    if (this.props.sortBy === TRANSPARENCY) {
+      sortedPalette = (
+        this.props.sortOrder === ASCENDING
+          ? sortedPalette.reverse()
+          : sortedPalette
+      );
+    } else {
+      sortedPalette = (
+        this.props.sortOrder === ASCENDING
+          ? sortedPalette
+          : sortedPalette.reverse()
+      );
+    }
+
 
     return sortedPalette.map(color => (
       <ColorSwatch key={color} color={color} />
@@ -110,7 +125,8 @@ class PaletteContainer extends React.Component {
                   {label: 'Usage', value: USAGE},
                   {label: 'Brightness', value: BRIGHTNESS},
                   {label: 'Luminescence', value: LUMINESCENCE},
-                  {label: 'Alpha', value: ALPHA},
+                  {label: 'Transparency', value: TRANSPARENCY},
+                  {label: 'Alphabetical', value: ALPHABETICAL},
                 ]}
                 clickHandler={this.props.updateSortSelect}
                 width="132px"
@@ -207,7 +223,13 @@ PaletteContainer.propTypes = {
   filterBy: PropTypes.string,
   filterByEnabled: PropTypes.bool.isRequired,
   sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,
-  sortBy: PropTypes.oneOf([USAGE, BRIGHTNESS, LUMINESCENCE, ALPHA]).isRequired,
+  sortBy: PropTypes.oneOf([
+    USAGE,
+    BRIGHTNESS,
+    LUMINESCENCE,
+    TRANSPARENCY,
+    ALPHABETICAL,
+  ]).isRequired,
 };
 
 export default withRouter(
