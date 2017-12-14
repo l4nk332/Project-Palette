@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getTextColor} from '../../utils/color-manipulation';
+import {getTextColor} from 'utils/color-manipulation';
 
 import './FixedWrapper.sass';
 
