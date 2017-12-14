@@ -17,7 +17,7 @@ import {
   toggleFilterSelect,
   updateSortSelect,
   toggleSortOrder,
-} from '../redux/actionCreators';
+} from 'redux/actionCreators';
 
 import {
   USAGE,
@@ -29,17 +29,19 @@ import {
   DARKNESS,
   ASCENDING,
   DESCENDING,
-} from '../utils/constants';
+} from 'utils/constants';
 
-import DetailContainer from './DetailContainer';
+import {DetailContainer} from 'containers';
 
-import Grid from '../components/Grid/Grid';
-import Navbar from '../components/Navbar/Navbar';
-import TextField from '../components/TextField/TextField';
-import ColorSwatch from '../components/ColorSwatch/ColorSwatch';
-import SelectField from '../components/SelectField/SelectField';
-import IconAssistedField from '../components/IconAssistedField/IconAssistedField';
-import Toggleable from '../components/Toggleable/Toggleable';
+import {
+  Grid,
+  Navbar,
+  TextField,
+  ColorSwatch,
+  SelectField,
+  IconAssistedField,
+  Toggleable,
+} from 'components';
 
 class PaletteContainer extends React.Component {
   componentDidMount = () => {

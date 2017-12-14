@@ -1,4 +1,4 @@
-import {DESCENDING, USAGE} from '../utils/constants';
+import {DESCENDING, USAGE} from 'utils/constants';
 
 export const initialLoadingState = false;
 

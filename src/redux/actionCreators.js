@@ -1,4 +1,7 @@
-import {searchGitHubProject, getProjectPalette} from '../utils/requests';
+import {
+  searchGitHubProject,
+  getProjectPalette,
+} from 'utils/requests';
 
 import {
   IS_LOADING,
@@ -17,7 +20,7 @@ import {
   TOGGLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   TOGGLE_SORT_ORDER,
-} from './actionTypes';
+} from 'redux/actionTypes';
 
 export const setIsLoading = () => ({
   type: IS_LOADING,

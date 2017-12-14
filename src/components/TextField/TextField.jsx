@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {triggerIfEnterKey} from '../../utils/misc';
+import {triggerIfEnterKey} from 'utils/misc';
 
 import './TextField.sass';
 

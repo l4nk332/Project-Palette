@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname, 'src'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -39,6 +39,10 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
     extensions: ['.jsx', '.js'],
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules'),
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({

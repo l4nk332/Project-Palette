@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Switch, Route, withRouter, Link} from 'react-router-dom';
+import {
+  Switch,
+  Route,
+  withRouter,
+  Link,
+} from 'react-router-dom';
 
-import SearchContainer from './SearchContainer';
-import PaletteContainer from './PaletteContainer';
+import {
+  SearchContainer,
+  PaletteContainer,
+} from 'containers';
 
-import LoadingWrapper from '../components/LoadingWrapper/LoadingWrapper';
-import Anchor from '../components/Anchor/Anchor';
-import Error from '../components/Error/Error';
+import {
+  LoadingWrapper,
+  Anchor,
+  Error,
+} from 'components';
 
 const AppContainer = ({isLoading}) => (
   <LoadingWrapper isLoading={isLoading}>

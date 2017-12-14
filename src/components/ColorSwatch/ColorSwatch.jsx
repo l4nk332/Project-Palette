@@ -7,12 +7,12 @@ import TiClipboard from 'react-icons/lib/ti/clipboard';
 import TiTick from 'react-icons/lib/ti/tick';
 import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise';
 
-import {openColorDetail} from '../../redux/actionCreators';
+import {getTextColor} from 'utils/color-manipulation';
+import {toggleStaticBody} from 'utils/misc';
+
+import {openColorDetail} from 'redux/actionCreators';
 
 import './ColorSwatch.sass';
-
-import {getTextColor} from '../../utils/color-manipulation';
-import {toggleStaticBody} from '../../utils/misc';
 
 class ColorSwatch extends React.Component {
   constructor(props) {

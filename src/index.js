@@ -5,11 +5,11 @@ import {BrowserRouter} from 'react-router-dom';
 
 import 'normalize.css';
 
-import store from './redux/store';
+import store from 'redux/store';
 
-import './base.sass';
+import 'base.sass';
 
-import AppContainer from './containers/AppContainer';
+import {AppContainer} from 'containers';
 
 const Main = () => (
   <Provider store={store}>

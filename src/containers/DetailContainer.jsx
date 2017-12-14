@@ -2,14 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {closeColorDetail} from '../redux/actionCreators';
+import {closeColorDetail} from 'redux/actionCreators';
 
-import {toggleStaticBody} from '../utils/misc';
+import {toggleStaticBody} from 'utils/misc';
 
-import FixedWrapper from '../components/FixedWrapper/FixedWrapper';
-import LocationList from '../components/LocationList/LocationList';
-import Heading from '../components/Heading/Heading';
-import CloseIcon from '../components/CloseIcon/CloseIcon';
+import {
+  FixedWrapper,
+  LocationList,
+  Heading,
+  CloseIcon,
+} from 'components';
 
 class DetailContainer extends React.Component {
   closeColorDetail = () => {
