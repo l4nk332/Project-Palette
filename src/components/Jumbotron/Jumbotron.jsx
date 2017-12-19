@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Title from '../Title/Title';
-import Lead from '../Lead/Lead';
+import {Title, Lead} from 'components';
 
 import s from './Jumbotron.sass';
 

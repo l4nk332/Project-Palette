@@ -8,17 +8,19 @@ import {
   PURPLE,
   BLACK,
   PROJECT_PALETTE_GITHUB_URL,
-} from '../../utils/constants';
+} from 'utils/constants';
 
-import SplitView from '../../components/SplitView/SplitView';
-import FlexWrapper from '../../components/FlexWrapper/FlexWrapper';
-import SegmentRule from '../../components/SegmentRule/SegmentRule';
-import Rule from '../../components/Rule/Rule';
-import Jumbotron from '../../components/Jumbotron/Jumbotron';
-import Lead from '../../components/Lead/Lead';
-import Paragraph from '../../components/Paragraph/Paragraph';
-import Anchor from '../../components/Anchor/Anchor';
-import Form from '../../components/Form/Form';
+import {
+  SplitView,
+  FlexWrapper,
+  SegmentRule,
+  Rule,
+  Jumbotron,
+  Lead,
+  Paragraph,
+  Anchor,
+  Form,
+} from 'components';
 
 import s from './Search.sass';
 

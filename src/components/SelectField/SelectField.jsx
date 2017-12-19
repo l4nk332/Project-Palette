@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import TiArrowDown from 'react-icons/lib/ti/arrow-sorted-down';
 import TiArrowUp from 'react-icons/lib/ti/arrow-sorted-up';
 
-import {triggerIfEnterKey} from '../../utils/misc';
+import {triggerIfEnterKey} from 'utils/misc';
 
 import s from './SelectField.sass';
 

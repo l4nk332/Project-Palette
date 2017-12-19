@@ -1,7 +1,7 @@
 import axios from 'axios';
 import path from 'path';
 
-import {GITHUB_API, COLORS_URL} from './constants';
+import {GITHUB_API, COLORS_URL} from 'utils/constants';
 
 export const searchGitHubProject = projectURI => {
   const url = path.join(GITHUB_API, 'repos', projectURI);

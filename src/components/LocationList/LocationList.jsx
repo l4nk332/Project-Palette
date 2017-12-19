@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getAlphaBackgroundColor} from 'utils/color-manipulation';
+
 import LocationListItem from './LocationListItem/LocationListItem';
-import {getAlphaBackgroundColor} from '../../utils/color-manipulation';
 
 import s from './LocationList.sass';
 

@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from '../utils/constants';
+import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
 
-import SplitButton from '../components/SplitButton/SplitButton';
-import TextField from '../components/TextField/TextField';
-import Button from '../components/Button/Button';
+import {SplitButton, TextField, Button} from 'components';
 
 import {
   setProjectUrl,
@@ -15,9 +13,9 @@ import {
   updateFormField,
   showInfoFields,
   showUrlFields,
-} from '../redux/actionCreators';
+} from 'redux/actionCreators';
 
-import Search from '../pages/Search/Search';
+import {Search} from 'pages';
 
 class SearchContainer extends React.Component {
   splitButtonField = () => ({

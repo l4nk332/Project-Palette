@@ -9,7 +9,7 @@ import {
   initialFormState,
   initialFiltersState,
   initialSortState,
-} from './initialStates';
+} from 'redux/initialStates';
 
 import {
   IS_LOADING,
@@ -28,9 +28,9 @@ import {
   TOGGLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   TOGGLE_SORT_ORDER,
-} from './actionTypes';
+} from 'redux/actionTypes';
 
-import {ASCENDING, DESCENDING} from '../utils/constants';
+import {ASCENDING, DESCENDING} from 'utils/constants';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
   switch (action.type) {

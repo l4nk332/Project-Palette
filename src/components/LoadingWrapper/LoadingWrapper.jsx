@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 
-import {toggleStaticBody} from '../../utils/misc';
+import {toggleStaticBody} from 'utils/misc';
 
-import Loader from '../Loader/Loader';
+import {Loader} from 'components';
 
 import s from './LoadingWrapper.sass';
 
