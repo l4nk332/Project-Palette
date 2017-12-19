@@ -9,7 +9,7 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -25,7 +25,20 @@ module.exports = {
       {
         test: /\.sass|\.scss$/,
         exclude: /node_modules/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          {loader: 'style-loader'},
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+              minimize: true,
+              localIdentName: '[name]_[local]___[hash:base64:5]',
+              importLoaders: 1,
+            },
+          },
+          {loader: 'sass-loader'},
+        ],
       },
       {
         test: /\.(ttf|eot|woff|woff2)$/,

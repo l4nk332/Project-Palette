@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Title from '../Title/Title';
 import Lead from '../Lead/Lead';
 
-import './Jumbotron.sass';
+import s from './Jumbotron.sass';
 
 const Jumbotron = ({title, children}) => (
-  <div className="jumbotron">
+  <div className={s.container}>
     <Title>{title}</Title>
     <Lead>{children}</Lead>
   </div>

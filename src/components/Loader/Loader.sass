@@ -18,41 +18,7 @@ $space__matrix_spread_y: 7em
   align-items: $align
   justify-content: $justify
 
-.logo__matrix
-  @include flex(column, nowrap, center, space-around)
-  height: $space__matrix-spread_y
-  opacity: 0
-  animation: 1s linear forwards 1s fade-in
-
-.logo__matrix__row
-  @include flex(row, nowrap, center, space-around)
-  width: $space__matrix-spread_x
-
-.logo__matrix__dot
-  background-color: $pink
-  width: 0.6em
-  height: 0.6em
-
-.color-anim1
-  animation: 2s linear 2s infinite color-transition, 2s linear alternate 2s round infinite
-.color-anim2
-  animation: 2s linear 2.1s infinite color-transition, 2s linear alternate 2.1s round infinite
-.color-anim3
-  animation: 2s linear 2.2s infinite color-transition, 2s linear alternate 2.2s round infinite
-.color-anim4
-  animation: 2s linear 2.3s infinite color-transition, 2s linear alternate 2.3s round infinite
-.color-anim5
-  animation: 2s linear 2.4s infinite color-transition, 2s linear alternate 2.4s round infinite
-.color-anim6
-  animation: 2s linear 2.5s infinite color-transition, 2s linear alternate 2.5s round infinite
-.color-anim7
-  animation: 2s linear 2.6s infinite color-transition, 2s linear alternate 2.6s round infinite
-.color-anim8
-  animation: 2s linear 2.7s infinite color-transition, 2s linear alternate 2.7s round infinite
-.color-anim9
-  animation: 2s linear 2.8s infinite color-transition, 2s linear alternate 2.8s round infinite
-
-.logo__container
+.container
   @include flex(column, nowrap, center, center)
   min-height: 100vh
   width: 100%
@@ -60,15 +26,58 @@ $space__matrix_spread_y: 7em
   position: absolute
   z-index: 2
 
-%logo__heading
+%heading
   font-size: 2em
   color: $black
 
-.logo__heading
-  @extend %logo__heading
+.heading
+  @extend %heading
   font-family: Helvetica
   font-weight: 100
   animation: 0.5s ease-in-out forwards fade-in
+
+.matrix
+  @include flex(column, nowrap, center, space-around)
+  height: $space__matrix-spread_y
+  opacity: 0
+  animation: 1s linear forwards 1s fade-in
+
+.row
+  @include flex(row, nowrap, center, space-around)
+  width: $space__matrix-spread_x
+
+%dot
+  background-color: $pink
+  width: 0.6em
+  height: 0.6em
+
+.anim1
+  @extend %dot
+  animation: 2s linear 2s infinite color-transition, 2s linear alternate 2s round infinite
+.anim2
+  @extend %dot
+  animation: 2s linear 2.1s infinite color-transition, 2s linear alternate 2.1s round infinite
+.anim3
+  @extend %dot
+  animation: 2s linear 2.2s infinite color-transition, 2s linear alternate 2.2s round infinite
+.anim4
+  @extend %dot
+  animation: 2s linear 2.3s infinite color-transition, 2s linear alternate 2.3s round infinite
+.anim5
+  @extend %dot
+  animation: 2s linear 2.4s infinite color-transition, 2s linear alternate 2.4s round infinite
+.anim6
+  @extend %dot
+  animation: 2s linear 2.5s infinite color-transition, 2s linear alternate 2.5s round infinite
+.anim7
+  @extend %dot
+  animation: 2s linear 2.6s infinite color-transition, 2s linear alternate 2.6s round infinite
+.anim8
+  @extend %dot
+  animation: 2s linear 2.7s infinite color-transition, 2s linear alternate 2.7s round infinite
+.anim9
+  @extend %dot
+  animation: 2s linear 2.8s infinite color-transition, 2s linear alternate 2.8s round infinite
 
 @keyframes fade-in
   0%

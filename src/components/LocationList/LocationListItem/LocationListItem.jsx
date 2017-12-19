@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './LocationListItem.sass';
+import s from './LocationListItem.sass';
 
 const LocationListItem = ({filePath, lineNumber, projectUrl}) => (
   <a
     href={`${projectUrl}/blob/master/${filePath}#L${lineNumber}`}
-    className="LocationListItem"
+    className={s.container}
     target="_blank"
   >
-    <div className="LocationListItem__filePath">{filePath}</div>
+    <div className={s.path}>{filePath}</div>
     :{lineNumber}
   </a>
 );

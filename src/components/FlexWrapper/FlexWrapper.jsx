@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './FlexWrapper.sass';
+import s from './FlexWrapper.sass';
 
 const FlexWrapper = ({children}) => (
-  <div className="flex-wrapper">{children}</div>
+  <div className={s.container}>{children}</div>
 );
 
 FlexWrapper.defaultProps = {

@@ -7,7 +7,7 @@ import TiArrowUp from 'react-icons/lib/ti/arrow-sorted-up';
 
 import {triggerIfEnterKey} from '../../utils/misc';
 
-import './SelectField.sass';
+import s from './SelectField.sass';
 
 class SelectField extends React.Component {
   constructor(props) {
@@ -59,16 +59,15 @@ class SelectField extends React.Component {
   render() {
     return (
       <section
-        className="select_container"
+        className={s.container}
         style={{width: this.props.width}}
         onBlur={this.handleBlur}
       >
         <header
           role="button"
           tabIndex="0"
-          className={classNames({
-            select_header: true,
-            select_is_open: this.state.isOpen,
+          className={classNames(s.header, {
+            [s.open]: this.state.isOpen,
           })}
           onMouseDown={() => {
             this.toggleDropdown();
@@ -79,19 +78,18 @@ class SelectField extends React.Component {
             });
           }}
         >
-          <span className="select_muted">
+          <span className={s.muted}>
             {this.state.selectedLabel
               ? this.state.selectedLabel
               : this.props.placeholder}
           </span>
-          <span className="select_muted">
+          <span className={s.muted}>
             {this.state.isOpen ? <TiArrowUp /> : <TiArrowDown />}
           </span>
         </header>
         <ul
-          className={classNames({
-            select_list: true,
-            select_is_open: this.state.isOpen,
+          className={classNames(s.list, {
+            [s.open]: this.state.isOpen,
           })}
         >
           {this.props.values.map((value, idx) => (
@@ -100,7 +98,7 @@ class SelectField extends React.Component {
               tabIndex="0"
               key={idx}
               className={classNames({
-                selected: value.label === this.state.selectedLabel,
+                [s.selected]: value.label === this.state.selectedLabel,
               })}
               onMouseDown={() => {
                 this.props.clickHandler(value.value);

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './IconAssistedField.sass';
+import s from './IconAssistedField.sass';
 
 const IconAssistedField = ({Field, Icon}) => (
-  <section className="assisted_field_container">
+  <section className={s.container}>
     {Field}
-    <figure className="assisted_field_icon">
+    <figure className={s.icon}>
       {Icon}
     </figure>
   </section>

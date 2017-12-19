@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Paragraph.sass';
+import s from './Paragraph.sass';
 
-const Paragraph = ({children}) => <p className="paragraph">{children}</p>;
+const Paragraph = ({children}) => <p className={s.container}>{children}</p>;
 
 Paragraph.defaultProps = {
   children: null,

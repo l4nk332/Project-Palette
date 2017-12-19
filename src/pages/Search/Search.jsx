@@ -20,10 +20,10 @@ import Paragraph from '../../components/Paragraph/Paragraph';
 import Anchor from '../../components/Anchor/Anchor';
 import Form from '../../components/Form/Form';
 
-import './Search.sass';
+import s from './Search.sass';
 
 const Search = ({formFields}) => (
-  <main className="search-page">
+  <main className={s.container}>
     <FlexWrapper>
       <SplitView
         left={[

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import Segment from './Segment/Segment';
 
-import './SegmentRule.sass';
+import s from './SegmentRule.sass';
 
 const SegmentRule = ({colors}) => (
-  <section className="color-segments">
+  <section className={s.container}>
     {colors.map((color, idx) => <Segment color={color} key={idx} />)}
   </section>
 );

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Lead.sass';
+import s from './Lead.sass';
 
-const Lead = ({children}) => <p className="lead">{children}</p>;
+const Lead = ({children}) => <p className={s.container}>{children}</p>;
 
 Lead.defaultProps = {
   children: '',

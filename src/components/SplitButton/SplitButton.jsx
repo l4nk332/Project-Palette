@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {triggerIfEnterKey} from '../../utils/misc';
 
-import './SplitButton.sass';
+import s from './SplitButton.sass';
 
 const SplitButton = ({splits}) => (
-  <div className="split-button">
+  <div className={s.container}>
     {splits.map(({text, isActive, handler}, idx) => (
       <span
         key={idx}
         role="button"
-        className={isActive ? 'active' : ''}
+        className={classNames({[s.active]: isActive})}
         tabIndex="0"
         onKeyDown={event => {
           triggerIfEnterKey(event, handler);

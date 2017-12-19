@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import LocationListItem from './LocationListItem/LocationListItem';
 import {getAlphaBackgroundColor} from '../../utils/color-manipulation';
 
-import './LocationList.sass';
+import s from './LocationList.sass';
 
 const alphaBackgroundColor = color => ({
   backgroundColor: getAlphaBackgroundColor(color),
 });
 
 const LocationList = ({color, locations, projectUrl}) => (
-  <section className="location-list-wrapper">
+  <section className={s.container}>
     <div
-      className="location-list"
+      className={s.list}
       style={alphaBackgroundColor(color)}
     >
       {locations.map(({filePath, lineNumber}, idx) => (

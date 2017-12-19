@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Navbar.sass';
+import s from './Navbar.sass';
 
-const Navbar = ({children}) => <nav className="navbar">{children}</nav>;
+const Navbar = ({children}) => <nav className={s.container}>{children}</nav>;
 
 Navbar.defaultProps = {
   children: null,

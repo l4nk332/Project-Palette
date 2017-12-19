@@ -9,7 +9,7 @@ import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise';
 
 import {openColorDetail} from '../../redux/actionCreators';
 
-import './ColorSwatch.sass';
+import s from './ColorSwatch.sass';
 
 import {getTextColor} from '../../utils/color-manipulation';
 import {toggleStaticBody} from '../../utils/misc';
@@ -42,16 +42,16 @@ class ColorSwatch extends React.Component {
   render = () => (
     <div
       style={{backgroundColor: this.normalizedColor}}
-      className="color-swatch"
+      className={s.container}
     >
-      <div className="icon-bar">
+      <div className={s.icons}>
         <CopyToClipboard text={this.normalizedColor}>
           <a title="Copy to Clipboard">
             {this.state.hasCopied ? (
               <TiTick style={{color: this.textColor}} />
             ) : (
               <TiClipboard
-                className="icon"
+                className={s.icon}
                 onClick={this.copiedToClipboard}
                 style={{color: this.textColor}}
               />
@@ -61,7 +61,7 @@ class ColorSwatch extends React.Component {
         <a title="Expand Color Details">
           <TiArrowMaximise
             style={{color: this.textColor}}
-            className="icon"
+            className={s.icon}
             onClick={() => {
               this.openColorDetail(this.color);
             }}

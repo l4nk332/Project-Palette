@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getTextColor} from '../../utils/color-manipulation';
 
-import './FixedWrapper.sass';
+import s from './FixedWrapper.sass';
 
 const readableColors = color => ({
   color: getTextColor(color),
@@ -10,7 +10,7 @@ const readableColors = color => ({
 });
 
 const FixedWrapper = ({color, children}) => (
-  <div className="fixed-wrapper" style={readableColors(color)}>
+  <div className={s.container} style={readableColors(color)}>
     {children}
   </div>
 );

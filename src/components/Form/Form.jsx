@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Form.sass';
+import s from './Form.sass';
 
 const Form = ({fields}) => (
-  <form className="form">
+  <form className={s.container}>
     {fields.map((field, idx) => (
       <section
-        className="form-field"
+        className={s.field}
         style={field.isHidden ? {display: 'none'} : {}}
         key={idx}
       >

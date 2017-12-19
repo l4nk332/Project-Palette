@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Button.sass';
+import s from './Button.sass';
 
 const Button = ({clickHandler, isDisabled, children}) => (
-  <button onClick={clickHandler} disabled={isDisabled} className="button">
+  <button onClick={clickHandler} disabled={isDisabled} className={s.button}>
     {children}
   </button>
 );

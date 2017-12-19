@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './Toggleable.sass';
+import s from './Toggleable.sass';
 
 const Toggleable = ({toggled, children}) => (
   <span
-    className={classNames({
-      toggleable: true,
-      toggled,
+    className={classNames(s.container, {
+      [s.toggled]: toggled,
     })}
   >
     {children}

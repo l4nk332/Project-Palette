@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './SplitView.sass';
+import s from './SplitView.sass';
 
 const SplitView = ({left, right}) => (
-  <section className="split-view">
-    <section className="half-split dark">
+  <section className={s.container}>
+    <section className={s.dark}>
       {left}
     </section>
-    <section className="half-split light">
+    <section className={s.light}>
       {right}
     </section>
   </section>

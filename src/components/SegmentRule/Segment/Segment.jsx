@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Segment.sass';
+import s from './Segment.sass';
 
 const Segment = ({color}) => (
-  <span className="segment" style={{backgroundColor: color}} />
+  <span className={s.container} style={{backgroundColor: color}} />
 );
 
 Segment.defaultProps = {

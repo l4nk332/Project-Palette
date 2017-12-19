@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {triggerIfEnterKey} from '../../utils/misc';
 
-import './TextField.sass';
+import s from './TextField.sass';
 
 const TextField = ({
   placeholderText,
@@ -13,6 +13,7 @@ const TextField = ({
   focusHandler,
 }) => (
   <input
+    className={s.container}
     type="text"
     placeholder={placeholderText}
     value={value}

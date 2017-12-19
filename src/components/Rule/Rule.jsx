@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Rule.sass';
+import s from './Rule.sass';
 
-const Rule = ({color}) => <hr className="rule" style={{borderColor: color}} />;
+const Rule = ({color}) => (
+  <hr className={s.container} style={{borderColor: color}} />
+);
 
 Rule.defaultProps = {
   color: '#000',

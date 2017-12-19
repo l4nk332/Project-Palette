@@ -2,7 +2,7 @@ $white: #e6e6e6
 $black: #39393a
 $turquoise: #17a398
 
-.select_container
+.container
   width: 85px
   color: $white
   position: relative
@@ -12,12 +12,12 @@ $turquoise: #17a398
   transition: background 150ms ease-in-out, border 150ms ease-in-out
   cursor: pointer
 
-%select_item
+%item
   outline: 0
   padding: 8px 10px
 
-.select_header
-  @extend %select_item
+.header
+  @extend %item
   background-color: $black
   border-radius: 2px
   display: flex
@@ -27,28 +27,28 @@ $turquoise: #17a398
   padding-bottom: 7px
   border-bottom: 3px solid $black
   outline: 0
-  &.select_is_open
+  &.open
     border-radius: 2px 2px 0px 0px
     border-color: $turquoise
   &:focus, &:hover
     background: lighten($black, 10%)
-    &:not(.select_is_open)
+    &:not(.open)
       border-color: lighten($black, 10%)
 
-.select_muted
+.muted
   color: #949495
 
-.select_list
+.list
   width: 100%
   position: absolute
   list-style: none
   padding: 0
   margin: 0
   display: none
-  &.select_is_open
+  &.open
     display: block
   li
-    @extend %select_item
+    @extend %item
     background: $black
     &:focus, &:hover
       background: lighten($black, 15%)
