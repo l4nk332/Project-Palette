@@ -34,13 +34,21 @@ $space__matrix_spread_y: 7em
   @extend %heading
   font-family: Helvetica
   font-weight: 100
-  animation: 0.5s ease-in-out forwards fade-in
+  animation-name: fade-in
+  animation-duration: 0.5s
+  animation-timing-function: ease-in-out
+  animation-fill-mode: forwards
 
 .matrix
   @include flex(column, nowrap, center, space-around)
   height: $space__matrix-spread_y
   opacity: 0
   animation: 1s linear forwards 1s fade-in
+  animation-name: fade-in
+  animation-duration: 1s
+  animation-timing-function: linear
+  animation-fill-mode: forwards
+  animation-delay: 1s
 
 .row
   @include flex(row, nowrap, center, space-around)
@@ -51,33 +59,57 @@ $space__matrix_spread_y: 7em
   width: 0.6em
   height: 0.6em
 
+%animation
+  animation-name: color-transition, round
+  animation-iteration-count: infinite
+  animation-timing-function: linear
+  animation-duration: 2s
+  animation-direction: alternate
+
 .anim1
   @extend %dot
-  animation: 2s linear 2s infinite color-transition, 2s linear alternate 2s round infinite
+  @extend %animation
+  animation-delay: 2s
+
 .anim2
   @extend %dot
-  animation: 2s linear 2.1s infinite color-transition, 2s linear alternate 2.1s round infinite
+  @extend %animation
+  animation-delay: 2.1s
+
 .anim3
   @extend %dot
-  animation: 2s linear 2.2s infinite color-transition, 2s linear alternate 2.2s round infinite
+  @extend %animation
+  animation-delay: 2.2s
+
 .anim4
   @extend %dot
-  animation: 2s linear 2.3s infinite color-transition, 2s linear alternate 2.3s round infinite
+  @extend %animation
+  animation-delay: 2.3s
+
 .anim5
   @extend %dot
-  animation: 2s linear 2.4s infinite color-transition, 2s linear alternate 2.4s round infinite
+  @extend %animation
+  animation-delay: 2.4s
+
 .anim6
   @extend %dot
-  animation: 2s linear 2.5s infinite color-transition, 2s linear alternate 2.5s round infinite
+  @extend %animation
+  animation-delay: 2.5s
+
 .anim7
   @extend %dot
-  animation: 2s linear 2.6s infinite color-transition, 2s linear alternate 2.6s round infinite
+  @extend %animation
+  animation-delay: 2.6s
+
 .anim8
   @extend %dot
-  animation: 2s linear 2.7s infinite color-transition, 2s linear alternate 2.7s round infinite
+  @extend %animation
+  animation-delay: 2.7s
+
 .anim9
   @extend %dot
-  animation: 2s linear 2.8s infinite color-transition, 2s linear alternate 2.8s round infinite
+  @extend %animation
+  animation-delay: 2.8s
 
 @keyframes fade-in
   0%
