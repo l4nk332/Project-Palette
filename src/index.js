@@ -7,7 +7,7 @@ import 'normalize.css';
 
 import store from 'redux/store';
 
-import 'base.sass';
+import 'styles/base.sass';
 
 import {AppContainer} from 'containers';
 

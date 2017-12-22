@@ -1,22 +1,10 @@
-$yellow: #faa916
-$orange: #f17105
-$blue: #007fff
-$turquoise: #17a398
-$white: #e6e6e6
-$black: #39393a
-$green: #679436
-$red: #f24236
-$pink: #c33c54
-$purple: #8f65af
-
 ::selection
   background-color: $pink
   color: $turquoise
 
 .container
   max-width: 1000px
-  display: flex
-  flex-flow: row wrap
+  @include flex(row, wrap, center, center)
   margin: 10px
   color: $black
   background: $white

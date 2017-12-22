@@ -1,0 +1,11 @@
+@mixin flex($dir, $wrap, $align, $justify)
+  display: flex
+  flex-flow: $dir $wrap
+  align-items: $align
+  justify-content: $justify
+
+@mixin overflow-ellipsis($direction)
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  direction: $direction
