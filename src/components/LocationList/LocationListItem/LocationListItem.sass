@@ -1,9 +1,7 @@
 .container
   color: inherit
-  display: flex
-  flex-flow: row nowrap
-  align-items: center
-  justify-content: flex-start
+  font-family: $secondary-font
+  @include flex(row, nowrap, center, flex-start)
   padding: 0.5em 0
   text-decoration: none
   border-bottom: 1px solid transparent
@@ -11,7 +9,4 @@
     border-bottom: 1px solid currentColor
 
 .path
-  text-overflow: ellipsis
-  overflow: hidden
-  white-space: nowrap
-  direction: rtl
+  @include overflow-ellipsis(rtl)

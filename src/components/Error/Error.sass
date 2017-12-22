@@ -1,24 +1,14 @@
-$black: #39393a
-$white: #e6e6e6
-
-@mixin flex($dir, $wrap, $align, $justify)
-  display: flex
-  flex-flow: $dir $wrap
-  align-items: $align
-  justify-content: $justify
-
 .container
   @include flex(column, nowrap, center, center)
   min-height: 100vh
   width: 100%
   background-color: $white
   color: $black
-  font-family: Helvetica
-  font-weight: lighter
+  font-weight: $lighter
 
 .heading
   font-size: 2em
-  font-weight: 100
+  font-weight: $lightest
 
 .rule
   width: 1em

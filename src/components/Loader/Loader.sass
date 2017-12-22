@@ -1,22 +1,5 @@
-$yellow: #faa916
-$orange: #f17105
-$blue: #007fff
-$turquoise: #17a398
-$white: #e6e6e6
-$black: #39393a
-$green: #679436
-$red: #f24236
-$pink: #c33c54
-$purple: #8f65af
-
 $space__matrix_spread_x: 7em
 $space__matrix_spread_y: 7em
-
-@mixin flex($dir, $wrap, $align, $justify)
-  display: flex
-  flex-flow: $dir $wrap
-  align-items: $align
-  justify-content: $justify
 
 .container
   @include flex(column, nowrap, center, center)
@@ -24,7 +7,7 @@ $space__matrix_spread_y: 7em
   width: 100%
   background-color: $white
   position: absolute
-  z-index: 2
+  z-index: $medium
 
 %heading
   font-size: 2em
@@ -32,8 +15,7 @@ $space__matrix_spread_y: 7em
 
 .heading
   @extend %heading
-  font-family: Helvetica
-  font-weight: 100
+  font-weight: $lightest
   animation-name: fade-in
   animation-duration: 0.5s
   animation-timing-function: ease-in-out

@@ -38,6 +38,15 @@ module.exports = {
             },
           },
           {loader: 'sass-loader'},
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: [
+                path.resolve(__dirname, './src/styles/_variables.sass'),
+                path.resolve(__dirname, './src/styles/_mixins.sass'),
+              ],
+            },
+          },
         ],
       },
       {

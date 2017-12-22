@@ -1,14 +1,9 @@
-$white: #e6e6e6
-$black: #39393a
-$turquoise: #17a398
-
 .container
   width: 85px
   color: $white
   position: relative
-  font-family: Helvetica
   font-size: 14px
-  font-weight: lighter
+  font-weight: $lighter
   transition: background 150ms ease-in-out, border 150ms ease-in-out
   cursor: pointer
 
@@ -20,10 +15,7 @@ $turquoise: #17a398
   @extend %item
   background-color: $black
   border-radius: 2px
-  display: flex
-  flex-flow: row nowrap
-  align-items: center
-  justify-content: space-between
+  @include flex(row, nowrap, center, space-between)
   padding-bottom: 7px
   border-bottom: 3px solid $black
   outline: 0
