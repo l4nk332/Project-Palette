@@ -157,6 +157,7 @@ describe('Test HSL(A) Regular Expression Parsing', () => {
 describe('Test HTML Color Name Parsing', () => {
   test('Should match valid Html color names', () => {
     expect(htmlColorName('darkred')).toEqual(['darkred']);
+    expect(htmlColorName('"darkred"')).toEqual(['darkred']);
     expect(htmlColorName('aliceblue, darkred')).toEqual([
       'aliceblue',
       'darkred',
@@ -208,6 +209,9 @@ describe('Test HTML Color Name Parsing', () => {
     expect(htmlColorName('bluebyou')).toBeNull();
     expect(htmlColorName('steelblues')).toBeNull();
     expect(htmlColorName('$blue')).toBeNull();
+    expect(htmlColorName('.blue')).toBeNull();
+    expect(htmlColorName('#blue')).toBeNull();
+    expect(htmlColorName('-blue')).toBeNull();
   });
 });
 
