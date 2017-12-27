@@ -5,6 +5,7 @@
     "function-paren-newline": ["error", "consistent"],
     "object-curly-spacing": ["error", "never"],
     "no-nested-ternary": [0],
+    "no-shadow": [0],
     "arrow-body-style": ["error", "as-needed"],
     "arrow-parens": ["error", "as-needed"],
     "jsx-a11y/anchor-is-valid": "off",
@@ -12,6 +13,7 @@
     "react/no-array-index-key": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off"
