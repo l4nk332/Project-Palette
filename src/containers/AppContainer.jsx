@@ -1,48 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {
-  Switch,
-  Route,
-  withRouter,
-  Link,
-} from 'react-router-dom';
+import {Switch, Route, withRouter, Link} from 'react-router-dom';
 
-import {
-  SearchContainer,
-  PaletteContainer,
-} from 'containers';
+import {clearError} from 'redux/actionCreators';
 
-import {
-  LoadingWrapper,
-  Anchor,
-  Error,
-} from 'components';
+import {SearchContainer, PaletteContainer} from 'containers';
 
-const AppContainer = ({isLoading}) => (
+import {LoadingWrapper, Anchor, Error} from 'components';
+
+const AppContainer = ({isLoading, isError, clearError}) => (
   <LoadingWrapper isLoading={isLoading}>
-    <Switch>
-      <Route exact path="/" component={SearchContainer} />
-      <Route exact path="/:name/:project" component={PaletteContainer} />
-      <Route
-        render={() => (
-          <Error
-            heading="404"
-            message="Looking for something?"
-            link={<Link to="/"><Anchor url="/">Back to Search</Anchor></Link>}
-          />
-        )}
+    {isError ? (
+      <Error
+        heading="404"
+        message="Looking for something?"
+        clickHandler={clearError}
+        link={
+          <Link to="/">
+            <Anchor url="/">Back to Search</Anchor>
+          </Link>
+        }
       />
-    </Switch>
+    ) : (
+      <Switch>
+        <Route exact path="/" component={SearchContainer} />
+        <Route exact path="/:name/:project" component={PaletteContainer} />
+        <Route
+          render={() => (
+            <Error
+              heading="404"
+              message="Looking for something?"
+              link={
+                <Link to="/">
+                  <Anchor url="/">Back to Search</Anchor>
+                </Link>
+              }
+            />
+          )}
+        />
+      </Switch>
+    )}
   </LoadingWrapper>
 );
 
+const mapDispatchToProps = {
+  clearError,
+};
+
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
+  isError: state.error,
 });
+
+AppContainer.defaultProps = {
+  isError: null,
+};
 
 AppContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.object,
+  clearError: PropTypes.func.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps)(AppContainer));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer));
