@@ -168,7 +168,7 @@ const HTML_COLOR_NAMES = [
 // Html Color Names
 const htmlColorName = str => {
   const normalizedStringArray = str
-    .replace(/[^a-z]/gi, ' ')
+    .replace(/[^a-zA-Z$@.#-]/gi, ' ')
     .toLowerCase()
     .split(/\s/gi);
 
