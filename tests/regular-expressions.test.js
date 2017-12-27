@@ -207,6 +207,7 @@ describe('Test HTML Color Name Parsing', () => {
     expect(htmlColorName('lightslategraymediumorchiddeepskyblue')).toBeNull();
     expect(htmlColorName('bluebyou')).toBeNull();
     expect(htmlColorName('steelblues')).toBeNull();
+    expect(htmlColorName('$blue')).toBeNull();
   });
 });
 
