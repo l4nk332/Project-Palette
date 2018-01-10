@@ -1,16 +1,18 @@
 class SvgGenerator {
   constructor(colors) {
     this.colors = colors;
+    this.numberOfColumns = 4;
+    this.numberOfRows = Math.ceil(this.colors.length / this.numberOfColumns);
     this.swatchWidth = 50;
     this.swatchHeight = 50;
-    this.svgWidth = 800;
-    this.svgHeight = (this.svgWidth / this.swatchWidth) * this.swatchHeight;
+    this.svgWidth = this.numberOfColumns * this.swatchWidth;
+    this.svgHeight = this.numberOfRows * this.swatchHeight;
   }
 
   calculateCoordinates(idx) {
     return {
-      x: ((this.svgWidth / this.swatchWidth) % (idx + 1)) * this.swatchWidth,
-      y: ((this.svgWidth / this.swatchWidth) % (idx + 1)) * this.swatchHeight,
+      x: (idx % this.numberOfColumns) * this.swatchWidth,
+      y: Math.floor(idx / this.numberOfColumns) * this.swatchHeight,
     };
   }
 
