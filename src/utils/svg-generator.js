@@ -1,14 +1,6 @@
-const tinycolor = require('tinycolor2');
+import {getTextColor} from './color-manipulation';
 
-const getTextColor = color => {
-  const backgroundIsDark = tinycolor(color).isDark();
-  const backgroundIsTransparent = tinycolor(color).getAlpha() < 0.6;
-  const textShouldBeDark = backgroundIsTransparent || !backgroundIsDark;
-
-  return textShouldBeDark ? '#0f0f0f' : '#f4f2f3';
-};
-
-class SvgGenerator {
+export default class SvgGenerator {
   constructor(colors, projectName) {
     this.colors = colors;
     this.projectName = projectName;
@@ -69,5 +61,3 @@ class SvgGenerator {
     );
   }
 }
-
-module.exports = SvgGenerator;
