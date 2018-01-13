@@ -1,10 +1,21 @@
+const tinycolor = require('tinycolor2');
+
+const getTextColor = color => {
+  const backgroundIsDark = tinycolor(color).isDark();
+  const backgroundIsTransparent = tinycolor(color).getAlpha() < 0.6;
+  const textShouldBeDark = backgroundIsTransparent || !backgroundIsDark;
+
+  return textShouldBeDark ? '#0f0f0f' : '#f4f2f3';
+};
+
 class SvgGenerator {
-  constructor(colors) {
+  constructor(colors, projectName) {
     this.colors = colors;
+    this.projectName = projectName;
     this.numberOfColumns = 4;
     this.numberOfRows = Math.ceil(this.colors.length / this.numberOfColumns);
-    this.swatchWidth = 50;
-    this.swatchHeight = 50;
+    this.swatchWidth = 250;
+    this.swatchHeight = 200;
     this.svgWidth = this.numberOfColumns * this.swatchWidth;
     this.svgHeight = this.numberOfRows * this.swatchHeight;
   }
@@ -19,14 +30,25 @@ class SvgGenerator {
   generateSwatches() {
     const swatches = this.colors.map((color, idx) => {
       const {x, y} = this.calculateCoordinates(idx);
+      const paddingTB = 20;
+      const paddingLR = 10;
+      const colorWidth = this.swatchWidth - paddingTB;
+      const colorHeight = this.swatchHeight - paddingLR;
+
       return `
         <rect fill="${color}"
-              width="${this.swatchWidth}"
-              height="${this.swatchHeight}"
-              x="${x}"
-              y="${y}"
+              width="${colorWidth - paddingLR}"
+              height="${colorHeight - paddingTB}"
+              x="${x + (paddingLR / 2)}"
+              y="${y + (paddingTB / 4)}"
               rx="2"
               ry="2"></rect>
+        <text x="${x + (paddingLR * 2)}"
+              y="${y + (paddingTB * 2)}"
+              fill="${getTextColor(color)}"
+              style="font-size: 16px; font-family: Helvetica;">
+          ${color}
+        </text>
       `.trim();
     });
 
@@ -40,7 +62,9 @@ class SvgGenerator {
            baseProfile="full"
            width="${this.svgWidth}" height="${this.svgHeight}"
            viewBox="0 0 ${this.svgWidth} ${this.svgHeight}"
-           xmlns="http://www.w3.org/2000/svg">${this.generateSwatches()}</svg>
+           xmlns="http://www.w3.org/2000/svg">
+        ${this.generateSwatches()}
+      </svg>
       `.trim().replace(/\s{2,}/g, ' ')
     );
   }
