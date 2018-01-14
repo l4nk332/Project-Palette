@@ -37,12 +37,6 @@ class SelectField extends React.Component {
     });
   };
 
-  openDropdown = () => {
-    this.setState({
-      isOpen: true,
-    });
-  };
-
   handleBlur = event => {
     const {currentTarget} = event;
 

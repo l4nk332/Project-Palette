@@ -41,6 +41,7 @@ import {
   SelectField,
   IconAssistedField,
   Toggleable,
+  DownloadDropdown,
 } from 'components';
 
 class PaletteContainer extends React.Component {
@@ -79,7 +80,7 @@ class PaletteContainer extends React.Component {
               : color
   )
 
-  renderSwatches = () => {
+  getFilteredSortedColorList = () => {
     const filteredPalette = Object.keys(this.props.palette)
       .filter(this.search)
       .filter(color => (
@@ -104,11 +105,24 @@ class PaletteContainer extends React.Component {
       );
     }
 
-
-    return sortedPalette.map(color => (
-      <ColorSwatch key={color} color={color} />
-    ));
+    return sortedPalette;
   }
+
+  getFilteredSortedPalette = () => {
+    const filteredSortedPalette = {};
+
+    this.getFilteredSortedColorList().forEach(color => {
+      filteredSortedPalette[color] = this.props.palette[color];
+    });
+
+    return filteredSortedPalette;
+  }
+
+  renderSwatches = () => (
+    this.getFilteredSortedColorList().map(color => (
+      <ColorSwatch key={color} color={color} />
+    ))
+  )
 
   renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
@@ -173,6 +187,10 @@ class PaletteContainer extends React.Component {
               this.props.updateFilterText('');
             }}
           />
+          <DownloadDropdown
+            projectName={this.props.match.params.project}
+            palette={this.getFilteredSortedPalette()}
+          />
         </Navbar>
         <Grid>{this.renderSwatches()}</Grid>
       </div>
@@ -235,5 +253,5 @@ PaletteContainer.propTypes = {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PaletteContainer)
+  connect(mapStateToProps, mapDispatchToProps)(PaletteContainer),
 );
