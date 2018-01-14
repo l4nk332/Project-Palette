@@ -19,6 +19,18 @@ class SelectField extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setWrapperRef = node => {
+    this.wrapperRef = node;
+  }
+
   setSelectedLabel = label => {
     this.setState({
       selectedLabel: label,
@@ -37,23 +49,10 @@ class SelectField extends React.Component {
     });
   };
 
-  openDropdown = () => {
-    this.setState({
-      isOpen: true,
-    });
-  };
-
-  handleBlur = event => {
-    const {currentTarget} = event;
-
-    // This setTimeout is necessary because the element won't be
-    // focused as the blur event happens, which will cause bubbling up
-    // to occur.
-    setTimeout(() => {
-      if (!currentTarget.contains(document.activeElement)) {
-        this.closeDropdown();
-      }
-    }, 0);
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.closeDropdown();
+    }
   }
 
   render() {
@@ -61,7 +60,6 @@ class SelectField extends React.Component {
       <section
         className={s.container}
         style={{width: this.props.width}}
-        onBlur={this.handleBlur}
       >
         <header
           role="button"
@@ -69,7 +67,7 @@ class SelectField extends React.Component {
           className={classNames(s.header, {
             [s.open]: this.state.isOpen,
           })}
-          onMouseDown={() => {
+          onClick={() => {
             this.toggleDropdown();
           }}
           onKeyDown={event => {
@@ -87,36 +85,39 @@ class SelectField extends React.Component {
             {this.state.isOpen ? <TiArrowUp /> : <TiArrowDown />}
           </span>
         </header>
-        <ul
-          className={classNames(s.list, {
-            [s.open]: this.state.isOpen,
-          })}
-        >
-          {this.props.values.map((value, idx) => (
-            <li
-              role="button"
-              tabIndex="0"
-              key={idx}
-              className={classNames({
-                [s.selected]: value.label === this.state.selectedLabel,
-              })}
-              onMouseDown={() => {
-                this.props.clickHandler(value.value);
-                this.setSelectedLabel(value.label);
-                this.closeDropdown();
-              }}
-              onKeyDown={event => {
-                triggerIfEnterKey(event, () => {
+        {this.state.isOpen && (
+          <ul
+            className={classNames(s.list, {
+              [s.open]: this.state.isOpen,
+            })}
+            ref={this.setWrapperRef}
+          >
+            {this.props.values.map((value, idx) => (
+              <li
+                role="button"
+                tabIndex="0"
+                key={idx}
+                className={classNames({
+                  [s.selected]: value.label === this.state.selectedLabel,
+                })}
+                onMouseDown={() => {
                   this.props.clickHandler(value.value);
                   this.setSelectedLabel(value.label);
                   this.closeDropdown();
-                });
-              }}
-            >
-              {value.label}
-            </li>
-          ))}
-        </ul>
+                }}
+                onKeyDown={event => {
+                  triggerIfEnterKey(event, () => {
+                    this.props.clickHandler(value.value);
+                    this.setSelectedLabel(value.label);
+                    this.closeDropdown();
+                  });
+                }}
+              >
+                {value.label}
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     );
   }

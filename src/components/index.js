@@ -24,6 +24,7 @@ import SplitView from './SplitView/SplitView';
 import TextField from './TextField/TextField';
 import Title from './Title/Title';
 import Toggleable from './Toggleable/Toggleable';
+import DownloadDropdown from './DownloadDropdown/DownloadDropdown';
 
 export {
   Anchor,
@@ -52,4 +53,5 @@ export {
   TextField,
   Title,
   Toggleable,
+  DownloadDropdown,
 };
