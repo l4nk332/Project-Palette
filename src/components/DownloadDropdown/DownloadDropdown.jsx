@@ -20,6 +20,18 @@ class DownloadDropdown extends React.Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setWrapperRef = node => {
+    this.wrapperRef = node;
+  }
+
   toggleDropdown = () => {
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
@@ -52,69 +64,64 @@ class DownloadDropdown extends React.Component {
     );
   }
 
-  handleBlur = event => {
-    const {currentTarget} = event;
-
-    // This setTimeout is necessary because the element won't be
-    // focused as the blur event happens, which will cause bubbling up
-    // to occur.
-    setTimeout(() => {
-      if (!currentTarget.contains(document.activeElement)) {
-        this.closeDropdown();
-      }
-    }, 0);
+  handleClickOutside = event => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.closeDropdown();
+    }
   }
 
   render() {
     return (
       <section
         className={s.container}
-        onBlur={this.handleBlur}
       >
         <DownloadIcon
           className={s.icon}
           onClick={this.toggleDropdown}
         />
-        <ul
-          className={classNames(s.list, {
-            [s.open]: this.state.isOpen,
-          })}
-        >
-          <li
-            role="button"
-            tabIndex="0"
-            key={1}
-            onMouseDown={() => {
-              this.downloadSvg();
-              this.closeDropdown();
-            }}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, () => {
-              this.downloadSvg();
-              this.closeDropdown();
-              });
-            }}
+        {this.state.isOpen && (
+          <ul
+            className={classNames(s.list, {
+              [s.open]: this.state.isOpen,
+            })}
+            ref={this.setWrapperRef}
           >
-            SVG
-          </li>
-          <li
-            role="button"
-            tabIndex="0"
-            key={2}
-            onMouseDown={() => {
-              this.downloadJson();
-              this.closeDropdown();
-            }}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, () => {
-              this.downloadJson();
-              this.closeDropdown();
-              });
-            }}
-          >
-            JSON
-          </li>
-        </ul>
+            <li
+              role="button"
+              tabIndex="0"
+              key={1}
+              onMouseDown={() => {
+                this.downloadSvg();
+                this.closeDropdown();
+              }}
+              onKeyDown={event => {
+                triggerIfEnterKey(event, () => {
+                this.downloadSvg();
+                this.closeDropdown();
+                });
+              }}
+            >
+              SVG
+            </li>
+            <li
+              role="button"
+              tabIndex="0"
+              key={2}
+              onMouseDown={() => {
+                this.downloadJson();
+                this.closeDropdown();
+              }}
+              onKeyDown={event => {
+                triggerIfEnterKey(event, () => {
+                this.downloadJson();
+                this.closeDropdown();
+                });
+              }}
+            >
+              JSON
+            </li>
+          </ul>
+        )}
       </section>
     );
   }
