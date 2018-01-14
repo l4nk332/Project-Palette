@@ -9,6 +9,7 @@ import lodashSortBy from 'lodash/sortBy';
 import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
 import SortAscIcon from 'react-icons/lib/fa/sort-amount-asc';
 import FilterIcon from 'react-icons/lib/fa/filter';
+import ArrowBack from 'react-icons/lib/md/arrow-back';
 
 import {
   asyncFetchColorPalette,
@@ -56,30 +57,6 @@ class PaletteContainer extends React.Component {
     visibility: this.props.colorDetail ? 'hidden' : 'visible',
   });
 
-  search = color => color.includes(this.props.filterText)
-
-  filterBy = color => (
-    this.props.filterBy === LIGHTNESS
-      ? tinycolor(color).isLight()
-      : this.props.filterBy === DARKNESS
-        ? tinycolor(color).isDark()
-        : true
-  )
-
-  sortColor = color => (
-    this.props.sortBy === USAGE
-      ? this.props.palette[color].locations.length
-      : this.props.sortBy === BRIGHTNESS
-        ? tinycolor(color).getBrightness()
-        : this.props.sortBy === LUMINESCENCE
-          ? tinycolor(color).getLuminance()
-          : this.props.sortBy === TRANSPARENCY
-            ? tinycolor(color).getAlpha()
-            : this.props.sortBy === ALPHABETICAL
-              ? color
-              : color
-  )
-
   getFilteredSortedColorList = () => {
     const filteredPalette = Object.keys(this.props.palette)
       .filter(this.search)
@@ -118,6 +95,30 @@ class PaletteContainer extends React.Component {
     return filteredSortedPalette;
   }
 
+  search = color => color.includes(this.props.filterText)
+
+  filterBy = color => (
+    this.props.filterBy === LIGHTNESS
+      ? tinycolor(color).isLight()
+      : this.props.filterBy === DARKNESS
+        ? tinycolor(color).isDark()
+        : true
+  )
+
+  sortColor = color => (
+    this.props.sortBy === USAGE
+      ? this.props.palette[color].locations.length
+      : this.props.sortBy === BRIGHTNESS
+        ? tinycolor(color).getBrightness()
+        : this.props.sortBy === LUMINESCENCE
+          ? tinycolor(color).getLuminance()
+          : this.props.sortBy === TRANSPARENCY
+            ? tinycolor(color).getAlpha()
+            : this.props.sortBy === ALPHABETICAL
+              ? color
+              : color
+  )
+
   renderSwatches = () => (
     this.getFilteredSortedColorList().map(color => (
       <ColorSwatch key={color} color={color} />
@@ -133,6 +134,22 @@ class PaletteContainer extends React.Component {
     <div>
       <div style={this.setVisibility()}>
         <Navbar>
+          <h1
+            style={{
+              margin: '0 auto 0 0',
+              fontWeight: 500,
+              fontSize: '1.5em',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              display: 'block',
+            }}
+            onClick={() => { this.props.history.push('/'); }}
+          >
+            <ArrowBack style={{marginRight: '10px', verticalAlign: 'top'}} />
+            {this.props.match.params.project}
+          </h1>
           <IconAssistedField
             Field={
               <SelectField
@@ -225,6 +242,7 @@ PaletteContainer.defaultProps = {
 };
 
 PaletteContainer.propTypes = {
+  history: PropTypes.object.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       name: PropTypes.string,
