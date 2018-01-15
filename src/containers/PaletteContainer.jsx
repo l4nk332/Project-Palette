@@ -9,7 +9,6 @@ import lodashSortBy from 'lodash/sortBy';
 import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
 import SortAscIcon from 'react-icons/lib/fa/sort-amount-asc';
 import FilterIcon from 'react-icons/lib/fa/filter';
-import ArrowBack from 'react-icons/lib/md/arrow-back';
 
 import {
   asyncFetchColorPalette,
@@ -43,6 +42,7 @@ import {
   IconAssistedField,
   Toggleable,
   DownloadDropdown,
+  NavigateBack,
 } from 'components';
 
 class PaletteContainer extends React.Component {
@@ -134,22 +134,10 @@ class PaletteContainer extends React.Component {
     <div>
       <div style={this.setVisibility()}>
         <Navbar>
-          <h1
-            style={{
-              margin: '0 auto 0 0',
-              fontWeight: 500,
-              fontSize: '1.5em',
-              cursor: 'pointer',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              textOverflow: 'ellipsis',
-              display: 'block',
-            }}
-            onClick={() => { this.props.history.push('/'); }}
-          >
-            <ArrowBack style={{marginRight: '10px', verticalAlign: 'top'}} />
-            {this.props.match.params.project}
-          </h1>
+          <NavigateBack
+            text={this.props.match.params.project}
+            clickHandler={() => { this.props.history.push('/'); }}
+          />
           <IconAssistedField
             Field={
               <SelectField
