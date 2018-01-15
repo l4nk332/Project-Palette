@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TiTimes from 'react-icons/lib/ti/times';
+import XIcon from 'react-icons/lib/md/close';
 
 import s from './CloseIcon.sass';
 
 const CloseIcon = ({handleClick}) => (
-  <TiTimes
+  <XIcon
     className={s.icon}
     onClick={() => {
       handleClick();
