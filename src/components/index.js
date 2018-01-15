@@ -25,6 +25,7 @@ import TextField from './TextField/TextField';
 import Title from './Title/Title';
 import Toggleable from './Toggleable/Toggleable';
 import DownloadDropdown from './DownloadDropdown/DownloadDropdown';
+import NavigateBack from './NavigateBack/NavigateBack';
 
 export {
   Anchor,
@@ -54,4 +55,5 @@ export {
   Title,
   Toggleable,
   DownloadDropdown,
+  NavigateBack,
 };

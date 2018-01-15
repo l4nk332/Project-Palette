@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-import TiClipboard from 'react-icons/lib/ti/clipboard';
-import TiTick from 'react-icons/lib/ti/tick';
+import CopyIcon from 'react-icons/lib/io/ios-copy';
+import CheckMarkIcon from 'react-icons/lib/io/checkmark';
 import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise';
 
 import {getTextColor} from 'utils/color-manipulation';
@@ -49,9 +49,9 @@ class ColorSwatch extends React.Component {
         <CopyToClipboard text={this.normalizedColor}>
           <a title="Copy to Clipboard">
             {this.state.hasCopied ? (
-              <TiTick style={{color: this.textColor}} />
+              <CheckMarkIcon style={{color: this.textColor}} />
             ) : (
-              <TiClipboard
+              <CopyIcon
                 className={s.icon}
                 onClick={this.copiedToClipboard}
                 style={{color: this.textColor}}
