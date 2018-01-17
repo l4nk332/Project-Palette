@@ -20,6 +20,7 @@ import {
   TOGGLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   TOGGLE_SORT_ORDER,
+  UPDATE_SORT_ORDER,
 } from 'redux/actionTypes';
 
 export const setIsLoading = () => ({
@@ -112,4 +113,9 @@ export const updateSortSelect = value => ({
 
 export const toggleSortOrder = () => ({
   type: TOGGLE_SORT_ORDER,
+});
+
+export const updateSortOrder = value => ({
+  type: UPDATE_SORT_ORDER,
+  value,
 });

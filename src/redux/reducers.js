@@ -28,6 +28,7 @@ import {
   TOGGLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   TOGGLE_SORT_ORDER,
+  UPDATE_SORT_ORDER,
 } from 'redux/actionTypes';
 
 import {ASCENDING, DESCENDING} from 'utils/constants';
@@ -123,6 +124,8 @@ const sortReducer = (state = initialSortState, {type, value}) => {
         state,
         {sortOrder: (state.sortOrder === ASCENDING ? DESCENDING : ASCENDING)},
       );
+    case UPDATE_SORT_ORDER:
+      return Object.assign({}, state, {sortOrder: value});
     default:
       return state;
   }
