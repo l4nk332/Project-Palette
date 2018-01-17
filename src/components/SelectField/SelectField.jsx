@@ -25,6 +25,14 @@ class SelectField extends React.Component {
     document.addEventListener('mousedown', this.handleClickOutside);
   }
 
+  componentWillReceiveProps = nextProps => {
+    const selectedItem = nextProps.values.filter(item => item.selected)[0];
+
+    this.setState({
+      selectedLabel: selectedItem ? selectedItem.label : null,
+    });
+  }
+
   componentWillUnmount = () => {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
