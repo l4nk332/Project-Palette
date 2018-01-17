@@ -97,10 +97,21 @@ export const updateFilterText = value => ({
   value,
 });
 
-export const updateFilterSelect = value => ({
-  type: UPDATE_FILTER_SELECT,
-  value,
-});
+export const updateFilterSelect = value => dispatch => {
+  const queryParams = new URLSearchParams(window.location.search);
+  queryParams.set('filter', value);
+
+  window.history.pushState(
+    null,
+    null,
+    `${window.location.pathname}?${queryParams.toString()}`,
+  );
+
+  dispatch({
+    type: UPDATE_FILTER_SELECT,
+    value,
+  });
+};
 
 export const toggleFilterSelect = () => ({
   type: TOGGLE_FILTER_SELECT,
