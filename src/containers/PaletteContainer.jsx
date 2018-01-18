@@ -16,7 +16,6 @@ import {
   updateFilterSelect,
   toggleFilterSelect,
   updateSortSelect,
-  toggleSortOrder,
   updateSortOrder,
 } from 'redux/actionCreators';
 
@@ -216,8 +215,8 @@ class PaletteContainer extends React.Component {
               <Toggleable toggled>
                 {
                   this.props.sortOrder === ASCENDING
-                    ? <SortAscIcon onClick={this.props.toggleSortOrder} />
-                    : <SortDescIcon onClick={this.props.toggleSortOrder} />
+                    ? <SortAscIcon onClick={() => { this.props.updateSortOrder(DESCENDING); }} />
+                    : <SortDescIcon onClick={() => { this.props.updateSortOrder(ASCENDING); }} />
                 }
               </Toggleable>
             }
@@ -287,7 +286,6 @@ const mapDispatchToProps = {
   updateFilterSelect,
   toggleFilterSelect,
   updateSortSelect,
-  toggleSortOrder,
   updateSortOrder,
 };
 
@@ -310,7 +308,6 @@ PaletteContainer.propTypes = {
   updateFilterSelect: PropTypes.func.isRequired,
   toggleFilterSelect: PropTypes.func.isRequired,
   updateSortSelect: PropTypes.func.isRequired,
-  toggleSortOrder: PropTypes.func.isRequired,
   updateSortOrder: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,

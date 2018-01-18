@@ -24,7 +24,6 @@ import {
   UPDATE_FILTER_SELECT,
   TOGGLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
-  TOGGLE_SORT_ORDER,
   UPDATE_SORT_ORDER,
 } from 'redux/actionTypes';
 
@@ -132,11 +131,11 @@ export const updateSortSelect = value => dispatch => {
   });
 };
 
-export const toggleSortOrder = () => ({
-  type: TOGGLE_SORT_ORDER,
-});
+export const updateSortOrder = value => dispatch => {
+  updateQueryParams({order: value});
 
-export const updateSortOrder = value => ({
-  type: UPDATE_SORT_ORDER,
-  value,
-});
+  dispatch({
+    type: UPDATE_SORT_ORDER,
+    value,
+  });
+};
