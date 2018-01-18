@@ -4,6 +4,11 @@ import {
 } from 'utils/requests';
 
 import {
+  updateQueryParams,
+  deleteQueryParams,
+} from 'utils/history';
+
+import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
@@ -92,20 +97,21 @@ export const showInfoFields = () => ({type: SHOW_INFO_FIELDS});
 
 export const showUrlFields = () => ({type: SHOW_URL_FIELDS});
 
-export const updateFilterText = value => ({
-  type: UPDATE_FILTER_TEXT,
-  value,
-});
+export const updateFilterText = value => dispatch => {
+  if (!value.length) {
+    deleteQueryParams(['search']);
+  } else {
+    updateQueryParams({search: value});
+  }
+
+  dispatch({
+    type: UPDATE_FILTER_TEXT,
+    value,
+  });
+};
 
 export const updateFilterSelect = value => dispatch => {
-  const queryParams = new URLSearchParams(window.location.search);
-  queryParams.set('filter', value);
-
-  window.history.pushState(
-    null,
-    null,
-    `${window.location.pathname}?${queryParams.toString()}`,
-  );
+  updateQueryParams({filter: value});
 
   dispatch({
     type: UPDATE_FILTER_SELECT,
@@ -117,10 +123,14 @@ export const toggleFilterSelect = () => ({
   type: TOGGLE_FILTER_SELECT,
 });
 
-export const updateSortSelect = value => ({
-  type: UPDATE_SORT_SELECT,
-  value,
-});
+export const updateSortSelect = value => dispatch => {
+  updateQueryParams({sort: value});
+
+  dispatch({
+    type: UPDATE_SORT_SELECT,
+    value,
+  });
+};
 
 export const toggleSortOrder = () => ({
   type: TOGGLE_SORT_ORDER,
