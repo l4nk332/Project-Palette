@@ -14,7 +14,8 @@ import {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
-  toggleFilterSelect,
+  enableFilterSelect,
+  disableFilterSelect,
   updateSortSelect,
   updateSortOrder,
 } from 'redux/actionCreators';
@@ -243,7 +244,14 @@ class PaletteContainer extends React.Component {
             }
             Icon={
               <Toggleable toggled={this.props.filterByEnabled}>
-                <FilterIcon onClick={this.props.toggleFilterSelect} />
+                <FilterIcon onClick={() => {
+                  if (this.props.filterByEnabled) {
+                    this.props.disableFilterSelect();
+                  } else {
+                    this.props.enableFilterSelect(this.props.filterBy);
+                  }
+                }}
+                />
               </Toggleable>
             }
           />
@@ -284,7 +292,8 @@ const mapDispatchToProps = {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
-  toggleFilterSelect,
+  enableFilterSelect,
+  disableFilterSelect,
   updateSortSelect,
   updateSortOrder,
 };
@@ -306,7 +315,8 @@ PaletteContainer.propTypes = {
   asyncFetchColorPalette: PropTypes.func.isRequired,
   updateFilterText: PropTypes.func.isRequired,
   updateFilterSelect: PropTypes.func.isRequired,
-  toggleFilterSelect: PropTypes.func.isRequired,
+  enableFilterSelect: PropTypes.func.isRequired,
+  disableFilterSelect: PropTypes.func.isRequired,
   updateSortSelect: PropTypes.func.isRequired,
   updateSortOrder: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,

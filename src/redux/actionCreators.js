@@ -22,7 +22,8 @@ import {
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
-  TOGGLE_FILTER_SELECT,
+  ENABLE_FILTER_SELECT,
+  DISABLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   UPDATE_SORT_ORDER,
 } from 'redux/actionTypes';
@@ -113,14 +114,32 @@ export const updateFilterSelect = value => dispatch => {
   updateQueryParams({filter: value});
 
   dispatch({
+    type: ENABLE_FILTER_SELECT,
+  });
+
+  dispatch({
     type: UPDATE_FILTER_SELECT,
     value,
   });
 };
 
-export const toggleFilterSelect = () => ({
-  type: TOGGLE_FILTER_SELECT,
-});
+export const enableFilterSelect = value => dispatch => {
+  if (value) {
+    updateQueryParams({filter: value});
+  }
+
+  dispatch({
+    type: ENABLE_FILTER_SELECT,
+  });
+};
+
+export const disableFilterSelect = () => dispatch => {
+  deleteQueryParams(['filter']);
+
+  dispatch({
+    type: DISABLE_FILTER_SELECT,
+  });
+};
 
 export const updateSortSelect = value => dispatch => {
   updateQueryParams({sort: value});
