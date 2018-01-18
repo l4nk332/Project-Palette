@@ -4,6 +4,11 @@ import {
 } from 'utils/requests';
 
 import {
+  updateQueryParams,
+  deleteQueryParams,
+} from 'utils/history';
+
+import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
@@ -17,9 +22,10 @@ import {
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
-  TOGGLE_FILTER_SELECT,
+  ENABLE_FILTER_SELECT,
+  DISABLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
-  TOGGLE_SORT_ORDER,
+  UPDATE_SORT_ORDER,
 } from 'redux/actionTypes';
 
 export const setIsLoading = () => ({
@@ -91,25 +97,64 @@ export const showInfoFields = () => ({type: SHOW_INFO_FIELDS});
 
 export const showUrlFields = () => ({type: SHOW_URL_FIELDS});
 
-export const updateFilterText = value => ({
-  type: UPDATE_FILTER_TEXT,
-  value,
-});
+export const updateFilterText = value => dispatch => {
+  if (!value.length) {
+    deleteQueryParams(['search']);
+  } else {
+    updateQueryParams({search: value});
+  }
 
-export const updateFilterSelect = value => ({
-  type: UPDATE_FILTER_SELECT,
-  value,
-});
+  dispatch({
+    type: UPDATE_FILTER_TEXT,
+    value,
+  });
+};
 
-export const toggleFilterSelect = () => ({
-  type: TOGGLE_FILTER_SELECT,
-});
+export const updateFilterSelect = value => dispatch => {
+  updateQueryParams({filter: value});
 
-export const updateSortSelect = value => ({
-  type: UPDATE_SORT_SELECT,
-  value,
-});
+  dispatch({
+    type: ENABLE_FILTER_SELECT,
+  });
 
-export const toggleSortOrder = () => ({
-  type: TOGGLE_SORT_ORDER,
-});
+  dispatch({
+    type: UPDATE_FILTER_SELECT,
+    value,
+  });
+};
+
+export const enableFilterSelect = value => dispatch => {
+  if (value) {
+    updateQueryParams({filter: value});
+  }
+
+  dispatch({
+    type: ENABLE_FILTER_SELECT,
+  });
+};
+
+export const disableFilterSelect = () => dispatch => {
+  deleteQueryParams(['filter']);
+
+  dispatch({
+    type: DISABLE_FILTER_SELECT,
+  });
+};
+
+export const updateSortSelect = value => dispatch => {
+  updateQueryParams({sort: value});
+
+  dispatch({
+    type: UPDATE_SORT_SELECT,
+    value,
+  });
+};
+
+export const updateSortOrder = value => dispatch => {
+  updateQueryParams({order: value});
+
+  dispatch({
+    type: UPDATE_SORT_ORDER,
+    value,
+  });
+};

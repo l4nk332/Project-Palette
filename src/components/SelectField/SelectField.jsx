@@ -13,14 +13,24 @@ class SelectField extends React.Component {
   constructor(props) {
     super(props);
 
+    const selectedItem = this.props.values.filter(item => item.selected)[0];
+
     this.state = {
       isOpen: false,
-      selectedLabel: null,
+      selectedLabel: selectedItem ? selectedItem.label : null,
     };
   }
 
   componentDidMount = () => {
     document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillReceiveProps = nextProps => {
+    const selectedItem = nextProps.values.filter(item => item.selected)[0];
+
+    this.setState({
+      selectedLabel: selectedItem ? selectedItem.label : null,
+    });
   }
 
   componentWillUnmount = () => {

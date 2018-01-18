@@ -14,9 +14,10 @@ import {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
-  toggleFilterSelect,
+  enableFilterSelect,
+  disableFilterSelect,
   updateSortSelect,
-  toggleSortOrder,
+  updateSortOrder,
 } from 'redux/actionCreators';
 
 import {
@@ -50,8 +51,46 @@ class PaletteContainer extends React.Component {
     const {name, project} = this.props.match.params;
     if (name && project) {
       this.props.asyncFetchColorPalette(`${name}/${project}`);
+
+      const queryParams = new URLSearchParams(window.location.search);
+
+      this.setFiltersByUrlQuery(queryParams);
+      this.setSortByUrlQuery(queryParams);
     }
   };
+
+  setFiltersByUrlQuery = queryParams => {
+    const filterParam = queryParams.get('filter');
+    const searchParam = queryParams.get('search');
+
+    if ([LIGHTNESS, DARKNESS].includes(filterParam)) {
+      this.props.updateFilterSelect(filterParam);
+    }
+
+    if (searchParam !== null) {
+      this.props.updateFilterText(searchParam);
+    }
+  }
+
+  setSortByUrlQuery = queryParams => {
+    const sortParam = queryParams.get('sort');
+    const orderParam = queryParams.get('order');
+    const sortOptions = [
+      USAGE,
+      BRIGHTNESS,
+      LUMINESCENCE,
+      ALPHABETICAL,
+      TRANSPARENCY,
+    ];
+
+    if (sortOptions.includes(sortParam)) {
+      this.props.updateSortSelect(sortParam);
+    }
+
+    if ([ASCENDING, DESCENDING].includes(orderParam)) {
+      this.props.updateSortOrder(orderParam);
+    }
+  }
 
   setVisibility = () => ({
     visibility: this.props.colorDetail ? 'hidden' : 'visible',
@@ -143,11 +182,31 @@ class PaletteContainer extends React.Component {
               <SelectField
                 placeholder="Sort By"
                 values={[
-                  {label: 'Usage', value: USAGE},
-                  {label: 'Brightness', value: BRIGHTNESS},
-                  {label: 'Luminescence', value: LUMINESCENCE},
-                  {label: 'Transparency', value: TRANSPARENCY},
-                  {label: 'Alphabetical', value: ALPHABETICAL},
+                  {
+                    label: 'Usage',
+                    value: USAGE,
+                    selected: this.props.sortBy === USAGE,
+                  },
+                  {
+                    label: 'Brightness',
+                    value: BRIGHTNESS,
+                    selected: this.props.sortBy === BRIGHTNESS,
+                  },
+                  {
+                    label: 'Luminescence',
+                    value: LUMINESCENCE,
+                    selected: this.props.sortBy === LUMINESCENCE,
+                  },
+                  {
+                    label: 'Transparency',
+                    value: TRANSPARENCY,
+                    selected: this.props.sortBy === TRANSPARENCY,
+                  },
+                  {
+                    label: 'Alphabetical',
+                    value: ALPHABETICAL,
+                    selected: this.props.sortBy === ALPHABETICAL,
+                  },
                 ]}
                 clickHandler={this.props.updateSortSelect}
                 width="132px"
@@ -157,8 +216,8 @@ class PaletteContainer extends React.Component {
               <Toggleable toggled>
                 {
                   this.props.sortOrder === ASCENDING
-                    ? <SortAscIcon onClick={this.props.toggleSortOrder} />
-                    : <SortDescIcon onClick={this.props.toggleSortOrder} />
+                    ? <SortAscIcon onClick={() => { this.props.updateSortOrder(DESCENDING); }} />
+                    : <SortDescIcon onClick={() => { this.props.updateSortOrder(ASCENDING); }} />
                 }
               </Toggleable>
             }
@@ -168,8 +227,16 @@ class PaletteContainer extends React.Component {
               <SelectField
                 placeholder="Filter By"
                 values={[
-                  {label: 'Lightness', value: LIGHTNESS},
-                  {label: 'Darkness', value: DARKNESS},
+                  {
+                    label: 'Lightness',
+                    value: LIGHTNESS,
+                    selected: this.props.filterBy === LIGHTNESS,
+                  },
+                  {
+                    label: 'Darkness',
+                    value: DARKNESS,
+                    selected: this.props.filterBy === DARKNESS,
+                  },
                 ]}
                 clickHandler={this.props.updateFilterSelect}
                 width="132px"
@@ -177,7 +244,14 @@ class PaletteContainer extends React.Component {
             }
             Icon={
               <Toggleable toggled={this.props.filterByEnabled}>
-                <FilterIcon onClick={this.props.toggleFilterSelect} />
+                <FilterIcon onClick={() => {
+                  if (this.props.filterByEnabled) {
+                    this.props.disableFilterSelect();
+                  } else {
+                    this.props.enableFilterSelect(this.props.filterBy);
+                  }
+                }}
+                />
               </Toggleable>
             }
           />
@@ -218,9 +292,10 @@ const mapDispatchToProps = {
   asyncFetchColorPalette,
   updateFilterText,
   updateFilterSelect,
-  toggleFilterSelect,
+  enableFilterSelect,
+  disableFilterSelect,
   updateSortSelect,
-  toggleSortOrder,
+  updateSortOrder,
 };
 
 PaletteContainer.defaultProps = {
@@ -240,9 +315,10 @@ PaletteContainer.propTypes = {
   asyncFetchColorPalette: PropTypes.func.isRequired,
   updateFilterText: PropTypes.func.isRequired,
   updateFilterSelect: PropTypes.func.isRequired,
-  toggleFilterSelect: PropTypes.func.isRequired,
+  enableFilterSelect: PropTypes.func.isRequired,
+  disableFilterSelect: PropTypes.func.isRequired,
   updateSortSelect: PropTypes.func.isRequired,
-  toggleSortOrder: PropTypes.func.isRequired,
+  updateSortOrder: PropTypes.func.isRequired,
   palette: PropTypes.object.isRequired,
   colorDetail: PropTypes.string,
   filterText: PropTypes.string,
