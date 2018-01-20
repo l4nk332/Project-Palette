@@ -26,7 +26,17 @@ app.get('*', (req, res) => {
 });
 
 app.post('/colors', (req, res) => {
-  const {httpsCloneURL, repoURI} = req.body.params;
+  const {
+    id,
+    httpsCloneURL,
+    repoURI,
+    pushedDate,
+  } = req.body.params;
+
+  // TODO: Query Firebase with ID.
+  // TODO: If response contains value compare date with pushedDate,
+  //       sending along the stored palette data if it matches.
+
   const normalizedRepoInfo = normalizeGitHubUrl(httpsCloneURL, repoURI);
   const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
 
@@ -44,6 +54,7 @@ app.post('/colors', (req, res) => {
       fs
         .remove(cloneDestination)
         .then(() => {
+          // TODO: Save color map to the Firebase endpoint.
           console.log('Sending ColorMap...\n');
           res.send(JSON.stringify(colorMap));
         })
