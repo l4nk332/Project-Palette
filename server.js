@@ -3,6 +3,16 @@ const path = require('path');
 
 require('dotenv').config();
 
+const admin = require('firebase-admin');
+const serviceAccount = require('./project-palette-firebase-adminsdk-x8y6v-57eff859fb.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://project-palette.firebaseio.com',
+});
+
+const db = admin.database();
+
 const express = require('express');
 
 const app = express();
@@ -33,40 +43,44 @@ app.post('/colors', (req, res) => {
     pushedDate,
   } = req.body.params;
 
-  // TODO: Query Firebase with ID.
-  // TODO: If response contains value compare date with pushedDate,
-  //       sending along the stored palette data if it matches.
+  const projectRef = db.ref(id);
 
-  const normalizedRepoInfo = normalizeGitHubUrl(httpsCloneURL, repoURI);
-  const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
+  projectRef.once('value', data => {
+    const project = data.val();
 
-  console.log(
-    `Cloning ${normalizedRepoInfo.repoUri} into ${cloneDestination}\n`,
-  );
-  gitClone(normalizedRepoInfo.httpsCloneUrl, cloneDestination)
-    .then(() => {
-      console.log('Clone Successful!', 'Now Parsing for ColorMap...');
-      const parser = new PaletteParser(cloneDestination);
-      return parser.generateColorMap();
-    })
-    .then(colorMap => {
-      console.log(`Removing ${cloneDestination}\n`);
-      fs
-        .remove(cloneDestination)
+    if (project && project.pushedDate === pushedDate) {
+      res.send(project.palette);
+    } else {
+      const normalizedRepoInfo = normalizeGitHubUrl(httpsCloneURL, repoURI);
+      const cloneDestination = `./temp/${normalizedRepoInfo.uniqueHash}`;
+
+      gitClone(normalizedRepoInfo.httpsCloneUrl, cloneDestination)
         .then(() => {
-          // TODO: Save color map to the Firebase endpoint.
-          console.log('Sending ColorMap...\n');
-          res.send(JSON.stringify(colorMap));
+          const parser = new PaletteParser(cloneDestination);
+          return parser.generateColorMap();
+        })
+        .then(colorMap => {
+          fs
+            .remove(cloneDestination)
+            .then(() => {
+              projectRef.set({
+                pushedDate,
+                palette: JSON.stringify(colorMap),
+              });
+
+              res.send(JSON.stringify(colorMap));
+            })
+            .catch(err => {
+              console.error(err);
+              res.status(500).send('There was an error removing the temp dir.');
+            });
         })
         .catch(err => {
           console.error(err);
-          res.status(500).send('There was an error removing the temp dir.');
+          res.status(500).send('There was an issue cloning the repo...');
         });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).send('There was an issue cloning the repo...');
-    });
+    }
+  });
 });
 
 const {SERVER_PORT} = process.env;
