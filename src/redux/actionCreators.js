@@ -71,8 +71,10 @@ export const asyncFetchColorPalette = search => dispatch => {
     .then(response => {
       dispatch(setProjectUrl(response.data.html_url));
       return {
+        id: response.data.id,
         httpsCloneURL: response.data.clone_url,
         repoURI: response.data.full_name,
+        pushedDate: response.data.pushed_at,
       };
     })
     .then(getProjectPalette)

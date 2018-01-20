@@ -8,13 +8,8 @@ export const searchGitHubProject = projectURI => {
   return axios.get(url);
 };
 
-export const getProjectPalette = ({httpsCloneURL, repoURI}) =>
-  axios.post(COLORS_URL, {
-    params: {
-      httpsCloneURL,
-      repoURI,
-    },
-  });
+export const getProjectPalette = params =>
+  axios.post(COLORS_URL, {params});
 
 export const mockPaletteResponse = () => ({
   aliceblue: {
