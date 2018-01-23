@@ -265,6 +265,7 @@ class PaletteContainer extends React.Component {
             focusHandler={() => {
               this.props.updateFilterText('');
             }}
+            scalesDown
           />
           <DownloadDropdown
             projectName={this.props.match.params.project}

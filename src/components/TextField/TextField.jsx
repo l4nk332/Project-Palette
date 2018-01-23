@@ -11,9 +11,10 @@ const TextField = ({
   enterKeyHandler,
   changeHandler,
   focusHandler,
+  scalesDown,
 }) => (
   <input
-    className={s.container}
+    className={scalesDown ? s.scalesDown : s.container}
     type="text"
     placeholder={placeholderText}
     value={value}
@@ -31,6 +32,7 @@ TextField.defaultProps = {
   enterKeyHandler: () => {},
   changeHandler: () => {},
   focusHandler: () => {},
+  scalesDown: false,
 };
 
 TextField.propTypes = {
@@ -39,6 +41,7 @@ TextField.propTypes = {
   enterKeyHandler: PropTypes.func,
   changeHandler: PropTypes.func,
   focusHandler: PropTypes.func,
+  scalesDown: PropTypes.bool,
 };
 
 export default TextField;

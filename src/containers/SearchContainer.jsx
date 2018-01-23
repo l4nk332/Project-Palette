@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import ArrowForward from 'react-icons/lib/md/arrow-forward';
+
 import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
 
 import {SplitButton, TextField, Button} from 'components';
@@ -95,7 +97,7 @@ class SearchContainer extends React.Component {
         clickHandler={this.submitSearchForm}
         isDisabled={!this.formIsValid()}
       >
-        Analyze
+        Analyze <ArrowForward />
       </Button>
     ),
   })
