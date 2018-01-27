@@ -54,3 +54,18 @@
     background: lighten($black, 10%)
     &:focus, &:hover
       background: lighten($black, 15%)
+  animation-name: drop
+  animation-duration: 300ms
+  animation-timing-function: ease-in-out
+  animation-fill-mode: forwards
+
+
+@keyframes drop
+  0%
+    opacity: 0
+    transform: scaleY(0) translateY(-50%)
+    transform-origin: 50% 0 0
+  100%
+    opacity: 1
+    transform: scaleY(1) translateY(0)
+    transform-origin: 50% 50% 0
