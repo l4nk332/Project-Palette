@@ -17,10 +17,10 @@ const Popup = ({
       isOpen &&
       <figure
         className={classNames(s.figure, {
-          [s.top]: position.top,
-          [s.right]: position.right,
-          [s.bottom]: position.bottom,
-          [s.left]: position.left,
+          [s.top]: position.includes('top'),
+          [s.right]: position.includes('right'),
+          [s.bottom]: position.includes('bottom'),
+          [s.left]: position.includes('left'),
         })}
       >
         {children}
@@ -39,12 +39,7 @@ Popup.defaultProps = {
 Popup.propTypes = {
   isOpen: PropTypes.bool,
   icon: PropTypes.node,
-  position: PropTypes.shape({
-    top: PropTypes.bool,
-    right: PropTypes.bool,
-    bottom: PropTypes.bool,
-    left: PropTypes.bool,
-  }),
+  position: PropTypes.arrayOf(PropTypes.string),
   children: PropTypes.node,
 };
 

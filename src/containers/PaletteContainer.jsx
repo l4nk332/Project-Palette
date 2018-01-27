@@ -49,7 +49,7 @@ import {
 } from 'components';
 
 class PaletteContainer extends React.Component {
-  state = { popUpOpen: false }
+  state = {popUpOpen: false}
 
   componentDidMount = () => {
     const {name, project} = this.props.match.params;
@@ -194,9 +194,9 @@ class PaletteContainer extends React.Component {
                 <Popup
                   isOpen={this.state.popUpOpen}
                   icon={<SortAscIcon onClick={this.togglePopup} />}
-                  position={{top: true, right: true}}
+                  position={['bottom', 'left']}
                 >
-                  <section style={{ marginBottom: '1em' }}>
+                  <section style={{marginBottom: '1em'}}>
                     <TextField
                       placeholderText="search..."
                       value={this.props.filterText}
@@ -210,7 +210,7 @@ class PaletteContainer extends React.Component {
                       scalesDown
                     />
                   </section>
-                  <section style={{ marginBottom: '1em' }}>
+                  <section style={{marginBottom: '1em'}}>
                     <SelectField
                       placeholder="Sort By"
                       values={[
