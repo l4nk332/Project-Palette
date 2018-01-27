@@ -2,6 +2,7 @@ import Anchor from './Anchor/Anchor';
 import Button from './Button/Button';
 import CloseIcon from './CloseIcon/CloseIcon';
 import ColorSwatch from './ColorSwatch/ColorSwatch';
+import DownloadDropdown from './DownloadDropdown/DownloadDropdown';
 import Error from './Error/Error';
 import FixedWrapper from './FixedWrapper/FixedWrapper';
 import FlexWrapper from './FlexWrapper/FlexWrapper';
@@ -15,7 +16,9 @@ import Loader from './Loader/Loader';
 import LoadingWrapper from './LoadingWrapper/LoadingWrapper';
 import LocationList from './LocationList/LocationList';
 import Navbar from './Navbar/Navbar';
+import NavigateBack from './NavigateBack/NavigateBack';
 import Paragraph from './Paragraph/Paragraph';
+import Popup from './Popup/Popup';
 import Rule from './Rule/Rule';
 import SegmentRule from './SegmentRule/SegmentRule';
 import SelectField from './SelectField/SelectField';
@@ -24,14 +27,13 @@ import SplitView from './SplitView/SplitView';
 import TextField from './TextField/TextField';
 import Title from './Title/Title';
 import Toggleable from './Toggleable/Toggleable';
-import DownloadDropdown from './DownloadDropdown/DownloadDropdown';
-import NavigateBack from './NavigateBack/NavigateBack';
 
 export {
   Anchor,
   Button,
   CloseIcon,
   ColorSwatch,
+  DownloadDropdown,
   Error,
   FixedWrapper,
   FlexWrapper,
@@ -45,7 +47,9 @@ export {
   LoadingWrapper,
   LocationList,
   Navbar,
+  NavigateBack,
   Paragraph,
+  Popup,
   Rule,
   SegmentRule,
   SelectField,
@@ -54,6 +58,4 @@ export {
   TextField,
   Title,
   Toggleable,
-  DownloadDropdown,
-  NavigateBack,
 };
