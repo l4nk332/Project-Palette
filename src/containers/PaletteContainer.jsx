@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
+import Media from 'react-media';
 
 import tinycolor from 'tinycolor2';
 import lodashSortBy from 'lodash/sortBy';
@@ -44,9 +45,12 @@ import {
   Toggleable,
   DownloadDropdown,
   NavigateBack,
+  Popup,
 } from 'components';
 
 class PaletteContainer extends React.Component {
+  state = { popUpOpen: false }
+
   componentDidMount = () => {
     const {name, project} = this.props.match.params;
     if (name && project) {
@@ -158,6 +162,13 @@ class PaletteContainer extends React.Component {
               : color
   )
 
+  togglePopup = () => {
+    this.setState(prevState => ({
+      popUpOpen: !prevState.popUpOpen,
+    }));
+  }
+
+
   renderSwatches = () => (
     this.getFilteredSortedColorList().map(color => (
       <ColorSwatch key={color} color={color} />
@@ -172,106 +183,190 @@ class PaletteContainer extends React.Component {
   render = () => (
     <div>
       <div style={this.setVisibility()}>
-        <Navbar>
-          <NavigateBack
-            text={this.props.match.params.project}
-            clickHandler={() => { this.props.history.push('/'); }}
-          />
-          <IconAssistedField
-            Field={
-              <SelectField
-                placeholder="Sort By"
-                values={[
-                  {
-                    label: 'Usage',
-                    value: USAGE,
-                    selected: this.props.sortBy === USAGE,
-                  },
-                  {
-                    label: 'Brightness',
-                    value: BRIGHTNESS,
-                    selected: this.props.sortBy === BRIGHTNESS,
-                  },
-                  {
-                    label: 'Luminescence',
-                    value: LUMINESCENCE,
-                    selected: this.props.sortBy === LUMINESCENCE,
-                  },
-                  {
-                    label: 'Transparency',
-                    value: TRANSPARENCY,
-                    selected: this.props.sortBy === TRANSPARENCY,
-                  },
-                  {
-                    label: 'Alphabetical',
-                    value: ALPHABETICAL,
-                    selected: this.props.sortBy === ALPHABETICAL,
-                  },
-                ]}
-                clickHandler={this.props.updateSortSelect}
-                width="132px"
-              />
-            }
-            Icon={
-              <Toggleable toggled>
-                {
-                  this.props.sortOrder === ASCENDING
-                    ? <SortAscIcon onClick={() => { this.props.updateSortOrder(DESCENDING); }} />
-                    : <SortDescIcon onClick={() => { this.props.updateSortOrder(ASCENDING); }} />
-                }
-              </Toggleable>
-            }
-          />
-          <IconAssistedField
-            Field={
-              <SelectField
-                placeholder="Filter By"
-                values={[
-                  {
-                    label: 'Lightness',
-                    value: LIGHTNESS,
-                    selected: this.props.filterBy === LIGHTNESS,
-                  },
-                  {
-                    label: 'Darkness',
-                    value: DARKNESS,
-                    selected: this.props.filterBy === DARKNESS,
-                  },
-                ]}
-                clickHandler={this.props.updateFilterSelect}
-                width="132px"
-              />
-            }
-            Icon={
-              <Toggleable toggled={this.props.filterByEnabled}>
-                <FilterIcon onClick={() => {
-                  if (this.props.filterByEnabled) {
-                    this.props.disableFilterSelect();
-                  } else {
-                    this.props.enableFilterSelect(this.props.filterBy);
-                  }
-                }}
+        <Media query="(max-width: 599px)">
+          { matches => (
+            matches ? (
+              <Navbar>
+                <NavigateBack
+                  text={this.props.match.params.project}
+                  clickHandler={() => { this.props.history.push('/'); }}
                 />
-              </Toggleable>
-            }
-          />
-          <TextField
-            placeholderText="search..."
-            value={this.props.filterText}
-            changeHandler={event => {
-              const {value} = event.target;
-              this.props.updateFilterText(value);
-            }}
-            focusHandler={() => {
-              this.props.updateFilterText('');
-            }}
-            scalesDown
-          />
-          <DownloadDropdown
-            projectName={this.props.match.params.project}
-            palette={this.getFilteredSortedPalette()}
-          />
-        </Navbar>
+                <Popup
+                  isOpen={this.state.popUpOpen}
+                  icon={<SortAscIcon onClick={this.togglePopup} />}
+                  position={{top: true, right: true}}
+                >
+                  <section style={{ marginBottom: '1em' }}>
+                    <TextField
+                      placeholderText="search..."
+                      value={this.props.filterText}
+                      changeHandler={event => {
+                        const {value} = event.target;
+                        this.props.updateFilterText(value);
+                      }}
+                      focusHandler={() => {
+                        this.props.updateFilterText('');
+                      }}
+                      scalesDown
+                    />
+                  </section>
+                  <section style={{ marginBottom: '1em' }}>
+                    <SelectField
+                      placeholder="Sort By"
+                      values={[
+                        {
+                          label: 'Usage',
+                          value: USAGE,
+                          selected: this.props.sortBy === USAGE,
+                        },
+                        {
+                          label: 'Brightness',
+                          value: BRIGHTNESS,
+                          selected: this.props.sortBy === BRIGHTNESS,
+                        },
+                        {
+                          label: 'Luminescence',
+                          value: LUMINESCENCE,
+                          selected: this.props.sortBy === LUMINESCENCE,
+                        },
+                        {
+                          label: 'Transparency',
+                          value: TRANSPARENCY,
+                          selected: this.props.sortBy === TRANSPARENCY,
+                        },
+                        {
+                          label: 'Alphabetical',
+                          value: ALPHABETICAL,
+                          selected: this.props.sortBy === ALPHABETICAL,
+                        },
+                      ]}
+                      clickHandler={this.props.updateSortSelect}
+                      width="100%"
+                    />
+                  </section>
+                  <SelectField
+                    placeholder="Filter By"
+                    values={[
+                      {
+                        label: 'Lightness',
+                        value: LIGHTNESS,
+                        selected: this.props.filterBy === LIGHTNESS,
+                      },
+                      {
+                        label: 'Darkness',
+                        value: DARKNESS,
+                        selected: this.props.filterBy === DARKNESS,
+                      },
+                    ]}
+                    clickHandler={this.props.updateFilterSelect}
+                    width="100%"
+                  />
+                </Popup>
+              </Navbar>
+            ) : (
+              <Navbar>
+                <NavigateBack
+                  text={this.props.match.params.project}
+                  clickHandler={() => { this.props.history.push('/'); }}
+                />
+                <IconAssistedField
+                  Field={
+                    <SelectField
+                      placeholder="Sort By"
+                      values={[
+                        {
+                          label: 'Usage',
+                          value: USAGE,
+                          selected: this.props.sortBy === USAGE,
+                        },
+                        {
+                          label: 'Brightness',
+                          value: BRIGHTNESS,
+                          selected: this.props.sortBy === BRIGHTNESS,
+                        },
+                        {
+                          label: 'Luminescence',
+                          value: LUMINESCENCE,
+                          selected: this.props.sortBy === LUMINESCENCE,
+                        },
+                        {
+                          label: 'Transparency',
+                          value: TRANSPARENCY,
+                          selected: this.props.sortBy === TRANSPARENCY,
+                        },
+                        {
+                          label: 'Alphabetical',
+                          value: ALPHABETICAL,
+                          selected: this.props.sortBy === ALPHABETICAL,
+                        },
+                      ]}
+                      clickHandler={this.props.updateSortSelect}
+                      width="132px"
+                    />
+                  }
+                  Icon={
+                    <Toggleable toggled>
+                      {
+                        this.props.sortOrder === ASCENDING
+                          ? <SortAscIcon onClick={() => { this.props.updateSortOrder(DESCENDING); }} />
+                          : <SortDescIcon onClick={() => { this.props.updateSortOrder(ASCENDING); }} />
+                      }
+                    </Toggleable>
+                  }
+                />
+                <IconAssistedField
+                  Field={
+                    <SelectField
+                      placeholder="Filter By"
+                      values={[
+                        {
+                          label: 'Lightness',
+                          value: LIGHTNESS,
+                          selected: this.props.filterBy === LIGHTNESS,
+                        },
+                        {
+                          label: 'Darkness',
+                          value: DARKNESS,
+                          selected: this.props.filterBy === DARKNESS,
+                        },
+                      ]}
+                      clickHandler={this.props.updateFilterSelect}
+                      width="132px"
+                    />
+                  }
+                  Icon={
+                    <Toggleable toggled={this.props.filterByEnabled}>
+                      <FilterIcon onClick={() => {
+                        if (this.props.filterByEnabled) {
+                          this.props.disableFilterSelect();
+                        } else {
+                          this.props.enableFilterSelect(this.props.filterBy);
+                        }
+                      }}
+                      />
+                    </Toggleable>
+                  }
+                />
+                <TextField
+                  placeholderText="search..."
+                  value={this.props.filterText}
+                  changeHandler={event => {
+                    const {value} = event.target;
+                    this.props.updateFilterText(value);
+                  }}
+                  focusHandler={() => {
+                    this.props.updateFilterText('');
+                  }}
+                  scalesDown
+                />
+                <DownloadDropdown
+                  projectName={this.props.match.params.project}
+                  palette={this.getFilteredSortedPalette()}
+                />
+              </Navbar>
+            )
+          )}
+        </Media>
         <Grid>{this.renderSwatches()}</Grid>
       </div>
       {this.props.colorDetail && this.renderDetailContainer()}
