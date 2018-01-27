@@ -10,6 +10,7 @@ import lodashSortBy from 'lodash/sortBy';
 import SortDescIcon from 'react-icons/lib/fa/sort-amount-desc';
 import SortAscIcon from 'react-icons/lib/fa/sort-amount-asc';
 import FilterIcon from 'react-icons/lib/fa/filter';
+import OptionsIcon from 'react-icons/lib/io/android-options';
 
 import {
   asyncFetchColorPalette,
@@ -183,7 +184,7 @@ class PaletteContainer extends React.Component {
   render = () => (
     <div>
       <div style={this.setVisibility()}>
-        <Media query="(max-width: 599px)">
+        <Media query="(max-width: 829px)">
           { matches => (
             matches ? (
               <Navbar>
@@ -193,8 +194,14 @@ class PaletteContainer extends React.Component {
                 />
                 <Popup
                   isOpen={this.state.popUpOpen}
-                  icon={<SortAscIcon onClick={this.togglePopup} />}
                   position={['bottom', 'left']}
+                  icon={(
+                    <Toggleable toggled={this.state.popUpOpen}>
+                      <OptionsIcon
+                        onClick={this.togglePopup}
+                      />
+                    </Toggleable>
+                  )}
                 >
                   <section style={{marginBottom: '1em'}}>
                     <TextField
