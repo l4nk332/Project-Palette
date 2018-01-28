@@ -4,6 +4,26 @@ import PropTypes from 'prop-types';
 import {SelectField} from 'components';
 
 class SelectFieldContainer extends React.Component {
+  static propTypes = {
+    values: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired,
+        selected: PropTypes.bool,
+      }),
+    ),
+    width: PropTypes.string,
+    placeholder: PropTypes.string,
+    clickHandler: PropTypes.func,
+  };
+
+  static defaultProps = {
+    values: [],
+    width: '85px',
+    placeholder: '',
+    clickHandler: e => e.preventDefault(),
+  };
+
   state = {
     isOpen: false,
     selectedLabel: (this.props.values.filter(item => item.selected)[0] ?
@@ -76,25 +96,5 @@ class SelectFieldContainer extends React.Component {
     />
   )
 }
-
-SelectFieldContainer.defaultProps = {
-  values: [],
-  width: '85px',
-  placeholder: '',
-  clickHandler: e => e.preventDefault(),
-};
-
-SelectFieldContainer.propTypes = {
-  values: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      selected: PropTypes.bool,
-    }),
-  ),
-  width: PropTypes.string,
-  placeholder: PropTypes.string,
-  clickHandler: PropTypes.func,
-};
 
 export default SelectFieldContainer;
