@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import DownloadIcon from 'react-icons/lib/io/ios-download';
+
+import {Popup} from 'components';
 
 import {triggerIfEnterKey} from 'utils/misc';
 import SvgGenerator from 'utils/svg-generator';
@@ -72,57 +73,56 @@ class DownloadDropdown extends React.Component {
 
   render() {
     return (
-      <section
-        className={s.container}
-      >
-        <DownloadIcon
-          className={s.icon}
-          onClick={this.toggleDropdown}
-        />
-        {this.state.isOpen && (
-          <ul
-            className={classNames(s.list, {
-              [s.open]: this.state.isOpen,
-            })}
-            ref={this.setWrapperRef}
-          >
-            <li
-              role="button"
-              tabIndex="0"
-              key={1}
-              onMouseDown={() => {
-                this.downloadSvg();
-                this.closeDropdown();
-              }}
-              onKeyDown={event => {
-                triggerIfEnterKey(event, () => {
-                this.downloadSvg();
-                this.closeDropdown();
-                });
-              }}
-            >
-              SVG
-            </li>
-            <li
-              role="button"
-              tabIndex="0"
-              key={2}
-              onMouseDown={() => {
-                this.downloadJson();
-                this.closeDropdown();
-              }}
-              onKeyDown={event => {
-                triggerIfEnterKey(event, () => {
-                this.downloadJson();
-                this.closeDropdown();
-                });
-              }}
-            >
-              JSON
-            </li>
-          </ul>
+      <Popup
+        isOpen={this.state.isOpen}
+        position={['bottom', 'left']}
+        icon={(
+          <DownloadIcon
+            className={s.icon}
+            onClick={this.toggleDropdown}
+          />
         )}
-      </section>
+      >
+        <ul
+          className={s.list}
+          ref={this.setWrapperRef}
+        >
+          <li
+            role="button"
+            tabIndex="0"
+            key={1}
+            onMouseDown={() => {
+              this.downloadSvg();
+              this.closeDropdown();
+            }}
+            onKeyDown={event => {
+              triggerIfEnterKey(event, () => {
+              this.downloadSvg();
+              this.closeDropdown();
+              });
+            }}
+          >
+            SVG
+          </li>
+          <li
+            role="button"
+            tabIndex="0"
+            key={2}
+            onMouseDown={() => {
+              this.downloadJson();
+              this.closeDropdown();
+            }}
+            onKeyDown={event => {
+              triggerIfEnterKey(event, () => {
+              this.downloadJson();
+              this.closeDropdown();
+              });
+            }}
+          >
+            JSON
+          </li>
+        </ul>
+      </Popup>
     );
   }
 }

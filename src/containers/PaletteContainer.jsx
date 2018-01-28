@@ -203,71 +203,73 @@ class PaletteContainer extends React.Component {
                     </Toggleable>
                   )}
                 >
-                  <section style={{marginBottom: '1em'}}>
-                    <TextField
-                      placeholderText="search..."
-                      value={this.props.filterText}
-                      changeHandler={event => {
-                        const {value} = event.target;
-                        this.props.updateFilterText(value);
-                      }}
-                      focusHandler={() => {
-                        this.props.updateFilterText('');
-                      }}
-                      scalesDown
-                    />
-                  </section>
-                  <section style={{marginBottom: '1em'}}>
+                  <section style={{padding: '0.5em'}}>
+                    <section style={{marginBottom: '1em'}}>
+                      <TextField
+                        placeholderText="search..."
+                        value={this.props.filterText}
+                        changeHandler={event => {
+                          const {value} = event.target;
+                          this.props.updateFilterText(value);
+                        }}
+                        focusHandler={() => {
+                          this.props.updateFilterText('');
+                        }}
+                        scalesDown
+                      />
+                    </section>
+                    <section style={{marginBottom: '1em'}}>
+                      <SelectField
+                        placeholder="Sort By"
+                        values={[
+                          {
+                            label: 'Usage',
+                            value: USAGE,
+                            selected: this.props.sortBy === USAGE,
+                          },
+                          {
+                            label: 'Brightness',
+                            value: BRIGHTNESS,
+                            selected: this.props.sortBy === BRIGHTNESS,
+                          },
+                          {
+                            label: 'Luminescence',
+                            value: LUMINESCENCE,
+                            selected: this.props.sortBy === LUMINESCENCE,
+                          },
+                          {
+                            label: 'Transparency',
+                            value: TRANSPARENCY,
+                            selected: this.props.sortBy === TRANSPARENCY,
+                          },
+                          {
+                            label: 'Alphabetical',
+                            value: ALPHABETICAL,
+                            selected: this.props.sortBy === ALPHABETICAL,
+                          },
+                        ]}
+                        clickHandler={this.props.updateSortSelect}
+                        width="100%"
+                      />
+                    </section>
                     <SelectField
-                      placeholder="Sort By"
+                      placeholder="Filter By"
                       values={[
                         {
-                          label: 'Usage',
-                          value: USAGE,
-                          selected: this.props.sortBy === USAGE,
+                          label: 'Lightness',
+                          value: LIGHTNESS,
+                          selected: this.props.filterBy === LIGHTNESS,
                         },
                         {
-                          label: 'Brightness',
-                          value: BRIGHTNESS,
-                          selected: this.props.sortBy === BRIGHTNESS,
-                        },
-                        {
-                          label: 'Luminescence',
-                          value: LUMINESCENCE,
-                          selected: this.props.sortBy === LUMINESCENCE,
-                        },
-                        {
-                          label: 'Transparency',
-                          value: TRANSPARENCY,
-                          selected: this.props.sortBy === TRANSPARENCY,
-                        },
-                        {
-                          label: 'Alphabetical',
-                          value: ALPHABETICAL,
-                          selected: this.props.sortBy === ALPHABETICAL,
+                          label: 'Darkness',
+                          value: DARKNESS,
+                          selected: this.props.filterBy === DARKNESS,
                         },
                       ]}
-                      clickHandler={this.props.updateSortSelect}
+                      clickHandler={this.props.updateFilterSelect}
                       width="100%"
                     />
                   </section>
-                  <SelectField
-                    placeholder="Filter By"
-                    values={[
-                      {
-                        label: 'Lightness',
-                        value: LIGHTNESS,
-                        selected: this.props.filterBy === LIGHTNESS,
-                      },
-                      {
-                        label: 'Darkness',
-                        value: DARKNESS,
-                        selected: this.props.filterBy === DARKNESS,
-                      },
-                    ]}
-                    clickHandler={this.props.updateFilterSelect}
-                    width="100%"
-                  />
                 </Popup>
               </Navbar>
             ) : (
