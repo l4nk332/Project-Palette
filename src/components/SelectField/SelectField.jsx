@@ -9,135 +9,72 @@ import {triggerIfEnterKey} from 'utils/misc';
 
 import s from './SelectField.sass';
 
-class SelectField extends React.Component {
-  constructor(props) {
-    super(props);
-
-    const selectedItem = this.props.values.filter(item => item.selected)[0];
-
-    this.state = {
-      isOpen: false,
-      selectedLabel: selectedItem ? selectedItem.label : null,
-    };
-  }
-
-  componentDidMount = () => {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillReceiveProps = nextProps => {
-    const selectedItem = nextProps.values.filter(item => item.selected)[0];
-
-    this.setState({
-      selectedLabel: selectedItem ? selectedItem.label : null,
-    });
-  }
-
-  componentWillUnmount = () => {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  }
-
-  setSelectedLabel = label => {
-    this.setState({
-      selectedLabel: label,
-    });
-  };
-
-  toggleDropdown = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
-  closeDropdown = () => {
-    this.setState({
-      isOpen: false,
-    });
-  };
-
-  handleClickOutside = event => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.closeDropdown();
-    }
-  }
-
-  render() {
-    return (
-      <section
-        className={s.container}
-        style={{width: this.props.width}}
+const SelectField = ({
+  width,
+  isOpen,
+  values,
+  toggleDropdown,
+  setRef,
+  selectedLabel,
+  selectHandler,
+}) => (
+  <section
+    className={s.container}
+    style={{width}}
+  >
+    <header
+      role="button"
+      tabIndex="0"
+      className={classNames(s.header, {
+        [s.open]: isOpen,
+      })}
+      onClick={toggleDropdown}
+      onKeyDown={event => {
+        triggerIfEnterKey(event, () => {
+          toggleDropdown();
+        });
+      }}
+    >
+      <span className={s.muted}>{selectedLabel}</span>
+      <span className={s.muted}>
+        {isOpen ? <TiArrowUp /> : <TiArrowDown />}
+      </span>
+    </header>
+    {isOpen && (
+      <ul
+        className={classNames(s.list, {
+          [s.open]: isOpen,
+        })}
+        ref={setRef}
       >
-        <header
-          role="button"
-          tabIndex="0"
-          className={classNames(s.header, {
-            [s.open]: this.state.isOpen,
-          })}
-          onClick={() => {
-            this.toggleDropdown();
-          }}
-          onKeyDown={event => {
-            triggerIfEnterKey(event, () => {
-              this.toggleDropdown();
-            });
-          }}
-        >
-          <span className={s.muted}>
-            {this.state.selectedLabel
-              ? this.state.selectedLabel
-              : this.props.placeholder}
-          </span>
-          <span className={s.muted}>
-            {this.state.isOpen ? <TiArrowUp /> : <TiArrowDown />}
-          </span>
-        </header>
-        {this.state.isOpen && (
-          <ul
-            className={classNames(s.list, {
-              [s.open]: this.state.isOpen,
+        {values.map((value, idx) => (
+          <li
+            role="button"
+            tabIndex="0"
+            key={idx}
+            className={classNames({
+              [s.selected]: value.label === selectedLabel,
             })}
-            ref={this.setWrapperRef}
+            onMouseDown={() => {
+              selectHandler(value);
+            }}
+            onKeyDown={event => {
+              triggerIfEnterKey(event, () => {
+                selectHandler(value);
+              });
+            }}
           >
-            {this.props.values.map((value, idx) => (
-              <li
-                role="button"
-                tabIndex="0"
-                key={idx}
-                className={classNames({
-                  [s.selected]: value.label === this.state.selectedLabel,
-                })}
-                onMouseDown={() => {
-                  this.props.clickHandler(value.value);
-                  this.setSelectedLabel(value.label);
-                  this.closeDropdown();
-                }}
-                onKeyDown={event => {
-                  triggerIfEnterKey(event, () => {
-                    this.props.clickHandler(value.value);
-                    this.setSelectedLabel(value.label);
-                    this.closeDropdown();
-                  });
-                }}
-              >
-                {value.label}
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    );
-  }
-}
+            {value.label}
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+);
 
 SelectField.defaultProps = {
-  values: [],
-  placeholder: '',
-  clickHandler: e => e.preventDefault(),
-  width: '85px',
+  isOpen: false,
+  selectedLabel: null,
 };
 
 SelectField.propTypes = {
@@ -147,10 +84,13 @@ SelectField.propTypes = {
       value: PropTypes.string.isRequired,
       selected: PropTypes.bool,
     }),
-  ),
-  placeholder: PropTypes.string,
-  clickHandler: PropTypes.func,
-  width: PropTypes.string,
+  ).isRequired,
+  width: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool,
+  selectedLabel: PropTypes.string,
+  toggleDropdown: PropTypes.func.isRequired,
+  setRef: PropTypes.func.isRequired,
+  selectHandler: PropTypes.func.isRequired,
 };
 
 export default SelectField;

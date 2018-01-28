@@ -34,14 +34,13 @@ import {
   DESCENDING,
 } from 'utils/constants';
 
-import {DetailContainer} from 'containers';
+import {DetailContainer, SelectFieldContainer} from 'containers';
 
 import {
   Grid,
   Navbar,
   TextField,
   ColorSwatch,
-  SelectField,
   IconAssistedField,
   Toggleable,
   DownloadDropdown,
@@ -219,7 +218,7 @@ class PaletteContainer extends React.Component {
                       />
                     </section>
                     <section style={{marginBottom: '1em'}}>
-                      <SelectField
+                      <SelectFieldContainer
                         placeholder="Sort By"
                         values={[
                           {
@@ -252,7 +251,7 @@ class PaletteContainer extends React.Component {
                         width="100%"
                       />
                     </section>
-                    <SelectField
+                    <SelectFieldContainer
                       placeholder="Filter By"
                       values={[
                         {
@@ -280,7 +279,7 @@ class PaletteContainer extends React.Component {
                 />
                 <IconAssistedField
                   Field={
-                    <SelectField
+                    <SelectFieldContainer
                       placeholder="Sort By"
                       values={[
                         {
@@ -325,7 +324,7 @@ class PaletteContainer extends React.Component {
                 />
                 <IconAssistedField
                   Field={
-                    <SelectField
+                    <SelectFieldContainer
                       placeholder="Filter By"
                       values={[
                         {
