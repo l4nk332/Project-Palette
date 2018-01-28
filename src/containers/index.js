@@ -3,6 +3,7 @@ import DetailContainer from './DetailContainer';
 import PaletteContainer from './PaletteContainer';
 import SearchContainer from './SearchContainer';
 import SelectFieldContainer from './SelectFieldContainer';
+import ColorSwatchContainer from './ColorSwatchContainer';
 
 export {
   AppContainer,
@@ -10,4 +11,5 @@ export {
   PaletteContainer,
   SearchContainer,
   SelectFieldContainer,
+  ColorSwatchContainer,
 };

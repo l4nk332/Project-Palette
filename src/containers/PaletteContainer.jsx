@@ -34,13 +34,16 @@ import {
   DESCENDING,
 } from 'utils/constants';
 
-import {DetailContainer, SelectFieldContainer} from 'containers';
+import {
+  DetailContainer,
+  SelectFieldContainer,
+  ColorSwatchContainer,
+} from 'containers';
 
 import {
   Grid,
   Navbar,
   TextField,
-  ColorSwatch,
   IconAssistedField,
   Toggleable,
   DownloadDropdown,
@@ -171,7 +174,7 @@ class PaletteContainer extends React.Component {
 
   renderSwatches = () => (
     this.getFilteredSortedColorList().map(color => (
-      <ColorSwatch key={color} color={color} />
+      <ColorSwatchContainer key={color} color={color} />
     ))
   )
 
