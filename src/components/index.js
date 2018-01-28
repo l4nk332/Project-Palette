@@ -37,6 +37,7 @@ import NavigateBack from './blocks/NavigateBack/NavigateBack';
 // Pages
 
 import Search from './pages/Search/Search';
+import Detail from './pages/Detail/Detail';
 
 export {
   Anchor,
@@ -69,4 +70,5 @@ export {
   Title,
   Toggleable,
   Search,
+  Detail,
 };

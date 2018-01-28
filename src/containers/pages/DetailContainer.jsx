@@ -7,28 +7,32 @@ import {closeColorDetail} from 'redux/actionCreators';
 import {toggleStaticBody} from 'utils/misc';
 
 import {
-  FixedWrapper,
-  LocationList,
-  Heading,
-  CloseIcon,
+  Detail,
 } from 'components';
 
+
 class DetailContainer extends React.Component {
-  closeColorDetail = () => {
+  static propTypes = {
+    closeColorDetail: PropTypes.func.isRequired,
+    colorDetail: PropTypes.string.isRequired,
+    locations: PropTypes.shape({
+      locations: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+    projectUrl: PropTypes.string.isRequired,
+  };
+
+  handleClose = () => {
     toggleStaticBody(false);
     this.props.closeColorDetail();
   };
 
   render = () => (
-    <FixedWrapper color={this.props.colorDetail}>
-      <CloseIcon handleClick={this.closeColorDetail} />
-      <Heading>{this.props.colorDetail}</Heading>
-      <LocationList
-        color={this.props.colorDetail}
-        locations={this.props.locations.locations}
-        projectUrl={this.props.projectUrl}
-      />
-    </FixedWrapper>
+    <Detail
+      handleClose={this.handleClose}
+      color={this.props.colorDetail}
+      locations={this.props.locations.locations}
+      projectUrl={this.props.projectUrl}
+    />
   )
 }
 
@@ -39,15 +43,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   closeColorDetail,
-};
-
-DetailContainer.propTypes = {
-  closeColorDetail: PropTypes.func.isRequired,
-  colorDetail: PropTypes.string.isRequired,
-  locations: PropTypes.shape({
-    locations: PropTypes.arrayOf(PropTypes.object),
-  }).isRequired,
-  projectUrl: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailContainer);
