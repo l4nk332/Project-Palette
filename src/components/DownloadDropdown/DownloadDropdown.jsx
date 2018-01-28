@@ -6,130 +6,63 @@ import DownloadIcon from 'react-icons/lib/io/ios-download';
 import {Popup} from 'components';
 
 import {triggerIfEnterKey} from 'utils/misc';
-import SvgGenerator from 'utils/svg-generator';
-import download from 'utils/download';
 
 import s from './DownloadDropdown.sass';
 
 
-class DownloadDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false,
-    };
-  }
-
-  componentDidMount = () => {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount = () => {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  }
-
-  toggleDropdown = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
-  closeDropdown = () => {
-    this.setState({
-      isOpen: false,
-    });
-  };
-
-  downloadJson = () => {
-    download(
-      `${this.props.projectName}.json`,
-      JSON.stringify(this.props.palette),
-      'application/json',
-    );
-  }
-
-  downloadSvg = () => {
-    const colorList = Object.keys(this.props.palette);
-    const svgGeneratorInstance = new SvgGenerator(colorList);
-    const svgExportText = svgGeneratorInstance.render();
-
-    download(
-      `${this.props.projectName}.svg`,
-      svgExportText,
-      'image/svg+xml',
-    );
-  }
-
-  handleClickOutside = event => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.closeDropdown();
-    }
-  }
-
-  render() {
-    return (
-      <Popup
-        isOpen={this.state.isOpen}
-        position={['bottom', 'left']}
-        icon={(
-          <DownloadIcon
-            className={s.icon}
-            onClick={this.toggleDropdown}
-          />
-        )}
+const DownloadDropdown = ({
+  isOpen,
+  toggleDropdown,
+  setWrapperRef,
+  handleSvg,
+  handleJson,
+}) => (
+  <Popup
+    isOpen={isOpen}
+    position={['bottom', 'left']}
+    icon={(
+      <DownloadIcon
+        className={s.icon}
+        onClick={toggleDropdown}
+      />
+    )}
+  >
+    <ul
+      className={s.list}
+      ref={setWrapperRef}
+    >
+      <li
+        role="button"
+        tabIndex="0"
+        key={1}
+        onMouseDown={handleSvg}
+        onKeyDown={event => {
+          triggerIfEnterKey(event, handleSvg);
+        }}
       >
-        <ul
-          className={s.list}
-          ref={this.setWrapperRef}
-        >
-          <li
-            role="button"
-            tabIndex="0"
-            key={1}
-            onMouseDown={() => {
-              this.downloadSvg();
-              this.closeDropdown();
-            }}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, () => {
-              this.downloadSvg();
-              this.closeDropdown();
-              });
-            }}
-          >
-            SVG
-          </li>
-          <li
-            role="button"
-            tabIndex="0"
-            key={2}
-            onMouseDown={() => {
-              this.downloadJson();
-              this.closeDropdown();
-            }}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, () => {
-              this.downloadJson();
-              this.closeDropdown();
-              });
-            }}
-          >
-            JSON
-          </li>
-        </ul>
-      </Popup>
-    );
-  }
-}
+        SVG
+      </li>
+      <li
+        role="button"
+        tabIndex="0"
+        key={2}
+        onMouseDown={handleJson}
+        onKeyDown={event => {
+          triggerIfEnterKey(event, handleJson);
+        }}
+      >
+        JSON
+      </li>
+    </ul>
+  </Popup>
+);
 
 DownloadDropdown.propTypes = {
-  projectName: PropTypes.string.isRequired,
-  palette: PropTypes.object.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  toggleDropdown: PropTypes.func.isRequired,
+  setWrapperRef: PropTypes.func.isRequired,
+  handleSvg: PropTypes.func.isRequired,
+  handleJson: PropTypes.func.isRequired,
 };
 
 export default DownloadDropdown;

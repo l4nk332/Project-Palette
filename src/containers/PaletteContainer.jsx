@@ -38,6 +38,7 @@ import {
   DetailContainer,
   SelectFieldContainer,
   ColorSwatchContainer,
+  DownloadDropdownContainer,
 } from 'containers';
 
 import {
@@ -46,7 +47,6 @@ import {
   TextField,
   IconAssistedField,
   Toggleable,
-  DownloadDropdown,
   NavigateBack,
   Popup,
 } from 'components';
@@ -370,7 +370,7 @@ class PaletteContainer extends React.Component {
                   }}
                   scalesDown
                 />
-                <DownloadDropdown
+                <DownloadDropdownContainer
                   projectName={this.props.match.params.project}
                   palette={this.getFilteredSortedPalette()}
                 />

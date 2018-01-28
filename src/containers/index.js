@@ -4,6 +4,7 @@ import PaletteContainer from './PaletteContainer';
 import SearchContainer from './SearchContainer';
 import SelectFieldContainer from './SelectFieldContainer';
 import ColorSwatchContainer from './ColorSwatchContainer';
+import DownloadDropdownContainer from './DownloadDropdownContainer';
 
 export {
   AppContainer,
@@ -12,4 +13,5 @@ export {
   SearchContainer,
   SelectFieldContainer,
   ColorSwatchContainer,
+  DownloadDropdownContainer,
 };

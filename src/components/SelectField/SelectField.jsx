@@ -30,9 +30,7 @@ const SelectField = ({
       })}
       onClick={toggleDropdown}
       onKeyDown={event => {
-        triggerIfEnterKey(event, () => {
-          toggleDropdown();
-        });
+        triggerIfEnterKey(event, toggleDropdown);
       }}
     >
       <span className={s.muted}>{selectedLabel}</span>

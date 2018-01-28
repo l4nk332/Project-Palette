@@ -12,9 +12,7 @@ const NavigateBack = ({text, clickHandler}) => (
     className={s.container}
     onClick={clickHandler}
     onKeyDown={event => {
-      triggerIfEnterKey(event, () => {
-        clickHandler();
-      });
+      triggerIfEnterKey(event, clickHandler);
     }}
   >
     <ArrowBack style={{marginRight: '10px', verticalAlign: 'top'}} />
