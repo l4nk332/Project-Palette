@@ -17,9 +17,22 @@ import {
   showUrlFields,
 } from 'redux/actionCreators';
 
-import {Search} from 'pages';
+import {Search} from 'components';
+
 
 class SearchContainer extends React.Component {
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func,
+    }).isRequired,
+    form: PropTypes.object.isRequired,
+    setProjectUrl: PropTypes.func.isRequired,
+    setColorPalette: PropTypes.func.isRequired,
+    updateFormField: PropTypes.func.isRequired,
+    showInfoFields: PropTypes.func.isRequired,
+    showUrlFields: PropTypes.func.isRequired,
+  };
+
   splitButtonField = () => ({
     content: (
       <SplitButton
@@ -161,18 +174,6 @@ class SearchContainer extends React.Component {
 
   render = () => <Search formFields={this.formFields()} />
 }
-
-SearchContainer.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-  form: PropTypes.object.isRequired,
-  setProjectUrl: PropTypes.func.isRequired,
-  setColorPalette: PropTypes.func.isRequired,
-  updateFormField: PropTypes.func.isRequired,
-  showInfoFields: PropTypes.func.isRequired,
-  showUrlFields: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = state => ({
   form: state.form,

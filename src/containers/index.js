@@ -1,10 +1,19 @@
 import AppContainer from './AppContainer';
-import DetailContainer from './DetailContainer';
-import PaletteContainer from './PaletteContainer';
-import SearchContainer from './SearchContainer';
-import SelectFieldContainer from './SelectFieldContainer';
-import ColorSwatchContainer from './ColorSwatchContainer';
-import DownloadDropdownContainer from './DownloadDropdownContainer';
+
+// Core
+
+import SelectFieldContainer from './core/SelectFieldContainer';
+
+// Blocks
+
+import ColorSwatchContainer from './blocks/ColorSwatchContainer';
+import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
+
+// Pages
+
+import DetailContainer from './pages/DetailContainer';
+import PaletteContainer from './pages/PaletteContainer';
+import SearchContainer from './pages/SearchContainer';
 
 export {
   AppContainer,
