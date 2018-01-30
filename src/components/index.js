@@ -3,6 +3,7 @@
 import Anchor from './core/Anchor/Anchor';
 import Button from './core/Button/Button';
 import CloseIcon from './core/CloseIcon/CloseIcon';
+import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import Error from './core/Error/Error';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
 import FlexWrapper from './core/FlexWrapper/FlexWrapper';
@@ -27,12 +28,10 @@ import Toggleable from './core/Toggleable/Toggleable';
 
 // Blocks
 
-import ColorSwatch from './blocks/ColorSwatch/ColorSwatch';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
 import Navbar from './blocks/Navbar/Navbar';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
-
 
 // Pages
 

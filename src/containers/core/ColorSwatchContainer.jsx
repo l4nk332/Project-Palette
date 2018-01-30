@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 import {ColorSwatch} from 'components';
 import {getTextColor} from 'utils/color-manipulation';
 import {toggleStaticBody} from 'utils/misc';
-
-import {openColorDetail} from 'redux/actionCreators';
 
 
 class ColorSwatchContainer extends React.Component {
@@ -48,8 +45,4 @@ class ColorSwatchContainer extends React.Component {
   )
 }
 
-const mapDispatchToProps = {
-  openColorDetail,
-};
-
-export default connect(null, mapDispatchToProps)(ColorSwatchContainer);
+export default ColorSwatchContainer;

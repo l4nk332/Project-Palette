@@ -20,6 +20,7 @@ import {
   disableFilterSelect,
   updateSortSelect,
   updateSortOrder,
+  openColorDetail,
 } from 'redux/actionCreators';
 
 import {
@@ -174,7 +175,11 @@ class PaletteContainer extends React.Component {
 
   renderSwatches = () => (
     this.getFilteredSortedColorList().map(color => (
-      <ColorSwatchContainer key={color} color={color} />
+      <ColorSwatchContainer
+        key={color}
+        color={color}
+        openColorDetail={this.props.openColorDetail}
+      />
     ))
   )
 
@@ -403,6 +408,7 @@ const mapDispatchToProps = {
   disableFilterSelect,
   updateSortSelect,
   updateSortOrder,
+  openColorDetail,
 };
 
 PaletteContainer.defaultProps = {
@@ -439,6 +445,7 @@ PaletteContainer.propTypes = {
     TRANSPARENCY,
     ALPHABETICAL,
   ]).isRequired,
+  openColorDetail: PropTypes.func.isRequired,
 };
 
 export default withRouter(

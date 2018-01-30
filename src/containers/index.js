@@ -2,11 +2,11 @@ import AppContainer from './AppContainer';
 
 // Core
 
+import ColorSwatchContainer from './core/ColorSwatchContainer';
 import SelectFieldContainer from './core/SelectFieldContainer';
 
 // Blocks
 
-import ColorSwatchContainer from './blocks/ColorSwatchContainer';
 import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
 
 // Pages
