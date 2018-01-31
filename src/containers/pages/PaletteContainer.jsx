@@ -33,6 +33,43 @@ import {Palette} from 'components';
 
 
 class PaletteContainer extends React.Component {
+  static defaultProps = {
+    colorDetail: null,
+    filterText: '',
+    filterBy: null,
+  }
+
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        name: PropTypes.string,
+        project: PropTypes.string,
+      }),
+    }).isRequired,
+    asyncFetchColorPalette: PropTypes.func.isRequired,
+    updateFilterText: PropTypes.func.isRequired,
+    updateFilterSelect: PropTypes.func.isRequired,
+    enableFilterSelect: PropTypes.func.isRequired,
+    disableFilterSelect: PropTypes.func.isRequired,
+    updateSortSelect: PropTypes.func.isRequired,
+    updateSortOrder: PropTypes.func.isRequired,
+    palette: PropTypes.object.isRequired,
+    colorDetail: PropTypes.string,
+    filterText: PropTypes.string,
+    filterBy: PropTypes.string,
+    filterByEnabled: PropTypes.bool.isRequired,
+    sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,
+    sortBy: PropTypes.oneOf([
+      USAGE,
+      BRIGHTNESS,
+      LUMINESCENCE,
+      TRANSPARENCY,
+      ALPHABETICAL,
+    ]).isRequired,
+    openColorDetail: PropTypes.func.isRequired,
+  }
+
   state = {popUpOpen: false}
 
   componentDidMount = () => {
@@ -201,43 +238,6 @@ const mapDispatchToProps = {
   updateSortSelect,
   updateSortOrder,
   openColorDetail,
-};
-
-PaletteContainer.defaultProps = {
-  colorDetail: null,
-  filterText: '',
-  filterBy: null,
-};
-
-PaletteContainer.propTypes = {
-  history: PropTypes.object.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      name: PropTypes.string,
-      project: PropTypes.string,
-    }),
-  }).isRequired,
-  asyncFetchColorPalette: PropTypes.func.isRequired,
-  updateFilterText: PropTypes.func.isRequired,
-  updateFilterSelect: PropTypes.func.isRequired,
-  enableFilterSelect: PropTypes.func.isRequired,
-  disableFilterSelect: PropTypes.func.isRequired,
-  updateSortSelect: PropTypes.func.isRequired,
-  updateSortOrder: PropTypes.func.isRequired,
-  palette: PropTypes.object.isRequired,
-  colorDetail: PropTypes.string,
-  filterText: PropTypes.string,
-  filterBy: PropTypes.string,
-  filterByEnabled: PropTypes.bool.isRequired,
-  sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,
-  sortBy: PropTypes.oneOf([
-    USAGE,
-    BRIGHTNESS,
-    LUMINESCENCE,
-    TRANSPARENCY,
-    ALPHABETICAL,
-  ]).isRequired,
-  openColorDetail: PropTypes.func.isRequired,
 };
 
 export default withRouter(
