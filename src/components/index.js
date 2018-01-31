@@ -37,6 +37,7 @@ import NavigateBack from './blocks/NavigateBack/NavigateBack';
 
 import Search from './pages/Search/Search';
 import Detail from './pages/Detail/Detail';
+import Palette from './pages/Palette/Palette';
 
 export {
   Anchor,
@@ -58,6 +59,7 @@ export {
   LocationList,
   Navbar,
   NavigateBack,
+  Palette,
   Paragraph,
   Popup,
   Rule,
