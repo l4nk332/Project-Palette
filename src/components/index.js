@@ -8,7 +8,7 @@ import Error from './core/Error/Error';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
 import FlexWrapper from './core/FlexWrapper/FlexWrapper';
 import Form from './core/Form/Form';
-import Grid from './core/Grid/Grid';
+import ColorGrid from './core/ColorGrid/ColorGrid';
 import Heading from './core/Heading/Heading';
 import IconAssistedField from './core/IconAssistedField/IconAssistedField';
 import Jumbotron from './core/Jumbotron/Jumbotron';
@@ -48,7 +48,7 @@ export {
   FixedWrapper,
   FlexWrapper,
   Form,
-  Grid,
+  ColorGrid,
   Heading,
   IconAssistedField,
   Jumbotron,

@@ -38,12 +38,11 @@ import {
 import {
   DetailContainer,
   SelectFieldContainer,
-  ColorSwatchContainer,
   DownloadDropdownContainer,
 } from 'containers';
 
 import {
-  Grid,
+  ColorGrid,
   Navbar,
   TextField,
   IconAssistedField,
@@ -171,17 +170,6 @@ class PaletteContainer extends React.Component {
       popUpOpen: !prevState.popUpOpen,
     }));
   }
-
-
-  renderSwatches = () => (
-    this.getFilteredSortedColorList().map(color => (
-      <ColorSwatchContainer
-        key={color}
-        color={color}
-        openColorDetail={this.props.openColorDetail}
-      />
-    ))
-  )
 
   renderDetailContainer = () => {
     const locations = this.props.palette[this.props.colorDetail];
@@ -383,7 +371,10 @@ class PaletteContainer extends React.Component {
             )
           )}
         </Media>
-        <Grid>{this.renderSwatches()}</Grid>
+        <ColorGrid
+          colors={this.getFilteredSortedColorList()}
+          openColorDetail={this.props.openColorDetail}
+        />
       </div>
       {this.props.colorDetail && this.renderDetailContainer()}
     </div>
