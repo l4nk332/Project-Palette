@@ -8,12 +8,6 @@ import lodashSortBy from 'lodash/sortBy';
 
 import {
   asyncFetchColorPalette,
-  updateFilterText,
-  updateFilterSelect,
-  enableFilterSelect,
-  disableFilterSelect,
-  updateSortSelect,
-  updateSortOrder,
   openColorDetail,
 } from 'redux/actionCreators';
 
@@ -48,12 +42,6 @@ class PaletteContainer extends React.Component {
       }),
     }).isRequired,
     asyncFetchColorPalette: PropTypes.func.isRequired,
-    updateFilterText: PropTypes.func.isRequired,
-    updateFilterSelect: PropTypes.func.isRequired,
-    enableFilterSelect: PropTypes.func.isRequired,
-    disableFilterSelect: PropTypes.func.isRequired,
-    updateSortSelect: PropTypes.func.isRequired,
-    updateSortOrder: PropTypes.func.isRequired,
     palette: PropTypes.object.isRequired,
     colorDetail: PropTypes.string,
     filterText: PropTypes.string,
@@ -70,52 +58,12 @@ class PaletteContainer extends React.Component {
     openColorDetail: PropTypes.func.isRequired,
   }
 
-  state = {popUpOpen: false}
-
   componentDidMount = () => {
     const {name, project} = this.props.match.params;
     if (name && project) {
       this.props.asyncFetchColorPalette(`${name}/${project}`);
-
-      const queryParams = new URLSearchParams(window.location.search);
-
-      this.setFiltersByUrlQuery(queryParams);
-      this.setSortByUrlQuery(queryParams);
     }
   };
-
-  setFiltersByUrlQuery = queryParams => {
-    const filterParam = queryParams.get('filter');
-    const searchParam = queryParams.get('search');
-
-    if ([LIGHTNESS, DARKNESS].includes(filterParam)) {
-      this.props.updateFilterSelect(filterParam);
-    }
-
-    if (searchParam !== null) {
-      this.props.updateFilterText(searchParam);
-    }
-  }
-
-  setSortByUrlQuery = queryParams => {
-    const sortParam = queryParams.get('sort');
-    const orderParam = queryParams.get('order');
-    const sortOptions = [
-      USAGE,
-      BRIGHTNESS,
-      LUMINESCENCE,
-      ALPHABETICAL,
-      TRANSPARENCY,
-    ];
-
-    if (sortOptions.includes(sortParam)) {
-      this.props.updateSortSelect(sortParam);
-    }
-
-    if ([ASCENDING, DESCENDING].includes(orderParam)) {
-      this.props.updateSortOrder(orderParam);
-    }
-  }
 
   setVisibility = () => ({
     visibility: this.props.colorDetail ? 'hidden' : 'visible',
@@ -183,12 +131,6 @@ class PaletteContainer extends React.Component {
               : color
   )
 
-  togglePopup = () => {
-    this.setState(prevState => ({
-      popUpOpen: !prevState.popUpOpen,
-    }));
-  }
-
   navigateBackHandler = () => {
     this.props.history.push('/');
   }
@@ -199,19 +141,6 @@ class PaletteContainer extends React.Component {
       colorDetail={this.props.colorDetail}
       projectName={this.props.match.params.project}
       navigateBackHandler={this.navigateBackHandler}
-      popUpOpen={this.state.popUpOpen}
-      togglePopup={this.togglePopup}
-      filterText={this.props.filterText}
-      updateFilterText={this.props.updateFilterText}
-      sortBy={this.props.sortBy}
-      updateSortSelect={this.props.updateSortSelect}
-      filterBy={this.props.filterBy}
-      updateFilterSelect={this.props.updateFilterSelect}
-      sortOrder={this.props.sortOrder}
-      updateSortOrder={this.props.updateSortOrder}
-      filterByEnabled={this.props.filterByEnabled}
-      disableFilterSelect={this.props.disableFilterSelect}
-      enableFilterSelect={this.props.enableFilterSelect}
       filteredSortedPalette={this.getFilteredSortedPalette()}
       filteredSortedColorList={this.getFilteredSortedColorList()}
       openColorDetail={this.props.openColorDetail}
@@ -231,12 +160,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   asyncFetchColorPalette,
-  updateFilterText,
-  updateFilterSelect,
-  enableFilterSelect,
-  disableFilterSelect,
-  updateSortSelect,
-  updateSortOrder,
   openColorDetail,
 };
 

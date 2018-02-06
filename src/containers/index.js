@@ -8,6 +8,10 @@ import SelectFieldContainer from './core/SelectFieldContainer';
 // Blocks
 
 import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
+import PaletteFilterSelectContainer from './blocks/PaletteFilterSelectContainer';
+import PaletteSearchContainer from './blocks/PaletteSearchContainer';
+import PaletteSortSelectContainer from './blocks/PaletteSortSelectContainer';
+import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 
 // Pages
 
@@ -23,4 +27,8 @@ export {
   SelectFieldContainer,
   ColorSwatchContainer,
   DownloadDropdownContainer,
+  PaletteFilterSelectContainer,
+  PaletteSearchContainer,
+  PaletteSortSelectContainer,
+  OptionsPopupContainer,
 };

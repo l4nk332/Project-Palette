@@ -15,6 +15,7 @@ import Jumbotron from './core/Jumbotron/Jumbotron';
 import Lead from './core/Lead/Lead';
 import LoadingWrapper from './core/LoadingWrapper/LoadingWrapper';
 import LocationList from './core/LocationList/LocationList';
+import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
 import Popup from './core/Popup/Popup';
 import Rule from './core/Rule/Rule';
@@ -30,8 +31,10 @@ import Toggleable from './core/Toggleable/Toggleable';
 
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
-import Navbar from './blocks/Navbar/Navbar';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
+import PaletteNavbar from './blocks/PaletteNavbar/PaletteNavbar';
+import PaletteFilterSelect from './blocks/PaletteFilterSelect/PaletteFilterSelect';
+import PaletteSortSelect from './blocks/PaletteSortSelect/PaletteSortSelect';
 
 // Pages
 
@@ -72,4 +75,7 @@ export {
   Toggleable,
   Search,
   Detail,
+  PaletteNavbar,
+  PaletteFilterSelect,
+  PaletteSortSelect,
 };
