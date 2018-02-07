@@ -32,6 +32,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
+import OptionsPopup from './blocks/OptionsPopup/OptionsPopup';
 import PaletteNavbar from './blocks/PaletteNavbar/PaletteNavbar';
 import PaletteFilterSelect from './blocks/PaletteFilterSelect/PaletteFilterSelect';
 import PaletteSortSelect from './blocks/PaletteSortSelect/PaletteSortSelect';
@@ -75,6 +76,7 @@ export {
   Toggleable,
   Search,
   Detail,
+  OptionsPopup,
   PaletteNavbar,
   PaletteFilterSelect,
   PaletteSortSelect,

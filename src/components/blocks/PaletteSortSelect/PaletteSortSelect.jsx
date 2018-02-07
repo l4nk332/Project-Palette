@@ -58,7 +58,7 @@ const PaletteSortSelect = ({
           },
         ]}
         clickHandler={updateSortSelect}
-        width="132px"
+        width="150px"
       />
     }
     Icon={

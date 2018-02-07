@@ -29,17 +29,7 @@ const PaletteNavbar = ({
             text={projectName}
             clickHandler={navigateBackHandler}
           />
-          <OptionsPopupContainer>
-            <section style={{padding: '0.5em'}}>
-              <section style={{marginBottom: '1em'}}>
-                <PaletteSearchContainer />
-              </section>
-              <section style={{marginBottom: '1em'}}>
-                <PaletteSortSelectContainer />
-              </section>
-              <PaletteFilterSelectContainer />
-            </section>
-          </OptionsPopupContainer>
+          <OptionsPopupContainer />
         </Navbar>
       ) : (
         <Navbar>

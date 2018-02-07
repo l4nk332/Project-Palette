@@ -36,7 +36,7 @@ const PaletteFilterSelect = ({
           },
         ]}
         clickHandler={updateFilterSelect}
-        width="132px"
+        width="150px"
       />
     }
     Icon={
