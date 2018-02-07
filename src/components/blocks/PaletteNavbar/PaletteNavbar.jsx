@@ -30,6 +30,10 @@ const PaletteNavbar = ({
             clickHandler={navigateBackHandler}
           />
           <OptionsPopupContainer />
+          <DownloadDropdownContainer
+            projectName={projectName}
+            palette={filteredSortedPalette}
+          />
         </Navbar>
       ) : (
         <Navbar>
