@@ -19,6 +19,7 @@ import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
 import Popup from './core/Popup/Popup';
 import Rule from './core/Rule/Rule';
+import ScrollTop from './core/ScrollTop/ScrollTop';
 import SegmentRule from './core/SegmentRule/SegmentRule';
 import SelectField from './core/SelectField/SelectField';
 import SplitButton from './core/SplitButton/SplitButton';
@@ -67,6 +68,7 @@ export {
   Paragraph,
   Popup,
   Rule,
+  ScrollTop,
   SegmentRule,
   SelectField,
   SplitButton,

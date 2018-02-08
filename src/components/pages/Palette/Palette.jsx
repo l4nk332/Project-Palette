@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   DetailContainer,
+  ScrollTopContainer,
 } from 'containers';
 
 import {
@@ -21,7 +22,7 @@ const Palette = ({
   openColorDetail,
 }) => (
   <main>
-    <div style={{visibility: colorDetail ? 'hidden' : 'visible'}}>
+    <ScrollTopContainer isVisible={!colorDetail}>
       <PaletteNavbar
         projectName={projectName}
         navigateBackHandler={navigateBackHandler}
@@ -31,7 +32,7 @@ const Palette = ({
         colors={filteredSortedColorList}
         openColorDetail={openColorDetail}
       />
-    </div>
+    </ScrollTopContainer>
     {colorDetail && <DetailContainer locations={locations} />}
   </main>
 );

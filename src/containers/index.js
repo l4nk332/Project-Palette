@@ -3,6 +3,7 @@ import AppContainer from './AppContainer';
 // Core
 
 import ColorSwatchContainer from './core/ColorSwatchContainer';
+import ScrollTopContainer from './core/ScrollTopContainer';
 import SelectFieldContainer from './core/SelectFieldContainer';
 
 // Blocks
@@ -23,6 +24,7 @@ export {
   AppContainer,
   DetailContainer,
   PaletteContainer,
+  ScrollTopContainer,
   SearchContainer,
   SelectFieldContainer,
   ColorSwatchContainer,
