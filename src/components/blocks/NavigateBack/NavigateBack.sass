@@ -1,0 +1,17 @@
+.container
+  margin: 0 auto 0 0
+  font-weight: 500
+  font-size: 1.5em
+  cursor: pointer
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  opacity: 1
+  &:hover
+    opacity: 0.75
+  @media (max-width: $two-columns)
+    &
+      font-size: 1.2em
+  @media (max-width: $one-column)
+    &
+      font-size: 1.1em

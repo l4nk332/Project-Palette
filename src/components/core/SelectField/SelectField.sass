@@ -1,0 +1,68 @@
+.container
+  width: 85px
+  color: $white
+  position: relative
+  font-size: 14px
+  font-weight: $lighter
+  transition: background 150ms ease-in-out, border 150ms ease-in-out
+  cursor: pointer
+
+%item
+  outline: 0
+  padding: 8px 10px
+
+.header
+  @extend %item
+  background-color: $black
+  border-radius: 2px
+  @include flex(row, nowrap, center, space-between)
+  padding-bottom: 7px
+  border-bottom: 3px solid $black
+  outline: 0
+  &.open
+    border-radius: 2px 2px 0px 0px
+    border-color: $turquoise
+  &:focus, &:hover
+    background: lighten($black, 10%)
+    &:not(.open)
+      border-color: lighten($black, 10%)
+
+.muted
+  color: #949495
+
+.list
+  width: 100%
+  position: absolute
+  list-style: none
+  padding: 0
+  margin: 0
+  z-index: $high
+  display: none
+  &.open
+    display: block
+  li
+    @extend %item
+    background: $black
+    &:focus, &:hover
+      background: lighten($black, 15%)
+    &:last-child
+      border-radius: 0px 0px 2px 2px
+  li.selected
+    background: lighten($black, 10%)
+    &:focus, &:hover
+      background: lighten($black, 15%)
+  animation-name: drop
+  animation-duration: 300ms
+  animation-timing-function: ease-in-out
+  animation-fill-mode: forwards
+
+
+@keyframes drop
+  0%
+    opacity: 0
+    transform: scaleY(0) translateY(-50%)
+    transform-origin: 50% 0 0
+  100%
+    opacity: 1
+    transform: scaleY(1) translateY(0)
+    transform-origin: 50% 50% 0

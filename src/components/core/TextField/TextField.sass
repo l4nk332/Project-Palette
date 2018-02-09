@@ -1,0 +1,24 @@
+.container
+  border: 0
+  border-bottom: 3px solid $black
+  border-radius: 2px
+  background: $black
+  color: $white
+  box-sizing: border-box
+  outline: none
+  padding: 9px 7px 6px 7px
+  font-size: 14px
+  font-weight: $lighter
+  transition: background 150ms ease-in-out, border 150ms ease-in-out
+  &:focus, &:hover
+    background: lighten($black, 10%)
+  &:hover
+    border-bottom-color: lighten($black, 10%)
+  &:focus
+    border-bottom-color: $turquoise
+
+.scalesDown
+  @extend .container
+  @media (max-width: $two-columns)
+    &
+      width: 150px
