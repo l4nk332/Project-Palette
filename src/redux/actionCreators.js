@@ -69,12 +69,25 @@ export const asyncFetchColorPalette = search => dispatch => {
 
   return searchGitHubProject(search)
     .then(response => {
-      dispatch(setProjectUrl(response.data.html_url));
+      if (response.data.private) {
+        throw new Error('Private repos are not supported for parsing...');
+      }
+
+      const {
+        html_url,
+        id,
+        clone_url,
+        full_name,
+        pushed_at
+      } = response.data;
+
+      dispatch(setProjectUrl(html_url));
+
       return {
-        id: response.data.id,
-        httpsCloneURL: response.data.clone_url,
-        repoURI: response.data.full_name,
-        pushedDate: response.data.pushed_at,
+        id,
+        httpsCloneURL: clone_url,
+        repoURI: full_name,
+        pushedDate: pushed_at,
       };
     })
     .then(getProjectPalette)

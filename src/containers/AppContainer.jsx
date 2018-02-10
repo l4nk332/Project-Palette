@@ -14,11 +14,14 @@ const AppContainer = ({isLoading, isError, clearError}) => (
     {isError ? (
       <Error
         heading="404"
-        message="Looking for something?"
+        message={
+          'Couldn\'t seem to find what you were looking for. ' +
+          'Be sure that the repository exists on Github and is not private.'
+        }
         clickHandler={clearError}
         link={
           <Link to="/">
-            <Anchor url="/">Back to Search</Anchor>
+            <Anchor>Back to Search</Anchor>
           </Link>
         }
       />
