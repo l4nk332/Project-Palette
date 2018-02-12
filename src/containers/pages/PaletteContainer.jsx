@@ -17,6 +17,7 @@ import {
   LUMINESCENCE,
   ALPHABETICAL,
   TRANSPARENCY,
+  HUE,
   LIGHTNESS,
   DARKNESS,
   ASCENDING,
@@ -53,6 +54,7 @@ class PaletteContainer extends React.Component {
       BRIGHTNESS,
       LUMINESCENCE,
       TRANSPARENCY,
+      HUE,
       ALPHABETICAL,
     ]).isRequired,
     openColorDetail: PropTypes.func.isRequired,
@@ -128,7 +130,9 @@ class PaletteContainer extends React.Component {
             ? tinycolor(color).getAlpha()
             : this.props.sortBy === ALPHABETICAL
               ? color
-              : color
+              : this.props.sortBy === HUE
+                ? tinycolor(color).toHsl().h
+                : color
   )
 
   navigateBackHandler = () => {

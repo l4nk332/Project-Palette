@@ -10,6 +10,7 @@ import {
   LUMINESCENCE,
   ALPHABETICAL,
   TRANSPARENCY,
+  HUE,
   ASCENDING,
   DESCENDING,
 } from 'utils/constants';
@@ -56,6 +57,11 @@ const PaletteSortSelect = ({
             value: ALPHABETICAL,
             selected: sortBy === ALPHABETICAL,
           },
+          {
+            label: 'Hue',
+            value: HUE,
+            selected: sortBy === HUE,
+          },
         ]}
         clickHandler={updateSortSelect}
         width="150px"
@@ -79,6 +85,7 @@ PaletteSortSelect.propTypes = {
     BRIGHTNESS,
     LUMINESCENCE,
     TRANSPARENCY,
+    HUE,
     ALPHABETICAL,
   ]).isRequired,
   sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,

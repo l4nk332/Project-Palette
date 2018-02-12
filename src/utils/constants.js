@@ -18,6 +18,7 @@ export const BRIGHTNESS = 'BRIGHTNESS';
 export const LUMINESCENCE = 'LUMINESCENCE';
 export const ALPHABETICAL = 'ALPHABETICAL';
 export const TRANSPARENCY = 'TRANSPARENCY';
+export const HUE = 'HUE';
 
 // Sort Order Values
 export const ASCENDING = 'ASCENDING';
