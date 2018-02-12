@@ -1,0 +1,19 @@
+.container
+  height: 10px
+  background-size: 400%
+
+.animate
+  animation-name: rotate-colors
+  animation-duration: 20s
+  animation-timing-function: ease-in-out
+  animation-direction: alternate
+  animation-fill-mode: forwards
+  animation-iteration-count: infinite
+
+@keyframes rotate-colors
+  0%
+    background-position-x: 0%
+  50%
+    background-position-x: 100%
+  100%
+    background-position-x: 0%

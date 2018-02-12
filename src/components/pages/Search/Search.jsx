@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  BLUE,
   TURQUOISE,
   PINK,
   PURPLE,
@@ -13,7 +12,7 @@ import {
 import {
   SplitView,
   FlexWrapper,
-  SegmentRule,
+  GradientRule,
   Rule,
   Jumbotron,
   Lead,
@@ -29,7 +28,7 @@ const Search = ({formFields}) => (
     <FlexWrapper>
       <SplitView
         left={[
-          <SegmentRule colors={[PINK, TURQUOISE, BLUE, PURPLE]} key={0} />,
+          <GradientRule animate key={0} />,
           <Jumbotron title="Project Palette." key={1}>
             A <span style={{color: PINK}}>color</span> reference tool
           </Jumbotron>,
