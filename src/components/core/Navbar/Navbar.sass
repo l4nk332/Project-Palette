@@ -10,5 +10,6 @@ $border-color: rgba(140, 140, 140, 0.1)
   height: 5em
   padding: 1em
   background-color: $background-color
-  border-bottom: 1px solid $border-color
+  border-bottom: 2px solid $border-color
+  border-image: linear-gradient( to right, $pink, $turquoise, $purple, $blue ) 0 0 100% stretch
   @include flex(row, nowrap, center, flex-end)

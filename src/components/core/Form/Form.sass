@@ -1,5 +1,10 @@
 .container
   .field
+    animation-name: fade-in
+    animation-duration: 300ms
+    animation-direction: normal
+    animation-fill-mode: forwards
+    animation-timing-function: ease-in-out
     margin: 25px 0
     label, input
       display: block
@@ -14,3 +19,9 @@
       width: 100%
       max-width: 150px
       padding: 15px
+
+@keyframes fade-in
+  from
+    opacity: 0.5
+  to
+    opacity: 1
