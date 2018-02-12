@@ -14,6 +14,7 @@ import {
   LUMINESCENCE,
   ALPHABETICAL,
   TRANSPARENCY,
+  HUE,
   ASCENDING,
   DESCENDING,
 } from 'utils/constants';
@@ -31,6 +32,7 @@ class PaletteSortSelectContainer extends React.Component {
       BRIGHTNESS,
       LUMINESCENCE,
       TRANSPARENCY,
+      HUE,
       ALPHABETICAL,
     ]).isRequired,
   }
@@ -45,6 +47,7 @@ class PaletteSortSelectContainer extends React.Component {
       LUMINESCENCE,
       ALPHABETICAL,
       TRANSPARENCY,
+      HUE,
     ];
 
     if (sortOptions.includes(sortParam)) {
