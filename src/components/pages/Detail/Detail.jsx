@@ -14,6 +14,7 @@ const Detail = ({
   handleClose,
   locations,
   projectUrl,
+  defaultBranch,
 }) => (
   <FixedWrapper color={color}>
     <CloseIcon handleClick={handleClose} />
@@ -22,6 +23,7 @@ const Detail = ({
       color={color}
       locations={locations}
       projectUrl={projectUrl}
+      defaultBranch={defaultBranch}
     />
   </FixedWrapper>
 );
@@ -31,6 +33,7 @@ Detail.propTypes = {
   color: PropTypes.string.isRequired,
   locations: PropTypes.arrayOf(PropTypes.object).isRequired,
   projectUrl: PropTypes.string.isRequired,
+  defaultBranch: PropTypes.string.isRequired,
 };
 
 export default Detail;
