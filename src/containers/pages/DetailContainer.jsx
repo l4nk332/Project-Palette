@@ -19,6 +19,7 @@ class DetailContainer extends React.Component {
       locations: PropTypes.arrayOf(PropTypes.object),
     }).isRequired,
     projectUrl: PropTypes.string.isRequired,
+    defaultBranch: PropTypes.string.isRequired,
   };
 
   handleClose = () => {
@@ -32,6 +33,7 @@ class DetailContainer extends React.Component {
       color={this.props.colorDetail}
       locations={this.props.locations.locations}
       projectUrl={this.props.projectUrl}
+      defaultBranch={this.props.defaultBranch}
     />
   )
 }
@@ -39,6 +41,7 @@ class DetailContainer extends React.Component {
 const mapStateToProps = state => ({
   colorDetail: state.colorDetail,
   projectUrl: state.projectUrl,
+  defaultBranch: state.defaultBranch,
 });
 
 const mapDispatchToProps = {

@@ -3,6 +3,7 @@ import {combineReducers} from 'redux';
 import {
   initialLoadingState,
   initialProjectUrlState,
+  initialDefaultBranchState,
   initialColorDetailState,
   initialPaletteState,
   initialErrorState,
@@ -15,6 +16,7 @@ import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
+  UPDATE_DEFAULT_BRANCH,
   COLOR_DETAIL,
   CLEAR_COLOR,
   SET_PALETTE,
@@ -45,6 +47,15 @@ const isLoadingReducer = (state = initialLoadingState, action) => {
 const projectUrlReducer = (state = initialProjectUrlState, {type, text}) => {
   switch (type) {
     case UPDATE_PROJECT_URL:
+      return text;
+    default:
+      return state;
+  }
+};
+
+const defaultBranchReducer = (state = initialDefaultBranchState, {type, text}) => {
+  switch (type) {
+    case UPDATE_DEFAULT_BRANCH:
       return text;
     default:
       return state;
@@ -132,6 +143,7 @@ const sortReducer = (state = initialSortState, {type, value}) => {
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
+  defaultBranch: defaultBranchReducer,
   colorDetail: colorDetailReducer,
   palette: paletteReducer,
   error: errorReducer,

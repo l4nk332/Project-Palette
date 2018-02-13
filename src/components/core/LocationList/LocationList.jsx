@@ -10,7 +10,12 @@ const alphaBackgroundColor = color => ({
   backgroundColor: getAlphaBackgroundColor(color),
 });
 
-const LocationList = ({color, locations, projectUrl}) => (
+const LocationList = ({
+  color,
+  locations,
+  projectUrl,
+  defaultBranch,
+}) => (
   <section className={s.container}>
     <div
       className={s.list}
@@ -22,6 +27,7 @@ const LocationList = ({color, locations, projectUrl}) => (
           filePath={filePath}
           lineNumber={lineNumber}
           projectUrl={projectUrl}
+          defaultBranch={defaultBranch}
         />
       ))}
     </div>
@@ -32,6 +38,7 @@ LocationList.propTypes = {
   color: PropTypes.string.isRequired,
   locations: PropTypes.arrayOf(PropTypes.object).isRequired,
   projectUrl: PropTypes.string.isRequired,
+  defaultBranch: PropTypes.string.isRequired,
 };
 
 export default LocationList;

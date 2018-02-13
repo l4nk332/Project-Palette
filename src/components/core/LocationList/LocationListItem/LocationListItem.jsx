@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 
 import s from './LocationListItem.sass';
 
-const LocationListItem = ({filePath, lineNumber, projectUrl}) => (
+const LocationListItem = ({
+  filePath,
+  lineNumber,
+  projectUrl,
+  defaultBranch,
+}) => (
   <a
-    href={`${projectUrl}/blob/master/${filePath}#L${lineNumber}`}
+    href={`${projectUrl}/blob/${defaultBranch}/${filePath}#L${lineNumber}`}
     className={s.container}
     target="_blank"
   >
@@ -21,6 +26,7 @@ LocationListItem.propTypes = {
     PropTypes.number,
   ]).isRequired,
   projectUrl: PropTypes.string.isRequired,
+  defaultBranch: PropTypes.string.isRequired,
 };
 
 export default LocationListItem;
