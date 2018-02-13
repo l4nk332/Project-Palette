@@ -24,6 +24,28 @@ class DetailContainer extends React.Component {
     filteredSortedColorList: PropTypes.arrayOf(PropTypes.string).isRequired,
   };
 
+  componentDidMount = () => {
+    document.addEventListener('keypress', this.handleKeyPress);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener('keypress', this.handleKeyPress);
+  }
+
+  handleKeyPress = event => {
+    if (event.key.toLowerCase() === 'arrowright') {
+      this.nextColor();
+    }
+
+    if (event.key.toLowerCase() === 'arrowleft') {
+      this.previousColor();
+    }
+
+    if (event.key.toLowerCase() === 'escape') {
+      this.handleClose();
+    }
+  }
+
   handleClose = () => {
     toggleStaticBody(false);
     this.props.closeColorDetail();
