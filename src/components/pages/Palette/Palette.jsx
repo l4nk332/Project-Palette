@@ -33,7 +33,13 @@ const Palette = ({
         openColorDetail={openColorDetail}
       />
     </ScrollTopContainer>
-    {colorDetail && <DetailContainer locations={locations} />}
+    {
+      colorDetail &&
+      <DetailContainer
+        locations={locations}
+        filteredSortedColorList={filteredSortedColorList}
+      />
+    }
   </main>
 );
 

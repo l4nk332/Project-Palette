@@ -1,0 +1,22 @@
+%icon
+  position: fixed
+  font-size: 2em
+  top: 50%
+  opacity: 0.7
+  transition: transform 150ms ease-in-out, opacity 150ms ease-in-out
+  cursor: pointer
+  &:hover
+    transform: scale(1.1)
+    opacity: 1
+  @media (hover: none)
+    transform: scale(1)
+    opacity: 1
+
+
+.previous
+  @extend %icon
+  left: 1%
+
+.next
+  @extend %icon
+  right: 1%
