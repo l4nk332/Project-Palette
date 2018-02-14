@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
   TURQUOISE,
-  PINK,
   PURPLE,
   BLACK,
   PROJECT_PALETTE_GITHUB_URL,
@@ -19,6 +18,7 @@ import {
   Paragraph,
   Anchor,
   Form,
+  ColorizedText,
 } from 'components';
 
 import s from './Search.sass';
@@ -30,7 +30,7 @@ const Search = ({formFields}) => (
         left={[
           <GradientRule animate key={0} />,
           <Jumbotron title="Project Palette." key={1}>
-            A <span style={{color: PINK}}>color</span> reference tool
+            A <ColorizedText>color</ColorizedText> reference tool
           </Jumbotron>,
           <Rule color={PURPLE} key={2} />,
           <Paragraph key={3}>
