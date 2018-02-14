@@ -9,10 +9,9 @@ const {
   rgb,
   hsl,
   htmlColorName,
-} = require('./regular-expressions');
-const {
   shouldExcludePath,
   shouldIncludeExtension,
+  stripInlineComment,
 } = require('./regular-expressions');
 
 class PaletteParser {
@@ -70,7 +69,8 @@ class PaletteParser {
 
         let lineCount = 1;
 
-        return rl.on('line', line => {
+        return rl.on('line', rawLine => {
+          const line = stripInlineComment(rawLine);
           const hexValueList = hex(line);
           const rgbValueList = rgb(line);
           const hslValueList = hsl(line);
