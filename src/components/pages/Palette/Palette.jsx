@@ -9,6 +9,8 @@ import {
 import {
   ColorGrid,
   PaletteNavbar,
+  FixedMessage,
+  ColorizedText,
 } from 'components';
 
 
@@ -32,6 +34,11 @@ const Palette = ({
         colors={filteredSortedColorList}
         openColorDetail={openColorDetail}
       />
+      {!filteredSortedColorList.length && (
+        <FixedMessage>
+          No <ColorizedText>colors</ColorizedText> to display...
+        </FixedMessage>
+      )}
     </ScrollTopContainer>
     {
       colorDetail &&

@@ -4,7 +4,9 @@ import Anchor from './core/Anchor/Anchor';
 import Button from './core/Button/Button';
 import CloseIcon from './core/CloseIcon/CloseIcon';
 import ColorSwatch from './core/ColorSwatch/ColorSwatch';
+import ColorizedText from './core/ColorizedText/ColorizedText';
 import Error from './core/Error/Error';
+import FixedMessage from './core/FixedMessage/FixedMessage';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
 import FlexWrapper from './core/FlexWrapper/FlexWrapper';
 import Form from './core/Form/Form';
@@ -50,8 +52,10 @@ export {
   Button,
   CloseIcon,
   ColorSwatch,
+  ColorizedText,
   DownloadDropdown,
   Error,
+  FixedMessage,
   FixedWrapper,
   FlexWrapper,
   Form,
