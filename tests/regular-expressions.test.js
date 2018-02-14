@@ -5,10 +5,9 @@ const {
   rgb,
   hsl,
   htmlColorName,
-} = require('../helpers/regular-expressions');
-const {
   shouldExcludePath,
   shouldIncludeExtension,
+  stripInlineComment,
 } = require('../helpers/regular-expressions');
 
 /* Test Hex Regular Expression */
@@ -276,5 +275,27 @@ describe('Test Extension Inclusion Regular Expression', () => {
     expect(shouldIncludeExtension('wrong.html.js.ip')).toBeFalsy();
     expect(shouldIncludeExtension('file.bash')).toBeFalsy();
     expect(shouldIncludeExtension('file.sh')).toBeFalsy();
+  });
+});
+
+/* Test stripInlineComment function */
+/* ================================ */
+
+describe('Test Stripping of Inline Comments', () => {
+  test('Should return the same string if no inline comment is found', () => {
+    expect(stripInlineComment('')).toEqual('');
+    expect(stripInlineComment('/ /')).toEqual('/ /');
+    expect(stripInlineComment('red')).toEqual('red');
+    expect(stripInlineComment(' blue')).toEqual(' blue');
+    expect(stripInlineComment(' green  ')).toEqual(' green  ');
+  });
+
+  test('Should return the trimmed string if inline comment is found', () => {
+    expect(stripInlineComment('//')).toEqual('');
+    expect(stripInlineComment('///')).toEqual('');
+    expect(stripInlineComment('// red blue green')).toEqual('');
+    expect(stripInlineComment('red // blue green')).toEqual('red ');
+    expect(stripInlineComment('red blue green//')).toEqual('red blue green');
+    expect(stripInlineComment('//red //blue //green')).toEqual('');
   });
 });

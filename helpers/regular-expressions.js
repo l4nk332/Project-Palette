@@ -189,6 +189,12 @@ const shouldIncludeExtension = str =>
     str,
   );
 
+const stripInlineComment = line => {
+  const commentIndex = line.indexOf('//');
+
+  return commentIndex !== -1 ? line.slice(0, commentIndex) : line;
+};
+
 module.exports = {
   hex,
   rgb,
@@ -196,4 +202,5 @@ module.exports = {
   htmlColorName,
   shouldExcludePath,
   shouldIncludeExtension,
+  stripInlineComment,
 };
