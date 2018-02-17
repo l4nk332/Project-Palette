@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import s from './Loader.sass';
 
-const Loader = () => (
+const Loader = ({message}) => (
   <div className={s.container}>
     <div className={s.matrix}>
       <div className={s.row}>
@@ -42,7 +44,18 @@ const Loader = () => (
       </div>
     </div>
     <h1 className={s.heading}>Project Palette</h1>
+    <span className={classNames(s.message, {[s.animateMessage]: message})}>
+      {message}
+    </span>
   </div>
 );
+
+Loader.defaultProps = {
+  message: null,
+};
+
+Loader.propTypes = {
+  message: PropTypes.string,
+};
 
 export default Loader;

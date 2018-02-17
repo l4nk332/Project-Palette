@@ -9,13 +9,13 @@ import {Loader} from 'components';
 
 import s from './LoadingWrapper.sass';
 
-const LoadingWrapper = ({isLoading, children}) => {
+const LoadingWrapper = ({isLoading, children, message}) => {
   // We want to lock the overflow as hidden if in loading state
   toggleStaticBody(isLoading);
 
   return (
     <section>
-      <div>{isLoading && <Loader />}</div>
+      <div>{isLoading && <Loader message={message} />}</div>
       <div
         className={classNames({
           [s.container]: !isLoading,
@@ -31,9 +31,14 @@ const mapStateToProps = state => ({
   isLoading: state.isLoading,
 });
 
+LoadingWrapper.defaultProps = {
+  message: null,
+};
+
 LoadingWrapper.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
+  message: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(LoadingWrapper);

@@ -4,6 +4,8 @@ export const initialLoadingState = false;
 
 export const initialProjectUrlState = null;
 
+export const initialProjectNameState = null;
+
 export const initialDefaultBranchState = null;
 
 export const initialColorDetailState = null;
