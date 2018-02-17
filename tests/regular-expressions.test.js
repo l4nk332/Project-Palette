@@ -5,8 +5,6 @@ const {
   rgb,
   hsl,
   htmlColorName,
-} = require('../helpers/regular-expressions');
-const {
   shouldExcludePath,
   shouldIncludeExtension,
 } = require('../helpers/regular-expressions');

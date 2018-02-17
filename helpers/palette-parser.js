@@ -4,13 +4,12 @@ const path = require('path');
 const shortid = require('shortid');
 
 const {stripFileSystemPath} = require('./path-utils');
+const CommentParser = require('./comment-parser');
 const {
   hex,
   rgb,
   hsl,
   htmlColorName,
-} = require('./regular-expressions');
-const {
   shouldExcludePath,
   shouldIncludeExtension,
 } = require('./regular-expressions');
@@ -69,8 +68,11 @@ class PaletteParser {
         });
 
         let lineCount = 1;
+        const commentParser = new CommentParser();
 
-        return rl.on('line', line => {
+        return rl.on('line', rawLine => {
+          let line = CommentParser.stripInlineComment(rawLine);
+          line = commentParser.stripBlockComments(line);
           const hexValueList = hex(line);
           const rgbValueList = rgb(line);
           const hslValueList = hsl(line);
