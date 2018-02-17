@@ -2,6 +2,7 @@ $space__matrix_spread_x: 7em
 $space__matrix_spread_y: 7em
 
 .container
+  font-size: 1.2em
   @include flex(column, nowrap, center, center)
   min-height: 100vh
   width: 100%
@@ -20,6 +21,37 @@ $space__matrix_spread_y: 7em
   animation-duration: 0.5s
   animation-timing-function: ease-in-out
   animation-fill-mode: forwards
+
+.message
+  font-size: 0.7em
+  line-height: 1.15em
+  min-height: 1.15em
+  font-weight: lighter
+  opacity: 0
+  transform: translateY(-10px)
+
+.animateMessage
+  animation-name: show-hide-message
+  animation-duration: 10s
+  animation-delay: 2s
+  animation-timing-function: ease-out
+  animation-fill-mode: forwards
+  animation-iteration-count: 1
+  animation-direction: normal
+
+@keyframes show-hide-message
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  5%
+    opacity: 1
+    transform: translateY(0)
+  95%
+    opacity: 1
+    transform: translateY(0)
+  100%
+    opacity: 0
+    transform: translateY(10px)
 
 .matrix
   @include flex(column, nowrap, center, space-around)

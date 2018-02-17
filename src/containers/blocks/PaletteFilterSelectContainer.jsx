@@ -9,11 +9,6 @@ import {
   disableFilterSelect,
 } from 'redux/actionCreators';
 
-import {
-  LIGHTNESS,
-  DARKNESS,
-} from 'utils/constants';
-
 import {PaletteFilterSelect} from 'components';
 
 
@@ -29,15 +24,6 @@ class PaletteSortSelectContainer extends React.Component {
     disableFilterSelect: PropTypes.func.isRequired,
     enableFilterSelect: PropTypes.func.isRequired,
   }
-
-  componentDidMount = () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const filterParam = queryParams.get('filter');
-
-    if ([LIGHTNESS, DARKNESS].includes(filterParam)) {
-      this.props.updateFilterSelect(filterParam);
-    }
-  };
 
   toggleFilter = () => {
     if (this.props.filterByEnabled) {

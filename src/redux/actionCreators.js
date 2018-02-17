@@ -12,6 +12,7 @@ import {
   IS_LOADING,
   IS_NOT_LOADING,
   UPDATE_PROJECT_URL,
+  UPDATE_PROJECT_NAME,
   UPDATE_DEFAULT_BRANCH,
   COLOR_DETAIL,
   CLEAR_COLOR,
@@ -39,6 +40,11 @@ export const setIsNotLoading = () => ({
 
 export const setProjectUrl = text => ({
   type: UPDATE_PROJECT_URL,
+  text,
+});
+
+export const setProjectName = text => ({
+  type: UPDATE_PROJECT_NAME,
   text,
 });
 
@@ -83,11 +89,13 @@ export const asyncFetchColorPalette = search => dispatch => {
         html_url,
         id,
         clone_url,
+        name,
         full_name,
         pushed_at,
         default_branch
       } = response.data;
 
+      dispatch(setProjectName(name));
       dispatch(setProjectUrl(html_url));
       dispatch(setDefaultBranch(default_branch));
 

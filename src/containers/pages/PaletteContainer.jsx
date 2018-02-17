@@ -9,6 +9,10 @@ import lodashSortBy from 'lodash/sortBy';
 import {
   asyncFetchColorPalette,
   openColorDetail,
+  updateFilterSelect,
+  updateSortSelect,
+  updateSortOrder,
+  updateFilterText,
 } from 'redux/actionCreators';
 
 import {
@@ -58,6 +62,10 @@ class PaletteContainer extends React.Component {
       ALPHABETICAL,
     ]).isRequired,
     openColorDetail: PropTypes.func.isRequired,
+    updateFilterSelect: PropTypes.func.isRequired,
+    updateSortSelect: PropTypes.func.isRequired,
+    updateSortOrder: PropTypes.func.isRequired,
+    updateFilterText: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
@@ -65,6 +73,10 @@ class PaletteContainer extends React.Component {
     if (name && project) {
       this.props.asyncFetchColorPalette(`${name}/${project}`);
     }
+
+    this.updateFilterByUrl();
+    this.updateSearchByUrl();
+    this.updateSortByUrl();
   };
 
   setVisibility = () => ({
@@ -135,6 +147,50 @@ class PaletteContainer extends React.Component {
                 : color
   )
 
+  updateFilterByUrl = () => {
+    // Filter Select
+    const queryParams = new URLSearchParams(window.location.search);
+    const filterParam = queryParams.get('filter');
+
+    if ([LIGHTNESS, DARKNESS].includes(filterParam)) {
+      this.props.updateFilterSelect(filterParam);
+    }
+  };
+
+  updateSearchByUrl = () => {
+    // Sort Select
+    const queryParams = new URLSearchParams(window.location.search);
+    const sortParam = queryParams.get('sort');
+    const orderParam = queryParams.get('order');
+    const sortOptions = [
+      USAGE,
+      BRIGHTNESS,
+      LUMINESCENCE,
+      ALPHABETICAL,
+      TRANSPARENCY,
+      HUE,
+    ];
+
+    if (sortOptions.includes(sortParam)) {
+      this.props.updateSortSelect(sortParam);
+    }
+
+    if ([ASCENDING, DESCENDING].includes(orderParam)) {
+      this.props.updateSortOrder(orderParam);
+    }
+  };
+
+  updateSortByUrl = () => {
+    // Search
+    const queryParams = new URLSearchParams(window.location.search);
+    const searchParam = queryParams.get('search');
+
+    if (searchParam !== null) {
+      this.props.updateFilterText(searchParam);
+    }
+  };
+
+
   navigateBackHandler = () => {
     this.props.history.push('/');
   }
@@ -165,6 +221,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   asyncFetchColorPalette,
   openColorDetail,
+  updateFilterSelect,
+  updateSortSelect,
+  updateSortOrder,
+  updateFilterText,
 };
 
 export default withRouter(

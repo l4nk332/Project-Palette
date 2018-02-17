@@ -9,8 +9,16 @@ import {SearchContainer, PaletteContainer} from 'containers';
 
 import {LoadingWrapper, Anchor, Error} from 'components';
 
-const AppContainer = ({isLoading, isError, clearError}) => (
-  <LoadingWrapper isLoading={isLoading}>
+const AppContainer = ({
+  isLoading,
+  isError,
+  clearError,
+  projectName,
+}) => (
+  <LoadingWrapper
+    isLoading={isLoading}
+    message={projectName ? `Parsing ${projectName} for colors...` : null}
+  >
     {isError ? (
       <Error
         heading="404"
@@ -54,16 +62,19 @@ const mapDispatchToProps = {
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
   isError: state.error,
+  projectName: state.projectName,
 });
 
 AppContainer.defaultProps = {
   isError: null,
+  projectName: null,
 };
 
 AppContainer.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.object,
   clearError: PropTypes.func.isRequired,
+  projectName: PropTypes.string,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer));

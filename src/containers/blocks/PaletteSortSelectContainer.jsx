@@ -37,28 +37,6 @@ class PaletteSortSelectContainer extends React.Component {
     ]).isRequired,
   }
 
-  componentDidMount = () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const sortParam = queryParams.get('sort');
-    const orderParam = queryParams.get('order');
-    const sortOptions = [
-      USAGE,
-      BRIGHTNESS,
-      LUMINESCENCE,
-      ALPHABETICAL,
-      TRANSPARENCY,
-      HUE,
-    ];
-
-    if (sortOptions.includes(sortParam)) {
-      this.props.updateSortSelect(sortParam);
-    }
-
-    if ([ASCENDING, DESCENDING].includes(orderParam)) {
-      this.props.updateSortOrder(orderParam);
-    }
-  };
-
   setSortOrderDesc = () => {
     this.props.updateSortOrder(DESCENDING);
   }

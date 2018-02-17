@@ -4,7 +4,7 @@ import {OptionsPopup} from 'components';
 
 class OptionsPopupContainer extends React.Component {
   state = {
-    isOpen: true,
+    isOpen: false,
   }
 
   togglePopup = () => {
