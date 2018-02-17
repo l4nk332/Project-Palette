@@ -20,15 +20,6 @@ class PaletteSearchContainer extends React.Component {
     filterText: '',
   }
 
-  componentDidMount = () => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const searchParam = queryParams.get('search');
-
-    if (searchParam !== null) {
-      this.props.updateFilterText(searchParam);
-    }
-  }
-
   handleChange = event => {
     const {value} = event.target;
     this.props.updateFilterText(value);
