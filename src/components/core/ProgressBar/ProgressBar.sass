@@ -1,0 +1,16 @@
+.container
+  @include flex(row, nowrap, stretch, flex-start)
+  height: 1.75em
+  max-width: 800px
+  width: 100%
+  margin: 1em auto
+
+.unit
+  margin: 0
+  text-align: center
+  @include flex(row, nowrap, center, center)
+  @include overflow-ellipsis(ltr)
+  &:first-of-type
+    border-radius: 2px 0 0 2px
+  &:last-of-type
+    border-radius: 0 2px 2px 0

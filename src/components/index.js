@@ -5,6 +5,7 @@ import Button from './core/Button/Button';
 import CloseIcon from './core/CloseIcon/CloseIcon';
 import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import ColorizedText from './core/ColorizedText/ColorizedText';
+import ColorReport from './core/ColorReport/ColorReport';
 import Error from './core/Error/Error';
 import FixedMessage from './core/FixedMessage/FixedMessage';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
@@ -21,6 +22,7 @@ import LocationList from './core/LocationList/LocationList';
 import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
 import Popup from './core/Popup/Popup';
+import ProgressBar from './core/ProgressBar/ProgressBar';
 import Rule from './core/Rule/Rule';
 import ScrollTop from './core/ScrollTop/ScrollTop';
 import SegmentRule from './core/SegmentRule/SegmentRule';
@@ -53,6 +55,7 @@ export {
   CloseIcon,
   ColorSwatch,
   ColorizedText,
+  ColorReport,
   DownloadDropdown,
   Error,
   FixedMessage,
@@ -88,4 +91,5 @@ export {
   PaletteNavbar,
   PaletteFilterSelect,
   PaletteSortSelect,
+  ProgressBar,
 };

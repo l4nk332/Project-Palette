@@ -11,6 +11,7 @@ import {
   PaletteNavbar,
   FixedMessage,
   ColorizedText,
+  ColorReport,
 } from 'components';
 
 
@@ -34,6 +35,13 @@ const Palette = ({
         colors={filteredSortedColorList}
         openColorDetail={openColorDetail}
       />
+      {/*
+      <ColorReport
+        palette={filteredSortedPalette}
+        colors={filteredSortedColorList}
+        openColorDetail={openColorDetail}
+      />
+      */}
       {!filteredSortedColorList.length && (
         <FixedMessage>
           No <ColorizedText>colors</ColorizedText> to display...
