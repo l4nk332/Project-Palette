@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {ProgressBar} from 'components';
+import { ProgressBar, Legend } from 'components';
 
 import { BLACK, WHITE } from 'utils/constants';
 
@@ -21,6 +21,12 @@ const ColorReport = ({palette, colors, openColorDetail}) => (
           color: BLACK,
           percentage: 50,
         },
+      ]}
+    />
+    <Legend
+      fields={[
+        {label: '50% Light', color: WHITE},
+        {label: '50% Dark', color: BLACK},
       ]}
     />
   </section>

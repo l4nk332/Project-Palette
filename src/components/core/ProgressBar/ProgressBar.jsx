@@ -5,7 +5,7 @@ import {getTextColor} from 'utils/color-manipulation';
 
 import s from './ProgressBar.sass';
 
-const ProgressBar = ({units}) => (
+const ProgressBar = ({units, showPercentages}) => (
   <section className={s.container}>
     {units.map((unit, key) => (
       <figure
@@ -18,7 +18,7 @@ const ProgressBar = ({units}) => (
         }}
         title={unit.label}
       >
-        {unit.label}
+        {showPercentages && unit.label}
       </figure>
     ))}
   </section>
@@ -26,6 +26,7 @@ const ProgressBar = ({units}) => (
 
 ProgressBar.defaultProps = {
   units: [],
+  showPercentages: false,
 };
 
 ProgressBar.propTypes = {
@@ -34,6 +35,7 @@ ProgressBar.propTypes = {
     color: PropTypes.string.isRequired,
     percentage: PropTypes.number.isRequired,
   })),
+  showPercentages: PropTypes.bool,
 };
 
 export default ProgressBar;

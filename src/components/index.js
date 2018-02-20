@@ -17,6 +17,7 @@ import Heading from './core/Heading/Heading';
 import IconAssistedField from './core/IconAssistedField/IconAssistedField';
 import Jumbotron from './core/Jumbotron/Jumbotron';
 import Lead from './core/Lead/Lead';
+import Legend from './core/Legend/Legend';
 import LoadingWrapper from './core/LoadingWrapper/LoadingWrapper';
 import LocationList from './core/LocationList/LocationList';
 import Navbar from './core/Navbar/Navbar';
@@ -68,6 +69,7 @@ export {
   IconAssistedField,
   Jumbotron,
   Lead,
+  Legend,
   Loader,
   LoadingWrapper,
   LocationList,
