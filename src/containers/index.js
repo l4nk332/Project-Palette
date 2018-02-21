@@ -19,6 +19,7 @@ import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 import DetailContainer from './pages/DetailContainer';
 import PaletteContainer from './pages/PaletteContainer';
 import SearchContainer from './pages/SearchContainer';
+import ColorReportContainer from './pages/ColorReportContainer';
 
 export {
   AppContainer,
@@ -28,6 +29,7 @@ export {
   SearchContainer,
   SelectFieldContainer,
   ColorSwatchContainer,
+  ColorReportContainer,
   DownloadDropdownContainer,
   PaletteFilterSelectContainer,
   PaletteSearchContainer,

@@ -1,41 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ProgressBar, Legend } from 'components';
+import {ProgressBar, Legend} from 'components';
 
-import { BLACK, WHITE } from 'utils/constants';
+import {BLACK, WHITE} from 'utils/constants';
 
 import s from './ColorReport.sass';
 
-const ColorReport = ({palette, colors, openColorDetail}) => (
+const ColorReport = ({contrast}) => (
   <section className={s.container}>
     <ProgressBar
       units={[
         {
-          label: '50% Light',
+          label: `${contrast.light}% Light`,
           color: WHITE,
-          percentage: 50,
+          percentage: contrast.light,
         },
         {
-          label: '50% Dark',
+          label: `${contrast.dark}% Dark`,
           color: BLACK,
-          percentage: 50,
+          percentage: contrast.dark,
         },
       ]}
     />
     <Legend
       fields={[
-        {label: '50% Light', color: WHITE},
-        {label: '50% Dark', color: BLACK},
+        {label: `${contrast.light}% Light`, color: WHITE},
+        {label: `${contrast.dark}% Dark`, color: BLACK},
       ]}
     />
   </section>
 );
 
 ColorReport.propTypes = {
-  palette: PropTypes.object.isRequired,
-  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  openColorDetail: PropTypes.func.isRequired,
+  contrast: PropTypes.shape({
+    light: PropTypes.number.isRequired,
+    dark: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default ColorReport;

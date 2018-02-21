@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   DetailContainer,
   ScrollTopContainer,
+  ColorReportContainer,
 } from 'containers';
 
 import {
@@ -11,7 +12,6 @@ import {
   PaletteNavbar,
   FixedMessage,
   ColorizedText,
-  ColorReport,
 } from 'components';
 
 
@@ -37,10 +37,8 @@ const Palette = ({
         openColorDetail={openColorDetail}
       />
       */}
-      <ColorReport
-        palette={filteredSortedPalette}
+      <ColorReportContainer
         colors={filteredSortedColorList}
-        openColorDetail={openColorDetail}
       />
       {!filteredSortedColorList.length && (
         <FixedMessage>
