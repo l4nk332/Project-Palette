@@ -15,3 +15,15 @@ export const getAlphaBackgroundColor = (color, alpha = '0.05') => {
 };
 
 export const makeOpaque = color => tinycolor(color).setAlpha(1);
+
+export const getContrastPercentages = colors => {
+  if (!colors.length) {
+    return {light: 0, dark: 0};
+  }
+
+  const darkCount = colors.filter(color => tinycolor(color).isDark()).length;
+  const darkPercentage = (darkCount / colors.length) * 100;
+  const lightPercentage = 100 - darkPercentage;
+
+  return {light: lightPercentage, dark: darkPercentage};
+};
