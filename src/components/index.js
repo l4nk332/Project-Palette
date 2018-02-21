@@ -36,6 +36,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 
 // Blocks
 
+import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
@@ -57,6 +58,7 @@ export {
   ColorSwatch,
   ColorizedText,
   ColorReport,
+  ContrastMeter,
   DownloadDropdown,
   Error,
   FixedMessage,
