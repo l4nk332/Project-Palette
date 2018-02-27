@@ -9,6 +9,8 @@ import {getContrastPercentages} from 'utils/color-manipulation';
 class ColorReportContainer extends React.Component {
   static propTypes = {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+    palette: PropTypes.object.isRequired,
+    openColorDetail: PropTypes.func.isRequired,
   };
 
   getEstimatedContrast = () => {
@@ -23,6 +25,8 @@ class ColorReportContainer extends React.Component {
   render = () => (
     <ColorReport
       contrast={this.getEstimatedContrast()}
+      palette={this.props.palette}
+      openColorDetail={this.props.openColorDetail}
     />
   )
 }

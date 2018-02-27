@@ -36,6 +36,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 
 // Blocks
 
+import ColorList from './blocks/ColorList/ColorList';
 import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
@@ -57,6 +58,7 @@ export {
   CloseIcon,
   ColorSwatch,
   ColorizedText,
+  ColorList,
   ColorReport,
   ContrastMeter,
   DownloadDropdown,

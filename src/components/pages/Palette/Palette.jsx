@@ -39,6 +39,8 @@ const Palette = ({
       */}
       <ColorReportContainer
         colors={filteredSortedColorList}
+        openColorDetail={openColorDetail}
+        palette={filteredSortedPalette}
       />
       {!filteredSortedColorList.length && (
         <FixedMessage>
