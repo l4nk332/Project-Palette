@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import lodashMaxBy from 'lodash/maxBy';
+
 import {ColorReport} from 'components';
 
 import {getContrastPercentages} from 'utils/color-manipulation';
@@ -22,9 +24,32 @@ class ColorReportContainer extends React.Component {
     };
   };
 
+  getTotalLocations = () => (
+    Object
+      .keys(this.props.palette)
+      .reduce((acc, cur) => acc + this.props.palette[cur].locations.length, 0)
+  );
+
+  getColorPercentages = () => (
+    this.props.colors.map(color => ({
+      percentage: (this.props.palette[color].locations.length / this.getTotalLocations()) * 100,
+      color,
+    }))
+  )
+
+  getPrimaryColorPercentage = () => {
+    if (!this.props.colors.length) {
+      return {color: '#0000', percentage: 0};
+    }
+
+    return lodashMaxBy(this.getColorPercentages(), obj => obj.percentage);
+  }
+
+
   render = () => (
     <ColorReport
       contrast={this.getEstimatedContrast()}
+      primaryColor={this.getPrimaryColorPercentage()}
       palette={this.props.palette}
       openColorDetail={this.props.openColorDetail}
     />

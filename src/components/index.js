@@ -22,6 +22,7 @@ import LoadingWrapper from './core/LoadingWrapper/LoadingWrapper';
 import LocationList from './core/LocationList/LocationList';
 import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
+import Pie from './core/Pie/Pie';
 import Popup from './core/Popup/Popup';
 import ProgressBar from './core/ProgressBar/ProgressBar';
 import Rule from './core/Rule/Rule';
@@ -81,6 +82,7 @@ export {
   NavigateBack,
   Palette,
   Paragraph,
+  Pie,
   Popup,
   Rule,
   ScrollTop,
