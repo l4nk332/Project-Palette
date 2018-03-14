@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import s from './Pie.sass';
 
 const Pie = ({percentage, color}) => (
-  <figure className={s.container} style={{backgroundImage: `linear-gradient(to right, transparent 50%, ${color} 0)`}}>
-    <section
-      className={classNames(s.percentage, {[s.secondHalf]: percentage > 50})}
-      style={{
-        transform: `rotate(${((percentage > 50 ? percentage - 50 : percentage) / 100) * 360}deg)`,
-        backgroundColor: color,
-      }}
+  <svg
+    className={s.svg}
+    viewBox="0 0 32 32"
+  >
+    <circle
+      className={s.circle}
+      r="16"
+      cx="16"
+      cy="16"
+      stroke={color}
+      style={{strokeDasharray: `${percentage + 1} 100`}}
     />
-  </figure>
+  </svg>
 );
 
 Pie.propTypes = {
