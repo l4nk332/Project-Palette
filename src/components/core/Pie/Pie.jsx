@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 import s from './Pie.sass';
 
+const calculateDash = percentage => (
+  percentage === 50
+    ? percentage + 0.2
+    : percentage > 50
+      ? percentage + 1
+      : percentage
+);
+
 const Pie = ({percentage, color}) => (
   <svg
     className={s.svg}
@@ -14,7 +22,7 @@ const Pie = ({percentage, color}) => (
       cx="16"
       cy="16"
       stroke={color}
-      style={{strokeDasharray: `${percentage + 1} 100`}}
+      style={{strokeDasharray: `${calculateDash(percentage)} 100`}}
     />
   </svg>
 );
