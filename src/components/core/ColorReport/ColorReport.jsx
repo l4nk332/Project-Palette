@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {ContrastMeter, ColorList, Pie} from 'components';
+import {ContrastMeter, ColorList, PrimaryColorChart} from 'components';
 
 import s from './ColorReport.sass';
 
@@ -13,7 +13,10 @@ const ColorReport = ({
 }) => (
   <section className={s.container}>
     <ContrastMeter contrast={contrast} />
-    <Pie percentage={primaryColor.percentage} color={primaryColor.color} />
+    <PrimaryColorChart
+      percentage={primaryColor.percentage}
+      color={primaryColor.color}
+    />
     <ColorList palette={palette} openColorDetail={openColorDetail} />
   </section>
 );
