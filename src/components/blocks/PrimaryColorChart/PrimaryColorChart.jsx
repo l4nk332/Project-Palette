@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import {Pie, Legend} from 'components';
 
+import s from './PrimaryColorChart.sass';
+
 const PrimaryColorChart = ({color, percentage}) => (
-  <section>
+  <section className={s.container}>
     <Pie color={color} percentage={percentage} />
-    <Legend fields={[{label: `${percentage}% Light`, color}]} />
+    <Legend fields={[{label: `${Math.round(percentage)}% ${color}`, color}]} />
   </section>
 );
 
