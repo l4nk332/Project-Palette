@@ -12,11 +12,11 @@ const ColorReport = ({
   primaryColor,
 }) => (
   <section className={s.container}>
-    <ContrastMeter contrast={contrast} />
     <PrimaryColorChart
       percentage={primaryColor.percentage}
       color={primaryColor.color}
     />
+    <ContrastMeter contrast={contrast} />
     <ColorList palette={palette} openColorDetail={openColorDetail} />
   </section>
 );
