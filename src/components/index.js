@@ -14,6 +14,7 @@ import Form from './core/Form/Form';
 import GradientRule from './core/GradientRule/GradientRule';
 import ColorGrid from './core/ColorGrid/ColorGrid';
 import Heading from './core/Heading/Heading';
+import SectionHeading from './core/SectionHeading/SectionHeading';
 import IconAssistedField from './core/IconAssistedField/IconAssistedField';
 import Jumbotron from './core/Jumbotron/Jumbotron';
 import Lead from './core/Lead/Lead';
@@ -87,6 +88,7 @@ export {
   Popup,
   Rule,
   ScrollTop,
+  SectionHeading,
   SegmentRule,
   SelectField,
   SplitButton,

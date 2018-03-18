@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {ProgressBar, Legend} from 'components';
+import {ProgressBar, Legend, SectionHeading} from 'components';
 
 import {BLACK, WHITE} from 'utils/constants';
 
+import s from './ContrastMeter.sass';
+
 const ContrastMeter = ({contrast}) => (
-  <section>
+  <section className={s.container}>
+    <SectionHeading>Contrast Meter</SectionHeading>
     <ProgressBar
       units={[
         {
