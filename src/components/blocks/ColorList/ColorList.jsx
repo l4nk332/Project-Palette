@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Media from 'react-media';
 import classNames from 'classnames';
+import tinycolor from 'tinycolor2';
 
 import {getTextColor} from 'utils/color-manipulation';
 
@@ -61,7 +62,7 @@ const ColorList = ({palette, openColorDetail}) => (
                   className={classNames(s.cell, s.left)}
                   style={{backgroundColor: color, color: getTextColor(color)}}
                 >
-                  Light
+                  {tinycolor(color).isDark() ? 'Dark' : 'Light'}
                 </td>
                 <td
                   className={classNames(s.cell, s.right)}
