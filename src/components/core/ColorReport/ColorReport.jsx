@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {ContrastMeter, ColorList, PrimaryColorChart} from 'components';
+import {
+  ContrastMeter,
+  ColorList,
+  PrimaryColorChart,
+  HueAggregationChart,
+} from 'components';
 
 import s from './ColorReport.sass';
 
@@ -12,10 +17,19 @@ const ColorReport = ({
   primaryColor,
 }) => (
   <section className={s.container}>
-    <PrimaryColorChart
-      percentage={primaryColor.percentage}
-      color={primaryColor.color}
-    />
+    <section className={s.row}>
+      <PrimaryColorChart
+        percentage={primaryColor.percentage}
+        color={primaryColor.color}
+      />
+      <HueAggregationChart
+        points={[
+          {x: 50, y: 50, color: 'mediumseagreen'},
+          {x: 5, y: 23, color: 'dodgerblue'},
+          {x: 75, y: 75, color: 'orangered'},
+        ]}
+      />
+    </section>
     <ContrastMeter contrast={contrast} />
     <ColorList palette={palette} openColorDetail={openColorDetail} />
   </section>

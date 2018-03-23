@@ -24,6 +24,7 @@ import LocationList from './core/LocationList/LocationList';
 import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
 import Pie from './core/Pie/Pie';
+import Plot from './core/Plot/Plot';
 import Popup from './core/Popup/Popup';
 import ProgressBar from './core/ProgressBar/ProgressBar';
 import Rule from './core/Rule/Rule';
@@ -41,6 +42,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 import ColorList from './blocks/ColorList/ColorList';
 import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
+import HueAggregationChart from './blocks/HueAggregationChart/HueAggregationChart';
 import Loader from './blocks/Loader/Loader';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
 import OptionsPopup from './blocks/OptionsPopup/OptionsPopup';
@@ -73,6 +75,7 @@ export {
   GradientRule,
   ColorGrid,
   Heading,
+  HueAggregationChart,
   IconAssistedField,
   Jumbotron,
   Lead,
@@ -104,4 +107,5 @@ export {
   PaletteSortSelect,
   ProgressBar,
   PrimaryColorChart,
+  Plot,
 };
