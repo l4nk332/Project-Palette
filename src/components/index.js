@@ -40,6 +40,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 // Blocks
 
 import ColorList from './blocks/ColorList/ColorList';
+import ColorSpectrum from './blocks/ColorSpectrum/ColorSpectrum';
 import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import HueAggregationChart from './blocks/HueAggregationChart/HueAggregationChart';
@@ -64,6 +65,7 @@ export {
   ColorSwatch,
   ColorizedText,
   ColorList,
+  ColorSpectrum,
   ColorReport,
   ContrastMeter,
   DownloadDropdown,
