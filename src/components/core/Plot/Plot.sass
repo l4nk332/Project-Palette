@@ -1,19 +1,31 @@
 .container
   position: relative
+  height: 300px
+  margin: 1em auto
+
+.yAxis
+  @include flex(column, nowrap, flex-end, space-between)
+  height: 100%
+  padding: 0 1em
+  position: absolute
+  left: -2.7em
+  bottom: 0
 
 .axis
   border-bottom: 2px solid $black
   border-left: 2px solid $black
 
+.points
+  width: 100%
+  height: 100%
+  border-left: 1px solid $black
+  border-bottom: 1px solid $black
+
 .point
   position: absolute
-  border-radius: 50%
   cursor: pointer
-  transition: transform 150ms ease-in-out
-  &:hover
-    transform: scale(1.5)
 
 .spectrum
   position: absolute
-  bottom: -2.3em
+  bottom: -2.8em
   left: 0
