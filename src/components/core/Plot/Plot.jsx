@@ -20,8 +20,9 @@ const Plot = ({points}) => (
           cx={point.x}
           cy={point.y}
           className={s.point}
+          stroke={point.color}
           fill={point.color}
-          r="3"
+          r="2px"
           key={idx}
         />
       ))}
