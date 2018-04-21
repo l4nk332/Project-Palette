@@ -8,3 +8,15 @@ export const triggerIfEnterKey = (event, callback) => {
     callback(event);
   }
 };
+
+export const maxDivBy = (max, divBy) => (
+  max % divBy === 0
+    ? max
+    : maxDivBy(max + 1, divBy)
+);
+
+export const decrRangeByOffset = (start, stop, offset) => (
+  start <= stop
+    ? [stop]
+    : [start].concat(decrRangeByOffset(start - offset, stop, offset))
+)
