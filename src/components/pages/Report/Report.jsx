@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
   ContrastMeter,
+  ColorAverages,
   ColorList,
   PrimaryColorChart,
 } from 'components';
@@ -21,6 +22,7 @@ const Report = ({
         percentage={primaryColor.percentage}
         color={primaryColor.color}
       />
+      <ColorAverages />
     </section>
     <ContrastMeter contrast={contrast} />
     <ColorList palette={palette} openColorDetail={openColorDetail} />

@@ -39,6 +39,7 @@ import Toggleable from './core/Toggleable/Toggleable';
 
 import ColorList from './blocks/ColorList/ColorList';
 import ColorSpectrum from './blocks/ColorSpectrum/ColorSpectrum';
+import ColorAverages from './blocks/ColorAverages/ColorAverages';
 import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
 import Loader from './blocks/Loader/Loader';
@@ -60,6 +61,7 @@ export {
   Anchor,
   Button,
   CloseIcon,
+  ColorAverages,
   ColorSwatch,
   ColorizedText,
   ColorList,
