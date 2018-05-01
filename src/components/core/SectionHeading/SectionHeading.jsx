@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import s from './SectionHeading.sass';
 
 const SectionHeading = ({children}) => (
-  <section>
+  <React.Fragment>
     <h3 className={s.container}>{children}</h3>
     <hr className={s.dash} />
-  </section>
+  </React.Fragment>
 );
 
 SectionHeading.propTypes = {
