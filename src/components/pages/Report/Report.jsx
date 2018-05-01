@@ -5,12 +5,11 @@ import {
   ContrastMeter,
   ColorList,
   PrimaryColorChart,
-  HueAggregationChart,
 } from 'components';
 
-import s from './ColorReport.sass';
+import s from './Report.sass';
 
-const ColorReport = ({
+const Report = ({
   contrast,
   palette,
   openColorDetail,
@@ -22,20 +21,13 @@ const ColorReport = ({
         percentage={primaryColor.percentage}
         color={primaryColor.color}
       />
-      <HueAggregationChart
-        points={[
-          {x: 50, y: 50, color: 'mediumseagreen'},
-          {x: 5, y: 23, color: 'dodgerblue'},
-          {x: 75, y: 75, color: 'orangered'},
-        ]}
-      />
     </section>
     <ContrastMeter contrast={contrast} />
     <ColorList palette={palette} openColorDetail={openColorDetail} />
   </section>
 );
 
-ColorReport.propTypes = {
+Report.propTypes = {
   contrast: PropTypes.shape({
     light: PropTypes.number.isRequired,
     dark: PropTypes.number.isRequired,
@@ -48,4 +40,4 @@ ColorReport.propTypes = {
   }).isRequired,
 };
 
-export default ColorReport;
+export default Report;

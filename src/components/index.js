@@ -5,7 +5,6 @@ import Button from './core/Button/Button';
 import CloseIcon from './core/CloseIcon/CloseIcon';
 import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import ColorizedText from './core/ColorizedText/ColorizedText';
-import ColorReport from './core/ColorReport/ColorReport';
 import Error from './core/Error/Error';
 import FixedMessage from './core/FixedMessage/FixedMessage';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
@@ -24,7 +23,6 @@ import LocationList from './core/LocationList/LocationList';
 import Navbar from './core/Navbar/Navbar';
 import Paragraph from './core/Paragraph/Paragraph';
 import Pie from './core/Pie/Pie';
-import Plot from './core/Plot/Plot';
 import Popup from './core/Popup/Popup';
 import ProgressBar from './core/ProgressBar/ProgressBar';
 import Rule from './core/Rule/Rule';
@@ -43,7 +41,6 @@ import ColorList from './blocks/ColorList/ColorList';
 import ColorSpectrum from './blocks/ColorSpectrum/ColorSpectrum';
 import ContrastMeter from './blocks/ContrastMeter/ContrastMeter';
 import DownloadDropdown from './blocks/DownloadDropdown/DownloadDropdown';
-import HueAggregationChart from './blocks/HueAggregationChart/HueAggregationChart';
 import Loader from './blocks/Loader/Loader';
 import NavigateBack from './blocks/NavigateBack/NavigateBack';
 import OptionsPopup from './blocks/OptionsPopup/OptionsPopup';
@@ -57,6 +54,7 @@ import PrimaryColorChart from './blocks/PrimaryColorChart/PrimaryColorChart';
 import Search from './pages/Search/Search';
 import Detail from './pages/Detail/Detail';
 import Palette from './pages/Palette/Palette';
+import Report from './pages/Report/Report';
 
 export {
   Anchor,
@@ -66,7 +64,6 @@ export {
   ColorizedText,
   ColorList,
   ColorSpectrum,
-  ColorReport,
   ContrastMeter,
   DownloadDropdown,
   Error,
@@ -77,7 +74,6 @@ export {
   GradientRule,
   ColorGrid,
   Heading,
-  HueAggregationChart,
   IconAssistedField,
   Jumbotron,
   Lead,
@@ -91,6 +87,7 @@ export {
   Paragraph,
   Pie,
   Popup,
+  Report,
   Rule,
   ScrollTop,
   SectionHeading,
@@ -109,5 +106,4 @@ export {
   PaletteSortSelect,
   ProgressBar,
   PrimaryColorChart,
-  Plot,
 };

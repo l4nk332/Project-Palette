@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import lodashMaxBy from 'lodash/maxBy';
 
-import {ColorReport} from 'components';
+import {Report} from 'components';
 
 import {getContrastPercentages} from 'utils/color-manipulation';
 
 
-class ColorReportContainer extends React.Component {
+class ReportContainer extends React.Component {
   static propTypes = {
     colors: PropTypes.arrayOf(PropTypes.string).isRequired,
     palette: PropTypes.object.isRequired,
@@ -47,7 +47,7 @@ class ColorReportContainer extends React.Component {
 
 
   render = () => (
-    <ColorReport
+    <Report
       contrast={this.getEstimatedContrast()}
       primaryColor={this.getPrimaryColorPercentage()}
       palette={this.props.palette}
@@ -56,4 +56,4 @@ class ColorReportContainer extends React.Component {
   )
 }
 
-export default ColorReportContainer;
+export default ReportContainer;

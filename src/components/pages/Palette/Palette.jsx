@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   DetailContainer,
   ScrollTopContainer,
-  ColorReportContainer,
+  ReportContainer,
 } from 'containers';
 
 import {
@@ -37,7 +37,7 @@ const Palette = ({
         openColorDetail={openColorDetail}
       />
       */}
-      <ColorReportContainer
+      <ReportContainer
         colors={filteredSortedColorList}
         openColorDetail={openColorDetail}
         palette={filteredSortedPalette}
