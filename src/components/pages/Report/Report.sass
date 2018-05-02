@@ -1,8 +1,20 @@
 .container
-  @include flex(column, nowrap, space-around, center)
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 4em
+  grid-template-areas: 'chart averages' 'contrast contrast' 'list list'
   padding: 1em
   max-width: 1500px
   margin: auto
 
-.row
-  @include flex(row, wrap, flex-start, space-around)
+.chart
+  grid-area: chart
+
+.averages
+  grid-area: averages
+
+.contrast
+  grid-area: contrast
+
+.list
+  grid-area: list

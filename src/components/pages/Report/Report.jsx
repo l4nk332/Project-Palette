@@ -17,15 +17,21 @@ const Report = ({
   primaryColor,
 }) => (
   <section className={s.container}>
-    <section className={s.row}>
+    <section className={s.chart}>
       <PrimaryColorChart
         percentage={primaryColor.percentage}
         color={primaryColor.color}
       />
+    </section>
+    <section className={s.averages}>
       <ColorAverages />
     </section>
-    <ContrastMeter contrast={contrast} />
-    <ColorList palette={palette} openColorDetail={openColorDetail} />
+    <section className={s.contrast}>
+      <ContrastMeter contrast={contrast} />
+    </section>
+    <section className={s.list}>
+      <ColorList palette={palette} openColorDetail={openColorDetail} />
+    </section>
   </section>
 );
 
