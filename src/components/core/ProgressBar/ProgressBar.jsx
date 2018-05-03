@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import {getTextColor} from 'utils/color-manipulation';
 
 import s from './ProgressBar.sass';
 
-const ProgressBar = ({units, showPercentages}) => (
+const ProgressBar = ({units, showPercentages, size}) => (
   <section className={s.container}>
     {units.map((unit, key) => (
       <figure
         key={key}
-        className={s.unit}
+        className={classNames(s.unit, {[s[size]]: size})}
         style={{
           background: unit.color,
           color: getTextColor(unit.color),
@@ -27,6 +28,7 @@ const ProgressBar = ({units, showPercentages}) => (
 ProgressBar.defaultProps = {
   units: [],
   showPercentages: false,
+  size: 'large',
 };
 
 ProgressBar.propTypes = {
@@ -36,6 +38,7 @@ ProgressBar.propTypes = {
     percentage: PropTypes.number.isRequired,
   })),
   showPercentages: PropTypes.bool,
+  size: PropTypes.oneOf(['medium', 'large']),
 };
 
 export default ProgressBar;
