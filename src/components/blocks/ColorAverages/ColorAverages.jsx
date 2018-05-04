@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {SectionHeading, ProgressBar, Legend} from 'components';
+import {SectionHeading, ProgressBar, Lead} from 'components';
 
 import s from './ColorAverages.sass';
 
@@ -9,6 +9,7 @@ const ColorAverages = () => (
   <section>
     <SectionHeading>Averages</SectionHeading>
     <section className={s.averages}>
+      <Lead className={s.label}>Hue - 46</Lead>
       <ProgressBar
         units={[
           {
@@ -19,11 +20,7 @@ const ColorAverages = () => (
         ]}
         size="medium"
       />
-      <Legend
-        fields={[
-          {label: '165 - Hue', color: 'mediumseagreen'},
-        ]}
-      />
+      <Lead className={s.label}>Saturation - 87</Lead>
       <ProgressBar
         units={[
           {
@@ -34,11 +31,7 @@ const ColorAverages = () => (
         ]}
         size="medium"
       />
-      <Legend
-        fields={[
-          {label: '87 - Saturation', color: 'dodgerblue'},
-        ]}
-      />
+      <Lead className={s.label}>Lightness - 56</Lead>
       <ProgressBar
         units={[
           {
@@ -48,11 +41,6 @@ const ColorAverages = () => (
           },
         ]}
         size="medium"
-      />
-      <Legend
-        fields={[
-          {label: '56 - Lightness', color: 'orangered'},
-        ]}
       />
     </section>
   </section>
