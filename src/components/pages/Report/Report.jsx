@@ -8,6 +8,8 @@ import {
   PrimaryColorChart,
 } from 'components';
 
+import {getColorAverages} from 'utils/color-manipulation';
+
 import s from './Report.sass';
 
 const Report = ({
@@ -24,7 +26,7 @@ const Report = ({
       />
     </section>
     <section className={s.averages}>
-      <ColorAverages />
+      <ColorAverages averages={getColorAverages(Object.keys(palette))} />
     </section>
     <section className={s.contrast}>
       <ContrastMeter contrast={contrast} />
