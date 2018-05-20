@@ -4,19 +4,28 @@ import PropTypes from 'prop-types';
 import DownloadIcon from 'react-icons/lib/io/stats-bars';
 import GridIcon from 'react-icons/lib/md/apps';
 
+import {Toggleable} from 'components';
+
 import {GRID, REPORT} from 'utils/constants';
+
+import s from './PaletteViewToggle.sass';
 
 
 const PaletteViewToggle = ({
   paletteView,
   toggleView,
 }) => (
-  paletteView === REPORT
-    ? (
-      <GridIcon onClick={toggleView} />
-    ) : (
-      <DownloadIcon onClick={toggleView} />
-    )
+  <section className={s.container}>
+    <Toggleable toggled>
+      {paletteView === REPORT
+        ? (
+          <GridIcon onClick={toggleView} />
+        ) : (
+          <DownloadIcon onClick={toggleView} />
+        )
+      }
+    </Toggleable>
+  </section>
 );
 
 PaletteViewToggle.propTypes = {
