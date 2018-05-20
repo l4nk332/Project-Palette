@@ -13,6 +13,7 @@ import {
   updateSortSelect,
   updateSortOrder,
   updateFilterText,
+  changePaletteView,
 } from 'redux/actionCreators';
 
 import {
@@ -69,6 +70,7 @@ class PaletteContainer extends React.Component {
     updateSortOrder: PropTypes.func.isRequired,
     updateFilterText: PropTypes.func.isRequired,
     paletteView: PropTypes.oneOf([GRID, REPORT]).isRequired,
+    changePaletteView: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
@@ -80,6 +82,7 @@ class PaletteContainer extends React.Component {
     this.updateFilterByUrl();
     this.updateSearchByUrl();
     this.updateSortByUrl();
+    this.updatePaletteViewUrl();
   };
 
   setVisibility = () => ({
@@ -193,6 +196,16 @@ class PaletteContainer extends React.Component {
     }
   };
 
+  updatePaletteViewUrl = () => {
+    // Palette View
+    const queryParams = new URLSearchParams(window.location.search);
+    const filterParam = queryParams.get('view');
+
+    if ([GRID, REPORT].includes(filterParam)) {
+      this.props.changePaletteView(filterParam);
+    }
+  };
+
 
   navigateBackHandler = () => {
     this.props.history.push('/');
@@ -230,6 +243,7 @@ const mapDispatchToProps = {
   updateSortSelect,
   updateSortOrder,
   updateFilterText,
+  changePaletteView,
 };
 
 export default withRouter(

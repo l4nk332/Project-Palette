@@ -191,7 +191,11 @@ export const updateSortOrder = value => dispatch => {
   });
 };
 
-export const changePaletteView = view => ({
-  type: CHANGE_PALETTE_VIEW,
-  value: view,
-});
+export const changePaletteView = view => dispatch => {
+  updateQueryParams({view});
+
+  dispatch({
+    type: CHANGE_PALETTE_VIEW,
+    value: view,
+  });
+};
