@@ -35,7 +35,7 @@ const Palette = ({
         filteredSortedPalette={filteredSortedPalette}
       />
       {
-        paletteView === GRID && (
+        !!filteredSortedColorList.length && paletteView === GRID && (
           <ColorGrid
             colors={filteredSortedColorList}
             openColorDetail={openColorDetail}
@@ -43,7 +43,7 @@ const Palette = ({
         )
       }
       {
-        paletteView === REPORT && (
+        !!filteredSortedColorList.length && paletteView === REPORT && (
           <ReportContainer
             colors={filteredSortedColorList}
             openColorDetail={openColorDetail}
