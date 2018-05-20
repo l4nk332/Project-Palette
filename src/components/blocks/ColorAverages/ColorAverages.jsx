@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {toPercentage} from 'utils/color-manipulation';
 
-import {SectionHeading, ProgressBar, Lead} from 'components';
+import {SectionHeading, ProgressBar, Lead, KeyValue} from 'components';
 
 import s from './ColorAverages.sass';
 
@@ -11,44 +11,52 @@ const ColorAverages = ({averages}) => (
   <section>
     <SectionHeading>Averages</SectionHeading>
     <section className={s.averages}>
-      <Lead className={s.label}>Hue - {Math.round(averages.hue)}</Lead>
+      <Lead className={s.label}>
+        <KeyValue label="Hue" value={averages.hue} />
+      </Lead>
       <ProgressBar
         units={[
           {
-            label: averages.hue,
+            label: `Hue: ${averages.hue}`,
             color: `hsl(${averages.hue}, 50%, 50%)`,
             percentage: toPercentage(averages.hue, 360),
           },
         ]}
         size="medium"
       />
-      <Lead className={s.label}>Saturation - {averages.saturation}%</Lead>
+      <Lead className={s.label}>
+        <KeyValue label="Saturation" value={`${averages.saturation}%`} />
+      </Lead>
       <ProgressBar
         units={[
           {
-            label: averages.saturation,
+            label: `Saturation: ${averages.saturation}%`,
             color: `hsl(${averages.hue}, ${averages.saturation}%, 50%)`,
             percentage: averages.saturation,
           },
         ]}
         size="medium"
       />
-      <Lead className={s.label}>Lightness - {averages.lightness}%</Lead>
+      <Lead className={s.label}>
+        <KeyValue label="Lightness" value={`${averages.lightness}%`} />
+      </Lead>
       <ProgressBar
         units={[
           {
-            label: averages.lightness,
+            label: `Lightness: ${averages.lightness}%`,
             color: `hsl(${averages.hue}, 50%, ${averages.lightness}%)`,
             percentage: averages.lightness,
           },
         ]}
         size="medium"
       />
-      <Lead className={s.label}>Alpha - {averages.alpha}</Lead>
+      <Lead className={s.label}>
+        <KeyValue label="Alpha" value={`${averages.alpha}%`} />
+      </Lead>
       <ProgressBar
         units={[
           {
-            label: averages.alpha,
+            label: `Alpha: ${averages.alpha}`,
             color: `hsla(${averages.hue}, 50%, 50%, ${averages.alpha})`,
             percentage: toPercentage(averages.alpha, 1),
           },

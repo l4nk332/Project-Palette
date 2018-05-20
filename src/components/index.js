@@ -16,6 +16,7 @@ import Heading from './core/Heading/Heading';
 import SectionHeading from './core/SectionHeading/SectionHeading';
 import IconAssistedField from './core/IconAssistedField/IconAssistedField';
 import Jumbotron from './core/Jumbotron/Jumbotron';
+import KeyValue from './core/KeyValue/KeyValue';
 import Lead from './core/Lead/Lead';
 import Legend from './core/Legend/Legend';
 import LoadingWrapper from './core/LoadingWrapper/LoadingWrapper';
@@ -78,6 +79,7 @@ export {
   Heading,
   IconAssistedField,
   Jumbotron,
+  KeyValue,
   Lead,
   Legend,
   Loader,
