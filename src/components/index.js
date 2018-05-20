@@ -49,6 +49,7 @@ import OptionsPopup from './blocks/OptionsPopup/OptionsPopup';
 import PaletteNavbar from './blocks/PaletteNavbar/PaletteNavbar';
 import PaletteFilterSelect from './blocks/PaletteFilterSelect/PaletteFilterSelect';
 import PaletteSortSelect from './blocks/PaletteSortSelect/PaletteSortSelect';
+import PaletteViewToggle from './blocks/PaletteViewToggle/PaletteViewToggle';
 import PrimaryColorChart from './blocks/PrimaryColorChart/PrimaryColorChart';
 
 // Pages
@@ -108,6 +109,7 @@ export {
   PaletteNavbar,
   PaletteFilterSelect,
   PaletteSortSelect,
+  PaletteViewToggle,
   ProgressBar,
   PrimaryColorChart,
 };

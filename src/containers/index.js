@@ -12,6 +12,7 @@ import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
 import PaletteFilterSelectContainer from './blocks/PaletteFilterSelectContainer';
 import PaletteSearchContainer from './blocks/PaletteSearchContainer';
 import PaletteSortSelectContainer from './blocks/PaletteSortSelectContainer';
+import PaletteViewToggleContainer from './blocks/PaletteViewToggleContainer';
 import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 
 // Pages
@@ -34,5 +35,6 @@ export {
   PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
+  PaletteViewToggleContainer,
   OptionsPopupContainer,
 };

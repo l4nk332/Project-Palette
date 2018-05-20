@@ -28,6 +28,7 @@ import {
   DISABLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   UPDATE_SORT_ORDER,
+  CHANGE_PALETTE_VIEW,
 } from 'redux/actionTypes';
 
 export const setIsLoading = () => ({
@@ -189,3 +190,8 @@ export const updateSortOrder = value => dispatch => {
     value,
   });
 };
+
+export const changePaletteView = view => ({
+  type: CHANGE_PALETTE_VIEW,
+  value: view,
+});

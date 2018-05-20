@@ -26,6 +26,8 @@ import {
   DARKNESS,
   ASCENDING,
   DESCENDING,
+  GRID,
+  REPORT,
 } from 'utils/constants';
 
 import {Palette} from 'components';
@@ -66,6 +68,7 @@ class PaletteContainer extends React.Component {
     updateSortSelect: PropTypes.func.isRequired,
     updateSortOrder: PropTypes.func.isRequired,
     updateFilterText: PropTypes.func.isRequired,
+    paletteView: PropTypes.oneOf([GRID, REPORT]).isRequired,
   }
 
   componentDidMount = () => {
@@ -204,6 +207,7 @@ class PaletteContainer extends React.Component {
       filteredSortedPalette={this.getFilteredSortedPalette()}
       filteredSortedColorList={this.getFilteredSortedColorList()}
       openColorDetail={this.props.openColorDetail}
+      paletteView={this.props.paletteView}
     />
   )
 }
@@ -216,6 +220,7 @@ const mapStateToProps = state => ({
   palette: state.palette,
   sortBy: state.sort.sortBy,
   sortOrder: state.sort.sortOrder,
+  paletteView: state.paletteView,
 });
 
 const mapDispatchToProps = {

@@ -14,6 +14,8 @@ import {
   ColorizedText,
 } from 'components';
 
+import {GRID, REPORT} from 'utils/constants';
+
 
 const Palette = ({
   locations,
@@ -23,6 +25,7 @@ const Palette = ({
   filteredSortedPalette,
   filteredSortedColorList,
   openColorDetail,
+  paletteView,
 }) => (
   <main>
     <ScrollTopContainer isVisible={!colorDetail}>
@@ -31,17 +34,23 @@ const Palette = ({
         navigateBackHandler={navigateBackHandler}
         filteredSortedPalette={filteredSortedPalette}
       />
-      {/*
-      <ColorGrid
-        colors={filteredSortedColorList}
-        openColorDetail={openColorDetail}
-      />
-      */}
-      <ReportContainer
-        colors={filteredSortedColorList}
-        openColorDetail={openColorDetail}
-        palette={filteredSortedPalette}
-      />
+      {
+        paletteView === GRID && (
+          <ColorGrid
+            colors={filteredSortedColorList}
+            openColorDetail={openColorDetail}
+          />
+        )
+      }
+      {
+        paletteView === REPORT && (
+          <ReportContainer
+            colors={filteredSortedColorList}
+            openColorDetail={openColorDetail}
+            palette={filteredSortedPalette}
+          />
+        )
+      }
       {!filteredSortedColorList.length && (
         <FixedMessage>
           No <ColorizedText>colors</ColorizedText> to display...
@@ -73,6 +82,7 @@ Palette.propTypes = {
   filteredSortedPalette: PropTypes.object.isRequired,
   filteredSortedColorList: PropTypes.arrayOf(PropTypes.string).isRequired,
   openColorDetail: PropTypes.func.isRequired,
+  paletteView: PropTypes.oneOf([GRID, REPORT]).isRequired,
 };
 
 export default Palette;

@@ -1,4 +1,4 @@
-import {DESCENDING, USAGE} from 'utils/constants';
+import {DESCENDING, USAGE, GRID} from 'utils/constants';
 
 export const initialLoadingState = false;
 
@@ -30,3 +30,5 @@ export const initialSortState = {
   sortBy: USAGE,
   sortOrder: DESCENDING,
 };
+
+export const initialPaletteViewState = GRID;
