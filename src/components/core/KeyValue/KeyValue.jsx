@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import s from './KeyValue.sass';
 
 const KeyValue = ({label, value}) => (
-  <section className={s.container}>
+  <span className={s.container}>
     {label}
     <span className={s.value}>{value}</span>
-  </section>
+  </span>
 );
 
 KeyValue.propTypes = {
