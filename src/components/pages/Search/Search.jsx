@@ -11,6 +11,7 @@ import {
 import {
   SplitView,
   FlexWrapper,
+  FadeWrapper,
   GradientRule,
   Rule,
   Jumbotron,
@@ -25,35 +26,37 @@ import s from './Search.sass';
 
 const Search = ({formFields}) => (
   <main className={s.container}>
-    <FlexWrapper>
-      <SplitView
-        left={[
-          <GradientRule animate key={0} />,
-          <Jumbotron title="Project Palette." key={1}>
-            A <ColorizedText>color</ColorizedText> reference tool
-          </Jumbotron>,
-          <Rule color={PURPLE} key={2} />,
-          <Paragraph key={3}>
-            Project Palette is an{' '}
-            <Anchor url={PROJECT_PALETTE_GITHUB_URL}>
-              open-source
-            </Anchor>{' '}
-            tool that allows you to analyze the color palette used for any
-            public facing GitHub project.
-          </Paragraph>,
-          <Rule color={PURPLE} key={4} />,
-        ]}
-        right={[
-          <Lead key={5}>Get Started</Lead>,
-          <Rule color={BLACK} key={2} />,
-          <Paragraph key={6}>
-            To get started simply fill out the form below and click{' '}
-            <strong style={{color: TURQUOISE}}>analyze</strong>.
-          </Paragraph>,
-          <Form fields={formFields} key={7} />,
-        ]}
-      />
-    </FlexWrapper>
+    <FadeWrapper>
+      <FlexWrapper>
+        <SplitView
+          left={[
+            <GradientRule animate key={0} />,
+            <Jumbotron title="Project Palette." key={1}>
+              A <ColorizedText>color</ColorizedText> reference tool
+            </Jumbotron>,
+            <Rule color={PURPLE} key={2} />,
+            <Paragraph key={3}>
+              Project Palette is an{' '}
+              <Anchor url={PROJECT_PALETTE_GITHUB_URL}>
+                open-source
+              </Anchor>{' '}
+              tool that allows you to analyze the color palette used for any
+              public facing GitHub project.
+            </Paragraph>,
+            <Rule color={PURPLE} key={4} />,
+          ]}
+          right={[
+            <Lead key={5}>Get Started</Lead>,
+            <Rule color={BLACK} key={2} />,
+            <Paragraph key={6}>
+              To get started simply fill out the form below and click{' '}
+              <strong style={{color: TURQUOISE}}>analyze</strong>.
+            </Paragraph>,
+            <Form fields={formFields} key={7} />,
+          ]}
+        />
+      </FlexWrapper>
+    </FadeWrapper>
   </main>
 );
 

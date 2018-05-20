@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {
   DetailContainer,
   ScrollTopContainer,
+  ReportContainer,
 } from 'containers';
 
 import {
@@ -11,7 +12,10 @@ import {
   PaletteNavbar,
   FixedMessage,
   ColorizedText,
+  FadeWrapper,
 } from 'components';
+
+import {GRID, REPORT} from 'utils/constants';
 
 
 const Palette = ({
@@ -22,6 +26,7 @@ const Palette = ({
   filteredSortedPalette,
   filteredSortedColorList,
   openColorDetail,
+  paletteView,
 }) => (
   <main>
     <ScrollTopContainer isVisible={!colorDetail}>
@@ -30,14 +35,33 @@ const Palette = ({
         navigateBackHandler={navigateBackHandler}
         filteredSortedPalette={filteredSortedPalette}
       />
-      <ColorGrid
-        colors={filteredSortedColorList}
-        openColorDetail={openColorDetail}
-      />
+      {
+        !!filteredSortedColorList.length && paletteView === GRID && (
+          <FadeWrapper>
+            <ColorGrid
+              colors={filteredSortedColorList}
+              openColorDetail={openColorDetail}
+            />
+          </FadeWrapper>
+        )
+      }
+      {
+        !!filteredSortedColorList.length && paletteView === REPORT && (
+          <FadeWrapper>
+            <ReportContainer
+              colors={filteredSortedColorList}
+              openColorDetail={openColorDetail}
+              palette={filteredSortedPalette}
+            />
+          </FadeWrapper>
+        )
+      }
       {!filteredSortedColorList.length && (
-        <FixedMessage>
-          No <ColorizedText>colors</ColorizedText> to display...
-        </FixedMessage>
+        <FadeWrapper>
+          <FixedMessage>
+            No <ColorizedText>colors</ColorizedText> to display...
+          </FixedMessage>
+        </FadeWrapper>
       )}
     </ScrollTopContainer>
     {
@@ -65,6 +89,7 @@ Palette.propTypes = {
   filteredSortedPalette: PropTypes.object.isRequired,
   filteredSortedColorList: PropTypes.arrayOf(PropTypes.string).isRequired,
   openColorDetail: PropTypes.func.isRequired,
+  paletteView: PropTypes.oneOf([GRID, REPORT]).isRequired,
 };
 
 export default Palette;

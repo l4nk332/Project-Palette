@@ -25,10 +25,12 @@ class DetailContainer extends React.Component {
   };
 
   componentDidMount = () => {
+    toggleStaticBody();
     document.addEventListener('keypress', this.handleKeyPress);
   }
 
   componentWillUnmount = () => {
+    toggleStaticBody(false);
     document.removeEventListener('keypress', this.handleKeyPress);
   }
 
@@ -47,7 +49,6 @@ class DetailContainer extends React.Component {
   }
 
   handleClose = () => {
-    toggleStaticBody(false);
     this.props.closeColorDetail();
   };
 

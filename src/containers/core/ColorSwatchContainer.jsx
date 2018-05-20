@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {ColorSwatch} from 'components';
 import {getTextColor} from 'utils/color-manipulation';
-import {toggleStaticBody} from 'utils/misc';
 
 
 class ColorSwatchContainer extends React.Component {
@@ -21,7 +20,6 @@ class ColorSwatchContainer extends React.Component {
   textColor = getTextColor(this.normalizedColor);
 
   openColorDetail = () => {
-    toggleStaticBody();
     this.props.openColorDetail(this.props.color);
   }
 

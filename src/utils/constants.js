@@ -11,6 +11,7 @@ export const TURQUOISE = '#17a398';
 export const PINK = '#c33c54';
 export const PURPLE = '#8f65af';
 export const BLACK = '#39393a';
+export const WHITE = '#e6e6e6';
 
 // Sort By Values
 export const USAGE = 'USAGE';
@@ -27,3 +28,7 @@ export const DESCENDING = 'DESCENDING';
 // Filter By Values
 export const LIGHTNESS = 'LIGHTNESS';
 export const DARKNESS = 'DARKNESS';
+
+// Palette Views
+export const GRID = 'GRID';
+export const REPORT = 'REPORT';

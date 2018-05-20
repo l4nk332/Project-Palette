@@ -13,6 +13,7 @@ import {
   PaletteSortSelectContainer,
   DownloadDropdownContainer,
   OptionsPopupContainer,
+  PaletteViewToggleContainer,
 } from 'containers';
 
 
@@ -30,6 +31,7 @@ const PaletteNavbar = ({
             clickHandler={navigateBackHandler}
           />
           <OptionsPopupContainer />
+          <PaletteViewToggleContainer />
           <DownloadDropdownContainer
             projectName={projectName}
             palette={filteredSortedPalette}
@@ -44,6 +46,7 @@ const PaletteNavbar = ({
           <PaletteSortSelectContainer />
           <PaletteFilterSelectContainer />
           <PaletteSearchContainer />
+          <PaletteViewToggleContainer />
           <DownloadDropdownContainer
             projectName={projectName}
             palette={filteredSortedPalette}

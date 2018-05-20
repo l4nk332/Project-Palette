@@ -1,0 +1,22 @@
+.container
+  @include flex(row, nowrap, stretch, flex-start)
+  width: 100%
+  margin: 1em auto
+  box-shadow: 0 15px 35px transparentize($black, 0.9)
+
+.unit
+  margin: 0
+  text-align: center
+  @include flex(row, nowrap, center, center)
+  @include overflow-ellipsis(ltr)
+  &:first-of-type
+    border-radius: 2px 0 0 2px
+  &:last-of-type
+    border-radius: 0 2px 2px 0
+  transition: width 150ms ease-out
+
+.medium
+  height: 1em
+
+.large
+  height: 1.75em

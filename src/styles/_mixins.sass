@@ -13,3 +13,15 @@
 @mixin sticky()
   position: -webkit-sticky
   position: sticky
+
+@mixin fade($duration: 300ms, $timing: ease-in-out)
+  animation-name: fade
+  animation-duration: $duration
+  animation-timing-function: $timing
+  animation-fill-mode: forwards
+
+@keyframes fade
+  0%
+    opacity: 0
+  100%
+    opacity: 1

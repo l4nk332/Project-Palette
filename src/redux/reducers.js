@@ -11,6 +11,7 @@ import {
   initialFormState,
   initialFiltersState,
   initialSortState,
+  initialPaletteViewState,
 } from 'redux/initialStates';
 
 import {
@@ -33,6 +34,7 @@ import {
   DISABLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   UPDATE_SORT_ORDER,
+  CHANGE_PALETTE_VIEW,
 } from 'redux/actionTypes';
 
 const isLoadingReducer = (state = initialLoadingState, action) => {
@@ -151,6 +153,15 @@ const sortReducer = (state = initialSortState, {type, value}) => {
   }
 };
 
+const paletteViewReducer = (state = initialPaletteViewState, {type, value}) => {
+  switch (type) {
+    case CHANGE_PALETTE_VIEW:
+      return value;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   isLoading: isLoadingReducer,
   projectUrl: projectUrlReducer,
@@ -162,4 +173,5 @@ export default combineReducers({
   form: formReducer,
   filters: filterReducer,
   sort: sortReducer,
+  paletteView: paletteViewReducer,
 });

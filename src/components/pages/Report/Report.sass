@@ -1,0 +1,24 @@
+.container
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 4em
+  grid-template-areas: 'chart averages' 'contrast contrast' 'list list'
+  padding: 1em
+  max-width: 1500px
+  margin: auto
+
+.chart
+  grid-area: chart
+
+.averages
+  grid-area: averages
+
+.contrast
+  grid-area: contrast
+
+.list
+  grid-area: list
+
+@media (max-width: 550px)
+  .container
+    grid-template-areas: 'chart chart' 'averages averages' 'contrast contrast' 'list list'

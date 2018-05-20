@@ -13,6 +13,7 @@ import {
   updateSortSelect,
   updateSortOrder,
   updateFilterText,
+  changePaletteView,
 } from 'redux/actionCreators';
 
 import {
@@ -26,6 +27,8 @@ import {
   DARKNESS,
   ASCENDING,
   DESCENDING,
+  GRID,
+  REPORT,
 } from 'utils/constants';
 
 import {Palette} from 'components';
@@ -66,6 +69,8 @@ class PaletteContainer extends React.Component {
     updateSortSelect: PropTypes.func.isRequired,
     updateSortOrder: PropTypes.func.isRequired,
     updateFilterText: PropTypes.func.isRequired,
+    paletteView: PropTypes.oneOf([GRID, REPORT]).isRequired,
+    changePaletteView: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
@@ -77,6 +82,7 @@ class PaletteContainer extends React.Component {
     this.updateFilterByUrl();
     this.updateSearchByUrl();
     this.updateSortByUrl();
+    this.updatePaletteViewUrl();
   };
 
   setVisibility = () => ({
@@ -190,6 +196,16 @@ class PaletteContainer extends React.Component {
     }
   };
 
+  updatePaletteViewUrl = () => {
+    // Palette View
+    const queryParams = new URLSearchParams(window.location.search);
+    const filterParam = queryParams.get('view');
+
+    if ([GRID, REPORT].includes(filterParam)) {
+      this.props.changePaletteView(filterParam);
+    }
+  };
+
 
   navigateBackHandler = () => {
     this.props.history.push('/');
@@ -204,6 +220,7 @@ class PaletteContainer extends React.Component {
       filteredSortedPalette={this.getFilteredSortedPalette()}
       filteredSortedColorList={this.getFilteredSortedColorList()}
       openColorDetail={this.props.openColorDetail}
+      paletteView={this.props.paletteView}
     />
   )
 }
@@ -216,6 +233,7 @@ const mapStateToProps = state => ({
   palette: state.palette,
   sortBy: state.sort.sortBy,
   sortOrder: state.sort.sortOrder,
+  paletteView: state.paletteView,
 });
 
 const mapDispatchToProps = {
@@ -225,6 +243,7 @@ const mapDispatchToProps = {
   updateSortSelect,
   updateSortOrder,
   updateFilterText,
+  changePaletteView,
 };
 
 export default withRouter(

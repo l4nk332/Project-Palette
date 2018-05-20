@@ -12,6 +12,7 @@ import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
 import PaletteFilterSelectContainer from './blocks/PaletteFilterSelectContainer';
 import PaletteSearchContainer from './blocks/PaletteSearchContainer';
 import PaletteSortSelectContainer from './blocks/PaletteSortSelectContainer';
+import PaletteViewToggleContainer from './blocks/PaletteViewToggleContainer';
 import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 
 // Pages
@@ -19,6 +20,7 @@ import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 import DetailContainer from './pages/DetailContainer';
 import PaletteContainer from './pages/PaletteContainer';
 import SearchContainer from './pages/SearchContainer';
+import ReportContainer from './pages/ReportContainer';
 
 export {
   AppContainer,
@@ -28,9 +30,11 @@ export {
   SearchContainer,
   SelectFieldContainer,
   ColorSwatchContainer,
+  ReportContainer,
   DownloadDropdownContainer,
   PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
+  PaletteViewToggleContainer,
   OptionsPopupContainer,
 };
