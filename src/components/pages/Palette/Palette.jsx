@@ -12,6 +12,7 @@ import {
   PaletteNavbar,
   FixedMessage,
   ColorizedText,
+  FadeWrapper,
 } from 'components';
 
 import {GRID, REPORT} from 'utils/constants';
@@ -36,25 +37,31 @@ const Palette = ({
       />
       {
         !!filteredSortedColorList.length && paletteView === GRID && (
-          <ColorGrid
-            colors={filteredSortedColorList}
-            openColorDetail={openColorDetail}
-          />
+          <FadeWrapper>
+            <ColorGrid
+              colors={filteredSortedColorList}
+              openColorDetail={openColorDetail}
+            />
+          </FadeWrapper>
         )
       }
       {
         !!filteredSortedColorList.length && paletteView === REPORT && (
-          <ReportContainer
-            colors={filteredSortedColorList}
-            openColorDetail={openColorDetail}
-            palette={filteredSortedPalette}
-          />
+          <FadeWrapper>
+            <ReportContainer
+              colors={filteredSortedColorList}
+              openColorDetail={openColorDetail}
+              palette={filteredSortedPalette}
+            />
+          </FadeWrapper>
         )
       }
       {!filteredSortedColorList.length && (
-        <FixedMessage>
-          No <ColorizedText>colors</ColorizedText> to display...
-        </FixedMessage>
+        <FadeWrapper>
+          <FixedMessage>
+            No <ColorizedText>colors</ColorizedText> to display...
+          </FixedMessage>
+        </FadeWrapper>
       )}
     </ScrollTopContainer>
     {

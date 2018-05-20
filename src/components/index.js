@@ -6,6 +6,7 @@ import CloseIcon from './core/CloseIcon/CloseIcon';
 import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import ColorizedText from './core/ColorizedText/ColorizedText';
 import Error from './core/Error/Error';
+import FadeWrapper from './core/FadeWrapper/FadeWrapper';
 import FixedMessage from './core/FixedMessage/FixedMessage';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
 import FlexWrapper from './core/FlexWrapper/FlexWrapper';
@@ -71,6 +72,7 @@ export {
   ContrastMeter,
   DownloadDropdown,
   Error,
+  FadeWrapper,
   FixedMessage,
   FixedWrapper,
   FlexWrapper,
