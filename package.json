@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "build:analyze": "yarn build; webpack-bundle-analyzer ./dist/stats.json",
     "server": "node server.js",
     "test": "jest --coverage",
     "lint": "./node_modules/.bin/eslint/"
