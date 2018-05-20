@@ -1,12 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js',
-    publicPath: '/',
+  entry: {
+    app: './src/index.js',
   },
   module: {
     rules: [
@@ -58,7 +56,17 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
   resolve: {
     extensions: ['.jsx', '.js'],
     modules: [
@@ -66,9 +74,4 @@ module.exports = {
       path.resolve('./node_modules'),
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
 };
