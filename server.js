@@ -51,7 +51,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
-app.post('/colors', (req, res) => {
+app.post('/api/colors', (req, res) => {
   const {
     id,
     httpsCloneURL,

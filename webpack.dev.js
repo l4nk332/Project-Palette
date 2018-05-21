@@ -6,8 +6,9 @@ module.exports = merge(common, {
   devtool: 'source-map',
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
     proxy: {
-      '/': 'http://localhost:3000',
+      '/api': 'http://localhost:3000',
     },
   },
 });
