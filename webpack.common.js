@@ -26,7 +26,6 @@ module.exports = {
             loader: 'css-loader',
 
             options: {
-              sourceMap: true,
               minimize: true,
             },
           },
@@ -40,7 +39,6 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
               modules: true,
               minimize: true,
               localIdentName: '[name]_[local]___[hash:base64:5]',
@@ -74,7 +72,7 @@ module.exports = {
     }),
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
