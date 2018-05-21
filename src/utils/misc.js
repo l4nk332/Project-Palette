@@ -19,4 +19,4 @@ export const decrRangeByOffset = (start, stop, offset) => (
   start <= stop
     ? [stop]
     : [start].concat(decrRangeByOffset(start - offset, stop, offset))
-)
+);

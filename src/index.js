@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 
-import 'normalize.css';
+import 'styles/normalize.min.css';
+import 'styles/base.sass';
 
 import store from 'redux/store';
-
-import 'styles/base.sass';
 
 import {AppContainer} from 'containers';
 

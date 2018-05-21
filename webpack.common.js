@@ -1,12 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js',
-    publicPath: '/',
+  entry: {
+    app: './src/index.js',
   },
   module: {
     rules: [
@@ -20,17 +20,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: ['style-loader', 'css-loader'],
+        loaders: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+
+            options: {
+              minimize: true,
+            },
+          },
+        ],
       },
       {
         test: /\.sass|\.scss$/,
         exclude: /node_modules/,
         use: [
-          {loader: 'style-loader'},
+          devMode ? {loader: 'style-loader'} : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
               modules: true,
               minimize: true,
               localIdentName: '[name]_[local]___[hash:base64:5]',
@@ -58,7 +66,16 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+  output: {
+    filename: '[name].[chunkhash].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+  },
   resolve: {
     extensions: ['.jsx', '.js'],
     modules: [
@@ -66,9 +83,4 @@ module.exports = {
       path.resolve('./node_modules'),
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-  ],
 };

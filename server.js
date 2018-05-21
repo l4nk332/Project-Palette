@@ -22,6 +22,22 @@ const morgan = require('morgan');
 const PaletteParser = require('./helpers/palette-parser');
 const {gitClone, normalizeGitHubUrl} = require('./helpers/git-utils');
 
+if (process.env.NODE_ENV === 'production') {
+  app.get('*.js', (req, res, next) => {
+    req.url = `${req.url}.gz`;
+    res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'application/javascript');
+    next();
+  });
+
+  app.get('*.css', (req, res, next) => {
+    req.url = `${req.url}.gz`;
+    res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'text/css');
+    next();
+  });
+}
+
 app.use(express.static(path.join(__dirname, '/dist')));
 app.use(bodyParser.json());
 app.use(
@@ -35,7 +51,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
-app.post('/colors', (req, res) => {
+app.post('/api/colors', (req, res) => {
   const {
     id,
     httpsCloneURL,
