@@ -22,7 +22,14 @@ module.exports = {
         test: /\.css$/,
         loaders: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+
+            options: {
+              sourceMap: true,
+              minimize: true,
+            },
+          },
         ],
       },
       {
