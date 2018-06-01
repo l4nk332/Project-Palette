@@ -24,6 +24,7 @@ module.exports = merge(common, {
       deleteOriginalAssets: true,
     }),
     new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
       generateStatsFile: true,
       openAnalyzer: false,
     }),
