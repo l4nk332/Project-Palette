@@ -14,7 +14,7 @@
     "server:dev": "node server.js",
     "server:prod": "NODE_ENV=production node server.js",
     "test": "jest --coverage",
-    "lint": "./node_modules/.bin/eslint/"
+    "lint": "./node_modules/.bin/eslint/ ."
   },
   "dependencies": {
     "axios": "^0.16.2",
