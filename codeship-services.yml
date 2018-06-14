@@ -1,3 +1,4 @@
 ---
   app:
     image: "node:9.4"
+    copy: . .
