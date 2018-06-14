@@ -87,13 +87,13 @@ export const asyncFetchColorPalette = search => dispatch => {
       }
 
       const {
-        html_url,
+        html_url, // eslint-disable-line camelcase
         id,
-        clone_url,
+        clone_url, // eslint-disable-line camelcase
         name,
-        full_name,
-        pushed_at,
-        default_branch
+        full_name, // eslint-disable-line camelcase
+        pushed_at, // eslint-disable-line camelcase
+        default_branch, // eslint-disable-line camelcase
       } = response.data;
 
       dispatch(setProjectName(name));

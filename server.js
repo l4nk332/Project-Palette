@@ -87,12 +87,12 @@ app.post('/api/colors', (req, res) => {
               res.send(JSON.stringify(colorMap));
             })
             .catch(err => {
-              console.error(err);
+              console.error(err); // eslint-disable-line no-console
               res.status(500).send('There was an error removing the temp dir.');
             });
         })
         .catch(err => {
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
           res.status(500).send('There was an issue cloning the repo...');
         });
     }
@@ -102,5 +102,5 @@ app.post('/api/colors', (req, res) => {
 const {SERVER_PORT} = process.env;
 
 app.listen(SERVER_PORT, () => {
-  console.log(`App listening on port: ${SERVER_PORT}`);
+  console.log(`App listening on port: ${SERVER_PORT}`); // eslint-disable-line no-console
 });
