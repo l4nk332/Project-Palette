@@ -2,10 +2,12 @@ const childProcess = require('child_process');
 const crypto = require('crypto');
 const shortid = require('shortid');
 
+const GIT_BIN_PATH = childProcess.execSync('which git', {encoding: 'utf8'}).trim();
+
 const gitClone = (url, clonePath) => (
   new Promise((resolve, reject) => {
     childProcess.execFile(
-      '/usr/local/bin/git',
+      GIT_BIN_PATH,
       ['clone', url, clonePath],
       err => {
         if (err) {
