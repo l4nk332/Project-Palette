@@ -40,8 +40,8 @@ Get a visual report of the palette for a more high-level overview.
 
 ### Built With
 
+* [Firebase](https://firebase.google.com/)
 * [Express](https://expressjs.com/)
 * [React](https://reactjs.org/)
 * [Redux](https://redux.js.org/)
-* [Axios](https://github.com/axios/axios)
 * [TinyColor](https://github.com/bgrins/TinyColor)
