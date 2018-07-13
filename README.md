@@ -2,6 +2,14 @@
 
 ---
 
+### The Problems to Solve
+
+*In a large project with no design system, how do I know how many shades of green are used?*
+
+*If I wanted to standarized the colors in a legacy project, where do I start looking?*
+
+Look no further, Project-Palette is [here](https://project-palette.com/)!
+
 ### About
 
 Project Palette is an open-source tool that allows you to analyze the
