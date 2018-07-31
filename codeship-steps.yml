@@ -1,5 +1,0 @@
----
-  -
-    name: "linter"
-    service: "app"
-    command: "yarn lint"
