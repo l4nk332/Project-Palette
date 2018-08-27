@@ -30,17 +30,12 @@ import {
   GRID,
   REPORT,
 } from 'utils/constants';
+import {updatePageTitle} from 'utils/misc';
 
 import {Palette} from 'components';
 
 
 class PaletteContainer extends React.Component {
-  static defaultProps = {
-    colorDetail: null,
-    filterText: '',
-    filterBy: null,
-  }
-
   static propTypes = {
     history: PropTypes.object.isRequired,
     match: PropTypes.shape({
@@ -73,6 +68,12 @@ class PaletteContainer extends React.Component {
     changePaletteView: PropTypes.func.isRequired,
   }
 
+  static defaultProps = {
+    colorDetail: null,
+    filterText: '',
+    filterBy: null,
+  }
+
   componentDidMount = () => {
     const {name, project} = this.props.match.params;
     if (name && project) {
@@ -83,6 +84,7 @@ class PaletteContainer extends React.Component {
     this.updateSearchByUrl();
     this.updateSortByUrl();
     this.updatePaletteViewUrl();
+    this.updatePageTitle(name, project);
   };
 
   setVisibility = () => ({
@@ -206,6 +208,9 @@ class PaletteContainer extends React.Component {
     }
   };
 
+  updatePageTitle = (name, project) => {
+    updatePageTitle(`${name} ∙ ${project}`);
+  }
 
   navigateBackHandler = () => {
     this.props.history.push('/');

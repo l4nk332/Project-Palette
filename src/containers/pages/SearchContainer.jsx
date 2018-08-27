@@ -6,8 +6,9 @@ import {withRouter} from 'react-router-dom';
 import ArrowForward from 'react-icons/lib/md/arrow-forward';
 
 import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
+import {updatePageTitle} from 'utils/misc';
 
-import {SplitButton, TextField, Button} from 'components';
+import {Search, SplitButton, TextField, Button} from 'components';
 
 import {
   setProjectUrl,
@@ -16,8 +17,6 @@ import {
   showInfoFields,
   showUrlFields,
 } from 'redux/actionCreators';
-
-import {Search} from 'components';
 
 
 class SearchContainer extends React.Component {
@@ -32,6 +31,10 @@ class SearchContainer extends React.Component {
     showInfoFields: PropTypes.func.isRequired,
     showUrlFields: PropTypes.func.isRequired,
   };
+
+  componentDidMount = () => {
+    updatePageTitle('Project-Palette');
+  }
 
   splitButtonField = () => ({
     content: (

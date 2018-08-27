@@ -20,3 +20,5 @@ export const decrRangeByOffset = (start, stop, offset) => (
     ? [stop]
     : [start].concat(decrRangeByOffset(start - offset, stop, offset))
 );
+
+export const updatePageTitle = title => document.title = title
