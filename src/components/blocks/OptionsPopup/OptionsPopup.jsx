@@ -9,36 +9,41 @@ import {
   PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
+  OutsideClickContainer,
 } from 'containers';
 
 import s from './OptionsPopup.sass';
 
 
 const OptionsPopup = ({
-  togglePopup,
+  openPopup,
+  closePopup,
   isOpen,
 }) => (
-  <Popup
-    isOpen={isOpen}
-    position={['bottom', 'left']}
-    icon={(
-      <Toggleable toggled={isOpen}>
-        <OptionsIcon onClick={togglePopup} />
-      </Toggleable>
-    )}
-  >
-    <section className={s.container}>
-      <section className={s.search}>
-        <PaletteSearchContainer />
+  <OutsideClickContainer onOutsideClick={closePopup}>
+    <Popup
+      isOpen={isOpen}
+      position={['bottom', 'left']}
+      icon={(
+        <Toggleable toggled={isOpen}>
+          <OptionsIcon onClick={isOpen ? closePopup : openPopup} />
+        </Toggleable>
+      )}
+    >
+      <section className={s.container}>
+        <section className={s.search}>
+          <PaletteSearchContainer />
+        </section>
+        <PaletteSortSelectContainer />
+        <PaletteFilterSelectContainer />
       </section>
-      <PaletteSortSelectContainer />
-      <PaletteFilterSelectContainer />
-    </section>
-  </Popup>
+    </Popup>
+  </OutsideClickContainer>
 );
 
 OptionsPopup.propTypes = {
-  togglePopup: PropTypes.func.isRequired,
+  openPopup: PropTypes.func.isRequired,
+  closePopup: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 
