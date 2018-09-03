@@ -6,6 +6,10 @@ import ColorSwatchContainer from './core/ColorSwatchContainer';
 import ScrollTopContainer from './core/ScrollTopContainer';
 import SelectFieldContainer from './core/SelectFieldContainer';
 
+// Utils
+
+import OutsideClickContainer from './utils/OutsideClickContainer';
+
 // Blocks
 
 import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
@@ -37,4 +41,5 @@ export {
   PaletteSortSelectContainer,
   PaletteViewToggleContainer,
   OptionsPopupContainer,
+  OutsideClickContainer,
 };

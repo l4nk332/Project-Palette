@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import TiArrowDown from 'react-icons/lib/ti/arrow-sorted-down';
 import TiArrowUp from 'react-icons/lib/ti/arrow-sorted-up';
 
+import {OutsideClickContainer} from 'containers';
+
 import {triggerIfEnterKey} from 'utils/misc';
 
 import s from './SelectField.sass';
@@ -13,61 +15,67 @@ const SelectField = ({
   width,
   isOpen,
   values,
-  toggleDropdown,
+  openDropdown,
+  closeDropdown,
   setRef,
   selectedLabel,
   selectHandler,
 }) => (
-  <section
-    className={s.container}
-    style={{width}}
-  >
-    <header
-      role="button"
-      tabIndex="0"
-      className={classNames(s.header, {
-        [s.open]: isOpen,
-      })}
-      onClick={toggleDropdown}
-      onKeyDown={event => {
-        triggerIfEnterKey(event, toggleDropdown);
-      }}
+  <OutsideClickContainer onOutsideClick={closeDropdown}>
+    <section
+      className={s.container}
+      style={{width}}
     >
-      <span className={s.muted}>{selectedLabel}</span>
-      <span className={s.muted}>
-        {isOpen ? <TiArrowUp /> : <TiArrowDown />}
-      </span>
-    </header>
-    {isOpen && (
-      <ul
-        className={classNames(s.list, {
+      <header
+        role="button"
+        tabIndex="0"
+        className={classNames(s.header, {
           [s.open]: isOpen,
         })}
-        ref={setRef}
+        onClick={isOpen ? closeDropdown : openDropdown}
+        onKeyDown={event => {
+          triggerIfEnterKey(
+            event,
+            isOpen ? closeDropdown : openDropdown,
+          );
+        }}
       >
-        {values.map((value, idx) => (
-          <li
-            role="button"
-            tabIndex="0"
-            key={idx}
-            className={classNames({
-              [s.selected]: value.label === selectedLabel,
-            })}
-            onMouseDown={() => {
-              selectHandler(value);
-            }}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, () => {
+        <span className={s.muted}>{selectedLabel}</span>
+        <span className={s.muted}>
+          {isOpen ? <TiArrowUp /> : <TiArrowDown />}
+        </span>
+      </header>
+      {isOpen && (
+        <ul
+          className={classNames(s.list, {
+            [s.open]: isOpen,
+          })}
+          ref={setRef}
+        >
+          {values.map((value, idx) => (
+            <li
+              role="button"
+              tabIndex="0"
+              key={idx}
+              className={classNames({
+                [s.selected]: value.label === selectedLabel,
+              })}
+              onMouseDown={() => {
                 selectHandler(value);
-              });
-            }}
-          >
-            {value.label}
-          </li>
-        ))}
-      </ul>
-    )}
-  </section>
+              }}
+              onKeyDown={event => {
+                triggerIfEnterKey(event, () => {
+                  selectHandler(value);
+                });
+              }}
+            >
+              {value.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  </OutsideClickContainer>
 );
 
 SelectField.defaultProps = {
@@ -86,7 +94,8 @@ SelectField.propTypes = {
   width: PropTypes.string.isRequired,
   isOpen: PropTypes.bool,
   selectedLabel: PropTypes.string,
-  toggleDropdown: PropTypes.func.isRequired,
+  openDropdown: PropTypes.func.isRequired,
+  closeDropdown: PropTypes.func.isRequired,
   setRef: PropTypes.func.isRequired,
   selectHandler: PropTypes.func.isRequired,
 };

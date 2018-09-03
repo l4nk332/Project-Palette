@@ -17,28 +17,16 @@ class DownloadDropdownContainer extends React.Component {
     isOpen: false,
   };
 
-  componentDidMount = () => {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
-  componentWillUnmount = () => {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
   setWrapperRef = node => {
     this.wrapperRef = node;
   }
 
-  toggleDropdown = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  openDropdown = () => {
+    this.setState({isOpen: true});
   };
 
   closeDropdown = () => {
-    this.setState({
-      isOpen: false,
-    });
+    this.setState({isOpen: false});
   };
 
   downloadJson = () => {
@@ -71,17 +59,11 @@ class DownloadDropdownContainer extends React.Component {
     this.closeDropdown();
   }
 
-  handleClickOutside = event => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.closeDropdown();
-    }
-  }
-
   render = () => (
     <DownloadDropdown
       isOpen={this.state.isOpen}
-      toggleDropdown={this.toggleDropdown}
-      setWrapperRef={this.setWrapperRef}
+      openDropdown={this.openDropdown}
+      closeDropdown={this.closeDropdown}
       handleSvg={this.handleSvg}
       handleJson={this.handleJson}
     />

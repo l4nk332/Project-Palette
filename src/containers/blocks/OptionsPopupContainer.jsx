@@ -7,15 +7,18 @@ class OptionsPopupContainer extends React.Component {
     isOpen: false,
   }
 
-  togglePopup = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  openPopup = () => {
+    this.setState({isOpen: true});
+  }
+
+  closePopup = () => {
+    this.setState({isOpen: false});
   }
 
   render = () => (
     <OptionsPopup
-      togglePopup={this.togglePopup}
+      openPopup={this.openPopup}
+      closePopup={this.closePopup}
       isOpen={this.state.isOpen}
     />
   )

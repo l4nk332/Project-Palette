@@ -30,10 +30,6 @@ class SelectFieldContainer extends React.Component {
       this.props.values.filter(item => item.selected)[0].label : null),
   };
 
-  componentDidMount = () => {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-
   componentWillReceiveProps = nextProps => {
     const selectedItem = nextProps.values.filter(item => item.selected)[0];
 
@@ -42,37 +38,19 @@ class SelectFieldContainer extends React.Component {
     });
   }
 
-  componentWillUnmount = () => {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
-  setWrapperRef = node => {
-    this.wrapperRef = node;
-  }
-
   setSelectedLabel = label => {
     this.setState({
       selectedLabel: label,
     });
   };
 
-  toggleDropdown = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
+  openDropdown = () => {
+    this.setState({isOpen: true});
   };
 
   closeDropdown = () => {
-    this.setState({
-      isOpen: false,
-    });
+    this.setState({isOpen: false});
   };
-
-  handleClickOutside = event => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.closeDropdown();
-    }
-  }
 
   handleSelection = value => {
     this.props.clickHandler(value.value);
@@ -90,8 +68,8 @@ class SelectFieldContainer extends React.Component {
         ? this.state.selectedLabel
         : this.props.placeholder
       }
-      toggleDropdown={this.toggleDropdown}
-      setRef={this.setWrapperRef}
+      openDropdown={this.openDropdown}
+      closeDropdown={this.closeDropdown}
       selectHandler={this.handleSelection}
     />
   )
