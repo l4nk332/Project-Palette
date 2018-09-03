@@ -6,9 +6,7 @@ import {closeColorDetail, openColorDetail} from 'redux/actionCreators';
 
 import {toggleStaticBody} from 'utils/misc';
 
-import {
-  Detail,
-} from 'components';
+import {Detail} from 'components';
 
 
 class DetailContainer extends React.Component {
@@ -26,12 +24,12 @@ class DetailContainer extends React.Component {
 
   componentDidMount = () => {
     toggleStaticBody();
-    document.addEventListener('keypress', this.handleKeyPress);
+    document.addEventListener('keydown', this.handleKeyPress);
   }
 
   componentWillUnmount = () => {
     toggleStaticBody(false);
-    document.removeEventListener('keypress', this.handleKeyPress);
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   handleKeyPress = event => {
