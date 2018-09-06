@@ -81,6 +81,7 @@ const SelectField = ({
 SelectField.defaultProps = {
   isOpen: false,
   selectedLabel: null,
+  setRef: null,
 };
 
 SelectField.propTypes = {
@@ -96,7 +97,7 @@ SelectField.propTypes = {
   selectedLabel: PropTypes.string,
   openDropdown: PropTypes.func.isRequired,
   closeDropdown: PropTypes.func.isRequired,
-  setRef: PropTypes.func.isRequired,
+  setRef: PropTypes.func,
   selectHandler: PropTypes.func.isRequired,
 };
 
