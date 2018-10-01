@@ -15,7 +15,7 @@ const NavigateBack = ({text, clickHandler}) => (
       triggerIfEnterKey(event, clickHandler);
     }}
   >
-    <ArrowBack style={{marginRight: '10px', verticalAlign: 'top'}} />
+    <ArrowBack style={{margin: '0.09em 0.45em 0 0', verticalAlign: 'top'}} />
     {text}
   </h1>
 );

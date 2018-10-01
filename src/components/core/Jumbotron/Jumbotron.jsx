@@ -7,7 +7,7 @@ import s from './Jumbotron.sass';
 
 const Jumbotron = ({title, children}) => (
   <div className={s.container}>
-    <Title>{title}</Title>
+    <Title style={{fontWeight: 'lighter', fontSize: '4em'}}>{title}</Title>
     <Lead>{children}</Lead>
   </div>
 );
