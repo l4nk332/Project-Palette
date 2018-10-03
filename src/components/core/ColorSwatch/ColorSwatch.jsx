@@ -4,7 +4,8 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 import CopyIcon from 'react-icons/lib/io/ios-copy';
 import CheckMarkIcon from 'react-icons/lib/io/checkmark';
-import TiArrowMaximise from 'react-icons/lib/ti/arrow-maximise';
+
+import {triggerIfEnterKey} from 'utils/misc';
 
 import s from './ColorSwatch.sass';
 
@@ -19,6 +20,12 @@ const ColorSwatch = ({
   <div
     style={{backgroundColor: normalizedColor}}
     className={s.container}
+    onClick={openColorDetail}
+    onKeyDown={event => {
+      triggerIfEnterKey(event, openColorDetail);
+    }}
+    tabIndex="0"
+    role="button"
   >
     <div className={s.icons}>
       <CopyToClipboard text={normalizedColor}>
@@ -28,19 +35,15 @@ const ColorSwatch = ({
           ) : (
             <CopyIcon
               className={s.icon}
-              onClick={copiedToClipboard}
+              onClick={event => {
+                event.stopPropagation();
+                copiedToClipboard(event);
+              }}
               style={{color: textColor}}
             />
           )}
         </a>
       </CopyToClipboard>
-      <a title="Expand Color Details">
-        <TiArrowMaximise
-          style={{color: textColor}}
-          className={s.icon}
-          onClick={openColorDetail}
-        />
-      </a>
     </div>
     <span style={{color: textColor}}>
       {hasCopied ? 'Copied to Clipboard' : normalizedColor}

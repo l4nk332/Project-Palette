@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import tinycolor from 'tinycolor2';
 
 import {getTextColor} from 'utils/color-manipulation';
+import {triggerIfEnterKey} from 'utils/misc';
 
 import s from './ColorList.sass';
 
@@ -23,6 +24,14 @@ const ColorList = ({palette, openColorDetail}) => (
               <tr
                 className={s.row}
                 onClick={() => { openColorDetail(color); }}
+                onKeyDown={event => {
+                  triggerIfEnterKey(
+                    event,
+                    () => { openColorDetail(color); },
+                  );
+                }}
+                tabIndex="0"
+                role="button"
                 style={{backgroundColor: color, color: getTextColor(color)}}
                 key={key}
               >
@@ -50,6 +59,14 @@ const ColorList = ({palette, openColorDetail}) => (
               <tr
                 className={s.row}
                 onClick={() => { openColorDetail(color); }}
+                onKeyDown={event => {
+                  triggerIfEnterKey(
+                    event,
+                    () => { openColorDetail(color); },
+                  );
+                }}
+                tabIndex="0"
+                role="button"
                 key={key}
               >
                 <td
