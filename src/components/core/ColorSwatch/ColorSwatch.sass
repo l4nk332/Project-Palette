@@ -30,7 +30,11 @@
   border-radius: 0.05em
   font-weight: $lighter
   box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)
+  cursor: pointer
   transition: transform 400ms ease-in-out
+  &:focus
+    outline: none
+    transform: scale(1.1)
   &:hover
     transform: scale(1.1)
     .icons
