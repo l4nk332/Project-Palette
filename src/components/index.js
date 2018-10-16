@@ -33,6 +33,7 @@ import SegmentRule from './core/SegmentRule/SegmentRule';
 import SelectField from './core/SelectField/SelectField';
 import SplitButton from './core/SplitButton/SplitButton';
 import SplitView from './core/SplitView/SplitView';
+import StackedLabel from './core/StackedLabel/StackedLabel';
 import TextField from './core/TextField/TextField';
 import Title from './core/Title/Title';
 import Toggleable from './core/Toggleable/Toggleable';
@@ -106,6 +107,7 @@ export {
   Title,
   Toggleable,
   Search,
+  StackedLabel,
   Detail,
   OptionsPopup,
   PaletteNavbar,
