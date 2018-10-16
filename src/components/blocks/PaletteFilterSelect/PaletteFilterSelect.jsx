@@ -10,7 +10,7 @@ import {
 
 import {SelectFieldContainer} from 'containers';
 
-import {IconAssistedField, Toggleable} from 'components';
+import {DecoratedField, Toggleable} from 'components';
 
 
 const PaletteFilterSelect = ({
@@ -19,10 +19,10 @@ const PaletteFilterSelect = ({
   filterByEnabled,
   toggleFilter,
 }) => (
-  <IconAssistedField
+  <DecoratedField
     Field={
       <SelectFieldContainer
-        placeholder="Filter By"
+        placeholder="Select..."
         values={[
           {
             label: 'Lightness',
@@ -44,6 +44,7 @@ const PaletteFilterSelect = ({
         <FilterIcon onClick={toggleFilter} />
       </Toggleable>
     }
+    label="Filter By"
   />
 );
 

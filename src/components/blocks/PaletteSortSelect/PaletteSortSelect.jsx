@@ -17,7 +17,7 @@ import {
 
 import {SelectFieldContainer} from 'containers';
 
-import {IconAssistedField, Toggleable} from 'components';
+import {DecoratedField, Toggleable} from 'components';
 
 
 const PaletteSortSelect = ({
@@ -27,10 +27,10 @@ const PaletteSortSelect = ({
   setSortOrderAsc,
   setSortOrderDesc,
 }) => (
-  <IconAssistedField
+  <DecoratedField
     Field={
       <SelectFieldContainer
-        placeholder="Sort By"
+        placeholder="Select..."
         values={[
           {
             label: 'Usage',
@@ -76,6 +76,7 @@ const PaletteSortSelect = ({
         }
       </Toggleable>
     }
+    label="Sort By"
   />
 );
 
