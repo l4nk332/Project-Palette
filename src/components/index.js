@@ -5,6 +5,7 @@ import Button from './core/Button/Button';
 import CloseIcon from './core/CloseIcon/CloseIcon';
 import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import ColorizedText from './core/ColorizedText/ColorizedText';
+import DecoratedField from './core/DecoratedField/DecoratedField';
 import Error from './core/Error/Error';
 import FadeWrapper from './core/FadeWrapper/FadeWrapper';
 import FixedMessage from './core/FixedMessage/FixedMessage';
@@ -15,7 +16,6 @@ import GradientRule from './core/GradientRule/GradientRule';
 import ColorGrid from './core/ColorGrid/ColorGrid';
 import Heading from './core/Heading/Heading';
 import SectionHeading from './core/SectionHeading/SectionHeading';
-import IconAssistedField from './core/IconAssistedField/IconAssistedField';
 import Jumbotron from './core/Jumbotron/Jumbotron';
 import KeyValue from './core/KeyValue/KeyValue';
 import Lead from './core/Lead/Lead';
@@ -33,6 +33,7 @@ import SegmentRule from './core/SegmentRule/SegmentRule';
 import SelectField from './core/SelectField/SelectField';
 import SplitButton from './core/SplitButton/SplitButton';
 import SplitView from './core/SplitView/SplitView';
+import StackedLabel from './core/StackedLabel/StackedLabel';
 import TextField from './core/TextField/TextField';
 import Title from './core/Title/Title';
 import Toggleable from './core/Toggleable/Toggleable';
@@ -70,6 +71,7 @@ export {
   ColorList,
   ColorSpectrum,
   ContrastMeter,
+  DecoratedField,
   DownloadDropdown,
   Error,
   FadeWrapper,
@@ -80,7 +82,6 @@ export {
   GradientRule,
   ColorGrid,
   Heading,
-  IconAssistedField,
   Jumbotron,
   KeyValue,
   Lead,
@@ -106,6 +107,7 @@ export {
   Title,
   Toggleable,
   Search,
+  StackedLabel,
   Detail,
   OptionsPopup,
   PaletteNavbar,

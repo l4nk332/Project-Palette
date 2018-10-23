@@ -24,6 +24,7 @@ const DownloadDropdown = ({
       position={['bottom', 'left']}
       icon={(
         <DownloadIcon
+          style={{verticalAlign: 'bottom'}}
           className={s.icon}
           onClick={isOpen ? closeDropdown : openDropdown}
         />

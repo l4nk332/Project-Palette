@@ -31,11 +31,15 @@ const OptionsPopup = ({
       )}
     >
       <section className={s.container}>
-        <section className={s.search}>
+        <section className={s.option}>
           <PaletteSearchContainer />
         </section>
-        <PaletteSortSelectContainer />
-        <PaletteFilterSelectContainer />
+        <section className={s.option}>
+          <PaletteSortSelectContainer />
+        </section>
+        <section className={s.option}>
+          <PaletteFilterSelectContainer />
+        </section>
       </section>
     </Popup>
   </OutsideClickContainer>
