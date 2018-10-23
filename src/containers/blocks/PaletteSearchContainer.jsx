@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {
-  updateFilterText,
-} from 'redux/actionCreators';
+import {updateFilterText} from 'redux/actionCreators';
 
-import {TextField} from 'components';
+import {TextField, DecoratedField} from 'components';
 
 
 class PaletteSearchContainer extends React.Component {
@@ -30,12 +28,18 @@ class PaletteSearchContainer extends React.Component {
   }
 
   render = () => (
-    <TextField
-      placeholderText="search..."
-      value={this.props.filterText}
-      changeHandler={this.handleChange}
-      focusHandler={this.clearSearch}
-      scalesDown
+    <DecoratedField
+      Field={
+        <TextField
+          placeholderText="Search Palette..."
+          value={this.props.filterText}
+          changeHandler={this.handleChange}
+          focusHandler={this.clearSearch}
+          scalesDown
+        />
+      }
+      Icon={null}
+      label="Search"
     />
   )
 }
