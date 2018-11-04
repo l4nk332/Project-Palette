@@ -8,10 +8,11 @@ import {
   PROJECT_PALETTE_GITHUB_URL,
 } from 'utils/constants';
 
+import {FadeContainer} from 'containers';
+
 import {
   SplitView,
   FlexWrapper,
-  FadeWrapper,
   GradientRule,
   Rule,
   Jumbotron,
@@ -26,7 +27,7 @@ import s from './Search.sass';
 
 const Search = ({formFields}) => (
   <main className={s.container}>
-    <FadeWrapper>
+    <FadeContainer>
       <FlexWrapper>
         <SplitView
           left={[
@@ -56,7 +57,7 @@ const Search = ({formFields}) => (
           ]}
         />
       </FlexWrapper>
-    </FadeWrapper>
+    </FadeContainer>
   </main>
 );
 
