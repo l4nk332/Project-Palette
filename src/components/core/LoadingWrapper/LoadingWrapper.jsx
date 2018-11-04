@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
 
 import {toggleStaticBody} from 'utils/misc';
 
 import {Loader} from 'components';
-
-import s from './LoadingWrapper.sass';
 
 const LoadingWrapper = ({isLoading, children, message}) => {
   // We want to lock the overflow as hidden if in loading state
@@ -16,13 +13,7 @@ const LoadingWrapper = ({isLoading, children, message}) => {
   return (
     <section>
       <div>{isLoading && <Loader message={message} />}</div>
-      <div
-        className={classNames({
-          [s.container]: !isLoading,
-        })}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </section>
   );
 };

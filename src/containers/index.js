@@ -3,6 +3,7 @@ import AppContainer from './AppContainer';
 // Core
 
 import ColorSwatchContainer from './core/ColorSwatchContainer';
+import FadeContainer from './core/FadeContainer';
 import ScrollTopContainer from './core/ScrollTopContainer';
 import SelectFieldContainer from './core/SelectFieldContainer';
 
@@ -29,6 +30,7 @@ import ReportContainer from './pages/ReportContainer';
 export {
   AppContainer,
   DetailContainer,
+  FadeContainer,
   PaletteContainer,
   ScrollTopContainer,
   SearchContainer,

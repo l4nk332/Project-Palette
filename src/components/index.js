@@ -7,7 +7,6 @@ import ColorSwatch from './core/ColorSwatch/ColorSwatch';
 import ColorizedText from './core/ColorizedText/ColorizedText';
 import DecoratedField from './core/DecoratedField/DecoratedField';
 import Error from './core/Error/Error';
-import FadeWrapper from './core/FadeWrapper/FadeWrapper';
 import FixedMessage from './core/FixedMessage/FixedMessage';
 import FixedWrapper from './core/FixedWrapper/FixedWrapper';
 import FlexWrapper from './core/FlexWrapper/FlexWrapper';
@@ -74,7 +73,6 @@ export {
   DecoratedField,
   DownloadDropdown,
   Error,
-  FadeWrapper,
   FixedMessage,
   FixedWrapper,
   FlexWrapper,
