@@ -26,23 +26,12 @@ class SelectFieldContainer extends React.Component {
 
   state = {
     isOpen: false,
-    selectedLabel: (this.props.values.filter(item => item.selected)[0] ?
-      this.props.values.filter(item => item.selected)[0].label : null),
   };
 
-  componentWillReceiveProps = nextProps => {
-    const selectedItem = nextProps.values.filter(item => item.selected)[0];
-
-    this.setState({
-      selectedLabel: selectedItem ? selectedItem.label : null,
-    });
+  getSelectedLabel = () => {
+    const item = this.props.values.find(item => item.selected);
+    return item ? item.label : this.props.placeholder;
   }
-
-  setSelectedLabel = label => {
-    this.setState({
-      selectedLabel: label,
-    });
-  };
 
   openDropdown = () => {
     this.setState({isOpen: true});
@@ -54,7 +43,6 @@ class SelectFieldContainer extends React.Component {
 
   handleSelection = value => {
     this.props.clickHandler(value.value);
-    this.setSelectedLabel(value.label);
     this.closeDropdown();
   }
 
@@ -63,11 +51,7 @@ class SelectFieldContainer extends React.Component {
       width={this.props.width}
       values={this.props.values}
       isOpen={this.state.isOpen}
-      selectedLabel={
-        this.state.selectedLabel
-        ? this.state.selectedLabel
-        : this.props.placeholder
-      }
+      selectedLabel={this.getSelectedLabel()}
       openDropdown={this.openDropdown}
       closeDropdown={this.closeDropdown}
       selectHandler={this.handleSelection}
