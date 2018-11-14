@@ -1,29 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import FilterIcon from 'react-icons/lib/fa/filter';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
 import {
   LIGHTNESS,
   DARKNESS,
+  NONE,
 } from 'utils/constants';
 
+import {updateFilterSelect} from 'redux/actionCreators';
 import {SelectFieldContainer} from 'containers';
 
-import {DecoratedField, Toggleable} from 'components';
-
+import {DecoratedField} from 'components';
 
 const PaletteFilterSelect = ({
   filterBy,
   updateFilterSelect,
-  filterByEnabled,
-  toggleFilter,
 }) => (
   <DecoratedField
     Field={
       <SelectFieldContainer
         placeholder="Select..."
         values={[
+          {
+            label: 'None',
+            value: NONE,
+            selected: filterBy === NONE,
+          },
           {
             label: 'Lightness',
             value: LIGHTNESS,
@@ -39,11 +43,6 @@ const PaletteFilterSelect = ({
         width="150px"
       />
     }
-    Icon={
-      <Toggleable toggled={filterByEnabled}>
-        <FilterIcon onClick={toggleFilter} />
-      </Toggleable>
-    }
     label="Filter By"
   />
 );
@@ -55,9 +54,16 @@ PaletteFilterSelect.defaultProps = {
 PaletteFilterSelect.propTypes = {
   filterBy: PropTypes.string,
   updateFilterSelect: PropTypes.func.isRequired,
-  filterByEnabled: PropTypes.bool.isRequired,
-  toggleFilter: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  filterBy: state.filters.filterBy,
+});
 
-export default PaletteFilterSelect;
+const mapDispatchToProps = {
+  updateFilterSelect,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PaletteFilterSelect),
+);

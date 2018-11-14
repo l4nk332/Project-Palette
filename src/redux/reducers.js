@@ -125,18 +125,6 @@ const filterReducer = (state = initialFiltersState, {type, value}) => {
       return Object.assign({}, state, {filterText: value});
     case UPDATE_FILTER_SELECT:
       return Object.assign({}, state, {filterBy: value});
-    case ENABLE_FILTER_SELECT:
-      return Object.assign(
-        {},
-        state,
-        {filterByEnabled: true},
-      );
-    case DISABLE_FILTER_SELECT:
-      return Object.assign(
-        {},
-        state,
-        {filterByEnabled: false},
-      );
     default:
       return state;
   }

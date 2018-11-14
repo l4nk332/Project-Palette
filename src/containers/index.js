@@ -14,7 +14,6 @@ import OutsideClickContainer from './utils/OutsideClickContainer';
 // Blocks
 
 import DownloadDropdownContainer from './blocks/DownloadDropdownContainer';
-import PaletteFilterSelectContainer from './blocks/PaletteFilterSelectContainer';
 import PaletteSearchContainer from './blocks/PaletteSearchContainer';
 import PaletteSortSelectContainer from './blocks/PaletteSortSelectContainer';
 import PaletteViewToggleContainer from './blocks/PaletteViewToggleContainer';
@@ -38,7 +37,6 @@ export {
   ColorSwatchContainer,
   ReportContainer,
   DownloadDropdownContainer,
-  PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
   PaletteViewToggleContainer,
