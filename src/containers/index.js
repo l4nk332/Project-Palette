@@ -2,7 +2,6 @@ import AppContainer from './AppContainer';
 
 // Core
 
-import ColorSwatchContainer from './core/ColorSwatchContainer';
 import FadeContainer from './core/FadeContainer';
 import ScrollTopContainer from './core/ScrollTopContainer';
 import SelectFieldContainer from './core/SelectFieldContainer';
@@ -10,6 +9,7 @@ import SelectFieldContainer from './core/SelectFieldContainer';
 // Utils
 
 import OutsideClickContainer from './utils/OutsideClickContainer';
+import CopyContainer from './utils/CopyContainer';
 
 // Blocks
 
@@ -28,18 +28,18 @@ import ReportContainer from './pages/ReportContainer';
 
 export {
   AppContainer,
+  CopyContainer,
   DetailContainer,
-  FadeContainer,
-  PaletteContainer,
-  ScrollTopContainer,
-  SearchContainer,
-  SelectFieldContainer,
-  ColorSwatchContainer,
-  ReportContainer,
   DownloadDropdownContainer,
+  FadeContainer,
+  OptionsPopupContainer,
+  OutsideClickContainer,
+  PaletteContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
   PaletteViewToggleContainer,
-  OptionsPopupContainer,
-  OutsideClickContainer,
+  ReportContainer,
+  ScrollTopContainer,
+  SearchContainer,
+  SelectFieldContainer,
 };
