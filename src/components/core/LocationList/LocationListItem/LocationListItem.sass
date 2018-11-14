@@ -1,14 +1,23 @@
 .container
-  color: inherit
   font-family: $secondary-font
   @include flex(row, nowrap, center, flex-start)
-  padding: 0.5em 0
+  padding: 0.5em 1em
+  transition: background-color 100ms ease-in-out
+  outline: 0
+  &:hover, &:focus
+    &.light
+      background: transparentize($black, 0.95)
+    &.dark
+      background: transparentize($white, 0.8)
+    cursor: pointer
+    .path
+      color: inherit
+      border-bottom: 1px solid currentColor
+
+.path
+  color: inherit
+  padding: 0.25em 0
   text-decoration: none
   border-bottom: 1px solid transparent
   transition: border-bottom 100ms ease-in-out
-  &:hover
-    color: inherit
-    border-bottom: 1px solid currentColor
-
-.path
   @include overflow-ellipsis(rtl)
