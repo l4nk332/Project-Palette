@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import CopyIcon from 'react-icons/lib/md/content-copy';
-import CheckMarkIcon from 'react-icons/lib/io/checkmark';
+import CheckMarkIcon from 'react-icons/lib/md/check';
 
 import s from './Copy.sass';
 

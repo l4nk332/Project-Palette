@@ -16,7 +16,7 @@ class CopyContainer extends React.Component {
     this.setState({hasCopied: true}, () => {
       setTimeout(() => {
         this.setState({hasCopied: false});
-      }, 500);
+      }, 1000);
     });
   }
 
