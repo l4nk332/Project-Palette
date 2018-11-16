@@ -60,6 +60,10 @@ import Detail from './pages/Detail/Detail';
 import Palette from './pages/Palette/Palette';
 import Report from './pages/Report/Report';
 
+// Utils
+
+import Copy from './utils/Copy/Copy';
+
 export {
   Anchor,
   Button,
@@ -67,6 +71,7 @@ export {
   ColorAverages,
   ColorSwatch,
   ColorizedText,
+  Copy,
   ColorList,
   ColorSpectrum,
   ContrastMeter,

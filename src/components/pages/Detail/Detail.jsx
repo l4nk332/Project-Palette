@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import NextIcon from 'react-icons/lib/io/ios-arrow-forward';
 import PreviousIcon from 'react-icons/lib/io/ios-arrow-back';
 
+import {CopyContainer} from 'containers';
+
 import {
   FixedWrapper,
   LocationList,
@@ -25,7 +27,10 @@ const Detail = ({
 }) => (
   <FixedWrapper color={color}>
     <CloseIcon handleClick={handleClose} />
-    <Heading>{color}</Heading>
+    <Heading>
+      {color}
+      <CopyContainer textToCopy={color} color="black" />
+    </Heading>
     <PreviousIcon className={s.previous} onClick={previousColor} />
     <NextIcon className={s.next} onClick={nextColor} />
     <LocationList
