@@ -1,24 +1,6 @@
 $size: 13em
-
-.icons
-  position: absolute
-  top: 10px
-  right: 10px
-  @include flex(row, nowrap, flex-start, space-between)
-  opacity: 0
-  transition: opacity 150ms ease-in-out
-  @media (hover: none)
-    opacity: 1
-    font-size: 1.2em
-
-.icon
-  opacity: 0.5
-  transition: opacity 150ms ease-in-out
-  &:hover
-    opacity: 1
-    cursor: pointer
-  @media (hover: none)
-    opacity: 1
+$shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)
+$shadow-lg: 0 22.5px 52.5px rgba(50,50,93,.1),0 7.5px 22.5px rgba(0,0,0,.07)
 
 .container
   position: relative
@@ -31,13 +13,13 @@ $size: 13em
   @include flex(row, nowrap, center, center)
   border-radius: 50%
   font-weight: $lighter
-  box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)
+  box-shadow: $shadow
   cursor: pointer
-  transition: transform 400ms ease-in-out
+  transition: transform 400ms ease-in-out, box-shadow 400ms ease-in-out
   &:focus
     outline: none
     transform: scale(1.1)
+    box-shadow: $shadow-lg
   &:hover
     transform: scale(1.1)
-    .icons
-      opacity: 1
+    box-shadow: $shadow-lg
