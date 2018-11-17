@@ -55,8 +55,8 @@ import PrimaryColorChart from './blocks/PrimaryColorChart/PrimaryColorChart';
 
 // Pages
 
-import Search from './pages/Search/Search';
 import Detail from './pages/Detail/Detail';
+import LandingPage from './pages/LandingPage/LandingPage';
 import Palette from './pages/Palette/Palette';
 import Report from './pages/Report/Report';
 
@@ -75,7 +75,9 @@ export {
   ColorList,
   ColorSpectrum,
   ContrastMeter,
+  ColorGrid,
   DecoratedField,
+  Detail,
   DownloadDropdown,
   Error,
   FixedMessage,
@@ -83,10 +85,10 @@ export {
   FlexWrapper,
   Form,
   GradientRule,
-  ColorGrid,
   Heading,
   Jumbotron,
   KeyValue,
+  LandingPage,
   Lead,
   Legend,
   Loader,
@@ -94,7 +96,11 @@ export {
   LocationList,
   Navbar,
   NavigateBack,
+  OptionsPopup,
   Palette,
+  PaletteFilterSelect,
+  PaletteNavbar,
+  PaletteSortSelect,
   Paragraph,
   Pie,
   Popup,
@@ -106,16 +112,10 @@ export {
   SelectField,
   SplitButton,
   SplitView,
+  StackedLabel,
   TextField,
   Title,
   Toggleable,
-  Search,
-  StackedLabel,
-  Detail,
-  OptionsPopup,
-  PaletteNavbar,
-  PaletteFilterSelect,
-  PaletteSortSelect,
   PaletteViewToggle,
   ProgressBar,
   PrimaryColorChart,

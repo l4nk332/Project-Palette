@@ -23,7 +23,7 @@ import OptionsPopupContainer from './blocks/OptionsPopupContainer';
 
 import DetailContainer from './pages/DetailContainer';
 import PaletteContainer from './pages/PaletteContainer';
-import SearchContainer from './pages/SearchContainer';
+import LandingPageContainer from './pages/LandingPageContainer';
 import ReportContainer from './pages/ReportContainer';
 
 export {
@@ -40,6 +40,6 @@ export {
   PaletteViewToggleContainer,
   ReportContainer,
   ScrollTopContainer,
-  SearchContainer,
+  LandingPageContainer,
   SelectFieldContainer,
 };
