@@ -129,7 +129,9 @@ class PaletteContainer extends React.Component {
     return filteredSortedPalette;
   }
 
-  search = color => color.includes(this.props.filterText)
+  search = color => (
+    color.toLowerCase().includes(this.props.filterText.toLowerCase())
+  )
 
   filterBy = color => (
     this.props.filterBy === LIGHTNESS
