@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 
 import OptionsIcon from 'react-icons/lib/io/android-options';
 
-import {Popup, Toggleable} from 'components';
+import {
+  Popup,
+  Toggleable,
+  PaletteFilterSelect,
+} from 'components';
 
 import {
-  PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
   OutsideClickContainer,
@@ -38,7 +41,7 @@ const OptionsPopup = ({
           <PaletteSortSelectContainer />
         </section>
         <section className={s.option}>
-          <PaletteFilterSelectContainer />
+          <PaletteFilterSelect />
         </section>
       </section>
     </Popup>

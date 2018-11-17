@@ -28,6 +28,7 @@ export const DESCENDING = 'DESCENDING';
 // Filter By Values
 export const LIGHTNESS = 'LIGHTNESS';
 export const DARKNESS = 'DARKNESS';
+export const NONE = 'NONE';
 
 // Palette Views
 export const GRID = 'GRID';

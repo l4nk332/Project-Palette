@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {ColorSwatchContainer} from 'containers';
+import {ColorSwatch} from 'components';
 
 import s from './ColorGrid.sass';
 
 const ColorGrid = ({colors, openColorDetail}) => (
   <section className={s.container}>
     {colors.map(color => (
-      <ColorSwatchContainer
+      <ColorSwatch
         key={color}
         color={color}
         openColorDetail={openColorDetail}

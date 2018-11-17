@@ -5,10 +5,10 @@ import Media from 'react-media';
 import {
   Navbar,
   NavigateBack,
+  PaletteFilterSelect,
 } from 'components';
 
 import {
-  PaletteFilterSelectContainer,
   PaletteSearchContainer,
   PaletteSortSelectContainer,
   DownloadDropdownContainer,
@@ -44,7 +44,7 @@ const PaletteNavbar = ({
             clickHandler={navigateBackHandler}
           />
           <PaletteSortSelectContainer />
-          <PaletteFilterSelectContainer />
+          <PaletteFilterSelect />
           <PaletteSearchContainer />
           <PaletteViewToggleContainer />
           <DownloadDropdownContainer

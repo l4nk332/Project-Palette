@@ -1,4 +1,4 @@
-import {DESCENDING, USAGE, GRID} from 'utils/constants';
+import {DESCENDING, USAGE, GRID, NONE} from 'utils/constants';
 
 export const initialLoadingState = false;
 
@@ -23,7 +23,7 @@ export const initialFormState = {
 };
 
 export const initialFiltersState = {
-  filterByEnabled: true,
+  filterBy: NONE,
 };
 
 export const initialSortState = {

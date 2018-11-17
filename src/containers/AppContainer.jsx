@@ -5,7 +5,7 @@ import {Switch, Route, withRouter, Link} from 'react-router-dom';
 
 import {clearError} from 'redux/actionCreators';
 
-import {SearchContainer, PaletteContainer} from 'containers';
+import {LandingPageContainer, PaletteContainer} from 'containers';
 
 import {LoadingWrapper, Anchor, Error} from 'components';
 
@@ -35,7 +35,7 @@ const AppContainer = ({
       />
     ) : (
       <Switch>
-        <Route exact path="/" component={SearchContainer} />
+        <Route exact path="/" component={LandingPageContainer} />
         <Route exact path="/:name/:project" component={PaletteContainer} />
         <Route
           render={() => (

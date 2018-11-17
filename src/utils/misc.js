@@ -21,4 +21,10 @@ export const decrRangeByOffset = (start, stop, offset) => (
     : [start].concat(decrRangeByOffset(start - offset, stop, offset))
 );
 
-export const updatePageTitle = title => document.title = title
+export const updatePageTitle = title => {
+  document.title = title;
+};
+
+export const openNewTab = url => {
+  window.open(url, '_blank');
+};

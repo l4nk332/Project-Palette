@@ -25,6 +25,7 @@ import {
   HUE,
   LIGHTNESS,
   DARKNESS,
+  NONE,
   ASCENDING,
   DESCENDING,
   GRID,
@@ -49,7 +50,6 @@ class PaletteContainer extends React.Component {
     colorDetail: PropTypes.string,
     filterText: PropTypes.string,
     filterBy: PropTypes.string,
-    filterByEnabled: PropTypes.bool.isRequired,
     sortOrder: PropTypes.oneOf([ASCENDING, DESCENDING]).isRequired,
     sortBy: PropTypes.oneOf([
       USAGE,
@@ -95,7 +95,7 @@ class PaletteContainer extends React.Component {
     const filteredPalette = Object.keys(this.props.palette)
       .filter(this.search)
       .filter(color => (
-        this.props.filterByEnabled ? this.filterBy(color) : true
+        this.props.filterBy !== NONE ? this.filterBy(color) : true
       ));
 
     let sortedPalette = lodashSortBy(filteredPalette, this.sortColor);
@@ -129,7 +129,9 @@ class PaletteContainer extends React.Component {
     return filteredSortedPalette;
   }
 
-  search = color => color.includes(this.props.filterText)
+  search = color => (
+    color.toLowerCase().includes(this.props.filterText.toLowerCase())
+  )
 
   filterBy = color => (
     this.props.filterBy === LIGHTNESS
@@ -233,7 +235,6 @@ class PaletteContainer extends React.Component {
 const mapStateToProps = state => ({
   filterText: state.filters.filterText,
   filterBy: state.filters.filterBy,
-  filterByEnabled: state.filters.filterByEnabled,
   colorDetail: state.colorDetail,
   palette: state.palette,
   sortBy: state.sort.sortBy,

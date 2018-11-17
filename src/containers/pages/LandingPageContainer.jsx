@@ -8,7 +8,7 @@ import ArrowForward from 'react-icons/lib/md/arrow-forward';
 import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
 import {updatePageTitle} from 'utils/misc';
 
-import {Search, SplitButton, TextField, Button} from 'components';
+import {LandingPage, SplitButton, TextField, Button} from 'components';
 
 import {
   setProjectUrl,
@@ -19,7 +19,7 @@ import {
 } from 'redux/actionCreators';
 
 
-class SearchContainer extends React.Component {
+class LandingPageContainer extends React.Component {
   static propTypes = {
     history: PropTypes.shape({
       push: PropTypes.func,
@@ -175,7 +175,7 @@ class SearchContainer extends React.Component {
     ];
   }
 
-  render = () => <Search formFields={this.formFields()} />
+  render = () => <LandingPage formFields={this.formFields()} />
 }
 
 const mapStateToProps = state => ({
@@ -191,5 +191,5 @@ const mapDispatchToProps = {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SearchContainer),
+  connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer),
 );

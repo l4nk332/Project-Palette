@@ -23,9 +23,9 @@ import {
   ColorizedText,
 } from 'components';
 
-import s from './Search.sass';
+import s from './LandingPage.sass';
 
-const Search = ({formFields}) => (
+const LandingPage = ({formFields}) => (
   <main className={s.container}>
     <FadeContainer>
       <FlexWrapper>
@@ -61,11 +61,11 @@ const Search = ({formFields}) => (
   </main>
 );
 
-Search.defaultProps = {
+LandingPage.defaultProps = {
   formFields: [],
 };
 
-Search.propTypes = {
+LandingPage.propTypes = {
   formFields: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
@@ -74,4 +74,4 @@ Search.propTypes = {
   ),
 };
 
-export default Search;
+export default LandingPage;

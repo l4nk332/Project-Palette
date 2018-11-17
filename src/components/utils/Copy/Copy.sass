@@ -1,0 +1,13 @@
+.icon
+  cursor: pointer
+  display: inline-block
+  margin-left: 0.3em;
+  opacity: 0.4
+  transform: scale(0.7)
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out
+  &:hover, &:focus
+    opacity: 1
+    transform: scale(0.8)
+  &.hasCopied
+    opacity: 1
+    transform: scale(1)

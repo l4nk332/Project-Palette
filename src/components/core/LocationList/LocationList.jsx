@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import tinycolor from 'tinycolor2';
+
 import {getAlphaBackgroundColor} from 'utils/color-manipulation';
 
 import LocationListItem from './LocationListItem/LocationListItem';
@@ -28,6 +30,7 @@ const LocationList = ({
           lineNumber={lineNumber}
           projectUrl={projectUrl}
           defaultBranch={defaultBranch}
+          isDark={tinycolor(color).isDark()}
         />
       ))}
     </div>

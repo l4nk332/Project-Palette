@@ -8,6 +8,8 @@ import {
   deleteQueryParams,
 } from 'utils/history';
 
+import {NONE} from 'utils/constants';
+
 import {
   IS_LOADING,
   IS_NOT_LOADING,
@@ -24,8 +26,6 @@ import {
   SHOW_URL_FIELDS,
   UPDATE_FILTER_TEXT,
   UPDATE_FILTER_SELECT,
-  ENABLE_FILTER_SELECT,
-  DISABLE_FILTER_SELECT,
   UPDATE_SORT_SELECT,
   UPDATE_SORT_ORDER,
   CHANGE_PALETTE_VIEW,
@@ -143,33 +143,15 @@ export const updateFilterText = value => dispatch => {
 };
 
 export const updateFilterSelect = value => dispatch => {
-  updateQueryParams({filter: value});
-
-  dispatch({
-    type: ENABLE_FILTER_SELECT,
-  });
-
-  dispatch({
-    type: UPDATE_FILTER_SELECT,
-    value,
-  });
-};
-
-export const enableFilterSelect = value => dispatch => {
-  if (value) {
+  if (value === NONE) {
+    deleteQueryParams(['filter']);
+  } else {
     updateQueryParams({filter: value});
   }
 
   dispatch({
-    type: ENABLE_FILTER_SELECT,
-  });
-};
-
-export const disableFilterSelect = () => dispatch => {
-  deleteQueryParams(['filter']);
-
-  dispatch({
-    type: DISABLE_FILTER_SELECT,
+    type: UPDATE_FILTER_SELECT,
+    value,
   });
 };
 
