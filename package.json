@@ -30,7 +30,7 @@
     "npm": "^6.1.0",
     "path": "^0.12.7",
     "prop-types": "^15.6.0",
-    "react": "^16.6.0",
+    "react": "^16.7.0-alpha.2",
     "react-copy-to-clipboard": "^5.0.0",
     "react-dom": "^16.6.0",
     "react-icons": "^2.2.5",
