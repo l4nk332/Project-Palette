@@ -2,10 +2,10 @@ export const toggleStaticBody = (lock = true) => {
   document.body.style.overflow = lock ? 'hidden' : 'auto';
 };
 
-export const triggerIfEnterKey = (event, callback) => {
+export const triggerIfEnterKey = (event, callback, ...args) => {
   if (event.key === 'Enter') {
     event.preventDefault();
-    callback(event);
+    callback(...(args.length ? args : [event]));
   }
 };
 

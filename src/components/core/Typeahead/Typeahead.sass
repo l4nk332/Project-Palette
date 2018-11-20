@@ -1,0 +1,47 @@
+.container
+  position: relative
+
+.options
+  padding: 0
+  margin: 0
+  list-style: none
+  position: absolute
+  border-radius: 0 0 2px 2px
+  overflow: hidden
+  width: 100%
+
+.option
+  padding: 1em
+  color: white
+  background: #39393a
+  cursor: pointer
+  font-size: 0.9em
+  font-weight: lighter
+  &:hover
+    background: lighten(#39393a, 10%)
+
+.selected
+  color: #19a298
+  font-weight: bold
+
+.input
+  border: 0
+  border-bottom: 3px solid $turquoise
+  border-radius: 2px 2px 0 0
+  background: $black
+  color: $white
+  box-sizing: border-box
+  outline: none
+  padding: 1em
+  font-weight: $lighter
+  transition: background 150ms ease-in-out
+  &:focus, &:hover
+    background: lighten($black, 10%)
+
+
+.value
+  background: #39393a
+  color: #19a298
+  padding: 1em
+  border-radius: 3px
+  cursor: pointer

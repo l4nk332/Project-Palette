@@ -8,7 +8,7 @@ import ArrowForward from 'react-icons/lib/md/arrow-forward';
 import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
 import {updatePageTitle} from 'utils/misc';
 
-import {LandingPage, SplitButton, TextField, Button} from 'components';
+import {LandingPage, SplitButton, TextField, Typeahead, Button} from 'components';
 
 import {
   setProjectUrl,
@@ -75,33 +75,37 @@ class LandingPageContainer extends React.Component {
 
   infoFields = () => [
     {
-      label: 'Username/Organization',
+      label: 'Search GitHub',
       isHidden: !this.props.form.infoActive,
       content: (
-        <TextField
-          placeholderText="l4nk332"
-          isHidden={!this.props.form.infoActive}
-          value={this.props.form.username}
-          enterKeyHandler={this.submitSearchForm}
-          changeHandler={event => {
-            const {value} = event.target;
-            this.props.updateFormField('username', value);
-          }}
-        />
-      ),
-    },
-    {
-      label: 'Project Name',
-      isHidden: !this.props.form.infoActive,
-      content: (
-        <TextField
-          placeholderText="Project-Palette"
-          value={this.props.form.project}
-          enterKeyHandler={this.submitSearchForm}
-          changeHandler={event => {
-            const {value} = event.target;
-            this.props.updateFormField('project', value);
-          }}
+        <Typeahead
+          placeholder="Project-Palette"
+          onSelect={console.log}
+          renderSelection={({firstName, lastName}) => (
+            `${firstName} ${lastName}`
+          )}
+          renderOption={({firstName, lastName, age}) => (
+            `${firstName} ${lastName} - Age: ${age}`
+          )}
+          fetchValues={value =>
+            new Promise(resolve => (
+              setTimeout(() => (
+                resolve(
+                  [
+                    {firstName: 'Ian', lastName: 'Jabour', age: '27'},
+                    {firstName: 'Chloe', lastName: 'Chou', age: '25'},
+                    {firstName: 'Dale', lastName: 'Jabour', age: '57'},
+                    {firstName: 'Laurice', lastName: 'Mitchell', age: '32'},
+                    {firstName: 'Adam', lastName: 'Jabour', age: '33'},
+                    {firstName: 'Angela', lastName: 'Jabour', age: '45'},
+                  ]
+                  .filter(({firstName, lastName, age}) => (
+                    `${firstName} ${lastName} - Age: ${age}`.toLowerCase().startsWith(value.toLowerCase())
+                  )),
+                )
+              ))
+            ))
+          }
         />
       ),
     },

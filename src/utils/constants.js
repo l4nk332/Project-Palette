@@ -4,6 +4,7 @@ export const GITHUB_API = 'https://api.github.com/';
 export const COLORS_URL = '/api/colors';
 export const PROJECT_PALETTE_GITHUB_URL =
   'https://github.com/l4nk332/Project-Palette';
+export const GITHUB_API_SEARCH = `${GITHUB_API}search/repositories/`
 
 // Colors
 export const BLUE = '#007fff';
