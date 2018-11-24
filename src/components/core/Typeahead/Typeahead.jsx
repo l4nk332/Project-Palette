@@ -5,6 +5,7 @@ import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 
 import {triggerIfEnterKey} from 'utils/misc';
+import {OutsideClickContainer} from 'containers';
 
 import s from './Typeahead.sass';
 
@@ -45,60 +46,62 @@ const Typeahead = ({
   };
 
   return (
-    <section className={s.container} style={style}>
-      {isOpen
-        ? (
-          <React.Fragment>
-            <input
-              className={s.input}
-              type="text"
-              value={searchValue}
-              placeholder={placeholder}
-              onChange={event => updateSearch(event.currentTarget.value)}
-            />
-            <ul className={s.options}>
-              {
-                isLoading
-                  ? <li className={s.readOnly}>Loading...</li>
-                  : options.length === 0
-                    ? <li className={s.readOnly}>No Results Found...</li>
-                    : (options
-                        .filter(option => (
-                          filterOption(option, searchValue)
-                        ))
-                        .map((option, idx) => (
-                          <li
-                            key={idx}
-                            className={classNames(
-                              s.option,
-                              {[s.selected]: isEqual(option, selectedValue)},
-                            )}
-                            onClick={() => handleSelect(option)}
-                            onKeyDown={event => {
-                              triggerIfEnterKey(event, handleSelect, option);
-                            }}
-                          >
-                            {renderOption(option)}
-                          </li>
-                        )))
-              }
-            </ul>
-          </React.Fragment>
-        ) : (
-          <section
-            className={s.value}
-            onClick={() => updateIsOpen(true)}
-            onKeyDown={event => {
-              triggerIfEnterKey(event, updateIsOpen, true);
-            }}
-            tabIndex="0"
-            role="Listbox"
-          >
-            {selectedValue ? renderSelection(selectedValue) : placeholder}
-          </section>
-        )
-      }
-    </section>
+    <OutsideClickContainer onOutsideClick={() => updateIsOpen(false)}>
+      <section className={s.container} style={style}>
+        {isOpen
+          ? (
+            <React.Fragment>
+              <input
+                className={s.input}
+                type="text"
+                value={searchValue}
+                placeholder={placeholder}
+                onChange={event => updateSearch(event.currentTarget.value)}
+              />
+              <ul className={s.options}>
+                {
+                  isLoading
+                    ? <li className={s.readOnly}>Loading...</li>
+                    : options.length === 0
+                      ? <li className={s.readOnly}>No Results Found...</li>
+                      : (options
+                          .filter(option => (
+                            filterOption(option, searchValue)
+                          ))
+                          .map((option, idx) => (
+                            <li
+                              key={idx}
+                              className={classNames(
+                                s.option,
+                                {[s.selected]: isEqual(option, selectedValue)},
+                              )}
+                              onClick={() => handleSelect(option)}
+                              onKeyDown={event => {
+                                triggerIfEnterKey(event, handleSelect, option);
+                              }}
+                            >
+                              {renderOption(option)}
+                            </li>
+                          )))
+                }
+              </ul>
+            </React.Fragment>
+          ) : (
+            <section
+              className={s.value}
+              onClick={() => updateIsOpen(true)}
+              onKeyDown={event => {
+                triggerIfEnterKey(event, updateIsOpen, true);
+              }}
+              tabIndex="0"
+              role="Listbox"
+            >
+              {selectedValue ? renderSelection(selectedValue) : placeholder}
+            </section>
+          )
+        }
+      </section>
+    </OutsideClickContainer>
   );
 };
 
