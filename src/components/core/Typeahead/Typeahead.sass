@@ -15,7 +15,7 @@
 %option
   padding: 1em
   color: white
-  background: #39393a
+  background: $black
   font-size: 0.9em
   font-weight: lighter
 
@@ -23,13 +23,13 @@
   @extend %option
   cursor: pointer
   &:hover
-    background: lighten(#39393a, 10%)
+    background: lighten($black, 10%)
 
 .readOnly
   @extend %option
 
 .selected
-  color: #19a298
+  color: $turquoise
   font-weight: bold
 
 .input
@@ -47,8 +47,10 @@
 
 
 .value
-  background: #39393a
-  color: #19a298
+  background: $black
+  color: $turquoise
   padding: 1em
   border-radius: 3px
   cursor: pointer
+  &:focus, &:hover
+    background: lighten($black, 10%)
