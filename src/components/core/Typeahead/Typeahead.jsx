@@ -56,31 +56,33 @@ const Typeahead = ({
               placeholder={placeholder}
               onChange={event => updateSearch(event.currentTarget.value)}
             />
-            {isLoading && <p>Loading...</p>}
-            {Boolean(options.length) && !isLoading && (
-              <ul className={s.options}>
-                {options
-                  .filter(option => (
-                    filterOption(option, searchValue)
-                  ))
-                  .map((option, idx) => (
-                    <li
-                      key={idx}
-                      className={classNames(
-                        s.option,
-                        {[s.selected]: isEqual(option, selectedValue)},
-                      )}
-                      onClick={() => handleSelect(option)}
-                      onKeyDown={event => {
-                        triggerIfEnterKey(event, handleSelect, option);
-                      }}
-                    >
-                      {renderOption(option)}
-                    </li>
-                  ))
-                }
-              </ul>
-            )}
+            <ul className={s.options}>
+              {
+                isLoading
+                  ? <li className={s.readOnly}>Loading...</li>
+                  : options.length === 0
+                    ? <li className={s.readOnly}>No Results Found...</li>
+                    : (options
+                        .filter(option => (
+                          filterOption(option, searchValue)
+                        ))
+                        .map((option, idx) => (
+                          <li
+                            key={idx}
+                            className={classNames(
+                              s.option,
+                              {[s.selected]: isEqual(option, selectedValue)},
+                            )}
+                            onClick={() => handleSelect(option)}
+                            onKeyDown={event => {
+                              triggerIfEnterKey(event, handleSelect, option);
+                            }}
+                          >
+                            {renderOption(option)}
+                          </li>
+                        )))
+              }
+            </ul>
           </React.Fragment>
         ) : (
           <section

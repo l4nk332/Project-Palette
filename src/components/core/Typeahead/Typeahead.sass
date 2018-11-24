@@ -10,16 +10,23 @@
   overflow: hidden
   width: 100%
   z-index: 1
+  border-top: 3px solid $turquoise
 
-.option
+%option
   padding: 1em
   color: white
   background: #39393a
-  cursor: pointer
   font-size: 0.9em
   font-weight: lighter
+
+.option
+  @extend %option
+  cursor: pointer
   &:hover
     background: lighten(#39393a, 10%)
+
+.readOnly
+  @extend %option
 
 .selected
   color: #19a298
@@ -27,7 +34,6 @@
 
 .input
   border: 0
-  border-bottom: 3px solid $turquoise
   border-radius: 2px 2px 0 0
   background: $black
   color: $white
