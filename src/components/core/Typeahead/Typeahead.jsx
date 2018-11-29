@@ -10,12 +10,12 @@ import {OutsideClickContainer} from 'containers';
 import s from './Typeahead.sass';
 
 const debouncedFetch = debounce(
-  async (fetchPromise, updateLoading, updateOptions) => {
-    const newOptions = await fetchPromise;
+  async (searchValue, fetchValues, updateLoading, updateOptions) => {
+    const newOptions = await fetchValues(searchValue);
     updateOptions(newOptions);
     updateLoading(false);
   },
-  500,
+  1000,
 );
 
 const Typeahead = ({
@@ -35,10 +35,8 @@ const Typeahead = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (searchValue) {
-      updateLoading(true);
-      debouncedFetch(fetchValues(searchValue), updateLoading, updateOptions);
-    }
+    updateLoading(true);
+    debouncedFetch(searchValue, fetchValues, updateLoading, updateOptions);
   }, [searchValue]);
 
   const handleSelect = option => {
@@ -56,7 +54,7 @@ const Typeahead = ({
   return (
     <OutsideClickContainer onOutsideClick={() => updateIsOpen(false)}>
       <section className={s.container} style={style}>
-        {isOpen || (!selectedValue && !searchValue)
+        {isOpen || !selectedValue
           ? (
             <input
               ref={inputRef}

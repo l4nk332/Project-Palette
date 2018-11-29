@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const mock = require('./mock')
 
 require('dotenv').config();
 
@@ -46,6 +47,10 @@ app.use(
   }),
 );
 app.use(morgan('combined'));
+
+app.get('/api/search', (req, res) => {
+  res.send(JSON.stringify(mock));
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
