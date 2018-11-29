@@ -11,9 +11,11 @@
   width: 100%
   z-index: 1
   border-top: 3px solid $turquoise
+  max-height: 350px
+  overflow: auto
 
 %option
-  padding: 1em
+  padding: 0.75em
   color: white
   background: $black
   font-size: 0.9em
@@ -44,7 +46,6 @@
   transition: background 150ms ease-in-out
   &:focus, &:hover
     background: lighten($black, 10%)
-
 
 .value
   background: $black

@@ -41,14 +41,14 @@ class LandingPageContainer extends React.Component {
       <SplitButton
         splits={[
           {
-            text: 'Url',
-            isActive: this.props.form.urlActive,
-            handler: this.props.showUrlFields,
-          },
-          {
-            text: 'Info',
+            text: 'Search',
             isActive: this.props.form.infoActive,
             handler: this.props.showInfoFields,
+          },
+          {
+            text: 'URL',
+            isActive: this.props.form.urlActive,
+            handler: this.props.showUrlFields,
           },
         ]}
       />
@@ -57,7 +57,7 @@ class LandingPageContainer extends React.Component {
 
   urlFields = () => [
     {
-      label: 'Github Url',
+      label: 'Paste GitHub URL',
       isHidden: !this.props.form.urlActive,
       content: (
         <TextField
@@ -73,39 +73,29 @@ class LandingPageContainer extends React.Component {
     },
   ];
 
+  renderOption = ({owner, name}) => (
+    <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
+      <img src={owner.avatar_url} alt={owner.login} style={{width: '3em', height: '3em', marginRight: '1em', borderRadius: '50%'}} />
+      <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
+      <span>({owner.login})</span>
+    </span>
+  );
+
   infoFields = () => [
     {
-      label: 'Search GitHub',
+      label: 'Search for GitHub Projects',
       isHidden: !this.props.form.infoActive,
       content: (
         <Typeahead
           placeholder="Project-Palette"
           onSelect={console.log}
-          renderSelection={({firstName, lastName}) => (
-            `${firstName} ${lastName}`
-          )}
-          renderOption={({firstName, lastName, age}) => (
-            `${firstName} ${lastName} - Age: ${age}`
-          )}
-          fetchValues={value =>
-            new Promise(resolve => (
-              setTimeout(() => (
-                resolve(
-                  [
-                    {firstName: 'Ian', lastName: 'Jabour', age: '27'},
-                    {firstName: 'Chloe', lastName: 'Chou', age: '25'},
-                    {firstName: 'Dale', lastName: 'Jabour', age: '57'},
-                    {firstName: 'Laurice', lastName: 'Mitchell', age: '32'},
-                    {firstName: 'Adam', lastName: 'Jabour', age: '33'},
-                    {firstName: 'Angela', lastName: 'Jabour', age: '45'},
-                  ]
-                  .filter(({firstName, lastName, age}) => (
-                    `${firstName} ${lastName} - Age: ${age}`.toLowerCase().startsWith(value.toLowerCase())
-                  )),
-                )
-              ))
-            ))
-          }
+          renderSelection={this.renderOption}
+          renderOption={this.renderOption}
+          fetchValues={async value => {
+            const response = await fetch(`https://api.github.com/search/repositories?q=${value}&in:name&sort=stars&order=desc`);
+            const {items} = await response.json();
+            return items;
+          }}
         />
       ),
     },

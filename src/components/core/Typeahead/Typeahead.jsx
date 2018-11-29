@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
@@ -32,10 +32,13 @@ const Typeahead = ({
   const [isLoading, updateLoading] = useState(false);
   const [isOpen, updateIsOpen] = useState(false);
   const [options, updateOptions] = useState([]);
+  const inputRef = useRef(null);
 
   useEffect(() => {
-    updateLoading(true);
-    debouncedFetch(fetchValues(searchValue), updateLoading, updateOptions);
+    if (searchValue) {
+      updateLoading(true);
+      debouncedFetch(fetchValues(searchValue), updateLoading, updateOptions);
+    }
   }, [searchValue]);
 
   const handleSelect = option => {
@@ -45,53 +48,31 @@ const Typeahead = ({
     onSelect(option);
   };
 
+  const handleOpen = () => {
+    updateIsOpen(true);
+    // inputRef.current.focus();
+  };
+
   return (
     <OutsideClickContainer onOutsideClick={() => updateIsOpen(false)}>
       <section className={s.container} style={style}>
-        {isOpen
+        {isOpen || (!selectedValue && !searchValue)
           ? (
-            <React.Fragment>
-              <input
-                className={s.input}
-                type="text"
-                value={searchValue}
-                placeholder={placeholder}
-                onChange={event => updateSearch(event.currentTarget.value)}
-              />
-              <ul className={s.options}>
-                {
-                  isLoading
-                    ? <li className={s.readOnly}>Loading...</li>
-                    : options.length === 0
-                      ? <li className={s.readOnly}>No Results Found...</li>
-                      : (options
-                          .filter(option => (
-                            filterOption(option, searchValue)
-                          ))
-                          .map((option, idx) => (
-                            <li
-                              key={idx}
-                              className={classNames(
-                                s.option,
-                                {[s.selected]: isEqual(option, selectedValue)},
-                              )}
-                              onClick={() => handleSelect(option)}
-                              onKeyDown={event => {
-                                triggerIfEnterKey(event, handleSelect, option);
-                              }}
-                            >
-                              {renderOption(option)}
-                            </li>
-                          )))
-                }
-              </ul>
-            </React.Fragment>
+            <input
+              ref={inputRef}
+              className={s.input}
+              type="text"
+              value={searchValue}
+              placeholder={placeholder}
+              onChange={event => updateSearch(event.currentTarget.value)}
+              onFocus={handleOpen}
+            />
           ) : (
             <section
               className={s.value}
-              onClick={() => updateIsOpen(true)}
+              onClick={handleOpen}
               onKeyDown={event => {
-                triggerIfEnterKey(event, updateIsOpen, true);
+                triggerIfEnterKey(event, handleOpen);
               }}
               tabIndex="0"
               role="Listbox"
@@ -100,6 +81,35 @@ const Typeahead = ({
             </section>
           )
         }
+        {isOpen && searchValue && (
+          <ul className={s.options}>
+            {
+              isLoading
+                ? <li className={s.readOnly}>Loading...</li>
+                : options.length === 0
+                  ? <li className={s.readOnly}>No Results Found...</li>
+                  : (options
+                      .filter(option => (
+                        filterOption(option, searchValue)
+                      ))
+                      .map((option, idx) => (
+                        <li
+                          key={idx}
+                          className={classNames(
+                            s.option,
+                            {[s.selected]: isEqual(option, selectedValue)},
+                          )}
+                          onClick={() => handleSelect(option)}
+                          onKeyDown={event => {
+                            triggerIfEnterKey(event, handleSelect, option);
+                          }}
+                        >
+                          {renderOption(option)}
+                        </li>
+                      )))
+            }
+          </ul>
+        )}
       </section>
     </OutsideClickContainer>
   );
