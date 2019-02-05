@@ -32,16 +32,16 @@ const LandingPage = ({formFields}) => (
         <SplitView
           left={[
             <GradientRule animate key={0} />,
-            <Jumbotron title="Project Palette." key={1}>
-              A <ColorizedText>color</ColorizedText> reference tool
+            <Jumbotron title="Project-Palette" key={1}>
+              A <ColorizedText>color</ColorizedText> audit tool
             </Jumbotron>,
             <Rule color={PURPLE} key={2} />,
             <Paragraph key={3}>
-              Project Palette is an{' '}
+              Project-Palette is an{' '}
               <Anchor url={PROJECT_PALETTE_GITHUB_URL}>
                 open-source
               </Anchor>{' '}
-              tool that allows you to analyze the color palette used for any
+              tool that allows you to audit the color palette used by any
               public facing GitHub project.
             </Paragraph>,
             <Rule color={PURPLE} key={4} />,
