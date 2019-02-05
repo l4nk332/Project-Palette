@@ -18,8 +18,8 @@ export const initialFormState = {
   username: '',
   project: '',
   url: '',
-  infoActive: false,
-  urlActive: true,
+  infoActive: true,
+  urlActive: false,
 };
 
 export const initialFiltersState = {

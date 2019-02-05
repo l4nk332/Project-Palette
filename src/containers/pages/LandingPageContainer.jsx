@@ -73,9 +73,16 @@ class LandingPageContainer extends React.Component {
     },
   ];
 
-  renderOption = ({owner, name}) => (
+  renderSelection = ({owner, name}) => (
     <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
       <img src={owner.avatar_url} alt={owner.login} style={{width: '3em', height: '3em', marginRight: '1em', borderRadius: '50%'}} />
+      <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
+      <span>({owner.login})</span>
+    </span>
+  );
+
+  renderOption = ({owner, name}) => (
+    <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
       <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
       <span>({owner.login})</span>
     </span>
@@ -89,12 +96,16 @@ class LandingPageContainer extends React.Component {
         <Typeahead
           placeholder="Project-Palette"
           onSelect={console.log}
-          renderSelection={this.renderOption}
+          renderSelection={this.renderSelection}
           renderOption={this.renderOption}
           fetchValues={async value => {
-            const response = await fetch(`https://api.github.com/search/repositories?q=${value}&in:name&sort=stars&order=desc`);
+            // const response = await fetch(`https://api.github.com/search/repositories?q=${value}&in:name&sort=stars&order=desc`);
+            // const {items} = await response.json();
+            value = value.length ? value : 'a'
+            const response = await fetch('/api/search');
             const {items} = await response.json();
-            return items;
+            return items.filter(({name}) => name.toLowerCase().includes(value.toLowerCase()))
+            // return items;
           }}
         />
       ),
