@@ -95,6 +95,8 @@ class LandingPageContainer extends React.Component {
       content: (
         <Typeahead
           placeholder="Project-Palette"
+          loadingText="Searching Github..."
+          emptyResultsText="No Repositories Found..."
           onSelect={console.log}
           renderSelection={this.renderSelection}
           renderOption={this.renderOption}
@@ -107,6 +109,7 @@ class LandingPageContainer extends React.Component {
             return items.filter(({name}) => name.toLowerCase().includes(value.toLowerCase()))
             // return items;
           }}
+          searchOnEnter
         />
       ),
     },

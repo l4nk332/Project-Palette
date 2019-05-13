@@ -49,7 +49,9 @@ app.use(
 app.use(morgan('combined'));
 
 app.get('/api/search', (req, res) => {
-  res.send(JSON.stringify(mock));
+  setTimeout(() => {
+    res.send(JSON.stringify(mock));
+  }, 2000);
 });
 
 app.get('*', (req, res) => {
