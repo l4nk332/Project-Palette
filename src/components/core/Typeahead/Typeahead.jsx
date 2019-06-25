@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
+import has from 'lodash/has';
 
 import {triggerIfEnterKey} from 'utils/misc';
 import {OutsideClickContainer} from 'containers';
@@ -87,7 +88,8 @@ const Typeahead = ({
   };
 
   const shouldShowLoading = isOpen && isLoading;
-  const shouldShowEmpty = isOpen && options.length === 0;
+  const shouldShowPrompt = isOpen && !has(searchCache, searchValue);
+  const shouldShowEmpty = isOpen && has(searchCache, searchValue) && options.length === 0;
   const shouldShowResults = isOpen && options.length;
 
   const searchPrompt = (
@@ -141,10 +143,17 @@ const Typeahead = ({
               ),
             },
             {
-              condition: shouldShowEmpty,
+              condition: shouldShowPrompt,
               content: (
                 <ul className={s.options}>
                   {searchPrompt}
+                </ul>
+              ),
+            },
+            {
+              condition: shouldShowEmpty,
+              content: (
+                <ul className={s.options}>
                   <li className={s.readOnly}>{emptyResultsText}</li>
                 </ul>
               ),

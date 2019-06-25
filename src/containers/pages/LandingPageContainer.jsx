@@ -98,7 +98,10 @@ class LandingPageContainer extends React.Component {
           placeholder="Project-Palette"
           loadingText="Searching Github..."
           emptyResultsText="No Repositories Found..."
-          onSelect={console.log}
+          onSelect={({ owner, name }) => {
+            this.props.updateFormField('username', owner.login);
+            this.props.updateFormField('project', name);
+          }}
           renderSelection={this.renderSelection}
           renderOption={this.renderOption}
           fetchValues={async value => {
