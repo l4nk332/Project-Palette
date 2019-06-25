@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -30,31 +30,34 @@ const LandingPage = ({formFields}) => (
     <FadeContainer>
       <FlexWrapper>
         <SplitView
-          left={[
-            <GradientRule animate key={0} />,
-            <Jumbotron title="Project-Palette" key={1}>
-              A <ColorizedText>color</ColorizedText> audit tool
-            </Jumbotron>,
-            <Rule color={PURPLE} key={2} />,
-            <Paragraph key={3}>
-              Project-Palette is an{' '}
-              <Anchor url={PROJECT_PALETTE_GITHUB_URL}>
-                open-source
-              </Anchor>{' '}
-              tool that allows you to audit the color palette used by any
-              public facing GitHub project.
-            </Paragraph>,
-            <Rule color={PURPLE} key={4} />,
-          ]}
-          right={[
-            <Lead key={5}>Get Started</Lead>,
-            <Rule color={BLACK} key={2} />,
-            <Paragraph key={6}>
-              To get started simply fill out the form below and click{' '}
-              <strong style={{color: TURQUOISE}}>analyze</strong>.
-            </Paragraph>,
-            <Form fields={formFields} key={7} />,
-          ]}
+          left={
+            <section className={s.left}>
+              <GradientRule animate />
+              <Jumbotron title="Project Palette.">
+                A <ColorizedText>color</ColorizedText> reference tool
+              </Jumbotron>
+              <Rule color={PURPLE} />
+              <Paragraph className={s.about}>
+                Project Palette is an {' '}
+                <Anchor url={PROJECT_PALETTE_GITHUB_URL}>
+                  open-source
+                </Anchor>{' '}
+                tool that allows you to analyze the color palette used for any
+                public facing GitHub project.
+              </Paragraph>
+            </section>
+          }
+          right={
+            <Fragment>
+              <Lead>Get Started</Lead>
+              <Rule color={BLACK} />
+              <Paragraph>
+                To get started simply fill out the form below and click{' '}
+                <strong style={{color: TURQUOISE}}>analyze</strong>.
+              </Paragraph>
+              <Form fields={formFields} />
+            </Fragment>
+          }
         />
       </FlexWrapper>
     </FadeContainer>
