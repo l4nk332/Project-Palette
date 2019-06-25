@@ -104,7 +104,7 @@ const Typeahead = ({
           ? (
             <input
               ref={inputRef}
-              className={s.input}
+              className={classNames(s.input, {[s.isOpen]: isOpen})}
               type="text"
               value={searchValue}
               placeholder={placeholder}

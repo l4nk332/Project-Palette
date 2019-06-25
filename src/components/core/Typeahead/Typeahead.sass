@@ -10,7 +10,6 @@
   overflow: hidden
   width: 100%
   z-index: 1
-  border-top: 3px solid $turquoise
   max-height: 350px
   overflow: auto
 
@@ -36,6 +35,7 @@
 
 .input
   border: 0
+  border-bottom: 3px solid transparent
   border-radius: 2px 2px 0 0
   background: $black
   color: $white
@@ -46,6 +46,8 @@
   transition: background 150ms ease-in-out
   &:focus, &:hover
     background: lighten($black, 10%)
+  &.isOpen
+    border-color: $turquoise
 
 .value
   background: $black
