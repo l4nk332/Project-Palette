@@ -1,10 +1,10 @@
 .container
   display: grid
   grid-template-columns: repeat(2, 1fr)
-  grid-gap: 4em
+  grid-gap: 8em
   grid-template-areas: 'chart averages' 'contrast contrast' 'list list'
   padding: 1em
-  max-width: 1500px
+  max-width: 900px
   margin: auto
 
 .chart
@@ -18,6 +18,10 @@
 
 .list
   grid-area: list
+
+@media (max-width: 900px)
+  .container
+    grid-gap: 4em
 
 @media (max-width: 550px)
   .container
