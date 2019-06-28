@@ -76,7 +76,7 @@ class LandingPageContainer extends React.Component {
 
   renderSelection = ({owner, name}) => (
     <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
-      <img src={owner.avatar_url} alt={owner.login} style={{width: '3em', height: '3em', marginRight: '1em', borderRadius: '50%'}} />
+      <img src={owner.avatar_url} alt={owner.login} style={{width: '2em', height: '2em', margin: '0 1em 0 0.25em', borderRadius: '50%'}} />
       <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
       <span>({owner.login})</span>
     </span>
@@ -104,11 +104,12 @@ class LandingPageContainer extends React.Component {
           }}
           renderSelection={this.renderSelection}
           renderOption={this.renderOption}
-          fetchValues={async (value = 'a') => {
-            // const response = await fetch(`https://api.github.com/search/repositories?q=${value}&in:name&sort=stars&order=desc`);
-            // const {items} = await response.json();
-            const response = await fetch(`/api/search?search=${encodeURIComponent(value)}`);
+          fetchValues={async value => {
+            const encoded = encodeURIComponent(value || 'a');
+            const response = await fetch(`https://api.github.com/search/repositories?q=${encoded}&in:name&sort=stars&order=desc`);
             const {items} = await response.json();
+            // const response = await fetch(`/api/search?search=${encoded}`);
+            // const {items} = await response.json();
 
             return items;
           }}
