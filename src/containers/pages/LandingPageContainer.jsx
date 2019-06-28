@@ -104,16 +104,14 @@ class LandingPageContainer extends React.Component {
           }}
           renderSelection={this.renderSelection}
           renderOption={this.renderOption}
-          fetchValues={async value => {
+          fetchValues={async (value = 'a') => {
             // const response = await fetch(`https://api.github.com/search/repositories?q=${value}&in:name&sort=stars&order=desc`);
             // const {items} = await response.json();
-            value = value.length ? value : 'a'
-            const response = await fetch('/api/search');
+            const response = await fetch(`/api/search?search=${encodeURIComponent(value)}`);
             const {items} = await response.json();
-            return items.filter(({name}) => name.toLowerCase().includes(value.toLowerCase()))
-            // return items;
+
+            return items;
           }}
-          searchOnEnter
         />
       ),
     },

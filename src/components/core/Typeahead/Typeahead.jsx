@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import debounce from 'lodash/debounce';
 import isEqual from 'lodash/isEqual';
 import has from 'lodash/has';
+import get from 'lodash/get';
 
 import {triggerIfEnterKey} from 'utils/misc';
 import {OutsideClickContainer} from 'containers';
@@ -11,7 +12,13 @@ import {OutsideClickContainer} from 'containers';
 import s from './Typeahead.sass';
 
 const debouncedFetch = debounce(
-  async (searchValue, fetchValues, updateLoading, updateOptions, updateSearchCache) => {
+  async (
+    searchValue,
+    fetchValues,
+    updateLoading,
+    updateOptions,
+    updateSearchCache,
+  ) => {
     const newOptions = await fetchValues(searchValue);
     updateOptions(newOptions);
     updateSearchCache(newOptions);
@@ -33,13 +40,10 @@ const Typeahead = ({
   renderSelection,
   renderOption,
   filterOption,
-  searchOnEnter,
-  cacheResults,
   style,
 }) => {
   const [searchValue, updateSearch] = useState('');
   const [searchCache, updateCache] = useState({});
-  const [searchHistory, updateHistory] = useState([]);
   const [selectedValue, updateSelectedValue] = useState(null);
   const [isLoading, updateLoading] = useState(false);
   const [isOpen, updateIsOpen] = useState(false);
@@ -51,30 +55,17 @@ const Typeahead = ({
     [searchValue]: newOptions,
   });
 
-  const updateSearchHistory = lastSearch => updateHistory([
-    lastSearch,
-    ...searchHistory,
-  ])
-
   const decoratedFetch = () => {
-    if (cacheResults && searchHistory.includes(searchValue)) {
-      updateOptions(searchCache[searchValue]);
-    } else {
-      updateLoading(true);
+    updateLoading(true);
 
-      debouncedFetch(
-        searchValue,
-        fetchValues,
-        updateLoading,
-        updateOptions,
-        updateSearchCache,
-      );
-    }
+    debouncedFetch(
+      searchValue,
+      fetchValues,
+      updateLoading,
+      updateOptions,
+      updateSearchCache,
+    );
   };
-
-  useEffect(() => {
-    if (!searchOnEnter) decoratedFetch();
-  }, [searchValue]);
 
   const handleSelect = option => {
     updateSelectedValue(option);
@@ -90,6 +81,7 @@ const Typeahead = ({
   const shouldShowLoading = isOpen && isLoading;
   const shouldShowPrompt = isOpen && !has(searchCache, searchValue);
   const shouldShowEmpty = isOpen && has(searchCache, searchValue) && options.length === 0;
+  const shouldShowCachedResults = isOpen && has(searchCache, searchValue) && options.length;
   const shouldShowResults = isOpen && options.length;
 
   const searchPrompt = (
@@ -112,7 +104,7 @@ const Typeahead = ({
               placeholder={placeholder}
               onChange={event => updateSearch(event.currentTarget.value)}
               {...(
-                searchOnEnter && {
+                !has(searchCache, searchValue) && {
                   onKeyDown(event) {
                     triggerIfEnterKey(event, decoratedFetch);
                   },
@@ -155,6 +147,33 @@ const Typeahead = ({
               content: (
                 <ul className={s.options}>
                   <li className={s.readOnly}>{emptyResultsText}</li>
+                </ul>
+              ),
+            },
+            {
+              condition: shouldShowCachedResults,
+              content: () => (
+                <ul className={s.options}>
+                  {searchCache[searchValue]
+                    .filter(option => (
+                      filterOption(option, searchValue)
+                    ))
+                    .map((option, idx) => (
+                      <li
+                        key={idx}
+                        className={classNames(
+                          s.option,
+                          {[s.selected]: isEqual(option, selectedValue)},
+                        )}
+                        onClick={() => handleSelect(option)}
+                        onKeyDown={event => {
+                          triggerIfEnterKey(event, handleSelect, option);
+                        }}
+                      >
+                        {renderOption(option)}
+                      </li>
+                    ))
+                  }
                 </ul>
               ),
             },
@@ -202,8 +221,6 @@ Typeahead.propTypes = {
   renderSelection: PropTypes.func,
   renderOption: PropTypes.func,
   filterOption: PropTypes.func,
-  searchOnEnter: PropTypes.bool,
-  cacheResults: PropTypes.bool,
   style: PropTypes.object,
 };
 
@@ -214,8 +231,6 @@ Typeahead.defaultProps = {
   renderSelection: value => value,
   renderOption: label => label,
   filterOption: () => true,
-  searchOnEnter: false,
-  cacheResults: true,
   style: {},
 };
 
@@ -223,13 +238,17 @@ export default Typeahead;
 
 const ConditionalRender = ({conditions, fallback = null}) => {
   const firstTruthy = conditions.find(({condition}) => Boolean(condition));
-  return firstTruthy ? firstTruthy.content : fallback;
+  return (
+    firstTruthy && typeof firstTruthy.content === 'function'
+      ? firstTruthy.content()
+      : get(firstTruthy, 'content', fallback)
+  );
 };
 
 ConditionalRender.propTypes = {
   conditions: PropTypes.arrayOf(PropTypes.shape({
     condition: PropTypes.any,
-    content: PropTypes.node,
+    content: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   })).isRequired,
   fallback: PropTypes.node,
 };
