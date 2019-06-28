@@ -68,7 +68,7 @@ class LandingPageContainer extends React.Component {
             const {value} = event.target;
             this.props.updateFormField('url', value);
           }}
-          style={{fontSize: '1em', padding: '1em'}}
+          style={{fontSize: '1em', padding: '1em', paddingBottom: 'calc(1em - 3px)'}}
         />
       ),
     },
