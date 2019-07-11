@@ -108,8 +108,6 @@ class LandingPageContainer extends React.Component {
             const encoded = encodeURIComponent(value || 'a');
             const response = await fetch(`https://api.github.com/search/repositories?q=${encoded}&in:name&sort=stars&order=desc`);
             const {items} = await response.json();
-            // const response = await fetch(`/api/search?search=${encoded}`);
-            // const {items} = await response.json();
 
             return items;
           }}
