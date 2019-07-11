@@ -23,7 +23,11 @@ const ColorSwatch = ({color, openColorDetail}) => {
       tabIndex="0"
       role="button"
     >
-      <span style={{color: getTextColor(normalizedColor)}}>
+      <span
+        style={{color: getTextColor(normalizedColor)}}
+        className={s.text}
+        title={normalizedColor}
+      >
         {normalizedColor}
       </span>
     </div>
