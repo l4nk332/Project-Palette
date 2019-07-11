@@ -1,0 +1,60 @@
+.container
+  position: relative
+
+.options
+  padding: 0
+  margin: 0
+  list-style: none
+  position: absolute
+  border-radius: 0 0 2px 2px
+  overflow: hidden
+  width: 100%
+  z-index: 1
+  max-height: 350px
+  overflow: auto
+
+%option
+  padding: 0.75em
+  color: white
+  background: $black
+  font-size: 0.9em
+  font-weight: lighter
+
+.option
+  @extend %option
+  cursor: pointer
+  &:hover
+    background: lighten($black, 10%)
+
+.readOnly
+  @extend %option
+
+.selected
+  color: $turquoise
+  font-weight: bold
+
+.input
+  border: 0
+  border-bottom: 3px solid transparent
+  border-radius: 2px 2px 0 0
+  background: $black
+  color: $white
+  box-sizing: border-box
+  outline: none
+  padding: 1em
+  padding-bottom: calc(1em - 3px)
+  font-weight: $lighter
+  transition: background 150ms ease-in-out
+  &:focus, &:hover
+    background: lighten($black, 10%)
+  &.isOpen
+    border-color: $turquoise
+
+.value
+  background: $black
+  color: $turquoise
+  padding: 0.5em
+  border-radius: 3px
+  cursor: pointer
+  &:focus, &:hover
+    background: lighten($black, 10%)

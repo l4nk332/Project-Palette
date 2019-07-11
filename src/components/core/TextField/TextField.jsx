@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import {triggerIfEnterKey} from 'utils/misc';
@@ -12,9 +13,12 @@ const TextField = ({
   changeHandler,
   focusHandler,
   scalesDown,
+  style,
+  className,
 }) => (
   <input
-    className={scalesDown ? s.scalesDown : s.container}
+    className={classNames(scalesDown ? s.scalesDown : s.container, {[className]: className})}
+    style={style}
     type="text"
     placeholder={placeholderText}
     value={value}
@@ -33,6 +37,8 @@ TextField.defaultProps = {
   changeHandler: () => {},
   focusHandler: () => {},
   scalesDown: false,
+  style: {},
+  className: '',
 };
 
 TextField.propTypes = {
@@ -42,6 +48,8 @@ TextField.propTypes = {
   changeHandler: PropTypes.func,
   focusHandler: PropTypes.func,
   scalesDown: PropTypes.bool,
+  style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default TextField;

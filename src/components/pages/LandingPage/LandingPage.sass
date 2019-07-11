@@ -6,3 +6,11 @@ $transorange: transparentize($orange, 0.3)
 .container
   color: $black
   background-image: linear-gradient(-45deg, $transturquoise, $transpink), linear-gradient(45deg, $transblue, $transorange)
+
+.left
+  @include flex(column, nowrap, flex-start, flex-start)
+
+.about
+  padding-top: 1em
+  font-style: italic
+  margin: auto 0 0 0

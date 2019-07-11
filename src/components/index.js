@@ -36,6 +36,7 @@ import StackedLabel from './core/StackedLabel/StackedLabel';
 import TextField from './core/TextField/TextField';
 import Title from './core/Title/Title';
 import Toggleable from './core/Toggleable/Toggleable';
+import Typeahead from './core/Typeahead/Typeahead';
 
 // Blocks
 
@@ -116,6 +117,7 @@ export {
   TextField,
   Title,
   Toggleable,
+  Typeahead,
   PaletteViewToggle,
   ProgressBar,
   PrimaryColorChart,

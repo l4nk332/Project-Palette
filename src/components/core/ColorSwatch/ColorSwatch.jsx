@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import partial from 'lodash/partial';
 
 import {getTextColor} from 'utils/color-manipulation';
 import {triggerIfEnterKey} from 'utils/misc';
@@ -9,14 +10,15 @@ import s from './ColorSwatch.sass';
 
 const ColorSwatch = ({color, openColorDetail}) => {
   const normalizedColor = color.toLowerCase();
+  const appliedDetailOpen = partial(openColorDetail, color);
 
   return (
     <div
       style={{backgroundColor: normalizedColor}}
       className={s.container}
-      onClick={() => { openColorDetail(color); }}
+      onClick={appliedDetailOpen}
       onKeyDown={event => {
-        triggerIfEnterKey(event, openColorDetail);
+        triggerIfEnterKey(event, appliedDetailOpen);
       }}
       tabIndex="0"
       role="button"

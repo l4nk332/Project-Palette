@@ -8,7 +8,7 @@ import ArrowForward from 'react-icons/lib/md/arrow-forward';
 import {GITHUB_URL, PROJECT_PALETTE_GITHUB_URL} from 'utils/constants';
 import {updatePageTitle} from 'utils/misc';
 
-import {LandingPage, SplitButton, TextField, Button} from 'components';
+import {LandingPage, SplitButton, TextField, Typeahead, Button} from 'components';
 
 import {
   setProjectUrl,
@@ -41,14 +41,14 @@ class LandingPageContainer extends React.Component {
       <SplitButton
         splits={[
           {
-            text: 'Url',
-            isActive: this.props.form.urlActive,
-            handler: this.props.showUrlFields,
-          },
-          {
-            text: 'Info',
+            text: 'Search',
             isActive: this.props.form.infoActive,
             handler: this.props.showInfoFields,
+          },
+          {
+            text: 'URL',
+            isActive: this.props.form.urlActive,
+            handler: this.props.showUrlFields,
           },
         ]}
       />
@@ -57,7 +57,7 @@ class LandingPageContainer extends React.Component {
 
   urlFields = () => [
     {
-      label: 'Github Url',
+      label: 'Paste GitHub URL',
       isHidden: !this.props.form.urlActive,
       content: (
         <TextField
@@ -68,39 +68,48 @@ class LandingPageContainer extends React.Component {
             const {value} = event.target;
             this.props.updateFormField('url', value);
           }}
+          style={{fontSize: '1em', padding: '1em', paddingBottom: 'calc(1em - 3px)'}}
         />
       ),
     },
   ];
 
+  renderSelection = ({owner, name}) => (
+    <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
+      <img src={owner.avatar_url} alt={owner.login} style={{width: '2em', height: '2em', margin: '0 1em 0 0.25em', borderRadius: '50%'}} />
+      <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
+      <span>({owner.login})</span>
+    </span>
+  );
+
+  renderOption = ({owner, name}) => (
+    <span style={{display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'flex-start'}}>
+      <span style={{marginRight: '0.5em', fontWeight: 'bold'}}>{name}</span>
+      <span>({owner.login})</span>
+    </span>
+  );
+
   infoFields = () => [
     {
-      label: 'Username/Organization',
+      label: 'Search for GitHub Projects',
       isHidden: !this.props.form.infoActive,
       content: (
-        <TextField
-          placeholderText="l4nk332"
-          isHidden={!this.props.form.infoActive}
-          value={this.props.form.username}
-          enterKeyHandler={this.submitSearchForm}
-          changeHandler={event => {
-            const {value} = event.target;
-            this.props.updateFormField('username', value);
+        <Typeahead
+          placeholder="Project-Palette"
+          loadingText="Searching Github..."
+          emptyResultsText="No Repositories Found..."
+          onSelect={({ owner, name }) => {
+            this.props.updateFormField('username', owner.login);
+            this.props.updateFormField('project', name);
           }}
-        />
-      ),
-    },
-    {
-      label: 'Project Name',
-      isHidden: !this.props.form.infoActive,
-      content: (
-        <TextField
-          placeholderText="Project-Palette"
-          value={this.props.form.project}
-          enterKeyHandler={this.submitSearchForm}
-          changeHandler={event => {
-            const {value} = event.target;
-            this.props.updateFormField('project', value);
+          renderSelection={this.renderSelection}
+          renderOption={this.renderOption}
+          fetchValues={async value => {
+            const encoded = encodeURIComponent(value || 'a');
+            const response = await fetch(`https://api.github.com/search/repositories?q=${encoded}&in:name&sort=stars&order=desc`);
+            const {items} = await response.json();
+
+            return items;
           }}
         />
       ),
