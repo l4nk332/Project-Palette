@@ -2,51 +2,63 @@
 
 ---
 
-### The Problems to Solve
+Project-Palette is [here](https://project-palette.com/)!
 
-*In a large project with no design system, how do I know how many shades of green are used?*
+## About
 
-*If I wanted to standarized the colors in a legacy project, where do I start looking?*
+Project Palette is an open-source tool that allows you to easily audit the
+colors used in a Github project.
 
-Look no further, Project-Palette is [here](https://project-palette.com/)!
+This tool is meant to provide transparency for designers and developers to
+help unify the color palette used across a product.
 
-### About
+## Getting Started
 
-Project Palette is an open-source tool that allows you to analyze the
-color palette used for any public facing GitHub project.
+Getting started is as simple as finding your project and clicking `Analyze`.
 
-### Color Swatch Breakdown
+> If you can't find the project you're looking for you can also just paste
+in a direct link from Github.
 
-Get a color swatch breakdown of the entire palette.
+## Palette View
 
-### Sorting
+The palette view provides a visual overview of all the colors Project-Palette
+was able to find across the project.
 
-Sort the palette by frequency of usage, contrast, or saturation.
+You can **search**, **filter**, and **sort** these colors as necessary and
+click on a swatch when you would like to see details of where it is being used.
 
-### Filtering
+## Palette Report
 
-Filter the colors by lightness/darkness or via a text field.
+The report view provides some additional information about the group of colors
+matched against.
 
-### Links to GitHub
+The colors are also listed below with the aggregated usage count attached to them.
 
-Navigate through the list of links to the file and line number where
-a color is utilized.
+## Color Usage
 
-### Color Groups
+When a color is selected in either the palette or report views you will be a
+list of line locations where that color is being used.
 
-For a given color find any of the following color groups:
-* analogous
-* monochromatic
-* complement
-* split complement
-* triad
-* tetrad
+Each link will open a new tab, showing you the exact line of code where
+that color value is applied.
 
-### Visual Report
+> You can either use the arrow icons or the arrow keys on your keyboard to
+quickly jump between the next / previous colors in line. Clicking the `X`
+or hitting the `ESC` key will close the detail view.
 
-Get a visual report of the palette for a more high-level overview.
+## Exporting
 
-### Built With
+You can export the parsed palette for your project in one of two formats:
+
+- JSON
+- SVG
+
+The `SVG` format can prove useful when needing to pull the colors into
+design software like Sketch or Figma.
+
+## Built With
+
+This project was built with the following:
 
 * [Firebase](https://firebase.google.com/)
 * [Express](https://expressjs.com/)
