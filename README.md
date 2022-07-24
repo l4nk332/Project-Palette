@@ -2,8 +2,6 @@
 
 ---
 
-Project-Palette is [here](https://project-palette.com/)!
-
 ## About
 
 Project Palette is an open-source tool that allows you to easily audit the
