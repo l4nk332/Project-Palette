@@ -1,3 +1,7 @@
+> **⚠️ This project is no longer maintained and is no longer a hosted tool.**
+
+---
+
 ![Project-Palette Logo](/screenshots/Project-Palette-Logo.png?raw=true "Project-Palette")
 
 ---
